@@ -6,10 +6,13 @@ import type { ReactNode } from "react";
 interface BtnCustomProps {
   icon?: ReactNode;
   text: string;
-  onClick: () => void;
+  onClick?: () => void;
   sx?: SxProps<Theme>;
   disabled?: boolean;
   variant?: "text" | "outlined" | "contained";
+  type?: "button" | "submit" | "reset";
+  color?: "primary" | "secondary" | "error" | "info" | "success" | "warning";
+  fullWidth?: boolean;
 }
 
 const BtnCustom: React.FC<BtnCustomProps> = ({
@@ -18,14 +21,20 @@ const BtnCustom: React.FC<BtnCustomProps> = ({
   onClick,
   sx,
   disabled,
+  type,
+  color,
+  fullWidth,
   variant = "outlined",
 }) => {
   return (
     <Button
+      type={type}
       variant={variant}
       startIcon={icon}
       onClick={onClick}
       disabled={disabled}
+      color={color}
+      fullWidth={fullWidth}
       sx={{
         borderRadius: "20px",
         textTransform: "none",

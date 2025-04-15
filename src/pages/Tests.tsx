@@ -160,6 +160,7 @@ const Tests: React.FC = () => {
             key={category}
             sx={{
               borderRadius: "20px !important",
+              marginBottom: "10px",
               overflow: "hidden",
               "&:before": {
                 display: "none",

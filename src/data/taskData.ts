@@ -1,4 +1,5 @@
 import { PracticeTask } from "../components/Сourse/CourseTopic";
+import { css_intro_task_1 } from "../components/Сourse/dataCourse/css/work/css_intro_task";
 import {
   html_intro_task_1,
   html_intro_task_2,
@@ -15,4 +16,5 @@ export const practiceMock: PracticeTask[] = [
   html_structure_task_1,
   html_structure_task_2,
   html_block_inline_1,
+  css_intro_task_1,
 ];

@@ -7,6 +7,7 @@ import {
   Divider,
   Stack,
   Chip,
+  Grid,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { renderDifficulty } from "../TaskBook/renderDifficulty";
@@ -33,6 +34,14 @@ const PracticeDrawer: React.FC<PracticeDrawerProps> = ({
   useEffect(() => {
     setShowSolution(false);
   }, [selectedTask]);
+
+  useEffect(() => {
+    if (!open) {
+      setSelectedTask(null);
+      setShowSolution(false);
+      setHtmlDrawerOpen(false);
+    }
+  }, [open]);
 
   return (
     <Drawer
@@ -107,7 +116,7 @@ const PracticeDrawer: React.FC<PracticeDrawerProps> = ({
               ))}
             </ol>
 
-            {selectedTask.solution && (
+            {(selectedTask.solution || selectedTask.codeExampleCSS) && (
               <Box mt={3}>
                 <Chip
                   label={showSolution ? "Скрыть решение" : "Показать решение"}
@@ -117,14 +126,53 @@ const PracticeDrawer: React.FC<PracticeDrawerProps> = ({
                   variant="outlined"
                   sx={{ mb: 2 }}
                 />
+
                 {showSolution && (
-                  <CopyBlock
-                    text={selectedTask.solution}
-                    language="html"
-                    showLineNumbers
-                    theme={dracula}
-                    codeBlock
-                  />
+                  <Grid sx={{ marginBottom: "20px" }} container spacing={2}>
+                    {selectedTask.solution && (
+                      <Grid item xs={selectedTask.codeExampleCSS ? 6 : 12}>
+                        <Typography variant="subtitle2" gutterBottom>
+                          HTML решение:
+                        </Typography>
+                        <CopyBlock
+                          text={selectedTask.solution}
+                          language="html"
+                          showLineNumbers
+                          theme={dracula}
+                          customStyle={{
+                            height: "100%",
+                            minHeight: "300px",
+                            display: "flex",
+                            flexDirection: "column",
+                            borderRadius: "8px",
+                          }}
+                          codeBlock
+                        />
+                      </Grid>
+                    )}
+
+                    {selectedTask.codeExampleCSS && (
+                      <Grid item xs={selectedTask.solution ? 6 : 12}>
+                        <Typography variant="subtitle2" gutterBottom>
+                          CSS решение:
+                        </Typography>
+                        <CopyBlock
+                          text={selectedTask.codeExampleCSS}
+                          language="css"
+                          showLineNumbers
+                          theme={dracula}
+                          customStyle={{
+                            height: "100%",
+                            minHeight: "300px",
+                            display: "flex",
+                            flexDirection: "column",
+                            borderRadius: "8px",
+                          }}
+                          codeBlock
+                        />
+                      </Grid>
+                    )}
+                  </Grid>
                 )}
               </Box>
             )}

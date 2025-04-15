@@ -9,6 +9,7 @@ import {
   Divider,
   Stack,
   Chip,
+  Grid,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { CopyBlock, dracula } from "react-code-blocks";
@@ -63,16 +64,57 @@ const SectionDrawer: React.FC<SectionDrawerProps> = ({ section, onClose }) => {
 
           {section?.codeExample && (
             <Box mb={3}>
-              <Typography variant="subtitle1" gutterBottom>
-                Пример кода
-              </Typography>
-              <CopyBlock
-                text={section.codeExample}
-                language="html"
-                showLineNumbers
-                theme={dracula}
-                codeBlock
-              />
+              {section.codeExampleCSS ? (
+                <Grid container spacing={2}>
+                  <Grid item xs={12} md={6}>
+                    <Typography variant="body2" gutterBottom>
+                      Пример кода: HTML
+                    </Typography>
+                    <CopyBlock
+                      text={section.codeExample}
+                      language="html"
+                      showLineNumbers
+                      theme={dracula}
+                      customStyle={{
+                        height: "100%",
+                        minHeight: "300px",
+                        display: "flex",
+                        flexDirection: "column",
+                        borderRadius: "8px",
+                      }}
+                      codeBlock
+                    />
+                  </Grid>
+
+                  <Grid item xs={12} md={6}>
+                    <Typography variant="body2" gutterBottom>
+                      Пример кода: CSS
+                    </Typography>
+                    <CopyBlock
+                      text={section.codeExampleCSS}
+                      language="css"
+                      showLineNumbers
+                      theme={dracula}
+                      customStyle={{
+                        height: "100%",
+                        minHeight: "300px",
+                        display: "flex",
+                        flexDirection: "column",
+                        borderRadius: "8px",
+                      }}
+                      codeBlock
+                    />
+                  </Grid>
+                </Grid>
+              ) : (
+                <CopyBlock
+                  text={section.codeExample}
+                  language="html"
+                  showLineNumbers
+                  theme={dracula}
+                  codeBlock
+                />
+              )}
             </Box>
           )}
 
@@ -117,7 +159,7 @@ const SectionDrawer: React.FC<SectionDrawerProps> = ({ section, onClose }) => {
           )}
 
           {section?.resources?.length ? (
-            <Box mb={2}>
+            <Box mb={2} mt={1}>
               <Typography variant="subtitle1" gutterBottom>
                 Полезные ссылки
               </Typography>
