@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { testData } from "../data/testData";
+import { testData } from "../../data/testData";
 
 const MAX_ATTEMPTS = 2;
 
@@ -103,6 +103,22 @@ export const useTestLogic = () => {
     setShowResults(false);
     setHighlightAnswers({});
     setOpen(false);
+    scrollToTop();
+  };
+
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 300);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return {
@@ -110,6 +126,9 @@ export const useTestLogic = () => {
     selectedTest,
     answers,
     handleChange,
+    showScrollTop,
+    setShowScrollTop,
+    scrollToTop,
     handleSubmit,
     handleRetry,
     highlightAnswers,

@@ -1,0 +1,174 @@
+import React, { useState } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import {
+  Drawer,
+  Box,
+  Typography,
+  IconButton,
+  Divider,
+  Stack,
+  Chip,
+} from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import { CopyBlock, dracula } from "react-code-blocks";
+import { CourseSection } from "./CourseTopic";
+import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
+import LinkIcon from "@mui/icons-material/Link";
+import HtmlDrawer from "./HtmlDrawer";
+
+interface SectionDrawerProps {
+  section: CourseSection | null;
+  onClose: () => void;
+}
+
+const SectionDrawer: React.FC<SectionDrawerProps> = ({ section, onClose }) => {
+  const [htmlDrawerOpen, setHtmlDrawerOpen] = useState(false);
+  const [showCodeExample, setShowCodeExample] = useState(false);
+
+  const handleShowExample = () => {
+    setShowCodeExample((e) => !e);
+  };
+
+  return (
+    <>
+      <Drawer
+        anchor="top"
+        open={!!section}
+        onClose={onClose}
+        PaperProps={{ sx: { height: "100vh" } }}
+      >
+        <Box px={4} py={2} sx={{ height: "100%", overflowY: "auto" }}>
+          <Box
+            display="flex"
+            justifyContent="space-between"
+            alignItems="center"
+          >
+            <Typography variant="h6" color="primary">
+              {section?.title}
+            </Typography>
+
+            <IconButton onClick={onClose}>
+              <CloseIcon />
+            </IconButton>
+          </Box>
+
+          <Divider sx={{ my: 2 }} />
+
+          <Box mb={3}>
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+              {section?.content || "Раздел пока не содержит описания."}
+            </ReactMarkdown>
+          </Box>
+
+          {section?.codeExample && (
+            <Box mb={3}>
+              <Typography variant="subtitle1" gutterBottom>
+                Пример кода
+              </Typography>
+              <CopyBlock
+                text={section.codeExample}
+                language="html"
+                showLineNumbers
+                theme={dracula}
+                codeBlock
+              />
+            </Box>
+          )}
+
+          <Box display="flex" gap={2}>
+            {section?.show && (
+              <Box display="flex" gap={2} mb={2}>
+                <Stack direction="row" spacing={1}>
+                  <Chip
+                    label="Показать решение"
+                    color="primary"
+                    onClick={handleShowExample}
+                    clickable
+                  />
+                </Stack>
+              </Box>
+            )}
+
+            {section?.show && (
+              <Box display="flex" gap={2}>
+                <Stack direction="row">
+                  <Chip
+                    label="Показать пример"
+                    color="primary"
+                    onClick={() => setHtmlDrawerOpen(true)}
+                    clickable
+                  />
+                </Stack>
+              </Box>
+            )}
+          </Box>
+
+          {showCodeExample && section?.showCode && (
+            <Box mb={3}>
+              <CopyBlock
+                text={section.showCode}
+                language="html"
+                showLineNumbers
+                theme={dracula}
+                codeBlock
+              />
+            </Box>
+          )}
+
+          {section?.resources?.length ? (
+            <Box mb={2}>
+              <Typography variant="subtitle1" gutterBottom>
+                Полезные ссылки
+              </Typography>
+              <Stack direction="row" spacing={1} flexWrap="wrap">
+                {section.resources.map((url, index) => (
+                  <Chip
+                    key={index}
+                    icon={<LinkIcon />}
+                    label={new URL(url).hostname}
+                    component="a"
+                    href={url}
+                    target="_blank"
+                    rel="noopener"
+                    clickable
+                    color="info"
+                  />
+                ))}
+              </Stack>
+            </Box>
+          ) : null}
+
+          {section?.attachments?.length ? (
+            <Box>
+              <Typography variant="subtitle1" gutterBottom>
+                Прикреплённые файлы
+              </Typography>
+              <Stack direction="row" spacing={1} flexWrap="wrap">
+                {section.attachments.map((file, index) => (
+                  <Chip
+                    key={index}
+                    icon={<InsertDriveFileIcon />}
+                    label={file.split("/").pop()}
+                    component="a"
+                    href={file}
+                    download
+                    clickable
+                    color="default"
+                  />
+                ))}
+              </Stack>
+            </Box>
+          ) : null}
+        </Box>
+      </Drawer>
+
+      <HtmlDrawer
+        html={htmlDrawerOpen ? section?.show || null : null}
+        onClose={() => setHtmlDrawerOpen(false)}
+      />
+    </>
+  );
+};
+
+export default SectionDrawer;

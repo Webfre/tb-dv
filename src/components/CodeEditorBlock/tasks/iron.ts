@@ -16,4 +16,19 @@ export const ironTasks: Task[] = [
       { input: [100, 200], expected: 300, testCode: "return result === 300;" },
     ],
   },
+  {
+    id: "sum_two_numbers_2",
+    title: "Сумма двух чисел",
+    functionName: "sum",
+    level: "Iron",
+    description:
+      "Напишите функцию, которая принимает два числа и возвращает их сумму.",
+    initialCode: "function sum(a, b) {\n  // ваш код здесь\n}",
+    testCases: [
+      { input: [1, 2], expected: 3, testCode: "return result === 3;" },
+      { input: [5, 5], expected: 10, testCode: "return result === 10;" },
+      { input: [-1, 1], expected: 0, testCode: "return result === 0;" },
+      { input: [100, 200], expected: 300, testCode: "return result === 300;" },
+    ],
+  },
 ];

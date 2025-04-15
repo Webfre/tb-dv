@@ -3,7 +3,6 @@ import {
   AppBar,
   Toolbar,
   Typography,
-  Button,
   Box,
   IconButton,
   Tooltip,
@@ -16,27 +15,39 @@ import {
 } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
 import MenuIcon from "@mui/icons-material/Menu";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
+import { ButtonCustom } from "../ui/ButtonCustom";
+
+const menuItems = [
+  { label: "Курс", path: "/course" },
+  { label: "Тестирование", path: "/" },
+  { label: "Челлендж", path: "/live" },
+  { label: "Справочник", path: "/cheatsheet" },
+  { label: "Собеседование", path: "/interview" },
+  { label: "Проекты", path: "/projects" },
+  { label: "Задачник", path: "/taskbook" },
+  { label: "Роадмап", path: "/roadmap" },
+];
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md")); // ~ <960px
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [open, setOpen] = useState(false);
-
-  const menuItems = [
-    { label: "Тестирование", path: "/" },
-    { label: "Режим задач", path: "/live" },
-    { label: "Справочник", path: "/cheatsheet" },
-    { label: "Собеседование", path: "/interview" },
-    { label: "Проекты", path: "/projects" },
-    { label: "Роадмап", path: "/roadmap" },
-  ];
 
   const handleNavigate = (path: string) => {
     navigate(path);
     setOpen(false);
+  };
+
+  // Проверяем, является ли текущий путь активным
+  const isActive = (path: string) => {
+    // Для главной страницы делаем точное сравнение
+    if (path === "/") return location.pathname === path;
+    // Для остальных проверяем, начинается ли путь с указанного
+    return location.pathname.startsWith(path);
   };
 
   return (
@@ -63,22 +74,30 @@ const Header: React.FC = () => {
               </IconButton>
             </Box>
           ) : (
-            <Box display="flex" alignItems="center" gap={2} flexWrap="wrap">
+            <Box
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              flexGrow={1}
+              gap={1}
+            >
               {menuItems.map((item) => (
-                <Button
+                <ButtonCustom
                   key={item.path}
-                  color="inherit"
+                  label={item.label}
                   onClick={() => navigate(item.path)}
-                >
-                  {item.label}
-                </Button>
+                  isActive={isActive(item.path)}
+                />
               ))}
-              <Tooltip title="Мой прогресс">
-                <IconButton color="inherit" onClick={() => navigate("/tests")}>
-                  <InfoIcon />
-                </IconButton>
-              </Tooltip>
             </Box>
+          )}
+
+          {!isMobile && (
+            <Tooltip title="Мой прогресс">
+              <IconButton color="inherit" onClick={() => navigate("/tests")}>
+                <InfoIcon />
+              </IconButton>
+            </Tooltip>
           )}
         </Toolbar>
       </AppBar>
@@ -87,7 +106,19 @@ const Header: React.FC = () => {
         <List sx={{ width: 250 }}>
           {menuItems.map((item) => (
             <ListItem key={item.path} disablePadding>
-              <ListItemButton onClick={() => handleNavigate(item.path)}>
+              <ListItemButton
+                onClick={() => handleNavigate(item.path)}
+                selected={isActive(item.path)}
+                sx={{
+                  "&.Mui-selected": {
+                    backgroundColor: theme.palette.primary.light,
+                    color: theme.palette.primary.contrastText,
+                  },
+                  "&.Mui-selected:hover": {
+                    backgroundColor: theme.palette.primary.main,
+                  },
+                }}
+              >
                 <ListItemText primary={item.label} />
               </ListItemButton>
             </ListItem>

@@ -1,17 +1,24 @@
 import React from "react";
 import {
   Box,
-  Card,
-  CardContent,
   Typography,
   LinearProgress,
-  Grid,
-  Button,
-  CardActionArea,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemIcon,
 } from "@mui/material";
+import ListItemButton from "@mui/material/ListItemButton";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
+import QuizIcon from "@mui/icons-material/Quiz";
 import { useNavigate } from "react-router-dom";
 import { testData } from "../data/testData";
-import ProgressRing from "../components/ProgressRing";
+import ProgressRing from "../components/Profile/ProgressRing";
+import BtnCustom from "../ui/BtnCustom";
 
 interface TestHistoryEntry {
   attempts: number;
@@ -25,8 +32,45 @@ const Tests: React.FC = () => {
   const navigate = useNavigate();
   const name = localStorage.getItem("userName") || "Аноним";
 
-  const renderCard = (testKey: string, testId: number) => {
-    const test = testData[testKey];
+  // Группировка тестов по категориям
+  const groupedTests = Object.entries(testData).reduce<Record<string, any[]>>(
+    (acc, [key, test]) => {
+      const category = test.category || "Без категории";
+      if (!acc[category]) acc[category] = [];
+      acc[category].push({ key, ...test });
+      return acc;
+    },
+    {}
+  );
+
+  // Функция для подсчета среднего прогресса по категории
+  const calculateCategoryProgress = (tests: any[]): number => {
+    const total = tests.length;
+    if (total === 0) return 0;
+
+    let passed = 0;
+
+    for (const test of tests) {
+      const historyKey = `history_${test.key}`;
+      const historyRaw = localStorage.getItem(historyKey);
+
+      if (historyRaw) {
+        try {
+          const history: TestHistoryEntry[] = JSON.parse(historyRaw);
+          const best = Math.max(...history.map((h) => h.percentage));
+          if (best >= 60) passed++;
+        } catch {}
+      }
+    }
+
+    return Math.round((passed / total) * 100);
+  };
+
+  const renderTestItem = (
+    testKey: string,
+    testId: number,
+    testName: string
+  ) => {
     const historyKey = `history_${testKey}`;
     const historyRaw = localStorage.getItem(historyKey);
 
@@ -43,67 +87,119 @@ const Tests: React.FC = () => {
       }
     }
 
-    return (
-      <Grid item xs={12} sm={6} md={4} key={testId}>
-        <Card>
-          <CardActionArea
-            onClick={() =>
-              navigate("/test", {
-                state: { name, selectedTest: testKey },
-              })
-            }
-          >
-            <CardContent>
-              <Typography variant="h6" gutterBottom>
-                {test.name}
-              </Typography>
-              <Typography variant="body2" gutterBottom>
-                Попыток: {attempts}
-              </Typography>
+    const isFailedTwice = attempts === 2 && bestPercentage === 0;
+    const progressColor: "primary" | "error" = isFailedTwice
+      ? "error"
+      : "primary";
 
-              {attempts > 0 ? (
-                <Box display="flex" alignItems="center" mt={1}>
-                  <Box width="100%" mr={1}>
-                    <LinearProgress
-                      variant="determinate"
-                      value={bestPercentage}
-                    />
-                  </Box>
-                  <Box minWidth={35}>
-                    <Typography variant="body2" color="textSecondary">
-                      {Math.round(bestPercentage)}%
-                    </Typography>
-                  </Box>
-                </Box>
-              ) : (
-                <Typography variant="body2" color="textSecondary">
-                  Тест ещё не проходился
-                </Typography>
-              )}
-            </CardContent>
-          </CardActionArea>
-        </Card>
-      </Grid>
+    return (
+      <ListItem
+        key={testId}
+        disablePadding
+        sx={{ mb: 1, border: "1px solid #ccc", borderRadius: 2 }}
+      >
+        <ListItemButton
+          onClick={() =>
+            navigate("/test", {
+              state: { name, selectedTest: testKey },
+            })
+          }
+          sx={{ px: 2, py: 1.5 }}
+        >
+          <ListItemIcon>
+            <QuizIcon color="primary" />
+          </ListItemIcon>
+          <ListItemText primary={testName} secondary={`Попыток: ${attempts}`} />
+          <Box
+            display="flex"
+            flexDirection="column"
+            alignItems="flex-end"
+            minWidth={100}
+          >
+            <Typography variant="body2" color="textSecondary" mb={0.5}>
+              {attempts > 0 ? `${Math.round(bestPercentage)}%` : "—"}
+            </Typography>
+            {attempts > 0 && (
+              <LinearProgress
+                variant="determinate"
+                value={bestPercentage}
+                sx={{ width: 80, height: 6, borderRadius: 5 }}
+                color={progressColor}
+              />
+            )}
+          </Box>
+        </ListItemButton>
+      </ListItem>
     );
   };
 
   return (
     <Box p={4}>
-      <Button variant="outlined" onClick={() => navigate(-1)} sx={{ mb: 3 }}>
-        Назад
-      </Button>
+      <BtnCustom
+        sx={{ mb: 2 }}
+        text="Назад"
+        icon={<NavigateBeforeIcon />}
+        onClick={() => navigate(-1)}
+      />
 
       <Typography variant="h4" gutterBottom>
-        Доступные тесты
+        Ваш прогресс
       </Typography>
 
       <ProgressRing />
 
-      <Grid container spacing={3}>
-        {Object.entries(testData).map(([key, test]) =>
-          renderCard(key, test.id)
-        )}
-      </Grid>
+      <Typography variant="h4" gutterBottom sx={{ mt: 4 }}>
+        Доступные тесты
+      </Typography>
+
+      {Object.entries(groupedTests).map(([category, tests]) => {
+        const avgProgress = calculateCategoryProgress(tests);
+
+        return (
+          <Accordion
+            key={category}
+            sx={{
+              borderRadius: "20px !important",
+              overflow: "hidden",
+              "&:before": {
+                display: "none",
+              },
+              boxShadow:
+                "0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)",
+            }}
+          >
+            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+              <Box display="flex" flexDirection="column" width="98%">
+                <Box display="flex" alignItems="center" gap={1}>
+                  <Typography variant="h6">{category}</Typography>
+                </Box>
+                <Box mt={0.5}>
+                  <LinearProgress
+                    variant="determinate"
+                    value={avgProgress}
+                    sx={{ height: 8, borderRadius: 5 }}
+                  />
+                  <Typography
+                    variant="body2"
+                    color="textSecondary"
+                    mt={0.5}
+                    align="right"
+                  >
+                    {avgProgress}%
+                  </Typography>
+                </Box>
+              </Box>
+            </AccordionSummary>
+            <AccordionDetails>
+              <List disablePadding>
+                {tests.map((test) =>
+                  renderTestItem(test.key, test.id, test.name)
+                )}
+              </List>
+            </AccordionDetails>
+          </Accordion>
+        );
+      })}
     </Box>
   );
 };

@@ -1,0 +1,15 @@
+@keyframes pulseHighlight {
+  0% {
+    box-shadow: 0 0 0 0 rgba(34, 129, 224, 0.556);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(25, 118, 210, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(25, 118, 210, 0);
+  }
+}
+
+.pulse {
+  animation: pulseHighlight 3.5s ease-out;
+}

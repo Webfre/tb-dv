@@ -1,8 +1,8 @@
 import React from "react";
 import { Box, CircularProgress, Typography } from "@mui/material";
-import { testData } from "../data/testData";
+import { testData } from "../../data/testData";
 
-const ProgressRing: React.FC = () => {
+const TestProgressRing: React.FC = () => {
   const totalTests = Object.keys(testData).length;
 
   const successfulTests = Object.entries(testData).filter(([key]) => {
@@ -13,16 +13,16 @@ const ProgressRing: React.FC = () => {
     try {
       const history = JSON.parse(historyRaw);
       const best = Math.max(...history.map((h: any) => h.percentage));
-      return best >= 60; // Пройдено, если результат >= 60%
+      return best >= 60;
     } catch {
       return false;
     }
   }).length;
 
-  const progress = (successfulTests / totalTests) * 100;
+  const testProgress = (successfulTests / totalTests) * 100;
 
   return (
-    <Box display="flex" flexDirection="column" alignItems="center" mb={4}>
+    <Box textAlign="center">
       <Box
         position="relative"
         display="inline-flex"
@@ -32,16 +32,15 @@ const ProgressRing: React.FC = () => {
           width: 110,
           height: 110,
           borderRadius: "50%",
-          border: "6px solid #e0e0e0", // внешний бордер (серый)
+          border: "6px solid #e0e0e0",
         }}
       >
         <CircularProgress
           variant="determinate"
-          value={progress}
+          value={testProgress}
           size={100}
           thickness={5}
         />
-
         <Box
           top={0}
           left={0}
@@ -53,11 +52,10 @@ const ProgressRing: React.FC = () => {
           justifyContent="center"
         >
           <Typography variant="h6" component="div" color="textSecondary">
-            {`${Math.round(progress)}%`}
+            {`${Math.round(testProgress)}%`}
           </Typography>
         </Box>
       </Box>
-
       <Typography variant="body1" mt={2}>
         Пройдено тестов: {successfulTests} из {totalTests}
       </Typography>
@@ -65,4 +63,4 @@ const ProgressRing: React.FC = () => {
   );
 };
 
-export default ProgressRing;
+export default TestProgressRing;

@@ -9,6 +9,7 @@ export interface TestData {
   id: number;
   name: string;
   ques: Question[];
+  category: string;
 }
 
 export interface TestDataCollection {
