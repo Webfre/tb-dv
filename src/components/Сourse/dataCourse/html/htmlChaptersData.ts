@@ -13,14 +13,14 @@ export const htmlChapters = [
     title: "Структура HTML-документа",
     sections: htmlSections.html_structure,
     testKeys: ["html_structure_test"],
-    practiceIds: ["task_html_base_template", "task_html_doctype_use"],
+    practiceIds: ["html_structure_task_1", "html_structure_task_2"],
   },
   {
     id: "html_elements",
     title: "Элементы и теги",
     sections: htmlSections.html_elements,
     testKeys: ["html_elements_test"],
-    practiceIds: ["task_html_block_inline", "task_html_lists"],
+    practiceIds: ["html_block_inline_1", "html_block_inline_2"],
   },
   {
     id: "html_attributes",
