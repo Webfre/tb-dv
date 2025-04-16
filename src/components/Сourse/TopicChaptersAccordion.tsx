@@ -175,8 +175,7 @@ const TopicChaptersAccordion: React.FC<TopicChaptersAccordionProps> = ({
                     ) : testPassed === false ? (
                       <DoNotDisturbOnIcon
                         fontSize="small"
-                        sx={{ mr: 1 }}
-                        color="error"
+                        sx={{ mr: 1, color: "rgb(197, 86, 86) !important" }}
                         titleAccess="Тест не пройден"
                       />
                     ) : (

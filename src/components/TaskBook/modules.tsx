@@ -1,7 +1,8 @@
-import CodeIcon from "@mui/icons-material/Code"; // JS
-import HtmlIcon from "@mui/icons-material/Language"; // HTML
-import CssIcon from "@mui/icons-material/Style"; // CSS
-import ReactIcon from "@mui/icons-material/IntegrationInstructions"; // React
+import CodeIcon from "@mui/icons-material/Code";
+import HtmlIcon from "@mui/icons-material/Language";
+import CssIcon from "@mui/icons-material/Style";
+import ReactIcon from "@mui/icons-material/IntegrationInstructions";
+import { testData } from "../../data/testData";
 
 export interface TaskModule {
   id: string;
@@ -10,24 +11,38 @@ export interface TaskModule {
   icon: React.ReactElement;
 }
 
+// Шаг 1: Группировка количества по category
+const moduleCounts: Record<string, number> = {};
+
+Object.values(testData).forEach((test) => {
+  const category = test.category || "Без категории";
+  moduleCounts[category] = (moduleCounts[category] || 0) + 1;
+});
+
+// Шаг 2: Список модулей с автоматическим taskCount
 export const modules: TaskModule[] = [
   {
     id: "HTML",
     title: "HTML",
-    taskCount: 12,
+    taskCount: moduleCounts["HTML"] || 0,
     icon: <HtmlIcon color="primary" />,
   },
-  // { id: "css", title: "CSS", taskCount: 8, icon: <CssIcon color="primary" /> },
+  {
+    id: "CSS",
+    title: "CSS",
+    taskCount: moduleCounts["CSS"] || 0,
+    icon: <CssIcon color="primary" />,
+  },
   // {
-  //   id: "js",
+  //   id: "JavaScript",
   //   title: "JavaScript",
-  //   taskCount: 20,
+  //   taskCount: moduleCounts["JavaScript"] || 0,
   //   icon: <CodeIcon color="primary" />,
   // },
   // {
-  //   id: "react",
+  //   id: "React",
   //   title: "React",
-  //   taskCount: 15,
+  //   taskCount: moduleCounts["React"] || 0,
   //   icon: <ReactIcon color="primary" />,
   // },
 ];

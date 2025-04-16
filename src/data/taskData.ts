@@ -1,4 +1,5 @@
 import { PracticeTask } from "../components/Сourse/CourseTopic";
+import { css_intro_task_1 } from "../components/Сourse/dataCourse/css/work/css_intro_task";
 import {
   html_intro_task_1,
   html_intro_task_2,
@@ -25,6 +26,7 @@ import {
 } from "../components/Сourse/dataCourse/html/work/html_structure_task";
 
 export const practiceMock: PracticeTask[] = [
+  // HTML
   html_intro_task_1,
   html_intro_task_2,
   html_structure_task_1,
@@ -39,4 +41,7 @@ export const practiceMock: PracticeTask[] = [
   html_format_text_1,
   html_format_text_2,
   html_links_creation_1,
+
+  // CSS
+  css_intro_task_1,
 ];

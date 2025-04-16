@@ -6,7 +6,6 @@ import {
   Typography,
   Grid,
   LinearProgress,
-  Tooltip,
   Chip,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
@@ -76,9 +75,9 @@ const CoursePage: React.FC = () => {
               <Card
                 sx={{
                   borderRadius: "20px",
-                  opacity: disabled ? 0.5 : 1,
-                  pointerEvents: disabled ? "none" : "auto",
-                  cursor: disabled ? "default" : "pointer",
+                  // opacity: disabled ? 0.5 : 1, // TODO
+                  // pointerEvents: disabled ? "none" : "auto",
+                  // cursor: disabled ? "default" : "pointer",
                 }}
                 onClick={() => navigate(`/course/${topic.id}`)}
               >
@@ -87,11 +86,19 @@ const CoursePage: React.FC = () => {
                     {topic.title}
                   </Typography>
 
-                  <Tooltip title={topic.description} placement="top-start">
-                    <Typography variant="body2" gutterBottom>
-                      {shortDescription}...
-                    </Typography>
-                  </Tooltip>
+                  <Typography
+                    variant="body2"
+                    gutterBottom
+                    sx={{
+                      display: "-webkit-box",
+                      WebkitLineClamp: 3,
+                      WebkitBoxOrient: "vertical",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
+                    {topic.description}
+                  </Typography>
 
                   <Grid container spacing={1} my={1}>
                     <Grid item xs={6}>

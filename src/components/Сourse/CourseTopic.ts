@@ -1,3 +1,4 @@
+import { cssTopic } from "./dataCourse/css/css";
 import { htmlTopic } from "./dataCourse/html/html";
 
 export interface CourseSection {
@@ -9,6 +10,7 @@ export interface CourseSection {
   attachments?: string[]; // Пути к файлам или ссылки для скачивания
   show?: string;
   showCode?: string;
+  codeExampleCSS?: string;
 }
 
 export interface CourseChapter {
@@ -43,6 +45,7 @@ export interface PracticeTask {
   show?: string;
   resources?: string[]; // ссылки на материалы
   attachments?: string[]; // файлы для скачивания
+  codeExampleCSS?: string; // css код решение
 }
 
-export const mockTopics: CourseTopic[] = [htmlTopic];
+export const mockTopics: CourseTopic[] = [htmlTopic, cssTopic];

@@ -1,6 +1,8 @@
 import ReactDOM from "react-dom/client";
 import { CssBaseline, Container } from "@mui/material";
-import { HashRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
+// import { HashRouter as Router } from "react-router-dom";
 import LiveCodingPage from "./components/CodeEditorBlock/LiveCodingPage";
 import Home from "./pages/Home";
 import Tests from "./pages/Tests";
@@ -14,27 +16,140 @@ import Сourse from "./components/Сourse/Сourse";
 import CourseTopicDetails from "./components/Сourse/CourseTopicDetails";
 import TaskBook from "./components/TaskBook/TaskBook";
 import TaskListPage from "./pages/TaskListPage";
+import RegisterPage from "./pages/RegisterPage";
+import ProtectedRoute from "./ui/ProtectedRoute";
+import AdminDashboard from "./components/AdminDashboard/AdminDashboard";
+import AdminProtectedRoute from "./ui/AdminProtectedRoute";
+import LoginPage from "./pages/LoginPage";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import CourseInfoPage from "./pages/CourseInfoPage";
 
 const AppRoutes = () => {
+  const location = useLocation();
+  const hideHeader =
+    location.pathname === "/register" ||
+    location.pathname === "/login" ||
+    location.pathname === "/course-info";
+
   return (
     <>
       <CssBaseline />
-      <Header />
+      {!hideHeader && <Header />}
 
       <Container maxWidth="lg">
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/test" element={<Test />} />
-          <Route path="/tests" element={<Tests />} />
-          <Route path="/live" element={<LiveCodingPage />} />
-          <Route path="/cheatsheet" element={<CheatsheetPage />} />
-          <Route path="/interview" element={<InterviewPage />} />
-          <Route path="/projects" element={<ProjectsPage />} />
-          <Route path="/roadmap" element={<RoadmapPage />} />
-          <Route path="/course" element={<Сourse />} />
-          <Route path="/taskbook" element={<TaskBook />} />
-          <Route path="/tasks/:id" element={<TaskListPage />} />
-          <Route path="/course/:id" element={<CourseTopicDetails />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/course-info" element={<CourseInfoPage />} />
+
+          <Route
+            path="/admin-dashboard"
+            element={
+              <AdminProtectedRoute>
+                <AdminDashboard />
+              </AdminProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/test"
+            element={
+              <ProtectedRoute>
+                <Test />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/tests"
+            element={
+              <ProtectedRoute>
+                <Tests />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/live"
+            element={
+              <ProtectedRoute>
+                <LiveCodingPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/cheatsheet"
+            element={
+              <ProtectedRoute>
+                <CheatsheetPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/interview"
+            element={
+              <ProtectedRoute>
+                <InterviewPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/projects"
+            element={
+              <ProtectedRoute>
+                <ProjectsPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/roadmap"
+            element={
+              <ProtectedRoute>
+                <RoadmapPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/course"
+            element={
+              <ProtectedRoute>
+                <Сourse />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/taskbook"
+            element={
+              <ProtectedRoute>
+                <TaskBook />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/tasks/:id"
+            element={
+              <ProtectedRoute>
+                <TaskListPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/course/:id"
+            element={
+              <ProtectedRoute>
+                <CourseTopicDetails />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </Container>
     </>
@@ -44,8 +159,13 @@ const AppRoutes = () => {
 const App = () => (
   <Router>
     <AppRoutes />
+    <ToastContainer position="top-right" autoClose={3000} />
   </Router>
 );
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);
-root.render(<App />);
+root.render(
+  <Provider store={store}>
+    <App />
+  </Provider>
+);

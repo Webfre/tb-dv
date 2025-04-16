@@ -13,11 +13,14 @@ import {
   ListItemText,
   useMediaQuery,
 } from "@mui/material";
-import InfoIcon from "@mui/icons-material/Info";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 import { ButtonCustom } from "../ui/ButtonCustom";
+import Avatar from "@mui/material/Avatar";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
+import { isUserAdmin } from "../api/auth";
 
 const menuItems = [
   { label: "Курс", path: "/course" },
@@ -36,17 +39,15 @@ const Header: React.FC = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [open, setOpen] = useState(false);
+  const isAdmin = isUserAdmin();
 
   const handleNavigate = (path: string) => {
     navigate(path);
     setOpen(false);
   };
 
-  // Проверяем, является ли текущий путь активным
   const isActive = (path: string) => {
-    // Для главной страницы делаем точное сравнение
     if (path === "/") return location.pathname === path;
-    // Для остальных проверяем, начинается ли путь с указанного
     return location.pathname.startsWith(path);
   };
 
@@ -64,9 +65,22 @@ const Header: React.FC = () => {
 
           {isMobile ? (
             <Box display="flex" alignItems="center">
-              <Tooltip title="Мой прогресс">
+              {isAdmin && (
+                <Tooltip title="Панель администратора">
+                  <IconButton
+                    color="inherit"
+                    onClick={() => navigate("/admin-dashboard")}
+                    sx={{ mr: 1 }}
+                  >
+                    <AdminPanelSettingsIcon />
+                  </IconButton>
+                </Tooltip>
+              )}
+              <Tooltip title="Мой профиль">
                 <IconButton color="inherit" onClick={() => navigate("/tests")}>
-                  <InfoIcon />
+                  <Avatar sx={{ bgcolor: "white", width: 32, height: 32 }}>
+                    <AccountCircleIcon color="primary" />
+                  </Avatar>
                 </IconButton>
               </Tooltip>
               <IconButton color="inherit" onClick={() => setOpen(true)}>
@@ -93,11 +107,27 @@ const Header: React.FC = () => {
           )}
 
           {!isMobile && (
-            <Tooltip title="Мой прогресс">
-              <IconButton color="inherit" onClick={() => navigate("/tests")}>
-                <InfoIcon />
-              </IconButton>
-            </Tooltip>
+            <Box display="flex" alignItems="center">
+              {isAdmin && (
+                <Tooltip title="Панель администратора">
+                  <IconButton
+                    color="inherit"
+                    onClick={() => navigate("/admin-dashboard")}
+                    sx={{ mr: 1 }}
+                  >
+                    <AdminPanelSettingsIcon />
+                  </IconButton>
+                </Tooltip>
+              )}
+
+              <Tooltip title="Мой профиль">
+                <IconButton color="inherit" onClick={() => navigate("/tests")}>
+                  <Avatar sx={{ bgcolor: "white", width: 32, height: 32 }}>
+                    <AccountCircleIcon color="primary" />
+                  </Avatar>
+                </IconButton>
+              </Tooltip>
+            </Box>
           )}
         </Toolbar>
       </AppBar>
@@ -123,9 +153,20 @@ const Header: React.FC = () => {
               </ListItemButton>
             </ListItem>
           ))}
+
+          {isAdmin && (
+            <ListItem disablePadding>
+              <ListItemButton
+                onClick={() => handleNavigate("/admin-dashboard")}
+              >
+                <ListItemText primary="Панель администратора" />
+              </ListItemButton>
+            </ListItem>
+          )}
+
           <ListItem disablePadding>
             <ListItemButton onClick={() => handleNavigate("/tests")}>
-              <ListItemText primary="Мой прогресс" />
+              <ListItemText primary="Мой профиль" />
             </ListItemButton>
           </ListItem>
         </List>

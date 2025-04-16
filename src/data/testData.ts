@@ -1,3 +1,4 @@
+import { css_intro_test } from "../components/Сourse/dataCourse/css/test/css_intro_test";
 import { html_attributes_test } from "../components/Сourse/dataCourse/html/test/html_attributes_test";
 import { html_best_practices_test } from "../components/Сourse/dataCourse/html/test/html_best_practices_test";
 import { html_elements_test } from "../components/Сourse/dataCourse/html/test/html_elements_test";
@@ -32,4 +33,5 @@ export const testData: TestDataCollection = {
   html_final_test,
 
   // CSS
+  css_intro_test,
 };

@@ -7,6 +7,7 @@ import {
   Stack,
   IconButton,
   Divider,
+  Grid,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import LinkIcon from "@mui/icons-material/Link";
@@ -97,7 +98,7 @@ const TaskDrawer: React.FC<TaskDrawerProps> = ({ open, onClose, task }) => {
           ))}
         </ol>
 
-        {task.solution && (
+        {(task.solution || task.codeExampleCSS) && (
           <Box mt={3}>
             <Chip
               label={showSolution ? "Скрыть решение" : "Показать решение"}
@@ -107,17 +108,58 @@ const TaskDrawer: React.FC<TaskDrawerProps> = ({ open, onClose, task }) => {
               variant="outlined"
               sx={{ mb: 2 }}
             />
+
             {showSolution && (
-              <CopyBlock
-                text={task.solution}
-                language="html"
-                showLineNumbers
-                theme={dracula}
-                codeBlock
-              />
+              <Grid sx={{ marginBottom: "20px" }} container spacing={2}>
+                {task.solution && (
+                  <Grid item xs={task.codeExampleCSS ? 6 : 12}>
+                    <Typography variant="subtitle2" gutterBottom>
+                      HTML решение:
+                    </Typography>
+                    <CopyBlock
+                      text={task.solution}
+                      language="html"
+                      showLineNumbers
+                      theme={dracula}
+                      customStyle={{
+                        height: "100%",
+                        minHeight: "300px",
+                        display: "flex",
+                        flexDirection: "column",
+                        borderRadius: "8px",
+                      }}
+                      codeBlock
+                    />
+                  </Grid>
+                )}
+
+                {task.codeExampleCSS && (
+                  <Grid item xs={task.solution ? 6 : 12}>
+                    <Typography variant="subtitle2" gutterBottom>
+                      CSS решение:
+                    </Typography>
+                    <CopyBlock
+                      text={task.codeExampleCSS}
+                      language="css"
+                      showLineNumbers
+                      theme={dracula}
+                      customStyle={{
+                        height: "100%",
+                        minHeight: "300px",
+                        display: "flex",
+                        flexDirection: "column",
+                        borderRadius: "8px",
+                      }}
+                      codeBlock
+                    />
+                  </Grid>
+                )}
+              </Grid>
             )}
           </Box>
         )}
+
+        <Divider sx={{ my: 2 }} />
 
         {Array.isArray(task.resources) && task.resources.length > 0 && (
           <Box mb={2}>
