@@ -71,7 +71,7 @@ const AppRoutes = () => {
             }
           />
           <Route
-            path="/tests"
+            path="/profile"
             element={
               <ProtectedRoute>
                 <Tests />

@@ -12,15 +12,19 @@ import {
   ListItemButton,
   ListItemText,
   useMediaQuery,
+  Menu,
+  MenuItem,
 } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useTheme } from "@mui/material/styles";
 import { ButtonCustom } from "../ui/ButtonCustom";
+import { useTheme } from "@mui/material/styles";
+import { isUserAdmin } from "../api/auth";
+import MenuIcon from "@mui/icons-material/Menu";
 import Avatar from "@mui/material/Avatar";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
-import { isUserAdmin } from "../api/auth";
+import LogoutIcon from "@mui/icons-material/Logout";
+import PersonIcon from "@mui/icons-material/Person";
 
 const menuItems = [
   { label: "Курс", path: "/course" },
@@ -40,6 +44,8 @@ const Header: React.FC = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [open, setOpen] = useState(false);
   const isAdmin = isUserAdmin();
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const openMenu = Boolean(anchorEl);
 
   const handleNavigate = (path: string) => {
     navigate(path);
@@ -49,6 +55,27 @@ const Header: React.FC = () => {
   const isActive = (path: string) => {
     if (path === "/") return location.pathname === path;
     return location.pathname.startsWith(path);
+  };
+
+  const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleLogout = () => {
+    handleMenuClose();
+    localStorage.removeItem("token");
+    localStorage.removeItem("isAccessKey");
+    localStorage.removeItem("isAdmin");
+    navigate("/login");
+  };
+
+  const handleProfile = () => {
+    handleMenuClose();
+    navigate("/profile");
   };
 
   return (
@@ -76,13 +103,35 @@ const Header: React.FC = () => {
                   </IconButton>
                 </Tooltip>
               )}
-              <Tooltip title="Мой профиль">
-                <IconButton color="inherit" onClick={() => navigate("/tests")}>
+              <Tooltip title="Меню пользователя">
+                <IconButton color="inherit" onClick={handleMenuOpen}>
                   <Avatar sx={{ bgcolor: "white", width: 32, height: 32 }}>
                     <AccountCircleIcon color="primary" />
                   </Avatar>
                 </IconButton>
               </Tooltip>
+              <Menu
+                anchorEl={anchorEl}
+                open={openMenu}
+                onClose={handleMenuClose}
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "right",
+                }}
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+              >
+                <MenuItem onClick={handleProfile}>
+                  <PersonIcon sx={{ mr: 1 }} />
+                  Профиль
+                </MenuItem>
+                <MenuItem onClick={handleLogout}>
+                  <LogoutIcon sx={{ mr: 1 }} />
+                  Выйти
+                </MenuItem>
+              </Menu>
               <IconButton color="inherit" onClick={() => setOpen(true)}>
                 <MenuIcon />
               </IconButton>
@@ -120,13 +169,41 @@ const Header: React.FC = () => {
                 </Tooltip>
               )}
 
-              <Tooltip title="Мой профиль">
-                <IconButton color="inherit" onClick={() => navigate("/tests")}>
+              <Tooltip title="Меню пользователя">
+                <IconButton color="inherit" onClick={handleMenuOpen}>
                   <Avatar sx={{ bgcolor: "white", width: 32, height: 32 }}>
                     <AccountCircleIcon color="primary" />
                   </Avatar>
                 </IconButton>
               </Tooltip>
+
+              <Menu
+                anchorEl={anchorEl}
+                open={openMenu}
+                onClose={handleMenuClose}
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "right",
+                }}
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                PaperProps={{
+                  sx: {
+                    transform: "translateX(-30px)",
+                  },
+                }}
+              >
+                <MenuItem onClick={handleProfile}>
+                  <PersonIcon sx={{ mr: 1 }} />
+                  Профиль
+                </MenuItem>
+                <MenuItem onClick={handleLogout}>
+                  <LogoutIcon sx={{ mr: 1 }} />
+                  Выйти
+                </MenuItem>
+              </Menu>
             </Box>
           )}
         </Toolbar>
@@ -165,8 +242,13 @@ const Header: React.FC = () => {
           )}
 
           <ListItem disablePadding>
-            <ListItemButton onClick={() => handleNavigate("/tests")}>
-              <ListItemText primary="Мой профиль" />
+            <ListItemButton onClick={handleProfile}>
+              <ListItemText primary="Профиль" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem disablePadding>
+            <ListItemButton onClick={handleLogout}>
+              <ListItemText primary="Выйти" />
             </ListItemButton>
           </ListItem>
         </List>
