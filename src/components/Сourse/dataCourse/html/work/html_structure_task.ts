@@ -1,6 +1,65 @@
 export const html_structure_task_1 = {
   id: "html_structure_task_1",
   module: "HTML",
+  title: "Базовая структура HTML-документа",
+  topic: "Элементы <html>, <head> и <body>",
+  topicId: "html_structure",
+  description:
+    "Создайте минимальный HTML-документ с правильной структурой, включая обязательные элементы <html>, <head> и <body>.",
+  steps: [
+    "Создайте файл `structure.html`",
+    "Добавьте декларацию <!DOCTYPE html> в начало файла",
+    "Создайте элемент <html> с указанием языка (русский)",
+    "Внутри <html> создайте раздел <head> с:",
+    "  - Мета-тегом кодировки UTF-8",
+    "  - Тегом <title> с названием 'Моя страница'",
+    "  - Мета-тегом viewport для адаптивности",
+    "После <head> создайте раздел <body> с:",
+    "  - Заголовком <h1> 'Привет, мир!'",
+    "  - Параграфом <p> с кратким описанием страницы",
+    "Проверьте валидность структуры в браузере",
+  ],
+  difficulty: 1,
+  resources: [
+    "https://developer.mozilla.org/ru/docs/Web/HTML/Element/html",
+    "https://html5book.ru/osnovy-html/#structure",
+  ],
+  solution: `<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Моя страница</title>
+</head>
+<body>
+  <h1>Привет, мир!</h1>
+  <p>Это моя первая HTML-страница с правильной структурой.</p>
+</body>
+</html>`,
+  show: `<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Моя страница</title>
+</head>
+<body>
+  <h1>Привет, мир!</h1>
+  <p>Это моя первая HTML-страница с правильной структурой.</p>
+</body>
+</html>`,
+  expectedResult: `
+1. Документ должен начинаться с <!DOCTYPE html>
+2. Обязательное наличие <html>, <head> и <body>
+3. В <head> должны быть meta charset и title
+4. В <body> должен быть хотя бы один заголовок и параграф
+5. Язык документа должен быть указан как русский
+`,
+};
+
+export const html_structure_task_2 = {
+  id: "html_structure_task_2",
+  module: "HTML",
   title: "Создание HTML-документа 'Моя первая страница'",
   topic: "Структура HTML-документа",
   topicId: "html_structure",
@@ -60,104 +119,5 @@ export const html_structure_task_1 = {
       <li>Путешествия</li>
     </ul>
   </body>
-</html>`,
-};
-
-export const html_structure_task_2 = {
-  id: "html_structure_task_2",
-  module: "HTML",
-  title: "Создание HTML-страницы 'Мой блог' с семантической разметкой",
-  topic: "Структура HTML-документа",
-  topicId: "html_structure",
-  description:
-    "Создайте HTML-документ для блога, используя семантические теги (`<header>`, `<main>`, `<article>`, `<footer>`) и добавьте комментарии для разметки структуры.",
-  steps: [
-    "Создайте файл `blog.html` с базовой структурой (`<!DOCTYPE html>`, `<html>`, `<head>`, `<body>`).",
-    "Укажите язык страницы (русский) и добавьте мета-теги для кодировки и адаптивности.",
-    "В `<body>` используйте семантические теги:",
-    "  - `<header>` с заголовком `<h1>` ('Мой блог') и кратким описанием в `<p>`.",
-    "  - `<main>` с двумя `<article>` (каждая статья должна содержать `<h2>`, `<p>` и дату публикации в `<time>`).",
-    "  - `<footer>` с контактной информацией (например, '© 2024 Мой блог').",
-    "Добавьте HTML-комментарии (`<!-- -->`) перед каждой секцией, поясняющие её назначение.",
-    "Проверьте, правильно ли отображается страница в браузере.",
-  ],
-  difficulty: 2,
-  resources: [
-    "https://developer.mozilla.org/ru/docs/Web/HTML/Element#основные_элементы",
-    "https://coursme.com/html/semantic-html",
-  ],
-  solution: `<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Мой блог</title>
-</head>
-<body>
-  <!-- Шапка сайта -->
-  <header>
-    <h1>Мой блог</h1>
-    <p>Здесь я делюсь своими мыслями и идеями.</p>
-  </header>
-
-  <!-- Основное содержимое -->
-  <main>
-    <!-- Первая статья -->
-    <article>
-      <h2>Мой первый пост</h2>
-      <time datetime="2024-01-15">15 января 2024</time>
-      <p>Сегодня я начал изучать HTML. Это очень интересно!</p>
-    </article>
-
-    <!-- Вторая статья -->
-    <article>
-      <h2>Советы по верстке</h2>
-      <time datetime="2024-01-20">20 января 2024</time>
-      <p>Всегда проверяйте валидность кода с помощью W3C Validator.</p>
-    </article>
-  </main>
-
-  <!-- Подвал сайта -->
-  <footer>
-    <p>© 2024 Мой блог. Контакты: blog@example.com</p>
-  </footer>
-</body>
-</html>`,
-  show: `<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Мой блог</title>
-</head>
-<body>
-  <!-- Шапка сайта -->
-  <header>
-    <h1>Мой блог</h1>
-    <p>Здесь я делюсь своими мыслями и идеями.</p>
-  </header>
-
-  <!-- Основное содержимое -->
-  <main>
-    <!-- Первая статья -->
-    <article>
-      <h2>Мой первый пост</h2>
-      <time datetime="2024-01-15">15 января 2024</time>
-      <p>Сегодня я начал изучать HTML. Это очень интересно!</p>
-    </article>
-
-    <!-- Вторая статья -->
-    <article>
-      <h2>Советы по верстке</h2>
-      <time datetime="2024-01-20">20 января 2024</time>
-      <p>Всегда проверяйте валидность кода с помощью W3C Validator.</p>
-    </article>
-  </main>
-
-  <!-- Подвал сайта -->
-  <footer>
-    <p>© 2024 Мой блог. Контакты: blog@example.com</p>
-  </footer>
-</body>
 </html>`,
 };
