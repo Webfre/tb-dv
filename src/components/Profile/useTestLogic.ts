@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { testData } from "../../data/testData";
+import { useUpdateProgressMutation } from "../../api/api";
 
 const MAX_ATTEMPTS = 2;
 
@@ -13,10 +14,14 @@ export const useTestLogic = () => {
   const location = useLocation();
   const { name, selectedTest } = (location.state as LocationState) || {};
 
-  const [answers, setAnswers] = useState<{ [key: number]: number[] }>({});
+  const [showScrollTop, setShowScrollTop] = useState(false);
   const [open, setOpen] = useState(false);
   const [score, setScore] = useState(0);
   const [grade, setGrade] = useState(2);
+  const [answers, setAnswers] = useState<{ [key: number]: number[] }>({});
+
+  const [updateProgress] = useUpdateProgressMutation();
+
   const [attemptsUsed, setAttemptsUsed] = useState(0);
   const [showResults, setShowResults] = useState(false);
   const [highlightAnswers, setHighlightAnswers] = useState<{
@@ -49,7 +54,7 @@ export const useTestLogic = () => {
     return 5;
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (attemptsUsed >= MAX_ATTEMPTS) return;
     const test = testData[selectedTest];
     if (!test) return;
@@ -60,22 +65,17 @@ export const useTestLogic = () => {
     test.ques.forEach((q) => {
       const correct = q.correct.sort().join(",");
       const userAnswer = (answers[q.id] || []).sort().join(",");
+
       if (correct === userAnswer) {
         correctAnswers++;
       }
+
       newHighlight[q.id] = q.correct;
     });
 
     const percentage = Math.round((correctAnswers / test.ques.length) * 100);
     const newGrade = calculateGrade(percentage);
-
-    setScore(percentage);
-    setGrade(newGrade);
-    setHighlightAnswers(newHighlight);
-    setShowResults(true);
-
     const newAttemptsUsed = attemptsUsed + 1;
-    setAttemptsUsed(newAttemptsUsed);
 
     const testResult = {
       attempts: newAttemptsUsed,
@@ -85,16 +85,21 @@ export const useTestLogic = () => {
       selectedAnswers: answers,
     };
 
-    localStorage.setItem(
-      `attempts_${selectedTest}`,
-      newAttemptsUsed.toString()
-    );
+    try {
+      await updateProgress({
+        testKey: String(selectedTest),
+        attempts: newAttemptsUsed,
+        result: testResult,
+      }).unwrap();
+    } catch (e) {
+      console.error("Ошибка отправки прогресса", e);
+    }
 
-    const storedHistory = localStorage.getItem(`history_${selectedTest}`);
-    const history = storedHistory ? JSON.parse(storedHistory) : [];
-    history.push(testResult);
-    localStorage.setItem(`history_${selectedTest}`, JSON.stringify(history));
-
+    setScore(percentage);
+    setGrade(newGrade);
+    setHighlightAnswers(newHighlight);
+    setShowResults(true);
+    setAttemptsUsed(newAttemptsUsed);
     setOpen(true);
   };
 
@@ -105,8 +110,6 @@ export const useTestLogic = () => {
     setOpen(false);
     scrollToTop();
   };
-
-  const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {

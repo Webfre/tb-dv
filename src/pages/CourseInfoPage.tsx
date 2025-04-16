@@ -44,6 +44,14 @@ const CourseInfoPage: React.FC = () => {
               sx={{ mt: 3 }}
             />
           </Link>
+
+          <BtnCustom
+            fullWidth
+            text="Уже есть аккаунт? Войти"
+            variant="text"
+            sx={{ mt: 1 }}
+            onClick={() => navigate("/login")}
+          />
         </Paper>
       </Container>
     </Box>
