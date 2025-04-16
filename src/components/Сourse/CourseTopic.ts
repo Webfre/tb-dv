@@ -50,4 +50,20 @@ export interface PracticeTask {
   codeExampleCSS?: string; // css код решение
 }
 
+const topics = [
+  "HTML",
+  "CSS",
+  "JavaScript",
+  "TypeScript",
+  "Redux",
+  "RTK Query",
+  "React",
+  "Основы браузера",
+  "Работа с IDE",
+  "Git",
+  "Пет-проекты",
+  "Собеседования",
+  "Резюме",
+];
+
 export const mockTopics: CourseTopic[] = [htmlTopic, cssTopic, jsTopic];

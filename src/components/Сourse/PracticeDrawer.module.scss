@@ -26,3 +26,22 @@
   border-radius: 20px;
   padding: 20px;
 }
+
+.roadmap {
+  border: 1px solid rgb(164, 164, 164);
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.roadmapType {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 5px;
+}
+
+.titleNameTopic {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}

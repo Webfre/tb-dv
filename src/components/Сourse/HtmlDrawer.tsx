@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Drawer, Box, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
@@ -8,6 +8,20 @@ interface HtmlDrawerProps {
 }
 
 const HtmlDrawer: React.FC<HtmlDrawerProps> = ({ html, onClose }) => {
+  const blobUrl = useMemo(() => {
+    if (!html) return null;
+    const blob = new Blob([html], { type: "text/html" });
+    return URL.createObjectURL(blob);
+  }, [html]);
+
+  React.useEffect(() => {
+    return () => {
+      if (blobUrl) {
+        URL.revokeObjectURL(blobUrl);
+      }
+    };
+  }, [blobUrl]);
+
   return (
     <Drawer
       anchor="top"
@@ -28,16 +42,17 @@ const HtmlDrawer: React.FC<HtmlDrawerProps> = ({ html, onClose }) => {
           <CloseIcon />
         </IconButton>
 
-        <iframe
-          title="HTML Preview"
-          srcDoc={html || ""}
-          style={{
-            width: "100%",
-            height: "100%",
-            border: "none",
-          }}
-          sandbox="allow-same-origin allow-scripts"
-        />
+        {blobUrl && (
+          <iframe
+            title="HTML Preview"
+            src={blobUrl}
+            style={{
+              width: "100%",
+              height: "100%",
+              border: "none",
+            }}
+          />
+        )}
       </Box>
     </Drawer>
   );
