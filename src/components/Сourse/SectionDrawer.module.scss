@@ -1,0 +1,36 @@
+.titleName {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid rgb(164, 164, 164);
+  padding: 20px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+
+  h6 {
+    font-size: 24px !important;
+    font-weight: 600;
+  }
+}
+
+.content {
+  border: 1px solid rgb(164, 164, 164);
+  padding: 20px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+.listResources {
+  border: 1px solid rgb(164, 164, 164);
+  padding: 20px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.listAttachments {
+  border: 1px solid rgb(164, 164, 164);
+  padding: 20px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}

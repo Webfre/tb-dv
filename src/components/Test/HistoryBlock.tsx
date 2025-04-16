@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Box,
   Typography,
@@ -6,80 +6,78 @@ import {
   ListItem,
   ListItemText,
   Divider,
-  Button,
+  Chip,
 } from "@mui/material";
-
-interface HistoryEntry {
-  attempts: number;
-  correctAnswers: number;
-  percentage: number;
-  grade: number;
-  selectedAnswers: { [key: number]: number[] };
-}
+import { useGetUserProgressQuery } from "../../api/api";
+import jwtDecode from "jwt-decode";
+import BtnCustom from "../../ui/BtnCustom";
+import styles from "./HistoryBlock.module.scss";
 
 interface HistoryBlockProps {
   selectedTest: string;
+  MAX_ATTEMPTS: number;
+  attemptsUsed: number;
 }
 
-const HistoryBlock: React.FC<HistoryBlockProps> = ({ selectedTest }) => {
-  const [history, setHistory] = useState<HistoryEntry[]>([]);
-  const [isVisible, setIsVisible] = useState(true); // Управление видимостью блока
+interface DecodedToken {
+  sub: number;
+  email: string;
+  isAdmin: boolean;
+  isAccessKey: boolean;
+  accessKey?: string;
+  exp: number;
+  iat: number;
+}
 
-  const loadHistory = () => {
-    const storedHistory = localStorage.getItem(`history_${selectedTest}`);
+const HistoryBlock: React.FC<HistoryBlockProps> = ({
+  selectedTest,
+  attemptsUsed,
+  MAX_ATTEMPTS,
+}) => {
+  const [isVisible, setIsVisible] = useState(true);
 
-    if (storedHistory) {
-      try {
-        const parsedHistory: HistoryEntry[] = JSON.parse(storedHistory);
-        setHistory(parsedHistory);
-      } catch (error) {
-        setHistory([]);
-      }
-    } else {
-      setHistory([]);
-    }
-  };
+  const token = localStorage.getItem("token");
+  const decoded: DecodedToken | null = token ? jwtDecode(token) : null;
+  const userId = decoded?.sub;
 
-  useEffect(() => {
-    loadHistory(); // Загружаем при монтировании
+  const { data: progressData } = useGetUserProgressQuery(userId!, {
+    skip: !userId,
+  });
 
-    // Следим за изменениями localStorage
-    const handleStorageChange = (event: StorageEvent) => {
-      if (event.key === `history_${selectedTest}`) {
-        loadHistory();
-      }
-    };
-
-    window.addEventListener("storage", handleStorageChange);
-    return () => {
-      window.removeEventListener("storage", handleStorageChange);
-    };
-  }, [selectedTest]);
+  const history = progressData?.history?.[selectedTest] || [];
 
   return (
-    <Box sx={{ mb: 4, borderRadius: 2 }}>
-      <Button
-        variant="text"
-        color="primary"
-        onClick={() => setIsVisible((prev) => !prev)}
-        fullWidth
-      >
-        {isVisible ? "Скрыть историю попыток" : "Показать историю попыток"}
-      </Button>
+    <Box sx={{ mb: 2, borderRadius: 2 }}>
+      <Box display="flex" alignItems="center" gap={2} mb={2}>
+        <Chip
+          label={`Попыток ${attemptsUsed} из ${MAX_ATTEMPTS}`}
+          color={attemptsUsed >= MAX_ATTEMPTS ? "error" : "primary"}
+          variant="filled"
+        />
+
+        <BtnCustom
+          variant="outlined"
+          color="secondary"
+          text={
+            isVisible ? "Скрыть историю попыток" : "Показать историю попыток"
+          }
+          onClick={() => setIsVisible((prev) => !prev)}
+        />
+      </Box>
 
       {isVisible && (
         <>
-          <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
+          <Typography variant="h6" gutterBottom>
             История попыток
           </Typography>
 
           {history.length === 0 ? (
-            <Typography variant="body2">
+            <Box className={styles.nothistory}>
               Нет данных о предыдущих попытках.
-            </Typography>
+            </Box>
           ) : (
             <List>
-              {history.map((entry, index) => (
+              {history.map((entry: any, index: number) => (
                 <React.Fragment key={index}>
                   <ListItem
                     sx={{

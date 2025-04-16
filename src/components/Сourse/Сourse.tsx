@@ -13,23 +13,27 @@ import { mockTopics } from "./CourseTopic";
 import QuizIcon from "@mui/icons-material/Quiz";
 import CodeIcon from "@mui/icons-material/Code";
 import BookIcon from "@mui/icons-material/MenuBook";
+import { useGetUserProgressQuery } from "../../api/api";
+import jwtDecode from "jwt-decode";
 
 const CoursePage: React.FC = () => {
   const navigate = useNavigate();
 
+  const token = localStorage.getItem("token");
+  const decoded: any = token ? jwtDecode(token) : null;
+  const userId = decoded?.sub;
+
+  const { data: progressData } = useGetUserProgressQuery(userId!, {
+    skip: !userId,
+  });
+
   const isTopicUnlocked = (index: number) => index === 0;
 
   const isTestPassed = (key: string): boolean => {
-    const historyRaw = localStorage.getItem(`history_${key}`);
-    if (!historyRaw) return false;
-
-    try {
-      const history = JSON.parse(historyRaw);
-      const best = Math.max(...history.map((h: any) => h.percentage));
-      return best >= 60;
-    } catch {
-      return false;
-    }
+    if (!progressData?.history?.[key]) return false;
+    const history = progressData.history[key];
+    const best = Math.max(...history.map((h: any) => h.percentage));
+    return best >= 60;
   };
 
   return (
@@ -75,9 +79,6 @@ const CoursePage: React.FC = () => {
               <Card
                 sx={{
                   borderRadius: "20px",
-                  // opacity: disabled ? 0.5 : 1, // TODO
-                  // pointerEvents: disabled ? "none" : "auto",
-                  // cursor: disabled ? "default" : "pointer",
                 }}
                 onClick={() => navigate(`/course/${topic.id}`)}
               >

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import {
   Box,
   Typography,
@@ -19,6 +19,8 @@ import { useNavigate } from "react-router-dom";
 import { testData } from "../data/testData";
 import ProgressRing from "../components/Profile/ProgressRing";
 import BtnCustom from "../ui/BtnCustom";
+import { useGetUserProgressQuery } from "../api/api";
+import jwtDecode from "jwt-decode";
 
 interface TestHistoryEntry {
   attempts: number;
@@ -28,38 +30,55 @@ interface TestHistoryEntry {
   selectedAnswers: Record<string, number[]>;
 }
 
+interface DecodedToken {
+  sub: number;
+  email: string;
+  isAdmin: boolean;
+  isAccessKey: boolean;
+  accessKey?: string;
+  exp: number;
+  iat: number;
+}
+
 const Tests: React.FC = () => {
   const navigate = useNavigate();
   const name = localStorage.getItem("userName") || "Аноним";
 
-  // Группировка тестов по категориям
-  const groupedTests = Object.entries(testData).reduce<Record<string, any[]>>(
-    (acc, [key, test]) => {
-      const category = test.category || "Без категории";
-      if (!acc[category]) acc[category] = [];
-      acc[category].push({ key, ...test });
-      return acc;
-    },
-    {}
+  const token = localStorage.getItem("token");
+  const decoded: DecodedToken | null = token ? jwtDecode(token) : null;
+  const userId = decoded?.sub;
+
+  const { data: progressData } = useGetUserProgressQuery(userId!, {
+    skip: !userId,
+  });
+
+  const groupedTests = useMemo(
+    () =>
+      Object.entries(testData).reduce<Record<string, any[]>>(
+        (acc, [key, test]) => {
+          const category = test.category || "Без категории";
+          if (!acc[category]) acc[category] = [];
+          acc[category].push({ key, ...test });
+          return acc;
+        },
+        {}
+      ),
+    []
   );
 
-  // Функция для подсчета среднего прогресса по категории
   const calculateCategoryProgress = (tests: any[]): number => {
     const total = tests.length;
-    if (total === 0) return 0;
+    if (total === 0 || !progressData) return 0;
 
     let passed = 0;
 
     for (const test of tests) {
-      const historyKey = `history_${test.key}`;
-      const historyRaw = localStorage.getItem(historyKey);
-
-      if (historyRaw) {
-        try {
-          const history: TestHistoryEntry[] = JSON.parse(historyRaw);
-          const best = Math.max(...history.map((h) => h.percentage));
-          if (best >= 60) passed++;
-        } catch {}
+      const history = progressData.history?.[test.key];
+      if (history && history.length > 0) {
+        const best = Math.max(
+          ...history.map((h: TestHistoryEntry) => h.percentage)
+        );
+        if (best >= 60) passed++;
       }
     }
 
@@ -71,21 +90,13 @@ const Tests: React.FC = () => {
     testId: number,
     testName: string
   ) => {
-    const historyKey = `history_${testKey}`;
-    const historyRaw = localStorage.getItem(historyKey);
+    const history = progressData?.history?.[testKey] || [];
 
-    let attempts = 0;
-    let bestPercentage = 0;
-
-    if (historyRaw) {
-      try {
-        const history: TestHistoryEntry[] = JSON.parse(historyRaw);
-        attempts = history.length;
-        bestPercentage = Math.max(...history.map((h) => h.percentage));
-      } catch (err) {
-        console.error("Ошибка при чтении истории:", err);
-      }
-    }
+    const attempts = history.length;
+    const bestPercentage =
+      history.length > 0
+        ? Math.max(...history.map((h: TestHistoryEntry) => h.percentage))
+        : 0;
 
     const isFailedTwice = attempts === 2 && bestPercentage === 0;
     const progressColor: "primary" | "error" = isFailedTwice

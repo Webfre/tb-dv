@@ -1,0 +1,88 @@
+import { jsSections } from "./jsSections";
+
+export const jsChapters = [
+  {
+    id: "js_intro",
+    title: "Основы JavaScript",
+    sections: jsSections.js_intro,
+    testKeys: ["js_intro_test"],
+    practiceIds: ["js_intro_task_1", "js_intro_task_2"],
+  },
+  // {
+  //   id: "js_functions",
+  //   title: "Функции и области видимости",
+  //   sections: jsSections.js_functions,
+  //   testKeys: ["js_functions_test"],
+  //   practiceIds: ["js_functions_task_1", "js_functions_task_2"],
+  // },
+  // {
+  //   id: "js_objects",
+  //   title: "Объекты и массивы",
+  //   sections: jsSections.js_objects,
+  //   testKeys: ["js_objects_test"],
+  //   practiceIds: ["js_objects_task_1", "js_objects_task_2"],
+  // },
+  // {
+  //   id: "js_dom",
+  //   title: "Работа с DOM",
+  //   sections: jsSections.js_dom,
+  //   testKeys: ["js_dom_test"],
+  //   practiceIds: ["js_dom_task_1", "js_dom_task_2"],
+  // },
+  // {
+  //   id: "js_events",
+  //   title: "События и обработчики",
+  //   sections: jsSections.js_events,
+  //   testKeys: ["js_events_test"],
+  //   practiceIds: ["js_events_task_1", "js_events_task_2"],
+  // },
+  // {
+  //   id: "js_es6",
+  //   title: "Современный JavaScript (ES6+)",
+  //   sections: jsSections.js_es6,
+  //   testKeys: ["js_es6_test"],
+  //   practiceIds: ["js_es6_task_1", "js_es6_task_2"],
+  // },
+  // {
+  //   id: "js_async",
+  //   title: "Асинхронное программирование",
+  //   sections: jsSections.js_async,
+  //   testKeys: ["js_async_test"],
+  //   practiceIds: ["js_async_task_1", "js_async_task_2"],
+  // },
+  // {
+  //   id: "js_oop",
+  //   title: "ООП в JavaScript",
+  //   sections: jsSections.js_oop,
+  //   testKeys: ["js_oop_test"],
+  //   practiceIds: ["js_oop_task_1", "js_oop_task_2"],
+  // },
+  // {
+  //   id: "js_patterns",
+  //   title: "Паттерны программирования",
+  //   sections: jsSections.js_patterns,
+  //   testKeys: ["js_patterns_test"],
+  //   practiceIds: ["js_patterns_task_1", "js_patterns_task_2"],
+  // },
+  // {
+  //   id: "js_api",
+  //   title: "Работа с API",
+  //   sections: jsSections.js_api,
+  //   testKeys: ["js_api_test"],
+  //   practiceIds: ["js_api_task_1", "js_api_task_2"],
+  // },
+  // {
+  //   id: "js_modules",
+  //   title: "Модули и сборка проектов",
+  //   sections: jsSections.js_modules,
+  //   testKeys: ["js_modules_test"],
+  //   practiceIds: ["js_modules_task_1", "js_modules_task_2"],
+  // },
+  // {
+  //   id: "js_testing",
+  //   title: "Тестирование JavaScript",
+  //   sections: jsSections.js_testing,
+  //   testKeys: ["js_testing_test"],
+  //   practiceIds: ["js_testing_task_1", "js_testing_task_2"],
+  // },
+];

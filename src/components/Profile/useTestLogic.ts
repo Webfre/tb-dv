@@ -1,13 +1,27 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { testData } from "../../data/testData";
-import { useUpdateProgressMutation } from "../../api/api";
+import {
+  useGetUserProgressQuery,
+  useUpdateProgressMutation,
+} from "../../api/api";
+import jwtDecode from "jwt-decode";
 
 const MAX_ATTEMPTS = 2;
 
 interface LocationState {
   name: string;
   selectedTest: keyof typeof testData;
+}
+
+interface DecodedToken {
+  sub: number;
+  email: string;
+  isAdmin: boolean;
+  isAccessKey: boolean;
+  accessKey?: string;
+  exp: number;
+  iat: number;
 }
 
 export const useTestLogic = () => {
@@ -19,21 +33,26 @@ export const useTestLogic = () => {
   const [score, setScore] = useState(0);
   const [grade, setGrade] = useState(2);
   const [answers, setAnswers] = useState<{ [key: number]: number[] }>({});
-
   const [updateProgress] = useUpdateProgressMutation();
-
   const [attemptsUsed, setAttemptsUsed] = useState(0);
   const [showResults, setShowResults] = useState(false);
   const [highlightAnswers, setHighlightAnswers] = useState<{
     [key: number]: number[];
   }>({});
 
+  const token = localStorage.getItem("token");
+  const decoded: DecodedToken | null = token ? jwtDecode(token) : null;
+  const userId = decoded?.sub;
+
+  const { data: progressData, isSuccess } = useGetUserProgressQuery(userId!, {
+    skip: !userId,
+  });
+
   useEffect(() => {
-    const storedAttempts = localStorage.getItem(`attempts_${selectedTest}`);
-    if (storedAttempts) {
-      setAttemptsUsed(parseInt(storedAttempts, 10));
+    if (isSuccess && progressData?.attempts?.[selectedTest]) {
+      setAttemptsUsed(progressData.attempts[selectedTest]);
     }
-  }, [selectedTest]);
+  }, [isSuccess, progressData, selectedTest]);
 
   const handleChange = (questionId: number, optionIndex: number) => {
     setAnswers((prev) => {
@@ -86,10 +105,14 @@ export const useTestLogic = () => {
     };
 
     try {
+      const currentHistory = progressData?.history?.[selectedTest] || [];
+      const updatedHistory = [...currentHistory, testResult];
+
       await updateProgress({
         testKey: String(selectedTest),
         attempts: newAttemptsUsed,
         result: testResult,
+        fullHistory: updatedHistory,
       }).unwrap();
     } catch (e) {
       console.error("Ошибка отправки прогресса", e);
