@@ -112,15 +112,34 @@ const TaskDrawer: React.FC<TaskDrawerProps> = ({ open, onClose, task }) => {
               />
 
               {showSolution && (
-                <Grid sx={{ marginBottom: "20px" }} container spacing={2}>
+                <Grid sx={{ marginBottom: "40px" }} container spacing={2}>
                   {task.solution && (
-                    <Grid item xs={task.codeExampleCSS ? 6 : 12}>
+                    <Grid
+                      item
+                      xs={task.codeExampleCSS || task.codeExampleJS ? 6 : 12}
+                    >
                       <Typography variant="subtitle2" gutterBottom>
                         HTML решение:
                       </Typography>
                       <CopyBlock
                         text={task.solution}
                         language="html"
+                        showLineNumbers
+                        theme={dracula}
+                        customStyle={styleCodeBlock}
+                        codeBlock
+                      />
+                    </Grid>
+                  )}
+
+                  {task.codeExampleJS && (
+                    <Grid item xs={task.solution ? 6 : 12}>
+                      <Typography variant="subtitle2" gutterBottom>
+                        JavaScript решение:
+                      </Typography>
+                      <CopyBlock
+                        text={task.codeExampleJS}
+                        language="js"
                         showLineNumbers
                         theme={dracula}
                         customStyle={styleCodeBlock}

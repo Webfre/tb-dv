@@ -62,18 +62,19 @@ const PracticeDrawer: React.FC<PracticeDrawerProps> = ({
             </IconButton>
           </Box>
 
-          <Stack direction="row" spacing={2} flexWrap="wrap" mt={1}>
+          <Grid container spacing={2}>
             {tasks.map((task) => (
-              <Chip
-                key={task.id}
-                label={task.title}
-                onClick={() => setSelectedTask(task)}
-                clickable
-                variant={selectedTask?.id === task.id ? "filled" : "outlined"}
-                color={selectedTask?.id === task.id ? "primary" : "default"}
-              />
+              <Grid item key={task.id}>
+                <Chip
+                  label={task.title}
+                  onClick={() => setSelectedTask(task)}
+                  clickable
+                  variant={selectedTask?.id === task.id ? "filled" : "outlined"}
+                  color={selectedTask?.id === task.id ? "primary" : "default"}
+                />
+              </Grid>
             ))}
-          </Stack>
+          </Grid>
         </Box>
 
         {selectedTask ? (
@@ -131,13 +132,37 @@ const PracticeDrawer: React.FC<PracticeDrawerProps> = ({
                 {showSolution && (
                   <Grid sx={{ marginBottom: "40px" }} container spacing={2}>
                     {selectedTask.solution && (
-                      <Grid item xs={selectedTask.codeExampleCSS ? 6 : 12}>
+                      <Grid
+                        item
+                        xs={
+                          selectedTask.codeExampleCSS ||
+                          selectedTask.codeExampleJS
+                            ? 6
+                            : 12
+                        }
+                      >
                         <Typography variant="subtitle2" gutterBottom>
                           HTML решение:
                         </Typography>
                         <CopyBlock
                           text={selectedTask.solution}
                           language="html"
+                          showLineNumbers
+                          theme={dracula}
+                          customStyle={styleCodeBlock}
+                          codeBlock
+                        />
+                      </Grid>
+                    )}
+
+                    {selectedTask.codeExampleJS && (
+                      <Grid item xs={selectedTask.solution ? 6 : 12}>
+                        <Typography variant="subtitle2" gutterBottom>
+                          JavaScript решение:
+                        </Typography>
+                        <CopyBlock
+                          text={selectedTask.codeExampleJS}
+                          language="js"
                           showLineNumbers
                           theme={dracula}
                           customStyle={styleCodeBlock}

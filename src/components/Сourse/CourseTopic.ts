@@ -48,6 +48,7 @@ export interface PracticeTask {
   resources?: string[]; // ссылки на материалы
   attachments?: string[]; // файлы для скачивания
   codeExampleCSS?: string; // css код решение
+  codeExampleJS?: string; // js код решение
 }
 
 const topics = [
