@@ -30,6 +30,11 @@ export interface User {
   isAdmin: boolean;
 }
 
+export interface Progress {
+  attempts: Record<string, number>;
+  history: Record<string, any[]>;
+}
+
 export const api = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
@@ -45,6 +50,10 @@ export const api = createApi({
   endpoints: (builder) => ({
     getAllUsers: builder.query<User[], void>({
       query: () => "/users",
+    }),
+
+    getUserProgress: builder.query<Progress, number>({
+      query: (userId) => `/progress/${userId}`,
     }),
 
     revokeAccessKey: builder.mutation<any, number>({
@@ -105,24 +114,21 @@ export const api = createApi({
           grade: number;
           selectedAnswers: Record<number, number[]>;
         };
+        fullHistory: any[];
       }
     >({
-      query: (body) => {
-        const { testKey, attempts, result } = body;
-
-        return {
-          url: `/progress`,
-          method: "POST",
-          body: {
-            attempts: {
-              [testKey]: attempts,
-            },
-            history: {
-              [testKey]: [result],
-            },
+      query: ({ testKey, attempts, fullHistory }) => ({
+        url: `/progress`,
+        method: "POST",
+        body: {
+          attempts: {
+            [testKey]: attempts,
           },
-        };
-      },
+          history: {
+            [testKey]: fullHistory,
+          },
+        },
+      }),
     }),
 
     assignAccessKey: builder.mutation<
@@ -146,4 +152,5 @@ export const {
   useMakeAdminMutation,
   useRevokeAdminMutation,
   useUpdateProgressMutation,
+  useGetUserProgressQuery,
 } = api;

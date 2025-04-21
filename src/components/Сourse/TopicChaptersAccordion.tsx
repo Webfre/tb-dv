@@ -25,6 +25,8 @@ import { practiceMock } from "../../data/taskData";
 import styles from "./TopicChaptersAccordion.module.scss";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import DoNotDisturbOnIcon from "@mui/icons-material/DoNotDisturbOn";
+import jwtDecode from "jwt-decode";
+import { useGetUserProgressQuery } from "../../api/api";
 
 interface TopicChaptersAccordionProps {
   chapters: CourseChapter[];
@@ -39,29 +41,28 @@ const TopicChaptersAccordion: React.FC<TopicChaptersAccordionProps> = ({
 }) => {
   const navigate = useNavigate();
   const location = useLocation();
-
   const [expandedChapterId, setExpandedChapterId] = useState<string | null>(
     null
   );
-
   const [openSection, setOpenSection] = useState<CourseSection | null>(null);
   const [practiceOpen, setPracticeOpen] = useState(false);
   const [chapterTasks, setChapterTasks] = useState<PracticeTask[]>([]);
   const chapterRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const [highlightedId, setHighlightedId] = useState<string | null>(null);
 
-  const isChapterTestPassed = (testKey?: string): boolean | null => {
-    if (!testKey) return null;
-    const historyRaw = localStorage.getItem(`history_${testKey}`);
-    if (!historyRaw) return null;
+  const token = localStorage.getItem("token");
+  const decoded: any = token ? jwtDecode(token) : null;
+  const userId = decoded?.sub;
 
-    try {
-      const history = JSON.parse(historyRaw);
-      const best = Math.max(...history.map((h: any) => h.percentage));
-      return best >= 60;
-    } catch {
-      return null;
-    }
+  const { data: progressData } = useGetUserProgressQuery(userId!, {
+    skip: !userId,
+  });
+
+  const isChapterTestPassed = (testKey?: string): boolean | null => {
+    if (!testKey || !progressData?.history?.[testKey]) return null;
+    const entries = progressData.history[testKey];
+    const best = Math.max(...entries.map((entry: any) => entry.percentage));
+    return best >= 60;
   };
 
   const handleOpen = (section: CourseSection) => {

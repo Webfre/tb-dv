@@ -39,14 +39,26 @@ import {
   html_structure_task_2,
 } from "../components/Сourse/dataCourse/html/work/html_structure_task";
 import {
-  html_table_simple_1,
-  html_table_simple_2,
-  html_table_simple_3,
-} from "../components/Сourse/dataCourse/html/work/html_table_simple";
+  js_basics_task_1,
+  js_basics_task_10,
+  js_basics_task_11,
+  js_basics_task_12,
+  js_basics_task_13,
+  js_basics_task_14,
+  js_basics_task_15,
+  js_basics_task_2,
+  js_basics_task_3,
+  js_basics_task_4,
+  js_basics_task_5,
+  js_basics_task_6,
+  js_basics_task_7,
+  js_basics_task_8,
+  js_basics_task_9,
+} from "../components/Сourse/dataCourse/js/work/js_basics_task";
 import {
-  html_video_embed_1,
-  html_video_embed_2,
-} from "../components/Сourse/dataCourse/html/work/html_video_embed";
+  js_intro_task_1,
+  js_intro_task_2,
+} from "../components/Сourse/dataCourse/js/work/js_intro_task";
 
 export const practiceMock: PracticeTask[] = [
   // HTML
@@ -60,24 +72,37 @@ export const practiceMock: PracticeTask[] = [
   html_attributes_usage_1,
   html_attributes_usage_2,
   html_attributes_usage_3,
-  html_semantic_landing_1,
-  html_format_text_1,
-  html_format_text_2,
-  html_links_creation_1,
-  html_links_creation_2,
   html_form_login_1,
   html_form_login_2,
   html_form_login_3,
   html_form_login_4,
   html_form_login_5,
-  html_table_simple_1,
-  html_table_simple_2,
-  html_table_simple_3,
-  html_video_embed_1,
-  html_video_embed_2,
+  html_format_text_1,
+  html_format_text_2,
+  html_links_creation_1,
+  html_links_creation_2,
   html_meta_basic_1,
   html_meta_basic_2,
-
+  html_semantic_landing_1,
   // CSS
   css_intro_task_1,
+
+  // JS
+  js_basics_task_10,
+  js_basics_task_11,
+  js_basics_task_12,
+  js_basics_task_13,
+  js_basics_task_14,
+  js_basics_task_15,
+  js_intro_task_1,
+  js_intro_task_2,
+  js_basics_task_1,
+  js_basics_task_2,
+  js_basics_task_3,
+  js_basics_task_4,
+  js_basics_task_5,
+  js_basics_task_6,
+  js_basics_task_7,
+  js_basics_task_8,
+  js_basics_task_9,
 ];

@@ -1,23 +1,36 @@
 import React from "react";
 import { Box, CircularProgress, Typography } from "@mui/material";
+import { useGetUserProgressQuery } from "../../api/api";
 import { testData } from "../../data/testData";
+import jwtDecode from "jwt-decode";
+
+interface DecodedToken {
+  sub: number;
+  email: string;
+  isAdmin: boolean;
+  isAccessKey: boolean;
+  accessKey?: string;
+  exp: number;
+  iat: number;
+}
 
 const TestProgressRing: React.FC = () => {
   const totalTests = Object.keys(testData).length;
 
-  const successfulTests = Object.entries(testData).filter(([key]) => {
-    const historyKey = `history_${key}`;
-    const historyRaw = localStorage.getItem(historyKey);
-    if (!historyRaw) return false;
+  const token = localStorage.getItem("token");
+  const decoded: DecodedToken | null = token ? jwtDecode(token) : null;
+  const userId = decoded?.sub;
 
-    try {
-      const history = JSON.parse(historyRaw);
+  const { data: progressData } = useGetUserProgressQuery(userId!, {
+    skip: !userId,
+  });
+
+  const successfulTests = Object.entries(progressData?.history || {}).filter(
+    ([_, history]) => {
       const best = Math.max(...history.map((h: any) => h.percentage));
       return best >= 60;
-    } catch {
-      return false;
     }
-  }).length;
+  ).length;
 
   const testProgress = (successfulTests / totalTests) * 100;
 

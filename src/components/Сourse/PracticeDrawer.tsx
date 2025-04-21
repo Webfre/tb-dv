@@ -4,7 +4,6 @@ import {
   Box,
   Typography,
   IconButton,
-  Divider,
   Stack,
   Chip,
   Grid,
@@ -15,6 +14,8 @@ import LinkIcon from "@mui/icons-material/Link";
 import HtmlDrawer from "./HtmlDrawer";
 import { PracticeTask } from "./CourseTopic";
 import { CopyBlock, dracula } from "react-code-blocks";
+import styles from "./PracticeDrawer.module.scss";
+import { styleCodeBlock } from "./CopyBlockStyle";
 
 interface PracticeDrawerProps {
   open: boolean;
@@ -51,32 +52,33 @@ const PracticeDrawer: React.FC<PracticeDrawerProps> = ({
       PaperProps={{ sx: { height: "100vh" } }}
     >
       <Box px={4} py={3} sx={{ height: "100%", overflowY: "auto" }}>
-        <Box display="flex" justifyContent="space-between" alignItems="center">
-          <Typography variant="h6" color="primary">
-            Практические задачи
-          </Typography>
-          <IconButton onClick={onClose}>
-            <CloseIcon />
-          </IconButton>
+        <Box className={styles.titlePR}>
+          <Box className={styles.titleTask}>
+            <Typography variant="h6" color="primary">
+              Практические задачи
+            </Typography>
+            <IconButton onClick={onClose}>
+              <CloseIcon />
+            </IconButton>
+          </Box>
+
+          <Grid container spacing={2}>
+            {tasks.map((task) => (
+              <Grid item key={task.id}>
+                <Chip
+                  label={task.title}
+                  onClick={() => setSelectedTask(task)}
+                  clickable
+                  variant={selectedTask?.id === task.id ? "filled" : "outlined"}
+                  color={selectedTask?.id === task.id ? "primary" : "default"}
+                />
+              </Grid>
+            ))}
+          </Grid>
         </Box>
 
-        <Stack direction="row" spacing={2} flexWrap="wrap" mt={2} mb={2}>
-          {tasks.map((task) => (
-            <Chip
-              key={task.id}
-              label={task.title}
-              onClick={() => setSelectedTask(task)}
-              clickable
-              variant={selectedTask?.id === task.id ? "filled" : "outlined"}
-              color={selectedTask?.id === task.id ? "primary" : "default"}
-            />
-          ))}
-        </Stack>
-
-        <Divider sx={{ my: 2 }} />
-
-        {selectedTask && (
-          <Box>
+        {selectedTask ? (
+          <Box className={styles.selectedTask}>
             <Box mt={1}>{renderDifficulty(selectedTask.difficulty)}</Box>
 
             <Box display="flex" gap={2} alignItems="center">
@@ -128,9 +130,17 @@ const PracticeDrawer: React.FC<PracticeDrawerProps> = ({
                 />
 
                 {showSolution && (
-                  <Grid sx={{ marginBottom: "20px" }} container spacing={2}>
+                  <Grid sx={{ marginBottom: "40px" }} container spacing={2}>
                     {selectedTask.solution && (
-                      <Grid item xs={selectedTask.codeExampleCSS ? 6 : 12}>
+                      <Grid
+                        item
+                        xs={
+                          selectedTask.codeExampleCSS ||
+                          selectedTask.codeExampleJS
+                            ? 6
+                            : 12
+                        }
+                      >
                         <Typography variant="subtitle2" gutterBottom>
                           HTML решение:
                         </Typography>
@@ -139,13 +149,23 @@ const PracticeDrawer: React.FC<PracticeDrawerProps> = ({
                           language="html"
                           showLineNumbers
                           theme={dracula}
-                          customStyle={{
-                            height: "100%",
-                            minHeight: "300px",
-                            display: "flex",
-                            flexDirection: "column",
-                            borderRadius: "8px",
-                          }}
+                          customStyle={styleCodeBlock}
+                          codeBlock
+                        />
+                      </Grid>
+                    )}
+
+                    {selectedTask.codeExampleJS && (
+                      <Grid item xs={selectedTask.solution ? 6 : 12}>
+                        <Typography variant="subtitle2" gutterBottom>
+                          JavaScript решение:
+                        </Typography>
+                        <CopyBlock
+                          text={selectedTask.codeExampleJS}
+                          language="js"
+                          showLineNumbers
+                          theme={dracula}
+                          customStyle={styleCodeBlock}
                           codeBlock
                         />
                       </Grid>
@@ -161,13 +181,7 @@ const PracticeDrawer: React.FC<PracticeDrawerProps> = ({
                           language="css"
                           showLineNumbers
                           theme={dracula}
-                          customStyle={{
-                            height: "100%",
-                            minHeight: "300px",
-                            display: "flex",
-                            flexDirection: "column",
-                            borderRadius: "8px",
-                          }}
+                          customStyle={styleCodeBlock}
                           codeBlock
                         />
                       </Grid>
@@ -203,7 +217,7 @@ const PracticeDrawer: React.FC<PracticeDrawerProps> = ({
 
             {Array.isArray(selectedTask.attachments) &&
               selectedTask.attachments.length > 0 && (
-                <>
+                <Box>
                   <Typography mt={2} variant="subtitle1" fontWeight={500}>
                     Файлы для скачивания
                   </Typography>
@@ -220,8 +234,14 @@ const PracticeDrawer: React.FC<PracticeDrawerProps> = ({
                       />
                     ))}
                   </Stack>
-                </>
+                </Box>
               )}
+          </Box>
+        ) : (
+          <Box className={styles.emptyTask}>
+            <Typography variant="h6" color="text.secondary">
+              Выберите одну из задач, и попробуйте решить ее. Удачи!
+            </Typography>
           </Box>
         )}
       </Box>

@@ -13,6 +13,8 @@ import { html_semantics_test } from "../components/Сourse/dataCourse/html/test/
 import { html_structure_test } from "../components/Сourse/dataCourse/html/test/html_structure_test";
 import { html_tables_test } from "../components/Сourse/dataCourse/html/test/html_tables_test";
 import { html_text_formatting_test } from "../components/Сourse/dataCourse/html/test/html_text_formatting_test";
+import { js_basics_test } from "../components/Сourse/dataCourse/js/test/js_basics_test";
+import { js_intro_test } from "../components/Сourse/dataCourse/js/test/js_intro_test";
 import { TestDataCollection } from "./types";
 
 export const testData: TestDataCollection = {
@@ -33,5 +35,9 @@ export const testData: TestDataCollection = {
   html_final_test,
 
   // CSS
-  css_intro_test,
+  css_intro_test, //id будет с 16
+
+  // JS
+  js_intro_test,
+  js_basics_test,
 };

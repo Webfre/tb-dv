@@ -27,14 +27,14 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import PersonIcon from "@mui/icons-material/Person";
 
 const menuItems = [
+  { label: "Главная", path: "/" },
   { label: "Курс", path: "/course" },
-  { label: "Тестирование", path: "/" },
   { label: "Челлендж", path: "/live" },
   { label: "Справочник", path: "/cheatsheet" },
   { label: "Собеседование", path: "/interview" },
   { label: "Проекты", path: "/projects" },
   { label: "Задачник", path: "/taskbook" },
-  { label: "Роадмап", path: "/roadmap" },
+  { label: "Roadmap", path: "/roadmap" },
 ];
 
 const Header: React.FC = () => {
@@ -87,7 +87,7 @@ const Header: React.FC = () => {
             onClick={() => navigate("/")}
             sx={{ cursor: "pointer" }}
           >
-            devcourse.ru
+            dev.course
           </Typography>
 
           {isMobile ? (

@@ -1,5 +1,6 @@
 import { cssTopic } from "./dataCourse/css/css";
 import { htmlTopic } from "./dataCourse/html/html";
+import { jsTopic } from "./dataCourse/js/js";
 
 export interface CourseSection {
   id: string;
@@ -11,6 +12,7 @@ export interface CourseSection {
   show?: string;
   showCode?: string;
   codeExampleCSS?: string;
+  type?: string;
 }
 
 export interface CourseChapter {
@@ -46,6 +48,23 @@ export interface PracticeTask {
   resources?: string[]; // ссылки на материалы
   attachments?: string[]; // файлы для скачивания
   codeExampleCSS?: string; // css код решение
+  codeExampleJS?: string; // js код решение
 }
 
-export const mockTopics: CourseTopic[] = [htmlTopic, cssTopic];
+const topics = [
+  "HTML",
+  "CSS",
+  "JavaScript",
+  "TypeScript",
+  "Redux",
+  "RTK Query",
+  "React",
+  "Основы браузера",
+  "Работа с IDE",
+  "Git",
+  "Пет-проекты",
+  "Собеседования",
+  "Резюме",
+];
+
+export const mockTopics: CourseTopic[] = [htmlTopic, cssTopic, jsTopic];

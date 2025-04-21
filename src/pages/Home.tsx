@@ -1,86 +1,80 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import {
-  Container,
-  TextField,
-  Button,
-  MenuItem,
-  Typography,
-} from "@mui/material";
-import { testData } from "../data/testData";
+import React from "react";
+import { Container, Typography, Box } from "@mui/material";
 import styles from "./Home.module.scss";
 
 const Home: React.FC = () => {
-  const [name, setName] = useState("");
-  const [storedName, setStoredName] = useState<string | null>(null);
-  const [selectedTest, setSelectedTest] = useState("");
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const savedName = localStorage.getItem("userName");
-    if (savedName) {
-      setStoredName(savedName);
-      setName(savedName);
-    }
-  }, []);
-
-  const handleSubmit = () => {
-    if (name && selectedTest) {
-      if (!storedName) {
-        localStorage.setItem("userName", name);
-        setStoredName(name);
-      }
-      navigate("/test", { state: { name, selectedTest } });
-    }
-  };
-
   return (
-    <Container maxWidth="sm" sx={{ mt: 5 }}>
-      <Typography variant="h5" gutterBottom>
-        Оцените уровень подготовки, пройдя тест.
-      </Typography>
-
-      {storedName ? (
-        <Typography variant="h6" gutterBottom>
-          Добро пожаловать,{" "}
-          <span className={styles.userName}>{storedName}</span>!
+    <Container maxWidth="md" className={styles.home}>
+      <Box className={styles.intro} mb={4} mt={4}>
+        <Typography textAlign="center" variant="h4" gutterBottom>
+          Добро пожаловать на dev.course
         </Typography>
-      ) : (
-        <TextField
-          fullWidth
-          label="Введите ФИО"
-          variant="outlined"
-          margin="normal"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-      )}
+        <Typography variant="body1" paragraph>
+          Мы — образовательная платформа, ориентированная на подготовку
+          frontend-специалистов. Здесь вы найдете систематизированный подход к
+          обучению, охватывающий как базовый, так и продвинутый уровни. Подходит
+          для подготовки к позициям Junior и Middle разработчиков.
+        </Typography>
+        <Typography variant="body1" paragraph>
+          В нашем приложении реализована единая система отслеживания прогресса
+          по темам и задачам. Это ваш личный трекер развития в профессии
+          frontend-разработчика.
+        </Typography>
+      </Box>
 
-      <TextField
-        fullWidth
-        select
-        label="Выберите тест"
-        variant="outlined"
-        margin="normal"
-        value={selectedTest}
-        onChange={(e) => setSelectedTest(e.target.value)}
-      >
-        {Object.entries(testData).map(([testKey, test]) => (
-          <MenuItem key={test.id} value={testKey}>
-            {test.name}
-          </MenuItem>
-        ))}
-      </TextField>
-
-      <Button
-        variant="contained"
-        color="primary"
-        fullWidth
-        onClick={handleSubmit}
-        sx={{ mt: 2 }}
-      >
-        Начать тест
-      </Button>
+      {[
+        {
+          title: "Курс",
+          desc: "Подробный обучающий курс, построенный по принципу: от простого к сложному. Содержит главы, темы, материалы и тесты, разбитые по уровням и логическим блокам. Вы всегда знаете, что изучать дальше.",
+        },
+        {
+          title: "Тестирование",
+          desc: "Проверяйте свои знания с помощью тематических тестов. Они охватывают все ключевые аспекты frontend-разработки: HTML, CSS, JavaScript, React, TypeScript и другие. Результаты сохраняются в истории и влияют на ваш прогресс.",
+        },
+        {
+          title: "Челлендж",
+          desc: "Практические задания с реальными сценариями — отличная возможность отработать навыки. Уровни сложности варьируются от новичка до профи. Есть живой редактор кода, поддержка HTML, CSS, JS.",
+        },
+        {
+          title: "Справочники",
+          desc: "Быстрый доступ к справочной информации: синтаксис, методы, особенности API. Удобно структурировано по темам, всегда под рукой.",
+        },
+        {
+          title: "Собеседование",
+          desc: "Подготовка к техническим собеседованиям: частые вопросы, ответы, теоретические блоки, практические задачи. Формат — в виде карточек с фильтрами по темам.",
+        },
+        {
+          title: "Задачник",
+          desc: "Коллекция алгоритмических и практических задач для прокачки логики и навыков решения реальных проблем. Есть разные уровни сложности, система оценки и история попыток.",
+        },
+        {
+          title: "Проекты",
+          desc: "Реализация учебных и практических проектов. От простых одностраничников до полноценных SPA. Возможность собрать портфолио прямо внутри платформы.",
+        },
+        {
+          title: "Roadmap развития",
+          desc: "Подробная карта развития frontend-разработчика. Что изучать, в каком порядке, какие технологии осваивать, чтобы достичь уровня Middle и выше.",
+        },
+        {
+          title: "Прогресс",
+          desc: "Ваш персональный прогресс по всем направлениям: тесты, задачи, темы, главы. Вы всегда видите, где находитесь и что осталось пройти.",
+        },
+        {
+          title: "Видео уроки и конференции",
+          desc: "Подборка полезных видеоуроков, докладов, митапов и конференций. Все, что помогает держать руку на пульсе и учиться у лучших.",
+        },
+      ].map((feature, index) => (
+        <Box key={index} className={styles.feature} mb={4}>
+          <Typography
+            sx={{ color: "rgb(42, 108, 178)" }}
+            variant="h5"
+            gutterBottom
+          >
+            {feature.title}
+          </Typography>
+          <Typography variant="body1">{feature.desc}</Typography>
+        </Box>
+      ))}
     </Container>
   );
 };

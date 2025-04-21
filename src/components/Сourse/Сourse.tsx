@@ -7,36 +7,80 @@ import {
   Grid,
   LinearProgress,
   Chip,
+  Link,
+  Tooltip,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { mockTopics } from "./CourseTopic";
 import QuizIcon from "@mui/icons-material/Quiz";
 import CodeIcon from "@mui/icons-material/Code";
 import BookIcon from "@mui/icons-material/MenuBook";
+import { useGetUserProgressQuery } from "../../api/api";
+import jwtDecode from "jwt-decode";
+import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
+import AddReactionIcon from "@mui/icons-material/AddReaction";
+import styles from "./PracticeDrawer.module.scss";
 
 const CoursePage: React.FC = () => {
   const navigate = useNavigate();
 
+  const token = localStorage.getItem("token");
+  const decoded: any = token ? jwtDecode(token) : null;
+  const userId = decoded?.sub;
+
+  const { data: progressData } = useGetUserProgressQuery(userId!, {
+    skip: !userId,
+  });
+
   const isTopicUnlocked = (index: number) => index === 0;
 
   const isTestPassed = (key: string): boolean => {
-    const historyRaw = localStorage.getItem(`history_${key}`);
-    if (!historyRaw) return false;
-
-    try {
-      const history = JSON.parse(historyRaw);
-      const best = Math.max(...history.map((h: any) => h.percentage));
-      return best >= 60;
-    } catch {
-      return false;
-    }
+    if (!progressData?.history?.[key]) return false;
+    const history = progressData.history[key];
+    const best = Math.max(...history.map((h: any) => h.percentage));
+    return best >= 60;
   };
 
   return (
     <Box p={4}>
-      <Typography textAlign="center" variant="h4" gutterBottom>
-        Курс по Frontend-разработке
-      </Typography>
+      <Box className={styles.roadmap}>
+        <Typography variant="h4" gutterBottom>
+          Курс: Frontend-разработчик React (базовый)
+        </Typography>
+
+        <Typography variant="body1" mb={3}>
+          В курсе представлены практические задачи, тесты, примеры решений,
+          ссылки на полезные ресурсы, видеоуроки и конференции, а также
+          поддержка в процессе обучения. Сам курс охватывает основные темы от
+          базового уровня до уровня Trainee/Junior Frontend Developer.
+        </Typography>
+
+        <Box className={styles.roadmapType}>
+          <Tooltip title="Trainee — начинающий разработчик, только осваивает основы frontend, часто без коммерческого опыта.">
+            <Chip
+              icon={<EmojiEmotionsIcon />}
+              label="Trainee"
+              color="primary"
+            />
+          </Tooltip>
+
+          <Tooltip title="Junior — разработчик, владеющий базовыми технологиями, способен выполнять простые задачи под руководством.">
+            <Chip icon={<AddReactionIcon />} label="Junior" color="primary" />
+          </Tooltip>
+        </Box>
+      </Box>
+
+      <Box className={styles.roadmap}>
+        <Typography textAlign="left" variant="body2" color="textSecondary">
+          Не знаете, с чего начать? Напишите вашему наставнику или загляните в
+          <Link href="/roadmap" underline="hover" sx={{ mx: 0.5 }}>
+            Roadmap (Junior)
+          </Link>
+          — это пошаговое руководство, которое подскажет, в каком порядке
+          изучать темы и выполнять задания. Следуйте по пунктам от начала и до
+          конца. Удачи в обучении!
+        </Typography>
+      </Box>
 
       <Grid container spacing={3}>
         {mockTopics.map((topic, index) => {
@@ -67,37 +111,21 @@ const CoursePage: React.FC = () => {
               0
             );
 
-          const disabled = !isTopicUnlocked(index);
-          const shortDescription = (topic.description ?? "").slice(0, 100);
-
           return (
             <Grid item xs={12} sm={6} md={4} key={topic.id}>
               <Card
                 sx={{
                   borderRadius: "20px",
-                  // opacity: disabled ? 0.5 : 1, // TODO
-                  // pointerEvents: disabled ? "none" : "auto",
-                  // cursor: disabled ? "default" : "pointer",
                 }}
                 onClick={() => navigate(`/course/${topic.id}`)}
               >
                 <CardContent>
-                  <Typography variant="h6" gutterBottom>
-                    {topic.title}
-                  </Typography>
-
                   <Typography
-                    variant="body2"
+                    className={styles.titleNameTopic}
+                    variant="h4"
                     gutterBottom
-                    sx={{
-                      display: "-webkit-box",
-                      WebkitLineClamp: 3,
-                      WebkitBoxOrient: "vertical",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                    }}
                   >
-                    {topic.description}
+                    {topic.title}
                   </Typography>
 
                   <Grid container spacing={1} my={1}>

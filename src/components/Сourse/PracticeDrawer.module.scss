@@ -1,0 +1,47 @@
+.titleTask {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.titlePR {
+  border: 1px solid rgb(164, 164, 164);
+  padding: 20px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+.emptyTask {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+  text-align: center;
+  border: 1px solid rgb(164, 164, 164);
+  border-radius: 20px;
+}
+
+.selectedTask {
+  border: 1px solid rgb(164, 164, 164);
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.roadmap {
+  border: 1px solid rgb(164, 164, 164);
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.roadmapType {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 5px;
+}
+
+.titleNameTopic {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif !important;
+}

@@ -6,7 +6,6 @@ import {
   Box,
   Typography,
   IconButton,
-  Divider,
   Stack,
   Chip,
   Grid,
@@ -17,6 +16,8 @@ import { CourseSection } from "./CourseTopic";
 import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
 import LinkIcon from "@mui/icons-material/Link";
 import HtmlDrawer from "./HtmlDrawer";
+import styles from "./SectionDrawer.module.scss";
+import { styleCodeBlock } from "./CopyBlockStyle";
 
 interface SectionDrawerProps {
   section: CourseSection | null;
@@ -40,11 +41,7 @@ const SectionDrawer: React.FC<SectionDrawerProps> = ({ section, onClose }) => {
         PaperProps={{ sx: { height: "100vh" } }}
       >
         <Box px={4} py={2} sx={{ height: "100%", overflowY: "auto" }}>
-          <Box
-            display="flex"
-            justifyContent="space-between"
-            alignItems="center"
-          >
+          <Box className={styles.titleName}>
             <Typography variant="h6" color="primary">
               {section?.title}
             </Typography>
@@ -54,9 +51,7 @@ const SectionDrawer: React.FC<SectionDrawerProps> = ({ section, onClose }) => {
             </IconButton>
           </Box>
 
-          <Divider sx={{ my: 2 }} />
-
-          <Box mb={3}>
+          <Box className={styles.content}>
             <ReactMarkdown remarkPlugins={[remarkGfm]}>
               {section?.content || "Раздел пока не содержит описания."}
             </ReactMarkdown>
@@ -75,13 +70,7 @@ const SectionDrawer: React.FC<SectionDrawerProps> = ({ section, onClose }) => {
                       language="html"
                       showLineNumbers
                       theme={dracula}
-                      customStyle={{
-                        height: "100%",
-                        minHeight: "300px",
-                        display: "flex",
-                        flexDirection: "column",
-                        borderRadius: "8px",
-                      }}
+                      customStyle={styleCodeBlock}
                       codeBlock
                     />
                   </Grid>
@@ -95,13 +84,7 @@ const SectionDrawer: React.FC<SectionDrawerProps> = ({ section, onClose }) => {
                       language="css"
                       showLineNumbers
                       theme={dracula}
-                      customStyle={{
-                        height: "100%",
-                        minHeight: "300px",
-                        display: "flex",
-                        flexDirection: "column",
-                        borderRadius: "8px",
-                      }}
+                      customStyle={styleCodeBlock}
                       codeBlock
                     />
                   </Grid>
@@ -109,9 +92,10 @@ const SectionDrawer: React.FC<SectionDrawerProps> = ({ section, onClose }) => {
               ) : (
                 <CopyBlock
                   text={section.codeExample}
-                  language="html"
+                  language={section.type ? "js" : "html"}
                   showLineNumbers
                   theme={dracula}
+                  customStyle={styleCodeBlock}
                   codeBlock
                 />
               )}
@@ -153,13 +137,14 @@ const SectionDrawer: React.FC<SectionDrawerProps> = ({ section, onClose }) => {
                 language="html"
                 showLineNumbers
                 theme={dracula}
+                customStyle={styleCodeBlock}
                 codeBlock
               />
             </Box>
           )}
 
           {section?.resources?.length ? (
-            <Box mb={2} mt={1}>
+            <Box className={styles.listResources}>
               <Typography variant="subtitle1" gutterBottom>
                 Полезные ссылки
               </Typography>
@@ -182,7 +167,7 @@ const SectionDrawer: React.FC<SectionDrawerProps> = ({ section, onClose }) => {
           ) : null}
 
           {section?.attachments?.length ? (
-            <Box>
+            <Box className={styles.listAttachments}>
               <Typography variant="subtitle1" gutterBottom>
                 Прикреплённые файлы
               </Typography>

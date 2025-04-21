@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Typography, Button, Box } from "@mui/material";
+import { Container, Typography, Button, Box, Chip } from "@mui/material";
 import { useTestLogic } from "../Profile/useTestLogic";
 import { testData } from "../../data/testData";
 import QuestionBlock from "../Profile/QuestionBlock";
@@ -50,24 +50,22 @@ const Test: React.FC = () => {
       <Typography variant="h5" gutterBottom>
         Тест: {testData[selectedTest].name}
       </Typography>
-      <Typography variant="subtitle1">
-        Попыток {attemptsUsed} из {MAX_ATTEMPTS}
-      </Typography>
 
-      <Box>
-        <HistoryBlock selectedTest={String(selectedTest)} />
-      </Box>
+      <HistoryBlock
+        attemptsUsed={attemptsUsed}
+        MAX_ATTEMPTS={MAX_ATTEMPTS}
+        selectedTest={String(selectedTest)}
+      />
 
       {showResults && attemptsUsed < MAX_ATTEMPTS && (
-        <Button
+        <BtnCustom
           variant="outlined"
           color="secondary"
+          text="Пройти заново"
           fullWidth
           sx={{ marginBottom: "20px" }}
           onClick={handleRetry}
-        >
-          Пройти заново
-        </Button>
+        />
       )}
 
       {testData[selectedTest].ques.map((q) => (
