@@ -29,6 +29,7 @@ import PersonIcon from "@mui/icons-material/Person";
 const menuItems = [
   { label: "Главная", path: "/" },
   { label: "Курс", path: "/course" },
+  { label: "Флешбек", path: "/flashback" },
   { label: "Челлендж", path: "/live" },
   { label: "Справочник", path: "/cheatsheet" },
   { label: "Собеседование", path: "/interview" },

@@ -26,6 +26,7 @@ import { store } from "./store/store";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CourseInfoPage from "./pages/CourseInfoPage";
+import { Flashback } from "./components/Flashback/Flashback";
 
 const AppRoutes = () => {
   const location = useLocation();
@@ -54,6 +55,14 @@ const AppRoutes = () => {
             }
           />
 
+          <Route
+            path="/flashback"
+            element={
+              <ProtectedRoute>
+                <Flashback />
+              </ProtectedRoute>
+            }
+          />
           <Route
             path="/"
             element={
