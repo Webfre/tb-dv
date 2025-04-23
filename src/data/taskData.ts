@@ -39,6 +39,15 @@ import {
   html_structure_task_2,
 } from "../components/Сourse/dataCourse/html/work/html_structure_task";
 import {
+  html_table_simple_1,
+  html_table_simple_2,
+  html_table_simple_3,
+} from "../components/Сourse/dataCourse/html/work/html_table_simple";
+import {
+  html_video_embed_1,
+  html_video_embed_2,
+} from "../components/Сourse/dataCourse/html/work/html_video_embed";
+import {
   js_basics_task_1,
   js_basics_task_10,
   js_basics_task_11,
@@ -84,6 +93,11 @@ export const practiceMock: PracticeTask[] = [
   html_meta_basic_1,
   html_meta_basic_2,
   html_semantic_landing_1,
+  html_table_simple_1,
+  html_table_simple_2,
+  html_table_simple_3,
+  html_video_embed_1,
+  html_video_embed_2,
   // CSS
   css_intro_task_1,
 
