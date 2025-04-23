@@ -4,6 +4,7 @@ export const js_basics_task_1 = {
   title: "Проверка возраста и доступ с преобразованиями",
   topic: "Основные конструкции и операции JavaScript",
   topicId: "js_basics",
+  sectionId: 'js_basics_6',
   description:
     "Создайте программу, которая запрашивает возраст пользователя с помощью `prompt`, проверяет его с помощью операторов, преобразует строку в число, выводит сообщение через `alert` и подтверждает доступ через `confirm`.",
   steps: [
@@ -65,6 +66,7 @@ export const js_basics_task_2 = {
   title: "Определение чётных и нечётных чисел",
   topic: "Основные конструкции и операции JavaScript",
   topicId: "js_basics",
+  sectionId: 'js_basics_1',
   description:
     "Создайте программу, которая запрашивает у пользователя диапазон чисел и выводит в консоль все чётные и нечётные числа из этого диапазона. Используйте преобразование типов, арифметические операторы и условные конструкции.",
   steps: [
@@ -122,6 +124,7 @@ export const js_basics_task_3 = {
   title: "Конвертер валют: доллар → рубль",
   topic: "Основные конструкции и операции JavaScript",
   topicId: "js_basics",
+  sectionId: 'js_basics_2',
   description:
     "Создайте простой конвертер, который запрашивает курс доллара и сумму в долларах, после чего рассчитывает и выводит сумму в рублях. Используйте преобразование типов, арифметику и вывод сообщений пользователю.",
   steps: [
@@ -172,6 +175,7 @@ export const js_basics_task_4 = {
   title: "Определение возрастной категории",
   topic: "Основные конструкции и операции JavaScript",
   topicId: "js_basics",
+  sectionId: 'js_basics_2',
   description:
     "Создайте программу, которая запрашивает возраст пользователя и определяет, является ли он молодым (до 30 лет) или уже старым (30 и больше). Используйте условные операторы и преобразование типов.",
   steps: [
@@ -235,6 +239,7 @@ export const js_basics_task_5 = {
   title: "Примитивный калькулятор",
   topic: "Основные конструкции и операции JavaScript",
   topicId: "js_basics",
+  sectionId: 'js_basics_5',
   description:
     "Создайте простой калькулятор, который запрашивает два числа и операцию (+, -, *, /), затем выводит результат. Обработайте возможные ошибки ввода.",
   steps: [
@@ -323,6 +328,7 @@ export const js_basics_task_6 = {
   title: "Конвертер температуры: Цельсий → Фаренгейт",
   topic: "Основные конструкции и операции JavaScript",
   topicId: "js_basics",
+  sectionId: 'js_basics_2',
   description:
     "Создайте программу для перевода температуры из градусов Цельсия в градусы Фаренгейта. Формула: °F = (°C × 9/5) + 32. Обработайте возможные ошибки ввода.",
   steps: [
@@ -383,6 +389,7 @@ export const js_basics_task_7 = {
   title: "Определение високосного года",
   topic: "Основные конструкции и операции JavaScript",
   topicId: "js_basics",
+  sectionId: 'js_basics_5',
   description:
     "Создайте программу, которая определяет, является ли год високосным. Високосный год определяется по следующим правилам: 1) год кратен 400 — високосный; 2) иначе, если год кратен 100 — не високосный; 3) иначе, если год кратен 4 — високосный; 4) все остальные годы — не високосные.",
   steps: [
@@ -449,6 +456,7 @@ export const js_basics_task_8 = {
   title: "Расчет калорий при беге",
   topic: "Основные конструкции и операции JavaScript",
   topicId: "js_basics",
+  sectionId: 'js_basics_5',
   description:
     "Создайте программу для расчета расхода калорий при беге. Формула: калории = (вес × время × коэффициент) / 60. Коэффициент для бега = 8.5 ккал/кг/час. Обработайте возможные ошибки ввода.",
   steps: [
@@ -510,6 +518,7 @@ export const js_basics_task_9 = {
   title: "Игра 'Угадай число'",
   topic: "Основные конструкции и операции JavaScript",
   topicId: "js_basics",
+  sectionId: 'js_basics_6',
   description:
     "Создайте игру, где компьютер загадывает случайное число от 1 до 100, а пользователь пытается его угадать. Программа должна подсказывать 'больше' или 'меньше' после каждой попытки и считать количество попыток.",
   steps: [
@@ -590,6 +599,7 @@ export const js_basics_task_10 = {
   title: "Приветствие пользователя",
   topic: "Основные конструкции и операции JavaScript",
   topicId: "js_basics",
+  sectionId: 'js_basics_3',
   description:
     "Создайте программу, которая запрашивает имя пользователя и выводит приветствие.",
   steps: [
@@ -623,6 +633,7 @@ export const js_basics_task_11 = {
   id: "js_basics_task_11",
   module: "JavaScript",
   title: "Сумма двух чисел",
+  sectionId: 'js_basics_1',
   topic: "Основные конструкции и операции JavaScript",
   topicId: "js_basics",
   description: "Программа запрашивает два числа и выводит их сумму.",
@@ -664,6 +675,7 @@ export const js_basics_task_12 = {
   title: "Конвертер метров в километры",
   topic: "Основные конструкции и операции JavaScript",
   topicId: "js_basics",
+  sectionId: 'js_basics_5',
   description: "Переведите метры в километры (1 км = 1000 м).",
   steps: [
     "Создайте HTML-файл `index.html` и подключите `script.js` через тег `<script>` перед `</body>`.",
@@ -704,6 +716,7 @@ export const js_basics_task_13 = {
   title: "Нахождение меньшего числа",
   topic: "Основные конструкции и операции JavaScript",
   topicId: "js_basics",
+  sectionId: 'js_basics_5',
   description: "Программа должна найти и вывести меньшее из двух чисел.",
   steps: [
     "Создайте HTML-файл `index.html` и подключите `script.js` через тег `<script>` перед `</body>`.",
@@ -742,6 +755,7 @@ export const js_basics_task_14 = {
   id: "js_basics_task_14",
   module: "JavaScript",
   title: "Определение времени суток",
+  sectionId: 'js_basics_3',
   topic: "Основные конструкции и операции JavaScript",
   topicId: "js_basics",
   description:
@@ -806,6 +820,7 @@ export const js_basics_task_15 = {
   id: "js_basics_task_15",
   module: "JavaScript",
   title: "Калькулятор ИМТ",
+  sectionId: 'js_basics_4',
   topic: "Основные конструкции и операции JavaScript",
   topicId: "js_basics",
   description:
@@ -860,4 +875,91 @@ if (isNaN(weight) || isNaN(height) || weight <= 0 || height <= 0) {
 }
 `,
   resources: ["https://learn.javascript.ru/ifelse"],
+};
+
+export const js_basics_task_16 = {
+  id: "js_basics_task_16",
+  module: "JavaScript",
+  title: "Вывод чётных чисел от 1 до N",
+  sectionId: "js_basics_7",
+  topic: "Основные конструкции и операции JavaScript",
+  topicId: "js_basics",
+  description:
+    "Запросите у пользователя число N и выведите в консоль все чётные числа от 1 до N включительно.",
+  steps: [
+    "Попросите пользователя ввести число N.",
+    "Преобразуйте введённое значение в число.",
+    "С помощью цикла `for` переберите числа от 1 до N.",
+    "На каждой итерации проверяйте, является ли число чётным (`i % 2 === 0`).",
+    "Если да — выводите его в консоль.",
+  ],
+  difficulty: 3,
+  solution: `<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Вывод чётных чисел</title>
+</head>
+<body>
+  <h1>Вывод чётных чисел от 1 до N</h1>
+  <script src="script.js"></script>
+</body>
+</html>`,
+  codeExampleJS: `const n = +prompt("Введите число N:");
+
+if (!isNaN(n) && n > 0) {
+  for (let i = 1; i <= n; i++) {
+    if (i % 2 === 0) {
+      console.log(i);
+    }
+  }
+} else {
+  alert("Введите корректное положительное число!");
+}`,
+  resources: ["https://learn.javascript.ru/while-for"],
+};
+
+export const js_basics_task_17 = {
+  id: "js_basics_task_17",
+  module: "JavaScript",
+  title: "Счётчик цифр в числе",
+  sectionId: "js_basics_7",
+  topic: "Основные конструкции и операции JavaScript",
+  topicId: "js_basics",
+  description:
+    "Попросите пользователя ввести положительное число и выведите, сколько в нём цифр.",
+  steps: [
+    "Запросите у пользователя число.",
+    "Преобразуйте его в строку.",
+    "Создайте переменную-счётчик.",
+    "С помощью цикла `for` пройдитесь по строке.",
+    "На каждой итерации увеличивайте счётчик.",
+    "Выведите количество цифр в числе.",
+  ],
+  difficulty: 3,
+  solution: `<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Счётчик цифр в числе</title>
+</head>
+<body>
+  <h1>Счётчик цифр в числе</h1>
+  <script src="script.js"></script>
+</body>
+</html>`,
+  codeExampleJS: `const num = prompt("Введите положительное число:");
+
+if (!isNaN(num) && Number(num) > 0) {
+  let count = 0;
+  for (let i = 0; i < num.length; i++) {
+    if (!isNaN(num[i]) && num[i] !== " ") {
+      count++;
+    }
+  }
+  alert("Количество цифр: " + count);
+} else {
+  alert("Введите корректное положительное число!");
+}`,
+  resources: ["https://learn.javascript.ru/string"],
 };

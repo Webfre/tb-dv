@@ -51,6 +51,7 @@ export interface PracticeTask {
   attachments?: string[]; // файлы для скачивания
   codeExampleCSS?: string; // css код решение
   codeExampleJS?: string; // js код решение
+  sectionId?: string; // раздел
 }
 
 const topics = [
@@ -69,4 +70,10 @@ const topics = [
   "Резюме",
 ];
 
-export const mockTopics: CourseTopic[] = [browserTopic, ideTopic, htmlTopic, cssTopic, jsTopic];
+export const mockTopics: CourseTopic[] = [
+  browserTopic,
+  ideTopic,
+  htmlTopic,
+  cssTopic,
+  jsTopic,
+];

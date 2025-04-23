@@ -25,6 +25,8 @@ import {
   js_basics_task_13,
   js_basics_task_14,
   js_basics_task_15,
+  js_basics_task_16,
+  js_basics_task_17
 } from "../components/Сourse/dataCourse/js/work/js_basics_task";
 import {
   js_intro_task_1,
@@ -60,4 +62,6 @@ export const practiceMock: PracticeTask[] = [
   js_basics_task_7,
   js_basics_task_8,
   js_basics_task_9,
+  js_basics_task_16,
+  js_basics_task_17
 ];

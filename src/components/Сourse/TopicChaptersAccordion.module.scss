@@ -13,3 +13,30 @@
 .pulse {
   animation: pulseHighlight 3.5s ease-out;
 }
+
+.sectionItem {
+  border: 1px dashed #ccc;
+  border-radius: 16px;
+  padding: 8px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.accordion {
+  border-radius: 20px !important;
+  overflow: hidden;
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+
+  &::before {
+    display: none;
+  }
+}
+
+.final {
+  border: 1px solid rgb(97, 97, 255);
+  background-color: rgba(223, 223, 252, 0.777);
+}
