@@ -15,9 +15,17 @@ import { html_tables_test } from "../components/Сourse/dataCourse/html/test/htm
 import { html_text_formatting_test } from "../components/Сourse/dataCourse/html/test/html_text_formatting_test";
 import { js_basics_test } from "../components/Сourse/dataCourse/js/test/js_basics_test";
 import { js_intro_test } from "../components/Сourse/dataCourse/js/test/js_intro_test";
+import { ide_intro_test } from "../components/Сourse/dataCourse/vscode/ide_intro_test";
+import { browser_intro_test } from "../components/Сourse/dataCourse/www/test/browser_intro_test";
 import { TestDataCollection } from "./types";
 
 export const testData: TestDataCollection = {
+  // Browser
+  browser_intro_test,
+
+  // IDE
+  ide_intro_test,
+
   // HTML
   html_intro_test,
   html_structure_test,

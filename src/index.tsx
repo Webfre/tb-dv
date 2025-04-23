@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom/client";
-import { CssBaseline, Container } from "@mui/material";
+import { CssBaseline, Container, ThemeProvider } from "@mui/material";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 // import { HashRouter as Router } from "react-router-dom";
@@ -28,6 +28,8 @@ import "react-toastify/dist/ReactToastify.css";
 import CourseInfoPage from "./pages/CourseInfoPage";
 import { Flashback } from "./components/Flashback/Flashback";
 import { GlobalHelpDrawer } from "./components/GlobalHelpDrawer/GlobalHelpDrawer";
+import "./index.scss";
+import { theme } from "./ui/theme";
 
 const AppRoutes = () => {
   const location = useLocation();
@@ -178,6 +180,8 @@ const App = () => (
 const root = ReactDOM.createRoot(document.getElementById("root")!);
 root.render(
   <Provider store={store}>
-    <App />
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
   </Provider>
 );

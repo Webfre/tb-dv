@@ -7,7 +7,7 @@ const Home: React.FC = () => {
     <Container maxWidth="md" className={styles.home}>
       <Box className={styles.intro} mb={4} mt={4}>
         <Typography textAlign="center" variant="h4" gutterBottom>
-          Добро пожаловать на dev.course
+          Добро пожаловать на Frontarium
         </Typography>
         <Typography variant="body1" paragraph>
           Мы — образовательная платформа, ориентированная на подготовку

@@ -102,7 +102,7 @@ const Header: React.FC = () => {
             onClick={() => navigate("/")}
             sx={{ cursor: "pointer" }}
           >
-            dev.course
+            Frontarium
           </Typography>
 
           {isMobile ? (
