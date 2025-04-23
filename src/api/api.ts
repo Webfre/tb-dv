@@ -52,8 +52,8 @@ export const api = createApi({
       query: () => "/users",
     }),
 
-    getUserProgress: builder.query<Progress, number>({
-      query: (userId) => `/progress/${userId}`,
+    getUserProgress: builder.query<Progress, void>({
+      query: () => `/progress`,
     }),
 
     revokeAccessKey: builder.mutation<any, number>({
@@ -61,6 +61,24 @@ export const api = createApi({
         url: `/users/${id}/revoke-access-key`,
         method: "PATCH",
       }),
+    }),
+
+    sendFeatureRequest: builder.mutation<
+      void,
+      { category: string; message: string }
+    >({
+      query: (body) => ({
+        url: "/feature-requests",
+        method: "POST",
+        body,
+      }),
+    }),
+
+    getFeatureRequests: builder.query<
+      { id: number; category: string; message: string; createdAt: string }[],
+      void
+    >({
+      query: () => "/feature-requests",
     }),
 
     makeAdmin: builder.mutation<{ id: number }, number>({
@@ -131,6 +149,17 @@ export const api = createApi({
       }),
     }),
 
+    resetPassword: builder.mutation<
+      void,
+      { email: string; newPassword: string }
+    >({
+      query: (body) => ({
+        url: "/auth/reset-password",
+        method: "POST",
+        body,
+      }),
+    }),
+
     assignAccessKey: builder.mutation<
       { message: string; userId: number; accessKey: string },
       number
@@ -153,4 +182,7 @@ export const {
   useRevokeAdminMutation,
   useUpdateProgressMutation,
   useGetUserProgressQuery,
+  useSendFeatureRequestMutation,
+  useGetFeatureRequestsQuery,
+  useResetPasswordMutation,
 } = api;

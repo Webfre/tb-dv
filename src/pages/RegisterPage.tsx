@@ -55,7 +55,7 @@ const RegisterPage: React.FC = () => {
       localStorage.setItem("token", result.token);
 
       toast.success(
-        `Добро пожаловать, ${result.lastName} ${result.firstName} ${result.middleName}, в devcourse!`
+        `Добро пожаловать, ${result.lastName} ${result.firstName} ${result.middleName}, в Frontarium!`
       );
 
       navigate("/");
@@ -86,7 +86,7 @@ const RegisterPage: React.FC = () => {
               { name: "firstName", label: "Имя" },
               { name: "middleName", label: "Отчество" },
               { name: "email", label: "Email" },
-              { name: "phone", label: "Телефон (+7...)" },
+              { name: "phone", label: "Телефон (8999...)" },
               { name: "telegram", label: "Ссылка на Telegram (необязательно)" },
               { name: "password", label: "Пароль" },
             ].map(({ name, label }) => (
@@ -106,6 +106,11 @@ const RegisterPage: React.FC = () => {
                     helperText={
                       errors[name as keyof FormData]?.message as string
                     }
+                    sx={{
+                      "& .MuiOutlinedInput-root": {
+                        borderRadius: "20px",
+                      },
+                    }}
                   />
                 )}
               />

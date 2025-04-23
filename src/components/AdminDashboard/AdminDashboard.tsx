@@ -26,6 +26,7 @@ import {
 import { toast } from "react-toastify";
 import BtnCustom from "../../ui/BtnCustom";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
+import FeatureRequestList from "../GlobalHelpDrawer/FeatureRequestList";
 
 const AdminDashboard: React.FC = () => {
   const { data: users, isLoading, error, refetch } = useGetAllUsersQuery();
@@ -108,6 +109,8 @@ const AdminDashboard: React.FC = () => {
 
   return (
     <Container maxWidth="md">
+      <FeatureRequestList />
+
       <Paper sx={{ mt: 4, p: 4 }}>
         <Typography variant="h5" gutterBottom>
           Зарегистрированные пользователи

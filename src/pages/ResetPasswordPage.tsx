@@ -1,46 +1,45 @@
 import React from "react";
 import { Box, TextField, Typography, Container, Paper } from "@mui/material";
-import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import BtnCustom from "../ui/BtnCustom";
+import { useResetPasswordMutation } from "../api/api";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { useLoginMutation } from "../api/api";
 
-interface LoginForm {
+interface ResetForm {
   email: string;
-  password: string;
+  newPassword: string;
 }
 
 const schema = yup.object().shape({
   email: yup.string().email("Некорректный email").required("Email обязателен"),
-  password: yup.string().required("Пароль обязателен"),
+  newPassword: yup
+    .string()
+    .min(6, "Минимум 6 символов")
+    .required("Обязательно"),
 });
 
-const LoginPage: React.FC = () => {
+const ResetPasswordPage: React.FC = () => {
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginForm>({ resolver: yupResolver(schema) });
+  } = useForm<ResetForm>({
+    resolver: yupResolver(schema),
+  });
 
-  const [login] = useLoginMutation();
+  const [resetPassword] = useResetPasswordMutation();
   const navigate = useNavigate();
 
-  const onSubmit: SubmitHandler<LoginForm> = async (data) => {
+  const onSubmit: SubmitHandler<ResetForm> = async (data) => {
     try {
-      const result = await login(data).unwrap();
-      localStorage.setItem("token", result.token);
-      localStorage.setItem("isAccessKey", String(result.isAccessKey));
-
-      toast.success(
-        `Добро пожаловать, ${result.lastName} ${result.firstName} ${result.middleName}, в Frontarium!`
-      );
-
-      navigate("/");
+      await resetPassword(data).unwrap();
+      toast.success("Пароль успешно изменён. Войдите в систему.");
+      navigate("/login");
     } catch (error: any) {
-      toast.error("Ошибка входа, неверный пароль или email");
+      toast.error(error?.data?.message || "Ошибка при сбросе пароля");
     }
   };
 
@@ -57,10 +56,10 @@ const LoginPage: React.FC = () => {
       <Container maxWidth="sm">
         <Paper sx={{ p: 4, borderRadius: 4 }}>
           <Typography variant="h5" gutterBottom align="center">
-            Войти в профиль
+            Сброс пароля
           </Typography>
 
-          <Box component="form" noValidate onSubmit={handleSubmit(onSubmit)}>
+          <Box component="form" onSubmit={handleSubmit(onSubmit)}>
             <Controller
               name="email"
               control={control}
@@ -73,17 +72,13 @@ const LoginPage: React.FC = () => {
                   margin="normal"
                   error={!!errors.email}
                   helperText={errors.email?.message}
-                  sx={{
-                    "& .MuiOutlinedInput-root": {
-                      borderRadius: "20px",
-                    },
-                  }}
+                  sx={{ "& .MuiOutlinedInput-root": { borderRadius: "20px" } }}
                 />
               )}
             />
 
             <Controller
-              name="password"
+              name="newPassword"
               control={control}
               defaultValue=""
               render={({ field }) => (
@@ -91,15 +86,11 @@ const LoginPage: React.FC = () => {
                   {...field}
                   type="password"
                   fullWidth
-                  label="Пароль"
+                  label="Новый пароль"
                   margin="normal"
-                  error={!!errors.password}
-                  helperText={errors.password?.message}
-                  sx={{
-                    "& .MuiOutlinedInput-root": {
-                      borderRadius: "20px",
-                    },
-                  }}
+                  error={!!errors.newPassword}
+                  helperText={errors.newPassword?.message}
+                  sx={{ "& .MuiOutlinedInput-root": { borderRadius: "20px" } }}
                 />
               )}
             />
@@ -107,26 +98,9 @@ const LoginPage: React.FC = () => {
             <BtnCustom
               type="submit"
               variant="contained"
-              color="primary"
               fullWidth
-              text="Войти"
-              sx={{ mt: 2 }}
-            />
-
-            <BtnCustom
-              fullWidth
-              variant="text"
-              sx={{ mt: 1 }}
               text="Сбросить пароль"
-              onClick={() => navigate("/reset-password")}
-            />
-
-            <BtnCustom
-              fullWidth
-              variant="text"
-              sx={{ mt: 1 }}
-              text="Регистрация"
-              onClick={() => navigate("/register")}
+              sx={{ mt: 2 }}
             />
           </Box>
         </Paper>
@@ -135,4 +109,4 @@ const LoginPage: React.FC = () => {
   );
 };
 
-export default LoginPage;
+export default ResetPasswordPage;

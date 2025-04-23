@@ -30,12 +30,14 @@ import { Flashback } from "./components/Flashback/Flashback";
 import { GlobalHelpDrawer } from "./components/GlobalHelpDrawer/GlobalHelpDrawer";
 import "./index.scss";
 import { theme } from "./ui/theme";
+import ResetPasswordPage from "./pages/ResetPasswordPage";
 
 const AppRoutes = () => {
   const location = useLocation();
   const hideHeader =
     location.pathname === "/register" ||
     location.pathname === "/login" ||
+    location.pathname === "/reset-password" ||
     location.pathname === "/course-info";
 
   return (
@@ -48,6 +50,8 @@ const AppRoutes = () => {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/course-info" element={<CourseInfoPage />} />
+
+          <Route path="/reset-password" element={<ResetPasswordPage />} />
 
           <Route
             path="/admin-dashboard"

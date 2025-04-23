@@ -53,8 +53,12 @@ const CourseTopicDetails: React.FC = () => {
       <Divider sx={{ my: 3 }} />
 
       <Stack direction="row" spacing={2} flexWrap="wrap">
-        <Chip icon={<QuizIcon />} label={`Тестов: ${totalTests}`} />
-        <Chip icon={<CodeIcon />} label={`Практик: ${totalPractice}`} />
+        {totalTests > 0 && (
+          <Chip icon={<QuizIcon />} label={`Тестов: ${totalTests}`} />
+        )}
+        {totalPractice > 0 && (
+          <Chip icon={<CodeIcon />} label={`Практик: ${totalPractice}`} />
+        )}
         <Chip icon={<BookIcon />} label={`Разделов: ${totalSections}`} />
         <Chip
           icon={<AccessTimeIcon />}

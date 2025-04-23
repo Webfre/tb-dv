@@ -20,7 +20,6 @@ import { testData } from "../data/testData";
 import ProgressRing from "../components/Profile/ProgressRing";
 import BtnCustom from "../ui/BtnCustom";
 import { useGetUserProgressQuery } from "../api/api";
-import jwtDecode from "jwt-decode";
 
 interface TestHistoryEntry {
   attempts: number;
@@ -30,27 +29,10 @@ interface TestHistoryEntry {
   selectedAnswers: Record<string, number[]>;
 }
 
-interface DecodedToken {
-  sub: number;
-  email: string;
-  isAdmin: boolean;
-  isAccessKey: boolean;
-  accessKey?: string;
-  exp: number;
-  iat: number;
-}
-
 const Tests: React.FC = () => {
   const navigate = useNavigate();
   const name = localStorage.getItem("userName") || "Аноним";
-
-  const token = localStorage.getItem("token");
-  const decoded: DecodedToken | null = token ? jwtDecode(token) : null;
-  const userId = decoded?.sub;
-
-  const { data: progressData } = useGetUserProgressQuery(userId!, {
-    skip: !userId,
-  });
+  const { data: progressData } = useGetUserProgressQuery();
 
   const groupedTests = useMemo(
     () =>

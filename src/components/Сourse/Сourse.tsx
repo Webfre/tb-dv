@@ -110,15 +110,26 @@ const CoursePage: React.FC = () => {
             );
 
           return (
-            <Grid item xs={12} sm={6} md={4} key={topic.id}>
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              key={topic.id}
+              sx={{ display: "flex" }}
+            >
               <Card
                 sx={{
                   borderRadius: "20px",
-                  cursor: 'pointer'
+                  cursor: "pointer",
+                  display: "flex",
+                  flexDirection: "column",
+                  height: "100%",
+                  width: "100%",
                 }}
                 onClick={() => navigate(`/course/${topic.id}`)}
               >
-                <CardContent>
+                <CardContent sx={{ flexGrow: 1 }}>
                   <Typography
                     className={styles.titleNameTopic}
                     variant="h4"
@@ -128,24 +139,28 @@ const CoursePage: React.FC = () => {
                   </Typography>
 
                   <Grid container spacing={1} my={1}>
-                    <Grid item xs={6}>
-                      <Chip
-                        icon={<QuizIcon />}
-                        label={`Тестов: ${totalTests}`}
-                        color="primary"
-                        size="small"
-                        sx={{ width: "100%" }}
-                      />
-                    </Grid>
-                    <Grid item xs={6}>
-                      <Chip
-                        icon={<CodeIcon />}
-                        label={`Практик: ${totalPractice}`}
-                        color="secondary"
-                        size="small"
-                        sx={{ width: "100%" }}
-                      />
-                    </Grid>
+                    {totalTests > 0 && (
+                      <Grid item xs={6}>
+                        <Chip
+                          icon={<QuizIcon />}
+                          label={`Тестов: ${totalTests}`}
+                          color="primary"
+                          size="small"
+                          sx={{ width: "100%" }}
+                        />
+                      </Grid>
+                    )}
+                    {totalPractice > 0 && (
+                      <Grid item xs={6}>
+                        <Chip
+                          icon={<CodeIcon />}
+                          label={`Практик: ${totalPractice}`}
+                          color="secondary"
+                          size="small"
+                          sx={{ width: "100%" }}
+                        />
+                      </Grid>
+                    )}
                     <Grid item xs={6}>
                       <Chip
                         icon={<BookIcon />}
@@ -164,16 +179,22 @@ const CoursePage: React.FC = () => {
                     </Grid>
                   </Grid>
 
-                  <Box mt={4}>
-                    <Typography variant="body2" color="textSecondary" mb={0.5}>
-                      Прогресс: {progress}%
-                    </Typography>
-                    <LinearProgress
-                      variant="determinate"
-                      value={progress}
-                      sx={{ height: 10, borderRadius: 5 }}
-                    />
-                  </Box>
+                  {index !== 0 && (
+                    <Box mt={4}>
+                      <Typography
+                        variant="body2"
+                        color="textSecondary"
+                        mb={0.5}
+                      >
+                        Прогресс: {progress}%
+                      </Typography>
+                      <LinearProgress
+                        variant="determinate"
+                        value={progress}
+                        sx={{ height: 10, borderRadius: 5 }}
+                      />
+                    </Box>
+                  )}
                 </CardContent>
               </Card>
             </Grid>

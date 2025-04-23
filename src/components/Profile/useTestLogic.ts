@@ -5,23 +5,12 @@ import {
   useGetUserProgressQuery,
   useUpdateProgressMutation,
 } from "../../api/api";
-import jwtDecode from "jwt-decode";
 
 const MAX_ATTEMPTS = 2;
 
 interface LocationState {
   name: string;
   selectedTest: keyof typeof testData;
-}
-
-interface DecodedToken {
-  sub: number;
-  email: string;
-  isAdmin: boolean;
-  isAccessKey: boolean;
-  accessKey?: string;
-  exp: number;
-  iat: number;
 }
 
 export const useTestLogic = () => {
@@ -40,13 +29,7 @@ export const useTestLogic = () => {
     [key: number]: number[];
   }>({});
 
-  const token = localStorage.getItem("token");
-  const decoded: DecodedToken | null = token ? jwtDecode(token) : null;
-  const userId = decoded?.sub;
-
-  const { data: progressData, isSuccess } = useGetUserProgressQuery(userId!, {
-    skip: !userId,
-  });
+  const { data: progressData, isSuccess } = useGetUserProgressQuery();
 
   useEffect(() => {
     if (isSuccess && progressData?.attempts?.[selectedTest]) {

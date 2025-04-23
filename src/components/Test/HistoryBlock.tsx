@@ -9,7 +9,6 @@ import {
   Chip,
 } from "@mui/material";
 import { useGetUserProgressQuery } from "../../api/api";
-import jwtDecode from "jwt-decode";
 import BtnCustom from "../../ui/BtnCustom";
 import styles from "./HistoryBlock.module.scss";
 
@@ -19,30 +18,13 @@ interface HistoryBlockProps {
   attemptsUsed: number;
 }
 
-interface DecodedToken {
-  sub: number;
-  email: string;
-  isAdmin: boolean;
-  isAccessKey: boolean;
-  accessKey?: string;
-  exp: number;
-  iat: number;
-}
-
 const HistoryBlock: React.FC<HistoryBlockProps> = ({
   selectedTest,
   attemptsUsed,
   MAX_ATTEMPTS,
 }) => {
   const [isVisible, setIsVisible] = useState(true);
-
-  const token = localStorage.getItem("token");
-  const decoded: DecodedToken | null = token ? jwtDecode(token) : null;
-  const userId = decoded?.sub;
-
-  const { data: progressData } = useGetUserProgressQuery(userId!, {
-    skip: !userId,
-  });
+  const { data: progressData } = useGetUserProgressQuery();
 
   const history = progressData?.history?.[selectedTest] || [];
 
