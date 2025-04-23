@@ -1,6 +1,8 @@
 import { cssTopic } from "./dataCourse/css/css";
 import { htmlTopic } from "./dataCourse/html/html";
 import { jsTopic } from "./dataCourse/js/js";
+import { ideTopic } from "./dataCourse/vscode/vscode";
+import { browserTopic } from "./dataCourse/www/www";
 
 export interface CourseSection {
   id: string;
@@ -67,4 +69,4 @@ const topics = [
   "Резюме",
 ];
 
-export const mockTopics: CourseTopic[] = [htmlTopic, cssTopic, jsTopic];
+export const mockTopics: CourseTopic[] = [browserTopic, ideTopic, htmlTopic, cssTopic, jsTopic];

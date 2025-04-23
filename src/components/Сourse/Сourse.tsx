@@ -32,8 +32,6 @@ const CoursePage: React.FC = () => {
     skip: !userId,
   });
 
-  const isTopicUnlocked = (index: number) => index === 0;
-
   const isTestPassed = (key: string): boolean => {
     if (!progressData?.history?.[key]) return false;
     const history = progressData.history[key];
@@ -116,6 +114,7 @@ const CoursePage: React.FC = () => {
               <Card
                 sx={{
                   borderRadius: "20px",
+                  cursor: 'pointer'
                 }}
                 onClick={() => navigate(`/course/${topic.id}`)}
               >

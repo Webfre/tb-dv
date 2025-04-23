@@ -1,0 +1,23 @@
+.recom {
+  border: 1px rgb(182, 182, 182) solid;
+  border-radius: 20px;
+  padding: 10px 20px;
+}
+
+.startTest {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+
+  svg {
+    font-size: 40px !important;
+  }
+}
+
+.startTestBtn {
+  background-color: #1976d2 !important;
+
+  svg {
+    color: white !important;
+  }
+}
