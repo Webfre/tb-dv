@@ -10,6 +10,7 @@ import {
   Drawer,
 } from "@mui/material";
 import { Controller, Control, FieldErrors } from "react-hook-form";
+import { FLASHBACK_SETTINGS_KEY } from "./schema";
 import { FC } from "react";
 import BtnCustom from "../../ui/BtnCustom";
 
@@ -26,7 +27,9 @@ interface FlashbackDrawerProps {
   errors: FieldErrors<any>;
   modules: { id: string; title: string }[];
   chapters: ChapterOption[];
-  reset: () => void;
+  reset: (values?: any) => void;
+  setValue: (name: string, value: any) => void;
+  watch: any;
 }
 
 const selectAllOption: ChapterOption = {
@@ -43,8 +46,11 @@ export const FlashbackDrawer: FC<FlashbackDrawerProps> = ({
   modules,
   chapters,
   reset,
+  setValue,
+  watch,
 }) => {
   const allOptions = [selectAllOption, ...chapters];
+  const selectedSections = watch("sections") ?? [];
 
   return (
     <Drawer
@@ -90,9 +96,17 @@ export const FlashbackDrawer: FC<FlashbackDrawerProps> = ({
               value={modules.filter((mod) =>
                 (field.value ?? []).includes(mod.id)
               )}
-              onChange={(_, selected) =>
-                field.onChange(selected.map((item) => item.id))
-              }
+              onChange={(_, selected) => {
+                const selectedIds = selected.map((item) => item.id);
+                field.onChange(selectedIds);
+
+                const filteredSections = selectedSections.filter(
+                  (section: ChapterOption) =>
+                    selected.some((mod) => mod.title === section.group)
+                );
+
+                setValue("sections", filteredSections);
+              }}
               renderInput={(params) => (
                 <TextField
                   {...params}
@@ -180,6 +194,19 @@ export const FlashbackDrawer: FC<FlashbackDrawerProps> = ({
             onClick={() => {
               onClose();
               reset();
+            }}
+          />
+
+          <BtnCustom
+            text="Сбросить настройки"
+            variant="outlined"
+            onClick={() => {
+              localStorage.removeItem(FLASHBACK_SETTINGS_KEY);
+              reset({
+                modules: [],
+                sections: [],
+                count: 10,
+              });
             }}
           />
 

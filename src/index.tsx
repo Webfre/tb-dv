@@ -27,6 +27,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CourseInfoPage from "./pages/CourseInfoPage";
 import { Flashback } from "./components/Flashback/Flashback";
+import { GlobalHelpDrawer } from "./components/GlobalHelpDrawer/GlobalHelpDrawer";
 
 const AppRoutes = () => {
   const location = useLocation();
@@ -161,6 +162,8 @@ const AppRoutes = () => {
           />
         </Routes>
       </Container>
+
+      <GlobalHelpDrawer />
     </>
   );
 };

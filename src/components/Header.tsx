@@ -16,8 +16,10 @@ import {
   MenuItem,
 } from "@mui/material";
 import { useNavigate, useLocation } from "react-router-dom";
+import FullscreenIcon from "@mui/icons-material/Fullscreen";
 import { ButtonCustom } from "../ui/ButtonCustom";
 import { useTheme } from "@mui/material/styles";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { isUserAdmin } from "../api/auth";
 import MenuIcon from "@mui/icons-material/Menu";
 import Avatar from "@mui/material/Avatar";
@@ -25,6 +27,8 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import LogoutIcon from "@mui/icons-material/Logout";
 import PersonIcon from "@mui/icons-material/Person";
+import { useDispatch } from "react-redux";
+import { openHelp } from "../store/uiSlice";
 
 const menuItems = [
   { label: "Главная", path: "/" },
@@ -47,6 +51,7 @@ const Header: React.FC = () => {
   const isAdmin = isUserAdmin();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const openMenu = Boolean(anchorEl);
+  const dispatch = useDispatch();
 
   const handleNavigate = (path: string) => {
     navigate(path);
@@ -72,6 +77,15 @@ const Header: React.FC = () => {
     localStorage.removeItem("isAccessKey");
     localStorage.removeItem("isAdmin");
     navigate("/login");
+  };
+
+  const handleFullscreen = () => {
+    const elem = document.documentElement;
+    if (!document.fullscreenElement) {
+      elem.requestFullscreen?.();
+    } else {
+      document.exitFullscreen?.();
+    }
   };
 
   const handleProfile = () => {
@@ -158,6 +172,26 @@ const Header: React.FC = () => {
 
           {!isMobile && (
             <Box display="flex" alignItems="center">
+              <Tooltip title="Полноэкранный режим">
+                <IconButton
+                  color="inherit"
+                  onClick={handleFullscreen}
+                  sx={{ mr: 1 }}
+                >
+                  <FullscreenIcon />
+                </IconButton>
+              </Tooltip>
+
+              <Tooltip title="Справка">
+                <IconButton
+                  color="inherit"
+                  onClick={() => dispatch(openHelp())}
+                  sx={{ mr: 1 }}
+                >
+                  <InfoOutlinedIcon />
+                </IconButton>
+              </Tooltip>
+
               {isAdmin && (
                 <Tooltip title="Панель администратора">
                   <IconButton
@@ -169,7 +203,6 @@ const Header: React.FC = () => {
                   </IconButton>
                 </Tooltip>
               )}
-
               <Tooltip title="Меню пользователя">
                 <IconButton color="inherit" onClick={handleMenuOpen}>
                   <Avatar sx={{ bgcolor: "white", width: 32, height: 32 }}>
@@ -177,7 +210,6 @@ const Header: React.FC = () => {
                   </Avatar>
                 </IconButton>
               </Tooltip>
-
               <Menu
                 anchorEl={anchorEl}
                 open={openMenu}

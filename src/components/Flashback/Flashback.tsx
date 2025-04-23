@@ -8,15 +8,18 @@ import {
   filterFlashbackQuestions,
   flashbackModules,
   FlashbackQuestion,
-} from "./flashbackData";
+} from "./data/flashbackData";
 import { FlashbackDrawer } from "./FlashbackDrawer";
 import { Stepper, Step, StepLabel } from "@mui/material";
 import { FlashbackTest } from "./FlashbackTest";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import jwtDecode from "jwt-decode";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import styles from "./Flashback.module.scss";
 import BtnCustom from "../../ui/BtnCustom";
 import { exampleQuestions } from "./data/flashbackQuestion";
+import { useGetUserProgressQuery } from "../../api/api";
+import { getModulesAndSectionsFromProgress } from "./getModulesAndSectionsFromProgress";
 
 export const Flashback = () => {
   const [open, setOpen] = useState(false);
@@ -26,14 +29,23 @@ export const Flashback = () => {
     FlashbackQuestion[]
   >([]);
 
+  const token = localStorage.getItem("token");
+  const decoded: any = token ? jwtDecode(token) : null;
+  const userId = decoded?.sub;
+
+  const { data: progressData } = useGetUserProgressQuery(userId!, {
+    skip: !userId,
+  });
+
   const {
     handleSubmit,
     control,
     watch,
     reset,
+    setValue,
     getValues,
     formState: { errors },
-  } = useForm({
+  } = useForm<any>({
     resolver: yupResolver(schema),
     defaultValues: {
       modules: [],
@@ -59,12 +71,25 @@ export const Flashback = () => {
   };
 
   const handleStartTest = () => {
-    const rawSettings = getValues();
-    const settings = {
-      modules: rawSettings.modules ?? [],
-      sections: rawSettings.sections ?? [],
-      count: rawSettings.count,
-    };
+    const stored = localStorage.getItem(FLASHBACK_SETTINGS_KEY);
+    let settings;
+
+    if (stored) {
+      const rawSettings = getValues();
+      settings = {
+        modules: rawSettings.modules ?? [],
+        sections: rawSettings.sections ?? [],
+        count: rawSettings.count,
+      };
+    } else {
+      const generated = getModulesAndSectionsFromProgress(progressData);
+
+      settings = {
+        ...generated,
+        count: 10,
+      };
+    }
+
     const selected = filterFlashbackQuestions(settings, exampleQuestions);
     setFilteredQuestions(selected);
     setStartTest(true);
@@ -107,7 +132,6 @@ export const Flashback = () => {
             <Typography variant="subtitle1" flexGrow={1}>
               Рекомендации
             </Typography>
-
             <IconButton>
               {showTips ? <ExpandLessIcon /> : <ExpandMoreIcon />}
             </IconButton>
@@ -155,6 +179,8 @@ export const Flashback = () => {
         onSubmit={handleSubmit(onSubmit)}
         control={control}
         errors={errors}
+        setValue={setValue}
+        watch={watch}
         modules={flashbackModules}
         chapters={availableChapters}
         reset={reset}

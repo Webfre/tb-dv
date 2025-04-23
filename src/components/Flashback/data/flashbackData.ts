@@ -1,4 +1,4 @@
-import { mockTopics } from "../Сourse/CourseTopic";
+import { mockTopics } from "../../Сourse/CourseTopic";
 
 export interface IFlashbackModule {
   id: string;
@@ -17,6 +17,7 @@ export interface FlashbackQuestion {
   descriptions: string[];
   moduleId: string;
   sectionTitle: string;
+  topic?: string;
 }
 
 interface FlashbackSettings {

@@ -17,6 +17,7 @@ export const htmlIntroQuestions = [
     ],
     moduleId: "html",
     sectionTitle: "Введение в HTML",
+    topic: "html_intro",
   },
   {
     id: "html_intro_2",
@@ -31,6 +32,7 @@ export const htmlIntroQuestions = [
     ],
     moduleId: "html",
     sectionTitle: "Введение в HTML",
+    topic: "html_intro",
   },
   {
     id: "html_intro_3",
@@ -45,6 +47,7 @@ export const htmlIntroQuestions = [
     ],
     moduleId: "html",
     sectionTitle: "Введение в HTML",
+    topic: "html_intro",
   },
   {
     id: "html_intro_4",
@@ -64,6 +67,7 @@ export const htmlIntroQuestions = [
     ],
     moduleId: "html",
     sectionTitle: "Введение в HTML",
+    topic: "html_intro",
   },
   {
     id: "html_intro_5",
@@ -78,6 +82,7 @@ export const htmlIntroQuestions = [
     ],
     moduleId: "html",
     sectionTitle: "Введение в HTML",
+    topic: "html_intro",
   },
   {
     id: "html_intro_6",
@@ -92,6 +97,7 @@ export const htmlIntroQuestions = [
     ],
     moduleId: "html",
     sectionTitle: "Введение в HTML",
+    topic: "html_intro",
   },
   {
     id: "html_intro_7",
@@ -106,6 +112,7 @@ export const htmlIntroQuestions = [
     ],
     moduleId: "html",
     sectionTitle: "Введение в HTML",
+    topic: "html_intro",
   },
   {
     id: "html_intro_8",
@@ -120,6 +127,7 @@ export const htmlIntroQuestions = [
     ],
     moduleId: "html",
     sectionTitle: "Введение в HTML",
+    topic: "html_intro",
   },
   {
     id: "html_intro_9",
@@ -139,6 +147,7 @@ export const htmlIntroQuestions = [
     ],
     moduleId: "html",
     sectionTitle: "Введение в HTML",
+    topic: "html_intro",
   },
   {
     id: "html_intro_10",
@@ -153,5 +162,6 @@ export const htmlIntroQuestions = [
     ],
     moduleId: "html",
     sectionTitle: "Введение в HTML",
+    topic: "html_intro",
   },
 ];

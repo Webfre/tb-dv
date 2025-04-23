@@ -1,4 +1,4 @@
-import { FlashbackQuestion } from "../flashbackData";
+import { FlashbackQuestion } from "./flashbackData";
 import { cssIntroQuestions } from "./css/cssIntroQuestions";
 import { htmlIntroQuestions } from "./html/htmlIntroQuestions";
 

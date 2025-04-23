@@ -12,8 +12,9 @@ import {
   DialogActions,
 } from "@mui/material";
 import { FC, useState } from "react";
-import { FlashbackQuestion } from "./flashbackData";
+import { FlashbackQuestion } from "./data/flashbackData";
 import BtnCustom from "../../ui/BtnCustom";
+import { useNavigate } from "react-router-dom";
 
 interface FlashbackTestProps {
   questions: FlashbackQuestion[];
@@ -29,6 +30,7 @@ export const FlashbackTest: FC<FlashbackTestProps> = ({
   const [checked, setChecked] = useState(false);
   const [results, setResults] = useState<boolean[]>([]);
   const [showResult, setShowResult] = useState(false);
+  const navigate = useNavigate();
 
   if (!questions.length) {
     return (
@@ -76,6 +78,16 @@ export const FlashbackTest: FC<FlashbackTestProps> = ({
   const topics = Array.from(new Set(questions.map((q) => q.sectionTitle))).join(
     ", "
   );
+
+  const handleTopicClick = () => {
+    if (current?.topic) {
+      navigate(`/course/${current.moduleId?.toLocaleLowerCase()}`, {
+        state: {
+          scrollToChapterId: current?.topic,
+        },
+      });
+    }
+  };
 
   return (
     <>
@@ -166,11 +178,25 @@ export const FlashbackTest: FC<FlashbackTestProps> = ({
                       ? "#e8f5e9"
                       : "#f5f5f5",
                     transition: "0.3s",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
                   }}
                 >
                   <Typography variant="body2" color="text.secondary">
                     {desc}
                   </Typography>
+
+                  {current.correctAnswers.includes(idx) &&
+                    idx === current.correctAnswers[0] && (
+                      <Chip
+                        label={current.sectionTitle}
+                        onClick={handleTopicClick}
+                        variant="outlined"
+                        size="small"
+                        sx={{ ml: 2 }}
+                      />
+                    )}
                 </Box>
               ))}
             </Box>
