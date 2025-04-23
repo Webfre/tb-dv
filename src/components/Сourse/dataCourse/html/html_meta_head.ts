@@ -70,34 +70,6 @@ export const html_meta_1 = {
   
   ---
   
-  ### Безопасность
-  
-  - \`<meta http-equiv="Content-Security-Policy" content="default-src 'self'">\`  
-    Ограничение загрузки внешнего контента (CSP).
-  
-  - \`<meta http-equiv="Permissions-Policy" content="camera=(), geolocation=()">\`  
-    Настройка доступа к API браузера (например, камере и геолокации).
-  
-  ---
-  
-  ### Open Graph (отображение в соцсетях)
-  
-  - \`<meta property="og:title" content="Заголовок страницы">\`  
-  - \`<meta property="og:description" content="Описание страницы">\`  
-  - \`<meta property="og:image" content="url-картинки">\`  
-  - \`<meta property="og:url" content="https://site.com/page">\`
-  
-  ---
-  
-  ### Twitter Cards
-  
-  - \`<meta name="twitter:card" content="summary_large_image">\`  
-  - \`<meta name="twitter:title" content="Заголовок">\`  
-  - \`<meta name="twitter:description" content="Описание">\`  
-  - \`<meta name="twitter:image" content="url-картинки">\`
-  
-  ---
-  
   ## Вывод
   
   Мета-теги — это неотъемлемая часть **качественной HTML-разметки**. Они:

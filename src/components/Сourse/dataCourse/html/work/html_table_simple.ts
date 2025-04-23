@@ -14,7 +14,7 @@ export const html_table_simple_1 = {
     "- Добавьте минимум 2 строки с данными студентов с помощью `<td>`.",
     "Проверьте, как таблица отображается в браузере.",
   ],
-  difficulty: 1,
+  difficulty: 2,
   resources: [
     "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/table",
     "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/tr",
@@ -96,7 +96,7 @@ export const html_table_simple_2 = {
     "- Внутри `<tfoot>` добавьте строку с итогом (например, 'Итого: 3 товара').",
     "Проверьте, что структура таблицы корректно отображается в браузере.",
   ],
-  difficulty: 2,
+  difficulty: 3,
   resources: [
     "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/thead",
     "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/tbody",
@@ -203,7 +203,7 @@ export const html_table_simple_3 = {
     "- В другой строке объедините две ячейки по вертикали с помощью `rowspan`.",
     "Убедитесь, что структура таблицы отображается корректно.",
   ],
-  difficulty: 3,
+  difficulty: 4,
   resources: [
     "https://developer.mozilla.org/ru/docs/Web/HTML/Element/td#attr-colspan",
     "https://developer.mozilla.org/ru/docs/Web/HTML/Element/td#attr-rowspan",

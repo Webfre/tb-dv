@@ -116,8 +116,7 @@ export const html_link_1 = {
 <a href="mailto:info@example.com">Написать нам</a>
   `,
   resources: [
-    "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a",
-    "https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel",
+    "https://developer.mozilla.org/ru/docs/Web/HTML/Reference/Elements/a",
   ],
 };
 export const html_link_2 = {

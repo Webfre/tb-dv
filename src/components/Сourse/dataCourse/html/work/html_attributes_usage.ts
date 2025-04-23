@@ -1,80 +1,71 @@
 export const html_attributes_usage_1 = {
   id: "html_attributes_usage_1",
   module: "HTML",
-  title: "Применение глобальных атрибутов",
+  title: "Использование id, class и якорной ссылки",
   topic: "Глобальные атрибуты: id, class, style",
   topicId: "html_attributes",
   description:
-    "Создайте HTML-страницу, демонстрирующую использование глобальных атрибутов id, class и style.",
+    "Создайте HTML-страницу, в которой применяются атрибуты `id` и `class`, а также реализована якорная ссылка на элемент внутри страницы.",
   steps: [
-    "Создайте файл `attributes.html` с базовой структурой HTML",
-    "В разделе <body> добавьте:",
-    "  - Заголовок <h1> с id='main-title' и стилем (например, цвет текста)",
-    "  - 3 параграфа <p>, каждому назначьте класс 'text'",
-    "  - Одному из параграфов добавьте уникальный id и инлайновый стиль",
-    "  - Создайте кнопку <button> с классом 'btn' и стилем для фона",
-    "  - Добавьте <div> с двумя классами ('container' и 'border')",
-    "Проверьте результат в браузере, убедитесь, что стили применяются",
+    "Создайте HTML-файл, например `attributes-simple.html`, с базовой структурой.",
+    "Внутри `<body>` добавьте:",
+    '- Заголовок `<h1>` с `id="top"` и произвольным текстом.',
+    "- Несколько абзацев `<p>` с общим классом `text`.",
+    "- Один из абзацев должен иметь уникальный `id`, например `contact`.",
+    '- Добавьте ссылку `<a>`, которая ведёт к элементу с id `contact` (используя якорную ссылку `href="#contact"`).',
+    '- Также добавьте ссылку для возврата наверх — `href="#top"`.',
+    "Проверьте, что при нажатии по ссылкам страница прокручивается к нужному элементу.",
   ],
-  difficulty: 2,
+  difficulty: 3,
   resources: [
-    "https://developer.mozilla.org/ru/docs/Web/HTML/Global_attributes",
+    "https://developer.mozilla.org/ru/docs/Web/HTML/Global_attributes/id",
+    "https://developer.mozilla.org/ru/docs/Web/HTML/Element/a#%D0%BF%D0%B5%D1%80%D0%B5%D1%85%D0%BE%D0%B4_%D0%BA_%D1%8D%D0%BB%D0%B5%D0%BC%D0%B5%D0%BD%D1%82%D1%83_%D0%BD%D0%B0_%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B5",
   ],
   solution: `<!DOCTYPE html>
 <html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <title>Глобальные атрибуты</title>
-</head>
-<body>
-  <h1 id="main-title" style="color: blue;">Демонстрация атрибутов</h1>
-  
-  <p class="text">Первый параграф с классом 'text'.</p>
-  <p class="text" id="special-paragraph" style="font-weight: bold;">Второй параграф с id и стилем.</p>
-  <p class="text">Третий параграф с классом 'text'.</p>
-  
-  <button class="btn" style="background-color: lightgreen;">Кнопка</button>
-  
-  <div class="container border" style="padding: 20px;">
-    Контейнер с двумя классами и стилями
-  </div>
-</body>
+  <head>
+    <title>Глобальные атрибуты</title>
+  </head>
+  <body>
+    <h1 id="top">Добро пожаловать</h1>
+
+    <p class="text">Это первый абзац с общим классом.</p>
+    <p class="text">Это второй абзац с тем же классом.</p>
+    <p class="text" id="contact">Контактная информация находится здесь.</p>
+
+    <a href="#contact">Перейти к контактам</a><br />
+    <a href="#top">Вернуться наверх</a>
+  </body>
 </html>`,
   show: `<!DOCTYPE html>
 <html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <title>Глобальные атрибуты</title>
-</head>
-<body>
-  <h1 id="main-title" style="color: blue;">Демонстрация атрибутов</h1>
-  
-  <p class="text">Первый параграф с классом 'text'.</p>
-  <p class="text" id="special-paragraph" style="font-weight: bold;">Второй параграф с id и стилем.</p>
-  <p class="text">Третий параграф с классом 'text'.</p>
-  
-  <button class="btn" style="background-color: lightgreen;">Кнопка</button>
-  
-  <div class="container border" style="padding: 20px;">
-    Контейнер с двумя классами и стилями
-  </div>
-</body>
+  <head>
+    <title>Глобальные атрибуты</title>
+  </head>
+  <body>
+    <h1 id="top">Добро пожаловать</h1>
+
+    <p class="text">Это первый абзац с общим классом.</p>
+    <p class="text">Это второй абзац с тем же классом.</p>
+    <p class="text" id="contact">Контактная информация находится здесь.</p>
+
+    <a href="#contact">Перейти к контактам</a><br />
+    <a href="#top">Вернуться наверх</a>
+  </body>
 </html>`,
   expectedResult: `
-1. Заголовок с id и инлайновым стилем
-2. Три параграфа с общим классом
-3. Один параграф с уникальным id и стилем
-4. Кнопка с классом и стилем
-5. Div-контейнер с двумя классами
-6. Все стили должны визуально отображаться
+1. У заголовка <h1> есть уникальный id="top"
+2. У абзацев общий класс class="text"
+3. Один абзац имеет id="contact"
+4. Ссылки позволяют переходить по якорям вверх и вниз по странице
 `,
   tips: [
-    "id должен быть уникальным на странице",
-    "class можно применять к нескольким элементам",
-    "style имеет наивысший приоритет в CSS",
-    "Разделяйте несколько классов пробелом",
+    "Атрибут id должен быть уникальным на странице",
+    'Чтобы ссылка вела на элемент, используйте href="#id"',
+    "Несколько элементов могут иметь один и тот же class",
   ],
 };
+
 export const html_attributes_usage_2 = {
   id: "html_attributes_usage_2",
   module: "HTML",
@@ -89,12 +80,11 @@ export const html_attributes_usage_2 = {
     "  - Ссылку <a> с href на внешний сайт (например, https://google.com)",
     "  - Изображение <img> с src (URL или относительный путь), alt и width",
     "  - Ссылку-изображение (оберните <img> в <a>)",
-    "  - Элемент <iframe> с src (например, YouTube-видео)",
     "  - Ссылку с mailto: в href",
     "  - Ссылку с tel: в href",
     "Проверьте работоспособность всех атрибутов в браузере",
   ],
-  difficulty: 2,
+  difficulty: 3,
   resources: [
     "https://developer.mozilla.org/ru/docs/Web/HTML/Element/a#атрибуты",
     "https://html5book.ru/html-attributes/",
@@ -120,14 +110,6 @@ export const html_attributes_usage_2 = {
   <a href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrDNOC9ZIPHiMjY5oAPpZzQ_sYOtNsbdsTaF5gXh8RIB9UmTVovHN66dAy1MfiFZH1xfs&usqp=CAU">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrDNOC9ZIPHiMjY5oAPpZzQ_sYOtNsbdsTaF5gXh8RIB9UmTVovHN66dAy1MfiFZH1xfs&usqp=CAU" alt="Лого Википедии" width="200">
   </a>
-  
-  <!-- iframe с src -->
-  <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
-          width="560" 
-          height="315" 
-          frameborder="0" 
-          allowfullscreen>
-  </iframe>
   
   <!-- Ссылки с mailto и tel -->
   <p>
@@ -157,15 +139,7 @@ export const html_attributes_usage_2 = {
   <a href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrDNOC9ZIPHiMjY5oAPpZzQ_sYOtNsbdsTaF5gXh8RIB9UmTVovHN66dAy1MfiFZH1xfs&usqp=CAU">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrDNOC9ZIPHiMjY5oAPpZzQ_sYOtNsbdsTaF5gXh8RIB9UmTVovHN66dAy1MfiFZH1xfs&usqp=CAU" alt="Лого Википедии" width="200">
   </a>
-  
-  <!-- iframe с src -->
-  <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
-          width="560" 
-          height="315" 
-          frameborder="0" 
-          allowfullscreen>
-  </iframe>
-  
+
   <!-- Ссылки с mailto и tel -->
   <p>
     <a href="mailto:example@email.com">Написать письмо</a> | 
@@ -193,59 +167,4 @@ export const html_attributes_usage_2 = {
     "Проверьте альтернативный текст при отключенных изображениях",
     "Тестируйте на разных устройствах (проверьте tel:)",
   ],
-};
-
-export const html_attributes_usage_3 = {
-  id: "html_attributes_usage_3",
-  module: "HTML",
-  title: "Работа с data-*, булевыми и aria-* атрибутами",
-  topic: "Атрибуты элементов",
-  topicId: "html_attributes",
-  description:
-    "Создайте HTML-документ с кнопкой, у которой заданы атрибуты `data-*`, булевый атрибут и атрибуты доступности (`aria-*`).",
-  steps: [
-    "Создайте новый HTML-файл, например `attributes.html`.",
-    "Добавьте базовую структуру HTML-документа.",
-    "Внутри `<body>` создайте кнопку с текстом 'Нажми меня'.",
-    "Добавьте к кнопке следующие атрибуты:",
-    '- `data-action="submit-form"` — пользовательский data-атрибут.',
-    "- `disabled` — булевый атрибут, делающий кнопку неактивной.",
-    '- `aria-label="Отправить форму"` — атрибут доступности, описывающий назначение кнопки.',
-    "Сохраните и откройте файл в браузере, чтобы убедиться, что кнопка отображается и недоступна для нажатия.",
-  ],
-  difficulty: 2,
-  resources: [
-    "https://developer.mozilla.org/ru/docs/Learn/HTML/Howto/Use_data_attributes",
-    "https://developer.mozilla.org/ru/docs/Web/HTML/Global_attributes",
-  ],
-  solution: `<!DOCTYPE html>
-<html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Атрибуты HTML</title>
-  </head>
-  <body>
-    <button 
-      data-action="submit-form" 
-      disabled 
-      aria-label="Отправить форму">
-      Нажми меня
-    </button>
-  </body>
-</html>`,
-  show: `<!DOCTYPE html>
-<html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Атрибуты HTML</title>
-  </head>
-  <body>
-    <button 
-      data-action="submit-form" 
-      disabled 
-      aria-label="Отправить форму">
-      Нажми меня
-    </button>
-  </body>
-</html>`,
 };

@@ -6,7 +6,11 @@ export const htmlChapters = [
     title: "Введение в HTML",
     sections: htmlSections.html_intro,
     testKeys: ["html_intro_test"],
-    practiceIds: ["html_intro_task_1", "html_intro_task_2"],
+    practiceIds: [
+      "html_intro_task_1",
+      "html_intro_task_2",
+      "html_intro_task_3",
+    ],
   },
   {
     id: "html_structure",
@@ -24,6 +28,8 @@ export const htmlChapters = [
       "html_block_inline_1",
       "html_block_inline_2",
       "html_block_inline_3",
+      "html_block_inline_4",
+      "html_block_inline_5",
     ],
   },
   {
@@ -31,32 +37,30 @@ export const htmlChapters = [
     title: "Атрибуты элементов",
     sections: htmlSections.html_attributes,
     testKeys: ["html_attributes_test"],
-    practiceIds: [
-      "html_attributes_usage_1",
-      "html_attributes_usage_2",
-      "html_attributes_usage_3",
-    ],
+    practiceIds: ["html_attributes_usage_1", "html_attributes_usage_2"],
   },
   {
     id: "html_semantics",
     title: "Семантическая разметка",
     sections: htmlSections.html_semantics,
     testKeys: ["html_semantics_test"],
-    practiceIds: ["html_semantic_landing_1"],
-  },
-  {
-    id: "html_text_formatting",
-    title: "Форматирование текста",
-    sections: htmlSections.html_text_formatting,
-    testKeys: ["html_text_formatting_test"],
-    practiceIds: ["html_format_text_1", "html_format_text_2"],
+    practiceIds: [
+      "html_semantic_landing_1",
+      "html_semantic_landing_2",
+      "html_semantic_landing_3",
+    ],
   },
   {
     id: "html_links_images",
     title: "Ссылки и изображения",
     sections: htmlSections.html_links_images,
     testKeys: ["html_links_images_test"],
-    practiceIds: ["html_links_creation_1", "html_links_creation_2"],
+    practiceIds: [
+      "html_links_creation_1",
+      "html_links_creation_2",
+      "html_links_creation_3",
+      "html_links_creation_4",
+    ],
   },
   {
     id: "html_forms",
@@ -102,13 +106,6 @@ export const htmlChapters = [
     sections: htmlSections.html_best_practices,
     testKeys: ["html_best_practices_test"],
     // practiceIds: ["task_html_accessibility", "task_html_seo_structure"],
-  },
-  {
-    id: "html_legacy",
-    title: "Устаревшие теги и практики",
-    sections: htmlSections.html_legacy,
-    testKeys: ["html_legacy_test"],
-    // practiceIds: ["task_html_refactor_legacy"],
   },
   {
     id: "html_final",

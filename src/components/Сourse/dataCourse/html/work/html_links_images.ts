@@ -13,7 +13,7 @@ export const html_links_creation_1 = {
     '- Ссылку на внешний сайт (например, https://example.com), которая открывается в новой вкладке с атрибутами `target="_blank"` и `rel="noopener noreferrer"`.',
     "- Ссылку на другой HTML-файл в текущем проекте (например, `about.html`).",
     "- Якорную ссылку, которая ведёт к определённому разделу на той же странице.",
-    "- Добавьте элемент с id, на который ведёт якорная ссылка.",
+    '- Добавьте элемент с `id`, на который ведёт якорная ссылка (например, `id="contacts"`).',
     "Проверьте в браузере корректность переходов по всем ссылкам.",
   ],
   difficulty: 2,
@@ -36,17 +36,13 @@ export const html_links_creation_1 = {
 
     <p>
       Внутренняя ссылка:
-      <a href="#" title="В реальном проекте: href='about.html'">
-        Внутренняя ссылка
-      </a>
+      <a href="about.html">Перейти на страницу About</a>
     </p>
 
     <p>
       Якорная ссылка:
       <a href="#contacts">Перейти к контактам</a>
     </p>
-
-    <hr />
 
     <h2 id="contacts">Контакты</h2>
     <p>Почта: contact@example.com</p>
@@ -61,35 +57,22 @@ export const html_links_creation_1 = {
   <body>
     <h1>Примеры ссылок</h1>
 
-      <p>
+    <p>
       Внешняя ссылка: 
-      </p>
-      <img 
-    src="https://raw.githubusercontent.com/Codecademy/docs/main/media/text-link.gif" 
-    alt="Демонстрация Внутренней ссылки" 
-    width="400"
-    <br/>
+      <a href="https://example.com" target="_blank" rel="noopener noreferrer">
+        Перейти на Example.com
+      </a>
+    </p>
+
     <p>
       Внутренняя ссылка:
+      <a href="about.html">Перейти на страницу About</a>
     </p>
-      <img 
-      src="https://d2x3xhvgiqkx42.cloudfront.net/12345678-1234-1234-1234-1234567890ab/5c3e602a-8647-41f7-bb22-686374bf97ce/2022/05/31/62f3e842-0de9-467c-931a-c23c200b7e73/bae88efc-4749-441e-9c53-e3ddd145b9ae.gif" 
-      alt="Демонстрация Внутренней ссылки" 
-      width="400"
-    />
-    
 
     <p>
       Якорная ссылка:
+      <a href="#contacts">Перейти к контактам</a>
     </p>
-
-    <img 
-      src="https://avatars.dzeninfra.ru/get-zen_doc/3446134/pub_5ef207e0211879584d8d54eb_5ef207e4936d2162063900e4/orig" 
-      alt="Демонстрация якорной ссылки" 
-      width="400"
-    />
-
-    <hr />
 
     <h2 id="contacts">Контакты</h2>
     <p>Почта: contact@example.com</p>
@@ -181,6 +164,221 @@ export const html_links_creation_2 = {
     </ul>
 
     <p><strong>Рекомендация:</strong> выбирайте формат в зависимости от содержимого: JPG — для фото, PNG — для логотипов и схем.</p>
+  </body>
+</html>`,
+};
+export const html_links_creation_3 = {
+  id: "html_links_creation_3",
+  module: "HTML",
+  title: "Расширенная работа со ссылками",
+  topic: "Ссылки и изображения",
+  topicId: "html_links_images",
+  description:
+    "Создайте HTML-страницу, содержащую несколько типов ссылок: обычные, якорные, изображение-ссылка и псевдоссылку. Добавьте комментарии к каждому типу.",
+  steps: [
+    "Создайте HTML-файл, например `advanced-links.html`.",
+    "Добавьте базовую HTML-структуру с заголовком 'Типы ссылок'.",
+    "Внутри `<body>` реализуйте следующее:",
+    '- Обычную внешнюю ссылку с `target="_blank"` и `rel="noopener noreferrer"`.',
+    "- Внутреннюю ссылку на файл `about.html` с пояснением через `title`.",
+    '- Якорную ссылку `href="#bottom"` и элемент с `id="bottom"` внизу страницы.',
+    "- Изображение, обёрнутое в ссылку (например, на https://example.com), с `alt` и `width`.",
+    '- Псевдоссылку без перехода (`<a href="#">`) с `onclick`, которая вызывает `alert()`.',
+    "- Для каждого вида ссылки добавьте HTML-комментарий с пояснением.",
+    "Проверьте, как работают переходы, и убедитесь в правильности поведения псевдоссылки.",
+  ],
+  difficulty: 4,
+  resources: [
+    "https://developer.mozilla.org/ru/docs/Web/HTML/Reference/Elements/img",
+  ],
+  solution: `<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Типы ссылок</title>
+  </head>
+  <body>
+    <!-- Внешняя ссылка -->
+    <p>
+      <a href="https://example.com" target="_blank" rel="noopener noreferrer">
+        Перейти на внешний сайт
+      </a>
+    </p>
+
+    <!-- Внутренняя ссылка -->
+    <p>
+      <a href="about.html" title="Переход на about.html">
+        О нас
+      </a>
+    </p>
+
+    <!-- Якорная ссылка -->
+    <p>
+      <a href="#bottom">Перейти в конец страницы</a>
+    </p>
+
+    <!-- Ссылка-изображение -->
+    <p>
+      <a href="https://example.com">
+        <img 
+          src="https://www.w3schools.com/html/pic_trulli.jpg" 
+          alt="Пример изображения" 
+          width="200"
+        />
+      </a>
+    </p>
+
+ 
+
+    <!-- Цель для якорной ссылки -->
+    <h2 id="bottom">Конец страницы</h2>
+    <p>Спасибо за внимание!</p>
+  </body>
+</html>`,
+  show: `<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Типы ссылок</title>
+  </head>
+  <body>
+    <p>
+      <a href="https://example.com" target="_blank" rel="noopener noreferrer">
+        Перейти на внешний сайт
+      </a>
+    </p>
+
+    <p>
+      <a href="about.html" title="Переход на about.html">
+        О нас
+      </a>
+    </p>
+
+    <p>
+      <a href="#bottom">Перейти в конец страницы</a>
+    </p>
+
+    <p>
+      <a href="https://example.com">
+        <img 
+          src="https://www.w3schools.com/html/pic_trulli.jpg" 
+          alt="Пример изображения" 
+          width="200"
+        />
+      </a>
+    </p>
+    <h2 id="bottom">Конец страницы</h2>
+    <p>Спасибо за внимание!</p>
+  </body>
+</html>`,
+};
+export const html_links_creation_4 = {
+  id: "html_links_creation_4",
+  module: "HTML",
+  title: "Комплексная структура со ссылками",
+  topic: "Ссылки и изображения",
+  topicId: "html_links_images",
+  description:
+    "Создайте HTML-страницу с семантической структурой и разнообразными типами ссылок: внешняя, внутренняя, якорная, ссылка-изображение. Примените атрибуты `target`, `rel`, `title` и добавьте якорь на раздел.",
+  steps: [
+    "Создайте HTML-файл, например `links-full.html`.",
+    "Добавьте базовую HTML-структуру и укажите `<title>`: 'Ссылки и структура'.",
+    "Внутри `<body>` создайте разметку:",
+    "- `header` с заголовком и логотипом (в виде изображения-ссылки).",
+    "- `nav` с тремя ссылками: якорная на 'контакты', внутренняя (`about.html`), внешняя (например, MDN).",
+    "- `main` с двумя разделами `section`: 'О нас' и 'Контакты'.",
+    '- Вставьте якорь через `id="contacts"`.',
+    "- В `footer` добавьте копирайт и ссылку на главную страницу.",
+    "- Для каждой ссылки укажите соответствующие атрибуты: `target`, `rel`, `title`, где применимо.",
+    "- Добавьте комментарии перед каждым типом ссылок.",
+  ],
+  difficulty: 5,
+  resources: [
+    "https://developer.mozilla.org/ru/docs/Web/HTML/Reference/Elements/img",
+  ],
+  solution: `<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ссылки и структура</title>
+  </head>
+  <body>
+    <!-- Заголовок и логотип -->
+    <header>
+      <a href="index.html" title="На главную страницу">
+        <img src="https://www.w3schools.com/html/logo.png" alt="Логотип" width="100" />
+      </a>
+      <h1>Учебный проект</h1>
+    </header>
+
+    <!-- Навигационное меню -->
+    <nav>
+      <a href="#contacts">Контакты</a>
+      <a href="about.html" title="Подробнее о нас">О нас</a>
+      <a href="https://developer.mozilla.org/ru/" target="_blank" rel="noopener noreferrer">
+        MDN Web Docs
+      </a>
+    </nav>
+
+    <main>
+      <!-- Раздел О нас -->
+      <section>
+        <h2>О нас</h2>
+        <p>Мы занимаемся обучением HTML, CSS и JavaScript с нуля.</p>
+      </section>
+
+      <!-- Раздел Контакты -->
+      <section id="contacts">
+        <h2>Контакты</h2>
+        <p>Адрес: ул. Примерная, д. 1</p>
+        <p>Email: info@example.com</p>
+      </section>
+    </main>
+
+    <!-- Подвал сайта -->
+    <footer>
+      <p>© 2025 Учебный проект | <a href="index.html">Главная</a></p>
+    </footer>
+  </body>
+</html>`,
+  show: `<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ссылки и структура</title>
+  </head>
+  <body>
+    <header>
+      <a href="index.html" title="На главную страницу">
+        <img src="https://www.w3schools.com/html/logo.png" alt="Логотип" width="100" />
+      </a>
+      <h1>Учебный проект</h1>
+    </header>
+
+    <nav>
+      <a href="#contacts">Контакты</a>
+      <a href="about.html" title="Подробнее о нас">О нас</a>
+      <a href="https://developer.mozilla.org/ru/" target="_blank" rel="noopener noreferrer">
+        MDN Web Docs
+      </a>
+    </nav>
+
+    <main>
+      <section>
+        <h2>О нас</h2>
+        <p>Мы занимаемся обучением HTML, CSS и JavaScript с нуля.</p>
+      </section>
+
+      <section id="contacts">
+        <h2>Контакты</h2>
+        <p>Адрес: ул. Примерная, д. 1</p>
+        <p>Email: info@example.com</p>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2025 Учебный проект | <a href="index.html">Главная</a></p>
+    </footer>
   </body>
 </html>`,
 };

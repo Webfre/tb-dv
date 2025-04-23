@@ -67,23 +67,23 @@ export const html_meta_head_test = {
     },
     {
       id: 8,
-      name: "Какой мета-тег используется для Open Graph разметки?",
+      name: "Какой мета-тег сообщает авторство веб-страницы?",
       variants: [
-        "<meta property='og:title' content='...'>",
-        "<meta name='og:title' content='...'>",
-        "<meta itemprop='og:title' content='...'>",
+        "<meta name='copyright' content='...'>",
+        "<meta name='author' content='...'>",
+        "<meta name='developer' content='...'>",
       ],
-      correct: [0],
+      correct: [1],
     },
     {
       id: 9,
-      name: "Какой мета-тег перенаправит пользователя на другую страницу через 5 секунд?",
+      name: "Какой мета-тег автоматически обновляет страницу через заданное время?",
       variants: [
-        "<meta http-equiv='redirect' content='5; url=...'>",
-        "<meta http-equiv='refresh' content='5; url=...'>",
-        "<meta name='location' content='5; url=...'>",
+        "<meta http-equiv='refresh' content='10'>",
+        "<meta name='refresh' content='10'>",
+        "<meta http-equiv='reload' content='10'>",
       ],
-      correct: [1],
+      correct: [0],
     },
     {
       id: 10,
@@ -103,13 +103,13 @@ export const html_meta_head_test = {
     },
     {
       id: 12,
-      name: "Какой мета-тег используется для Twitter Cards?",
+      name: "Какой тег применяется для добавления краткого описания страницы в поисковой выдаче?",
       variants: [
-        "<meta property='twitter:title' content='...'>",
-        "<meta name='twitter:title' content='...'>",
-        "<meta itemprop='twitter:title' content='...'>",
+        "<meta name='description'>",
+        "<meta name='keywords'>",
+        "<meta name='viewport'>",
       ],
-      correct: [1],
+      correct: [0],
     },
   ],
 };

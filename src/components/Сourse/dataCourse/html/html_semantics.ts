@@ -113,11 +113,7 @@ export const html_sem_1 = {
   </article>
 </main>
   `,
-  resources: [
-    "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/header",
-    "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/nav",
-    "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/main",
-  ],
+  resources: ["https://html5css.ru/html/html5_semantic_elements.php"],
 };
 
 export const html_sem_2 = {
@@ -245,12 +241,7 @@ export const html_sem_2 = {
   <p>© 2025 Все права защищены</p>
 </footer>
   `,
-  resources: [
-    "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/article",
-    "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/section",
-    "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/aside",
-    "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/footer",
-  ],
+  resources: ["https://html5css.ru/html/html5_semantic_elements.php"],
 };
 export const html_sem_3 = {
   id: "html_sem_3",

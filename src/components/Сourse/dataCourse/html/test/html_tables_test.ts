@@ -61,23 +61,15 @@ export const html_tables_test = {
     },
     {
       id: 9,
-      name: "Какая CSS-свойство удаляет двойные границы между ячейками?",
-      variants: [
-        "border-spacing: 0",
-        "border-collapse: collapse",
-        "border-style: none",
-      ],
-      correct: [1],
+      name: "Какой тег используется для нижней части таблицы?",
+      variants: ["<tfoot>", "<footer>", "<bottom>"],
+      correct: [0],
     },
     {
       id: 10,
-      name: "Что делает селектор CSS tbody tr:nth-child(even)?",
-      variants: [
-        "Выделяет нечётные строки",
-        "Скрывает все строки таблицы",
-        "Стилизует каждую вторую строку тела таблицы",
-      ],
-      correct: [2],
+      name: "Какой тег группирует содержимое таблицы?",
+      variants: ["<tbody>", "<thead>", "<tr>"],
+      correct: [0],
     },
   ],
 };

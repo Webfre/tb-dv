@@ -1,6 +1,136 @@
 export const html_semantic_landing_1 = {
   id: "html_semantic_landing_1",
   module: "HTML",
+  title: "Первое знакомство с семантическими тегами",
+  topic: "Семантические теги",
+  topicId: "html_semantics",
+  description:
+    "Создайте HTML-страницу с базовой структурой, в которой применяются теги `<header>`, `<main>` и `<footer>` для выделения основных блоков страницы.",
+  steps: [
+    "Создайте HTML-файл, например `semantic-basic.html`.",
+    "Добавьте базовую структуру HTML-документа.",
+    "Внутри тега `<body>` добавьте три основных блока:",
+    "- `header` — с заголовком `<h1>`, например 'Добро пожаловать'.",
+    "- `main` — с абзацем `<p>`, описывающим, что это основная часть.",
+    "- `footer` — с текстом, например '© 2025 Все права защищены'.",
+    "Откройте файл в браузере и проверьте, что структура читаемая и логичная.",
+  ],
+  difficulty: 1,
+  resources: ["https://html5css.ru/html/html5_semantic_elements.php"],
+  solution: `<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Семантика в HTML</title>
+  </head>
+  <body>
+    <header>
+      <h1>Добро пожаловать</h1>
+    </header>
+    <main>
+      <p>Это основное содержимое страницы.</p>
+    </main>
+    <footer>
+      <p>© 2025 Все права защищены</p>
+    </footer>
+  </body>
+</html>`,
+  show: `<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Семантика в HTML</title>
+  </head>
+  <body>
+    <header>
+      <h1>Добро пожаловать</h1>
+    </header>
+    <main>
+      <p>Это основное содержимое страницы.</p>
+    </main>
+    <footer>
+      <p>© 2025 Все права защищены</p>
+    </footer>
+  </body>
+</html>`,
+};
+
+export const html_semantic_landing_2 = {
+  id: "html_semantic_landing_2",
+  module: "HTML",
+  title: "Создание простого семантического макета",
+  topic: "Семантические теги",
+  topicId: "html_semantics",
+  description:
+    "Создайте HTML-страницу с семантической разметкой, включающей `header`, `main`, `section`, `article` и `footer`. Наполните каждый блок простым текстом.",
+  steps: [
+    "Создайте HTML-файл, например `semantic-layout.html`.",
+    "Добавьте базовую структуру HTML-документа.",
+    "Внутри тега `<body>` создайте следующие семантические блоки:",
+    "- `header` — с заголовком `<h1>`, например 'Сайт о путешествиях'.",
+    "- `main` — основной контейнер для контента.",
+    "- Внутри `main` создайте `section` с заголовком `<h2>` и текстом.",
+    "- Также внутри `main` добавьте `article` с заголовком `<h2>` и абзацем.",
+    "- Внизу добавьте `footer` с информацией 'Контакты: travel@example.com'.",
+    "Проверьте, чтобы все блоки корректно отображались и структура была логичной.",
+  ],
+  difficulty: 2,
+  resources: ["https://html5css.ru/html/html5_semantic_elements.php"],
+  solution: `<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Сайт о путешествиях</title>
+  </head>
+  <body>
+    <header>
+      <h1>Сайт о путешествиях</h1>
+    </header>
+    <main>
+      <section>
+        <h2>Популярные направления</h2>
+        <p>Франция, Япония, Исландия — идеальные места для путешествий.</p>
+      </section>
+      <article>
+        <h2>Советы путешественникам</h2>
+        <p>Всегда проверяйте документы и брони перед поездкой.</p>
+      </article>
+    </main>
+    <footer>
+      <p>Контакты: travel@example.com</p>
+    </footer>
+  </body>
+</html>`,
+  show: `<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Сайт о путешествиях</title>
+  </head>
+  <body>
+    <header>
+      <h1>Сайт о путешествиях</h1>
+    </header>
+    <main>
+      <section>
+        <h2>Популярные направления</h2>
+        <p>Франция, Япония, Исландия — идеальные места для путешествий.</p>
+      </section>
+      <article>
+        <h2>Советы путешественникам</h2>
+        <p>Всегда проверяйте документы и брони перед поездкой.</p>
+      </article>
+    </main>
+    <footer>
+      <p>Контакты: travel@example.com</p>
+    </footer>
+  </body>
+</html>`,
+};
+
+export const html_semantic_landing_3 = {
+  id: "html_semantic_landing_3",
+  module: "HTML",
   title: "Семантическая разметка страницы",
   topic: "Семантические теги",
   topicId: "html_semantics",
@@ -19,11 +149,8 @@ export const html_semantic_landing_1 = {
     "- Внизу страницы добавьте `footer` с копирайтом.",
     "Откройте файл в браузере и убедитесь, что структура отображается корректно.",
   ],
-  difficulty: 2,
-  resources: [
-    "https://developer.mozilla.org/ru/docs/Glossary/Semantics",
-    "https://developer.mozilla.org/ru/docs/Web/HTML/Element",
-  ],
+  difficulty: 3,
+  resources: ["https://html5css.ru/html/html5_semantic_elements.php"],
   solution: `<!DOCTYPE html>
 <html lang="ru">
   <head>

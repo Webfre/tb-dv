@@ -18,7 +18,7 @@ export const html_form_login_1 = {
     '  - Кнопку отправки (`<button type="submit">`)',
     "Проверьте, как отображается форма и какие данные отправляются (можно временно изменить `action` на `https://httpbin.org/post`, чтобы протестировать отправку).",
   ],
-  difficulty: 2,
+  difficulty: 1,
   resources: [
     "https://developer.mozilla.org/ru/docs/Web/HTML/Element/form",
     "https://developer.mozilla.org/ru/docs/Web/HTML/Element/input",
@@ -183,7 +183,7 @@ export const html_form_login_3 = {
     '- Добавьте кнопку отправки формы (`<button type="submit">`).',
     "Проверьте, как работают все элементы формы.",
   ],
-  difficulty: 2,
+  difficulty: 3,
   resources: [
     "https://developer.mozilla.org/ru/docs/Web/HTML/Element/select",
     "https://developer.mozilla.org/ru/docs/Web/HTML/Element/button",
@@ -273,7 +273,7 @@ export const html_form_login_4 = {
     "- Кнопку отправки формы.",
     "Проверьте поведение каждого поля при попытке заполнения и отправки формы.",
   ],
-  difficulty: 2,
+  difficulty: 4,
   resources: [],
   solution: `<!DOCTYPE html>
 <html lang="ru">
@@ -338,12 +338,13 @@ export const html_form_login_5 = {
     "Добавьте следующие поля с валидацией:",
     '- Имя: `type="text"`, `required`, `minlength="3"`, `maxlength="20"`.',
     '- Пароль: `type="password"`, `required`, `pattern="[A-Za-z0-9]{6,}"` (только латинские буквы и цифры, минимум 6 символов).',
+    "[A-Za-z0-9] — допустимые символы: A-Z — заглавные буквы латиницы , a-z — строчные буквы латиницы 0-9 — цифры ,{6,} — количество символов: минимум 6 символов",
     '- Возраст: `type="number"`, `min="18"`, `max="99"`.',
     '- Email: `type="email"`, `required`.',
     "- Кнопка отправки.",
     "Проверьте, что браузер не позволяет отправить форму при нарушении правил валидации.",
   ],
-  difficulty: 3,
+  difficulty: 5,
   resources: [
     "https://developer.mozilla.org/ru/docs/Learn/Forms/Form_validation",
     "https://developer.mozilla.org/ru/docs/Web/HTML/Constraint_validation",

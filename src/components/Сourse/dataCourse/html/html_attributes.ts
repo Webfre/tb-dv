@@ -425,7 +425,5 @@ export const html_attr_4 = {
   `,
   resources: [
     "https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes#boolean_attributes",
-    "https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA",
-    "https://doka.guide/a11y/screenreaders/",
   ],
 };
