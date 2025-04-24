@@ -1,0 +1,36 @@
+.phoneInputWrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+}
+
+.phoneInputLabel {
+  font-size: 12px;
+  font-weight: 400;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+.phoneInputField {
+  padding: 16px 14px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 16px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s ease;
+
+  &:focus {
+    border-color: #1976d2;
+  }
+}
+
+.error {
+  border-color: red;
+}
+
+.phoneInputHelper {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+}

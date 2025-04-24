@@ -1,4 +1,4 @@
-import { Progress } from "../../api/api";
+import { Progress } from "../../api/progressApi";
 import { flashbackModules } from "./data/flashbackData";
 
 export const getModulesAndSectionsFromProgress = (progressData?: Progress) => {

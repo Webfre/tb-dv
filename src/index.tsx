@@ -2,43 +2,44 @@ import ReactDOM from "react-dom/client";
 import { CssBaseline, Container, ThemeProvider } from "@mui/material";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { BrowserRouter as Router } from "react-router-dom";
-// import { HashRouter as Router } from "react-router-dom";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
+import { theme } from "./ui/theme";
+import { ToastContainer } from "react-toastify";
+import { Flashback } from "./components/Flashback/Flashback";
+import { GlobalHelpDrawer } from "./components/GlobalHelpDrawer/GlobalHelpDrawer";
 import LiveCodingPage from "./components/CodeEditorBlock/LiveCodingPage";
-import Home from "./pages/Home";
-import Tests from "./pages/Tests";
-import Test from "./components/Test/Test";
-import Header from "./components/Header";
-import CheatsheetPage from "./pages/CheatsheetPage";
-import InterviewPage from "./pages/InterviewPage";
-import ProjectsPage from "./pages/ProjectsPage";
-import RoadmapPage from "./pages/RoadmapPage";
+import Home from "./pages/Home/Home";
+import Header from "./components/Header/Header";
+import CheatsheetPage from "./pages/CheatsheetPage/CheatsheetPage";
+import InterviewPage from "./pages/InterviewPage/InterviewPage";
+import ProjectsPage from "./pages/ProjectsPage/ProjectsPage";
+import RoadmapPage from "./pages/RoadmapPage/RoadmapPage";
 import Сourse from "./components/Сourse/Сourse";
 import CourseTopicDetails from "./components/Сourse/CourseTopicDetails";
 import TaskBook from "./components/TaskBook/TaskBook";
-import TaskListPage from "./pages/TaskListPage";
-import RegisterPage from "./pages/RegisterPage";
+import TaskListPage from "./pages/TaskListPage/TaskListPage";
+import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import ProtectedRoute from "./ui/ProtectedRoute";
 import AdminDashboard from "./components/AdminDashboard/AdminDashboard";
 import AdminProtectedRoute from "./ui/AdminProtectedRoute";
-import LoginPage from "./pages/LoginPage";
-import { Provider } from "react-redux";
-import { store } from "./store/store";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import CourseInfoPage from "./pages/CourseInfoPage";
-import { Flashback } from "./components/Flashback/Flashback";
-import { GlobalHelpDrawer } from "./components/GlobalHelpDrawer/GlobalHelpDrawer";
+import LoginPage from "./pages/LoginPage/LoginPage";
+import CourseInfoPage from "./pages/CourseInfoPage/CourseInfoPage";
+import ResetPasswordPage from "./pages/ResetPasswordPage/ResetPasswordPage";
+import Profile from "./components/Profile/Profile";
+import Progress from "./components/Progress/Progress";
+// import { HashRouter as Router } from "react-router-dom";
+
 import "./index.scss";
-import { theme } from "./ui/theme";
-import ResetPasswordPage from "./pages/ResetPasswordPage";
+import "react-toastify/dist/ReactToastify.css";
+import TestСourse from "./components/TestСourse/TestСourse";
 
 const AppRoutes = () => {
   const location = useLocation();
   const hideHeader =
-    location.pathname === "/register" ||
-    location.pathname === "/login" ||
-    location.pathname === "/reset-password" ||
-    location.pathname === "/course-info";
+    location.pathname === "/register" || location.pathname === "/login";
+  // location.pathname === "/reset-password" ||
+  // location.pathname === "/course-info";
 
   return (
     <>
@@ -47,12 +48,19 @@ const AppRoutes = () => {
 
       <Container maxWidth="lg">
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/course-info" element={<CourseInfoPage />} />
-
           <Route path="/reset-password" element={<ResetPasswordPage />} />
-
+          <Route path="/flashback" element={<Flashback />} />
+          <Route path="/live" element={<LiveCodingPage />} />
+          <Route path="/cheatsheet" element={<CheatsheetPage />} />
+          <Route path="/interview" element={<InterviewPage />} />
+          <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/taskbook" element={<TaskBook />} />
+          <Route path="/roadmap" element={<RoadmapPage />} />
+          <Route path="/tasks/:id" element={<TaskListPage />} />
           <Route
             path="/admin-dashboard"
             element={
@@ -61,76 +69,19 @@ const AppRoutes = () => {
               </AdminProtectedRoute>
             }
           />
-
-          <Route
-            path="/flashback"
-            element={
-              <ProtectedRoute>
-                <Flashback />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/"
-            element={
-              <ProtectedRoute>
-                <Home />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/test"
-            element={
-              <ProtectedRoute>
-                <Test />
-              </ProtectedRoute>
-            }
-          />
           <Route
             path="/profile"
             element={
               <ProtectedRoute>
-                <Tests />
+                <Profile />
               </ProtectedRoute>
             }
           />
           <Route
-            path="/live"
+            path="/progress"
             element={
               <ProtectedRoute>
-                <LiveCodingPage />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/cheatsheet"
-            element={
-              <ProtectedRoute>
-                <CheatsheetPage />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/interview"
-            element={
-              <ProtectedRoute>
-                <InterviewPage />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/projects"
-            element={
-              <ProtectedRoute>
-                <ProjectsPage />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/roadmap"
-            element={
-              <ProtectedRoute>
-                <RoadmapPage />
+                <Progress />
               </ProtectedRoute>
             }
           />
@@ -142,22 +93,16 @@ const AppRoutes = () => {
               </ProtectedRoute>
             }
           />
+
           <Route
-            path="/taskbook"
+            path="/test"
             element={
               <ProtectedRoute>
-                <TaskBook />
+                <TestСourse />
               </ProtectedRoute>
             }
           />
-          <Route
-            path="/tasks/:id"
-            element={
-              <ProtectedRoute>
-                <TaskListPage />
-              </ProtectedRoute>
-            }
-          />
+
           <Route
             path="/course/:id"
             element={

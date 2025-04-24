@@ -16,17 +16,17 @@ import {
   IconButton,
   Tooltip,
 } from "@mui/material";
-import {
-  useGetAllUsersQuery,
-  useAssignAccessKeyMutation,
-  useMakeAdminMutation,
-  useRevokeAccessKeyMutation,
-  useRevokeAdminMutation,
-} from "../../api/api";
 import { toast } from "react-toastify";
 import BtnCustom from "../../ui/BtnCustom";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import FeatureRequestList from "../GlobalHelpDrawer/FeatureRequestList";
+import {
+  useAssignAccessKeyMutation,
+  useGetAllUsersQuery,
+  useMakeAdminMutation,
+  useRevokeAccessKeyMutation,
+  useRevokeAdminMutation,
+} from "../../api/userApi";
 
 const AdminDashboard: React.FC = () => {
   const { data: users, isLoading, error, refetch } = useGetAllUsersQuery();

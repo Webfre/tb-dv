@@ -1,6 +1,6 @@
 import React from "react";
-import { useGetFeatureRequestsQuery } from "../../api/api";
 import { Box, Typography, Divider } from "@mui/material";
+import { useGetFeatureRequestsQuery } from "../../api/featureRequestApi";
 
 const FeatureRequestList: React.FC = () => {
   const { data, isLoading, error } = useGetFeatureRequestsQuery();

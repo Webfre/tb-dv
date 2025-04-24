@@ -12,8 +12,8 @@ import {
 } from "@mui/material";
 import MapsUgcIcon from "@mui/icons-material/MapsUgc";
 import BtnCustom from "../../ui/BtnCustom";
-import { useSendFeatureRequestMutation } from "../../api/api";
 import { toast } from "react-toastify";
+import { useSendFeatureRequestMutation } from "../../api/featureRequestApi";
 
 const categories = [
   { value: "feature", label: "Новая функция" },
