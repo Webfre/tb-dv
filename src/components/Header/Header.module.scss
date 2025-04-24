@@ -1,0 +1,23 @@
+.header {
+  margin-bottom: 32px;
+}
+
+.logo {
+  cursor: pointer;
+}
+
+.flexCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.drawer {
+  width: 250px;
+}
+
+.avatar {
+  background-color: white !important;
+  width: 28px !important;
+  height: 28px !important;
+}

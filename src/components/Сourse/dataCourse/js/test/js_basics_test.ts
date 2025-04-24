@@ -1,7 +1,7 @@
 export const js_basics_test = {
   id: 101,
   name: "Основные конструкции JavaScript",
-  category: "JavaScript",
+  category: "JAVASCRIPT",
   ques: [
     {
       id: 1,

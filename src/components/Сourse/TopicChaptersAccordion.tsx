@@ -27,7 +27,7 @@ import styles from "./TopicChaptersAccordion.module.scss";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import DoNotDisturbOnIcon from "@mui/icons-material/DoNotDisturbOn";
 import jwtDecode from "jwt-decode";
-import { useGetUserProgressQuery } from "../../api/api";
+import { useGetUserProgressQuery } from "../../api/progressApi";
 
 interface TopicChaptersAccordionProps {
   chapters: CourseChapter[];

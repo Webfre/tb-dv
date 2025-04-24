@@ -13,6 +13,7 @@ import { RootState } from "../../store/store";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { useLocation } from "react-router-dom";
 import { helpContent } from "./helpContent";
+import FeatureRequestButton from "./FeatureRequestButton";
 
 export const GlobalHelpDrawer = () => {
   const open = useSelector((state: RootState) => state.ui.helpOpen);
@@ -59,6 +60,8 @@ export const GlobalHelpDrawer = () => {
             ))}
           </Stepper>
         )}
+
+        <FeatureRequestButton />
       </Box>
     </Drawer>
   );

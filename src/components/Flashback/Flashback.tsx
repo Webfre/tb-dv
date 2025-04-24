@@ -18,8 +18,8 @@ import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import styles from "./Flashback.module.scss";
 import BtnCustom from "../../ui/BtnCustom";
 import { exampleQuestions } from "./data/flashbackQuestion";
-import { useGetUserProgressQuery } from "../../api/api";
 import { getModulesAndSectionsFromProgress } from "./getModulesAndSectionsFromProgress";
+import { useGetUserProgressQuery } from "../../api/progressApi";
 
 export const Flashback = () => {
   const [open, setOpen] = useState(false);

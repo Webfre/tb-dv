@@ -1,6 +1,7 @@
 import { cssTopic } from "./dataCourse/css/css";
 import { htmlTopic } from "./dataCourse/html/html";
 import { jsTopic } from "./dataCourse/js/js";
+import { introTopic } from "./dataCourse/start/start";
 import { ideTopic } from "./dataCourse/vscode/vscode";
 import { browserTopic } from "./dataCourse/www/www";
 
@@ -71,6 +72,7 @@ const topics = [
 ];
 
 export const mockTopics: CourseTopic[] = [
+  introTopic,
   browserTopic,
   ideTopic,
   htmlTopic,
