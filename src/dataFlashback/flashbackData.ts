@@ -1,4 +1,4 @@
-import { mockTopics } from "../../Сourse/CourseTopic";
+import { mockTopics } from "../dataCourse/CourseTopic";
 
 export interface IFlashbackModule {
   id: string;

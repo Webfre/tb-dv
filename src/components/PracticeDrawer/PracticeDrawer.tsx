@@ -11,11 +11,11 @@ import {
 import CloseIcon from "@mui/icons-material/Close";
 import { renderDifficulty } from "../TaskBook/renderDifficulty";
 import LinkIcon from "@mui/icons-material/Link";
-import HtmlDrawer from "./HtmlDrawer";
-import { PracticeTask } from "./CourseTopic";
+import HtmlDrawer from "../Сourse/HtmlDrawer";
+import { PracticeTask } from "../../dataCourse/CourseTopic";
 import { CopyBlock, dracula } from "react-code-blocks";
 import styles from "./PracticeDrawer.module.scss";
-import { styleCodeBlock } from "./CopyBlockStyle";
+import { styleCodeBlock } from "../Сourse/CopyBlockStyle";
 
 interface PracticeDrawerProps {
   open: boolean;

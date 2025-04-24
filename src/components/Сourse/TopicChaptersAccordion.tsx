@@ -18,10 +18,14 @@ import BookIcon from "@mui/icons-material/Book";
 import QuizIcon from "@mui/icons-material/Quiz";
 import CodeIcon from "@mui/icons-material/Code";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-import { CourseChapter, CourseSection, PracticeTask } from "./CourseTopic";
-import SectionDrawer from "./SectionDrawer";
+import {
+  CourseChapter,
+  CourseSection,
+  PracticeTask,
+} from "../../dataCourse/CourseTopic";
+import SectionDrawer from "../SectionDrawer/SectionDrawer";
 import { useLocation, useNavigate } from "react-router-dom";
-import PracticeDrawer from "./PracticeDrawer";
+import PracticeDrawer from "../PracticeDrawer/PracticeDrawer";
 import { practiceMock } from "../../data/taskData";
 import styles from "./TopicChaptersAccordion.module.scss";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
@@ -247,6 +251,7 @@ const TopicChaptersAccordion: React.FC<TopicChaptersAccordionProps> = ({
       })}
 
       <SectionDrawer section={openSection} onClose={handleClose} />
+
       <PracticeDrawer
         open={practiceOpen}
         onClose={() => setPracticeOpen(false)}

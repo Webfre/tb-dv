@@ -11,7 +11,7 @@ import {
   Tooltip,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { mockTopics } from "./CourseTopic";
+import { mockTopics } from "../../dataCourse/CourseTopic";
 import { useGetUserProgressQuery } from "../../api/progressApi";
 import QuizIcon from "@mui/icons-material/Quiz";
 import CodeIcon from "@mui/icons-material/Code";
@@ -19,7 +19,7 @@ import BookIcon from "@mui/icons-material/MenuBook";
 import jwtDecode from "jwt-decode";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import AddReactionIcon from "@mui/icons-material/AddReaction";
-import styles from "./PracticeDrawer.module.scss";
+import styles from "./Course.module.scss";
 
 const CoursePage: React.FC = () => {
   const navigate = useNavigate();

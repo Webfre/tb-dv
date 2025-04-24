@@ -1,9 +1,9 @@
-import { cssTopic } from "./dataCourse/css/css";
-import { htmlTopic } from "./dataCourse/html/html";
-import { jsTopic } from "./dataCourse/js/js";
-import { introTopic } from "./dataCourse/start/start";
-import { ideTopic } from "./dataCourse/vscode/vscode";
-import { browserTopic } from "./dataCourse/www/www";
+import { cssTopic } from "./css/css";
+import { htmlTopic } from "./html/html";
+import { jsTopic } from "./js/js";
+import { introTopic } from "./start/start";
+import { ideTopic } from "./vscode/vscode";
+import { browserTopic } from "./www/www";
 
 export interface CourseSection {
   id: string;

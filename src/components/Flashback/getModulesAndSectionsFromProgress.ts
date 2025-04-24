@@ -1,5 +1,5 @@
 import { Progress } from "../../api/progressApi";
-import { flashbackModules } from "./data/flashbackData";
+import { flashbackModules } from "../../dataFlashback/flashbackData";
 
 export const getModulesAndSectionsFromProgress = (progressData?: Progress) => {
   if (!progressData) return { modules: [], sections: [] };

@@ -5,7 +5,7 @@ import BookIcon from "@mui/icons-material/Book";
 import QuizIcon from "@mui/icons-material/Quiz";
 import CodeIcon from "@mui/icons-material/Code";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import { mockTopics } from "./CourseTopic";
+import { mockTopics } from "../../dataCourse/CourseTopic";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import TopicChaptersAccordion from "./TopicChaptersAccordion";
 import BtnCustom from "../../ui/BtnCustom";

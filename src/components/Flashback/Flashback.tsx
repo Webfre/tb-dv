@@ -8,7 +8,7 @@ import {
   filterFlashbackQuestions,
   flashbackModules,
   FlashbackQuestion,
-} from "./data/flashbackData";
+} from "../../dataFlashback/flashbackData";
 import { FlashbackDrawer } from "./FlashbackDrawer";
 import { Stepper, Step, StepLabel } from "@mui/material";
 import { FlashbackTest } from "./FlashbackTest";
@@ -17,7 +17,7 @@ import jwtDecode from "jwt-decode";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import styles from "./Flashback.module.scss";
 import BtnCustom from "../../ui/BtnCustom";
-import { exampleQuestions } from "./data/flashbackQuestion";
+import { exampleQuestions } from "../../dataFlashback/flashbackQuestion";
 import { getModulesAndSectionsFromProgress } from "./getModulesAndSectionsFromProgress";
 import { useGetUserProgressQuery } from "../../api/progressApi";
 

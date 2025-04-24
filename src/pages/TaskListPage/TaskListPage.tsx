@@ -21,7 +21,7 @@ import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import { practiceMock } from "../../data/taskData";
-import { PracticeTask } from "../../components/Сourse/CourseTopic";
+import { PracticeTask } from "../../dataCourse/CourseTopic";
 import TaskDrawer from "../../components/TaskBook/TaskDrawer";
 import BtnCustom from "../../ui/BtnCustom";
 
