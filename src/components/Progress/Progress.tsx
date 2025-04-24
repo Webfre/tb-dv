@@ -23,6 +23,10 @@ const Progress: React.FC = () => {
   const { data: progressData } = useGetUserProgressQuery();
   const groupedTests = useMemo(() => groupTestsByCategory(testData), []);
 
+  if (!progressData) {
+    return <Typography>Загрузка прогресса...</Typography>;
+  }
+
   return (
     <Box p={4}>
       <ProgressRing />
@@ -32,11 +36,24 @@ const Progress: React.FC = () => {
       </Typography>
 
       {Object.entries(groupedTests).map(([category, tests]) => {
-        const avgProgress = calculateCategoryProgress(tests);
+        const avgProgress = calculateCategoryProgress(tests, progressData);
 
         return (
-          <Accordion key={category} className={styles.accordion}>
-            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+          <Accordion
+            sx={{
+              bgcolor: "transparent",
+              boxShadow: "none",
+              border: "1px solid",
+              borderColor: "divider",
+              borderRadius: 2,
+            }}
+            key={category}
+            className={styles.accordion}
+          >
+            <AccordionSummary
+              sx={{ bgcolor: "transparent", px: 2 }}
+              expandIcon={<ExpandMoreIcon />}
+            >
               <Box display="flex" flexDirection="column" width="98%">
                 <Box display="flex" alignItems="center" gap={1}>
                   <Typography variant="h6">{category}</Typography>
@@ -58,7 +75,7 @@ const Progress: React.FC = () => {
                 </Box>
               </Box>
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails sx={{ bgcolor: "transparent", px: 2 }}>
               <List disablePadding>
                 {tests.map((test) => (
                   <TestItemCard

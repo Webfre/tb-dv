@@ -4,7 +4,6 @@ export const html_intro_task_1 = {
   title: "Создание HTML-документа Hello, World!",
   topic: "Введение в HTML",
   sectionId: "html_intro_1",
-
   topicId: "html_intro",
   description:
     "Создайте минимальный HTML-документ, который выводит сообщение 'Hello, World!' на страницу.",

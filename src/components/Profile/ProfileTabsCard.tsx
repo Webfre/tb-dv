@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Box, Paper, Tabs, Tab, Typography } from "@mui/material";
 import Progress from "../Progress/Progress";
+import UserInfo from "./UserInfo";
 
-const tabLabels = ["Прогресс", "События", "Портфолио", "Избранное"];
+const tabLabels = ["Прогресс", "События", "Портфолио", "Избранное", "Инфо"];
 
 const ProfileTabsCard: React.FC = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -16,7 +17,7 @@ const ProfileTabsCard: React.FC = () => {
       elevation={2}
       sx={{
         borderRadius: "20px",
-        background: "#fafafa",
+        background: "#fdfdfd",
         mt: 4,
         mb: 4,
       }}
@@ -35,10 +36,10 @@ const ProfileTabsCard: React.FC = () => {
 
       <Box p={3}>
         {activeTab === 0 && <Progress />}
-
         {activeTab === 1 && <Typography>Здесь будут события</Typography>}
         {activeTab === 2 && <Typography>Здесь будет портфолио</Typography>}
         {activeTab === 3 && <Typography>Здесь избранное</Typography>}
+        {activeTab === 4 && <UserInfo />}
       </Box>
     </Paper>
   );

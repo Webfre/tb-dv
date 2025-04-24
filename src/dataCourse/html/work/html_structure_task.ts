@@ -46,13 +46,6 @@ export const html_structure_task_1 = {
   <p>Это моя первая HTML-страница с правильной структурой.</p>
 </body>
 </html>`,
-  expectedResult: `
-1. Документ должен начинаться с <!DOCTYPE html>
-2. Обязательное наличие <html>, <head> и <body>
-3. В <head> должны быть meta charset и title
-4. В <body> должен быть хотя бы один заголовок и параграф
-5. Язык документа должен быть указан как русский
-`,
 };
 
 export const html_structure_task_2 = {

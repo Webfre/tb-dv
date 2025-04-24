@@ -43,12 +43,14 @@ export const calculateCategoryProgress = (
   progressData?: ProgressData
 ): number => {
   const total = tests.length;
+
   if (total === 0 || !progressData) return 0;
 
   let passed = 0;
 
   for (const test of tests) {
     const history = progressData.history?.[test.key];
+
     if (history && history.length > 0) {
       const best = Math.max(...history.map((h) => h.percentage));
       if (best >= 60) passed++;

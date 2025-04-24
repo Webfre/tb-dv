@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Typography, Chip, Paper, Avatar, Stack } from "@mui/material";
-import { Mentor } from "./mentorsData";
-import styles from "./ProfileBanner.module.scss";
+import { Mentor } from "../MentorProfilePage/mentorsData";
+import { useNavigate } from "react-router-dom";
 
 interface ProfileBannerProps {
   courseTitle: string;
@@ -14,13 +14,15 @@ const ProfileBanner: React.FC<ProfileBannerProps> = ({
   courseType,
   mentors,
 }) => {
+  const navigate = useNavigate();
+
   return (
     <Paper
       elevation={3}
       sx={{
         borderRadius: "20px",
         padding: 3,
-        background: "#f5f5f5",
+        background: "#fdfdfd",
         mb: 4,
       }}
     >
@@ -53,6 +55,8 @@ const ProfileBanner: React.FC<ProfileBannerProps> = ({
               display="flex"
               flexDirection="column"
               alignItems="center"
+              onClick={() => navigate(`/mentorprofilepage/${mentor.id}`)}
+              sx={{ cursor: "pointer" }}
             >
               <Avatar src={mentor.avatarUrl}>{mentor.name[0]}</Avatar>
               <Typography variant="body2" fontWeight={500} mt={1}>
@@ -63,7 +67,7 @@ const ProfileBanner: React.FC<ProfileBannerProps> = ({
                 color="text.secondary"
                 align="center"
               >
-                {mentor.specialization}
+                {mentor.grade}
               </Typography>
             </Box>
           ))}

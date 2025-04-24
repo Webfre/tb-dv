@@ -33,6 +33,7 @@ import Progress from "./components/Progress/Progress";
 import "./index.scss";
 import "react-toastify/dist/ReactToastify.css";
 import TestСourse from "./components/TestСourse/TestСourse";
+import MentorProfilePage from "./components/MentorProfilePage/MentorProfilePage";
 
 const AppRoutes = () => {
   const location = useLocation();
@@ -51,7 +52,7 @@ const AppRoutes = () => {
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/course-info" element={<CourseInfoPage />} />
+          <Route path="/course-info" element={<CourseInfoPage open={true} />} />
           <Route path="/reset-password" element={<ResetPasswordPage />} />
           <Route path="/flashback" element={<Flashback />} />
           <Route path="/live" element={<LiveCodingPage />} />
@@ -99,6 +100,15 @@ const AppRoutes = () => {
             element={
               <ProtectedRoute>
                 <TestСourse />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/mentorprofilepage/:id"
+            element={
+              <ProtectedRoute>
+                <MentorProfilePage />
               </ProtectedRoute>
             }
           />

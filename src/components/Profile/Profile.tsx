@@ -1,5 +1,5 @@
 import { Container } from "@mui/material";
-import { mentors } from "./mentorsData";
+import { mentors } from "../MentorProfilePage/mentorsData";
 import ProfileBanner from "./ProfileBanner";
 import ProfileTabsCard from "./ProfileTabsCard";
 

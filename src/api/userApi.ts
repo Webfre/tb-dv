@@ -23,6 +23,10 @@ export const userApi = baseApi.injectEndpoints({
       query: () => "/users/check-access",
     }),
 
+    getMyProfile: builder.query<User, void>({
+      query: () => "/users/me",
+    }),
+
     assignAccessKey: builder.mutation<
       { message: string; userId: number; accessKey: string },
       number
@@ -64,4 +68,5 @@ export const {
   useRevokeAccessKeyMutation,
   useMakeAdminMutation,
   useRevokeAdminMutation,
+  useGetMyProfileQuery,
 } = userApi;

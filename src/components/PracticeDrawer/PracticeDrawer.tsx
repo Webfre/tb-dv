@@ -10,12 +10,14 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { renderDifficulty } from "../TaskBook/renderDifficulty";
+import { useHasCourseAccess } from "../../lib/useHasCourseAccess";
 import LinkIcon from "@mui/icons-material/Link";
 import HtmlDrawer from "../Сourse/HtmlDrawer";
 import { PracticeTask } from "../../dataCourse/CourseTopic";
 import { CopyBlock, dracula } from "react-code-blocks";
 import styles from "./PracticeDrawer.module.scss";
 import { styleCodeBlock } from "../Сourse/CopyBlockStyle";
+import TaskCompletionToggle from "../TaskBook/TaskCompletionToggle";
 
 interface PracticeDrawerProps {
   open: boolean;
@@ -31,6 +33,7 @@ const PracticeDrawer: React.FC<PracticeDrawerProps> = ({
   const [selectedTask, setSelectedTask] = useState<PracticeTask | null>(null);
   const [htmlDrawerOpen, setHtmlDrawerOpen] = useState(false);
   const [showSolution, setShowSolution] = useState(false);
+  const { hasAccess } = useHasCourseAccess();
 
   useEffect(() => {
     setShowSolution(false);
@@ -80,6 +83,13 @@ const PracticeDrawer: React.FC<PracticeDrawerProps> = ({
         {selectedTask ? (
           <Box className={styles.selectedTask}>
             <Box mt={1}>{renderDifficulty(selectedTask.difficulty)}</Box>
+
+            {hasAccess && (
+              <TaskCompletionToggle
+                taskId={selectedTask.id}
+                module={selectedTask.module}
+              />
+            )}
 
             <Box display="flex" gap={2} alignItems="center">
               <Typography variant="h6">{selectedTask.title}</Typography>

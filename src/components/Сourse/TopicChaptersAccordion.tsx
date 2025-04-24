@@ -1,4 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
+import {
+  useGetSolvedTasksQuery,
+  useGetUserProgressQuery,
+} from "../../api/progressApi";
+import { useLocation, useNavigate } from "react-router-dom";
+import { practiceMock } from "../../data/taskData";
 import clsx from "clsx";
 import {
   Accordion,
@@ -13,10 +19,10 @@ import {
   Stack,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import EditAttributesIcon from "@mui/icons-material/EditAttributes";
 import StarIcon from "@mui/icons-material/Star";
 import BookIcon from "@mui/icons-material/Book";
 import QuizIcon from "@mui/icons-material/Quiz";
-import CodeIcon from "@mui/icons-material/Code";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import {
   CourseChapter,
@@ -24,14 +30,11 @@ import {
   PracticeTask,
 } from "../../dataCourse/CourseTopic";
 import SectionDrawer from "../SectionDrawer/SectionDrawer";
-import { useLocation, useNavigate } from "react-router-dom";
 import PracticeDrawer from "../PracticeDrawer/PracticeDrawer";
-import { practiceMock } from "../../data/taskData";
-import styles from "./TopicChaptersAccordion.module.scss";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import DoNotDisturbOnIcon from "@mui/icons-material/DoNotDisturbOn";
 import jwtDecode from "jwt-decode";
-import { useGetUserProgressQuery } from "../../api/progressApi";
+import styles from "./TopicChaptersAccordion.module.scss";
+import PracticeChipProgress from "./PracticeChipProgress";
+import { getSolvedCountBySection } from "./getSolvedCountBySection";
 
 interface TopicChaptersAccordionProps {
   chapters: CourseChapter[];
@@ -52,6 +55,13 @@ const TopicChaptersAccordion: React.FC<TopicChaptersAccordionProps> = ({
   const [chapterTasks, setChapterTasks] = useState<PracticeTask[]>([]);
   const chapterRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const [highlightedId, setHighlightedId] = useState<string | null>(null);
+
+  const { data: solvedTasks = [] } = useGetSolvedTasksQuery();
+
+  const solvedCountBySectionId = getSolvedCountBySection(
+    solvedTasks,
+    practiceMock
+  );
 
   const token = localStorage.getItem("token");
   const decoded: any = token ? jwtDecode(token) : null;
@@ -167,16 +177,18 @@ const TopicChaptersAccordion: React.FC<TopicChaptersAccordionProps> = ({
                         sx={{ mr: 1, color: "rgb(97, 97, 255)" }}
                       />
                     ) : testPassed === true ? (
-                      <CheckCircleIcon
-                        fontSize="small"
-                        sx={{ mr: 1 }}
+                      <EditAttributesIcon
+                        sx={{ mr: 1, fontSize: "28px" }}
                         color="success"
                         titleAccess="Тест пройден"
                       />
                     ) : testPassed === false ? (
-                      <DoNotDisturbOnIcon
-                        fontSize="small"
-                        sx={{ mr: 1, color: "rgb(197, 86, 86) !important" }}
+                      <EditAttributesIcon
+                        sx={{
+                          mr: 1,
+                          fontSize: "28px",
+                          color: "rgb(197, 86, 86) !important",
+                        }}
                         titleAccess="Тест не пройден"
                       />
                     ) : (
@@ -220,25 +232,16 @@ const TopicChaptersAccordion: React.FC<TopicChaptersAccordionProps> = ({
                       <ListItemText primary={section.title} />
 
                       <Stack direction="row" spacing={1} alignItems="center">
-                        {practiceCountBySectionId[section.id] > 0 && (
-                          <Chip
-                            label={`Практик: ${
-                              practiceCountBySectionId[section.id]
-                            }`}
-                            icon={<CodeIcon fontSize="small" />}
-                            size="small"
-                            color="secondary"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              const matched = practiceMock.filter(
-                                (task) => task.sectionId === section.id
-                              );
-                              setChapterTasks(matched);
-                              setPracticeOpen(true);
-                            }}
-                          />
-                        )}
-
+                        <PracticeChipProgress
+                          sectionId={section.id}
+                          total={practiceCountBySectionId[section.id] || 0}
+                          solved={solvedCountBySectionId[section.id] || 0}
+                          onOpen={(tasks) => {
+                            setChapterTasks(tasks);
+                            setPracticeOpen(true);
+                          }}
+                          allTasks={practiceMock}
+                        />
                         <KeyboardArrowRightIcon color="action" />
                       </Stack>
                     </ListItem>

@@ -1,61 +1,67 @@
-import React from "react";
-import { Box, Typography, Container, Paper, Button, Link } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  Typography,
+  Link,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import BtnCustom from "../../ui/BtnCustom";
 
-const CourseInfoPage: React.FC = () => {
+const CourseInfoModal: React.FC<{ open: boolean }> = ({ open }) => {
   const navigate = useNavigate();
+  const [isRegistered, setIsRegistered] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsRegistered(!!token);
+  }, []);
+
+  const handleClose = () => {
+    navigate(-1);
+  };
 
   return (
-    <Box
-      sx={{
-        minHeight: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        px: 2,
-      }}
-    >
-      <Container maxWidth="sm">
-        <Paper sx={{ p: 4, borderRadius: 4, textAlign: "center" }}>
-          <Typography variant="h5" gutterBottom>
-            Доступ к курсу пока не получен
-          </Typography>
+    <Dialog open={open} onClose={handleClose} maxWidth="sm" fullWidth>
+      <DialogTitle>Доступ к курсу пока не получен</DialogTitle>
+      <DialogContent>
+        <Typography variant="body1" sx={{ mb: 1 }}>
+          {isRegistered
+            ? "Вы успешно зарегистрировались, но пока не получили ключ доступа к курсу."
+            : "Вы не зарегистрированы. Пожалуйста, войдите или зарегистрируйтесь."}
+        </Typography>
 
-          <Typography variant="body1" sx={{ mt: 2 }}>
-            Вы успешно зарегистрировались, но пока не получили ключ доступа к
-            курсу.
-          </Typography>
+        <Typography variant="body2" color="text.secondary">
+          Чтобы получить доступ, обратитесь к администратору.
+        </Typography>
 
-          <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-            Чтобы получить доступ, обратитесь к администратору.
-          </Typography>
+        <Link
+          href="https://t.me/romanwebfree"
+          target="_blank"
+          rel="noopener"
+          underline="none"
+        >
+          <BtnCustom
+            text="Написать в Telegram"
+            variant="outlined"
+            fullWidth
+            sx={{ mt: 3 }}
+          />
+        </Link>
 
-          <Link
-            href="https://t.me/romanwebfree"
-            target="_blank"
-            rel="noopener"
-            underline="none"
-          >
-            <BtnCustom
-              text="Написать в Telegram — Мухаметшин Роман (руководитель учебного
-              направления)"
-              variant="outlined"
-              sx={{ mt: 3 }}
-            />
-          </Link>
-
+        {!isRegistered && (
           <BtnCustom
             fullWidth
-            text="Уже есть аккаунт? Войти"
+            text="Зарегистрироваться"
             variant="text"
-            sx={{ mt: 1 }}
-            onClick={() => navigate("/login")}
+            sx={{ mt: 2 }}
+            onClick={() => navigate("/register")}
           />
-        </Paper>
-      </Container>
-    </Box>
+        )}
+      </DialogContent>
+    </Dialog>
   );
 };
 
-export default CourseInfoPage;
+export default CourseInfoModal;

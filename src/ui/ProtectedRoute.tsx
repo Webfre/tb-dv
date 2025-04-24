@@ -1,22 +1,20 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
-import { useCheckCourseAccessQuery } from "../api/userApi";
+import { useHasCourseAccess } from "../lib/useHasCourseAccess";
+import Spinner from "./Spinner";
 
 interface ProtectedRouteProps {
   children: React.ReactElement;
 }
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
-  const token = localStorage.getItem("token");
-
-  const { data, isLoading } = useCheckCourseAccessQuery(undefined, {
-    skip: !token,
-  });
+  const { token, hasAccess, isLoading } = useHasCourseAccess();
 
   if (!token) return <Navigate to="/register" replace />;
-  if (isLoading) return null;
 
-  if (!data?.hasAccess) {
+  if (isLoading) return <Spinner />;
+
+  if (!hasAccess) {
     return <Navigate to="/course-info" replace />;
   }
 
