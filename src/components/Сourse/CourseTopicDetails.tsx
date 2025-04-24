@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { Box, Typography, Button, Divider, Chip, Stack } from "@mui/material";
+import { Box, Typography, Divider, Chip, Stack } from "@mui/material";
 import BookIcon from "@mui/icons-material/Book";
 import QuizIcon from "@mui/icons-material/Quiz";
 import CodeIcon from "@mui/icons-material/Code";
@@ -64,7 +64,6 @@ const CourseTopicDetails: React.FC = () => {
 
       <TopicChaptersAccordion
         topicTestKeys={topic.testKeys}
-        topicPracticeIds={topic.practiceIds}
         chapters={topic.chapters}
       />
     </Box>

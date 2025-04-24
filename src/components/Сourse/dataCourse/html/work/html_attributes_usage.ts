@@ -4,6 +4,7 @@ export const html_attributes_usage_1 = {
   title: "Использование id, class и якорной ссылки",
   topic: "Глобальные атрибуты: id, class, style",
   topicId: "html_attributes",
+  sectionId: "html_attr_1",
   description:
     "Создайте HTML-страницу, в которой применяются атрибуты `id` и `class`, а также реализована якорная ссылка на элемент внутри страницы.",
   steps: [
@@ -72,6 +73,7 @@ export const html_attributes_usage_2 = {
   title: "Работа со специфичными атрибутами элементов",
   topic: "Специфичные атрибуты: href, src, alt",
   topicId: "html_attributes",
+  sectionId: "html_attr_2",
   description:
     "Создайте HTML-страницу, демонстрирующую использование специфичных атрибутов href, src и alt в различных элементах.",
   steps: [

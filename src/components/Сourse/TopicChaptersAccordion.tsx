@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import clsx from "clsx";
 import {
   Accordion,
   AccordionSummary,
@@ -31,13 +32,11 @@ import { useGetUserProgressQuery } from "../../api/api";
 interface TopicChaptersAccordionProps {
   chapters: CourseChapter[];
   topicTestKeys?: string[];
-  topicPracticeIds?: string[];
 }
 
 const TopicChaptersAccordion: React.FC<TopicChaptersAccordionProps> = ({
   chapters,
   topicTestKeys = [],
-  topicPracticeIds = [],
 }) => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -57,6 +56,14 @@ const TopicChaptersAccordion: React.FC<TopicChaptersAccordionProps> = ({
   const { data: progressData } = useGetUserProgressQuery(userId!, {
     skip: !userId,
   });
+
+  const practiceCountBySectionId = practiceMock.reduce((acc, task) => {
+    if (task.sectionId) {
+      acc[task.sectionId] = (acc[task.sectionId] || 0) + 1;
+    }
+
+    return acc;
+  }, {} as Record<string, number>);
 
   const isChapterTestPassed = (testKey?: string): boolean | null => {
     if (!testKey || !progressData?.history?.[testKey]) return null;
@@ -115,8 +122,6 @@ const TopicChaptersAccordion: React.FC<TopicChaptersAccordionProps> = ({
       {chapters.map((chapter) => {
         const isFinal = chapter.final;
         const testCount = chapter.testKeys?.length || 0;
-        const practiceCount = chapter.practiceIds?.length || 0;
-
         const testKey = chapter.testKeys?.[0] || topicTestKeys?.[0];
         const testPassed = isChapterTestPassed(testKey);
 
@@ -135,20 +140,11 @@ const TopicChaptersAccordion: React.FC<TopicChaptersAccordionProps> = ({
               onChange={(_, expanded) => {
                 setExpandedChapterId(expanded ? chapter.id : null);
               }}
-              className={highlightedId === chapter.id ? styles.pulse : ""}
-              sx={{
-                borderRadius: "20px !important",
-                overflow: "hidden",
-                "&:before": {
-                  display: "none",
-                },
-                boxShadow:
-                  "0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)",
-                ...(isFinal && {
-                  border: "1px solid rgb(97, 97, 255)",
-                  bgcolor: "rgba(223, 223, 252, 0.777)",
-                }),
-              }}
+              className={clsx(
+                styles.accordion,
+                isFinal && styles.final,
+                highlightedId === chapter.id && styles.pulse
+              )}
             >
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                 <Box
@@ -202,25 +198,6 @@ const TopicChaptersAccordion: React.FC<TopicChaptersAccordionProps> = ({
                         }
                       />
                     )}
-                    {!isFinal && practiceCount > 0 && (
-                      <Chip
-                        label={`Практик: ${practiceCount}`}
-                        icon={<CodeIcon fontSize="small" />}
-                        size="small"
-                        color="secondary"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          const ids = isFinal
-                            ? topicPracticeIds
-                            : chapter.practiceIds;
-                          const matched = practiceMock.filter((task) =>
-                            ids?.includes(task.id)
-                          );
-                          setChapterTasks(matched);
-                          setPracticeOpen(true);
-                        }}
-                      />
-                    )}
                   </Stack>
                 </Box>
               </AccordionSummary>
@@ -233,20 +210,33 @@ const TopicChaptersAccordion: React.FC<TopicChaptersAccordionProps> = ({
                   {chapter.sections.map((section) => (
                     <ListItem
                       key={section.id}
-                      sx={{
-                        border: "1px dashed #ccc",
-                        borderRadius: 2,
-                        px: 2,
-                        py: 1,
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                        cursor: "pointer",
-                      }}
+                      className={styles.sectionItem}
                       onClick={() => handleOpen(section)}
                     >
                       <ListItemText primary={section.title} />
-                      <KeyboardArrowRightIcon color="action" />
+
+                      <Stack direction="row" spacing={1} alignItems="center">
+                        {practiceCountBySectionId[section.id] > 0 && (
+                          <Chip
+                            label={`Практик: ${
+                              practiceCountBySectionId[section.id]
+                            }`}
+                            icon={<CodeIcon fontSize="small" />}
+                            size="small"
+                            color="secondary"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              const matched = practiceMock.filter(
+                                (task) => task.sectionId === section.id
+                              );
+                              setChapterTasks(matched);
+                              setPracticeOpen(true);
+                            }}
+                          />
+                        )}
+
+                        <KeyboardArrowRightIcon color="action" />
+                      </Stack>
                     </ListItem>
                   ))}
                 </List>

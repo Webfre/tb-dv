@@ -3,6 +3,8 @@ export const html_intro_task_1 = {
   module: "HTML",
   title: "Создание HTML-документа Hello, World!",
   topic: "Введение в HTML",
+  sectionId: "html_intro_1",
+
   topicId: "html_intro",
   description:
     "Создайте минимальный HTML-документ, который выводит сообщение 'Hello, World!' на страницу.",
@@ -41,6 +43,8 @@ export const html_intro_task_2 = {
   title: "Персональная страница",
   topic: "Введение в HTML",
   topicId: "html_intro",
+  sectionId: "html_intro_1",
+
   description:
     "Создайте простую HTML-страницу, которая отображает информацию о себе, используя заголовки и абзацы.",
   steps: [
@@ -96,6 +100,8 @@ export const html_intro_task_3 = {
   title: "Редактирование персональной страницы",
   topic: "Введение в HTML",
   topicId: "html_intro",
+  sectionId: "html_intro_1",
+
   description:
     "Измените HTML-страницу с информацией о себе: обновите заголовок страницы, выведите достижения в виде отдельных абзацев, добавьте новый текст и комментарии.",
   steps: [

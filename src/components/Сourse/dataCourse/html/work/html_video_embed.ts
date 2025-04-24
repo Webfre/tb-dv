@@ -4,6 +4,7 @@ export const html_video_embed_1 = {
   title: "Добавление видео с использованием тега <video>",
   topic: "HTML мультимедиа",
   topicId: "html_multimedia",
+  sectionId: "html_media_1",
   description:
     "Создайте HTML-документ, в котором встроено видео с использованием тега `<video>` и базовых атрибутов: `controls`, `autoplay`, `loop`, `muted`, `poster`.",
   steps: [
@@ -68,6 +69,7 @@ export const html_video_embed_2 = {
   title: "Добавление аудио с использованием тега <audio>",
   topic: "HTML мультимедиа",
   topicId: "html_multimedia",
+  sectionId: "html_media_2",
   description:
     "Создайте HTML-документ с использованием тега `<audio>` и базовых атрибутов: `controls`, `autoplay`, `loop`, `muted`. Добавьте источник звукового файла через тег `<source>`.",
   steps: [

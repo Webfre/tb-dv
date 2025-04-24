@@ -1,5 +1,6 @@
 export const js_intro_task_1 = {
   id: "js_intro_task_1",
+  sectionId: "js_intro_2",
   module: "JavaScript",
   title: "Подключение JavaScript и вывод в консоль",
   topic: "Основы JavaScript",
@@ -35,6 +36,7 @@ export const js_intro_task_1 = {
 export const js_intro_task_2 = {
   id: "js_intro_task_2",
   module: "JavaScript",
+  sectionId: "js_intro_4",
   title: "Объявление переменных: let, const и var",
   topic: "Основы JavaScript",
   topicId: "js_intro",

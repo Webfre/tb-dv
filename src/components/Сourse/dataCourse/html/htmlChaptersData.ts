@@ -17,7 +17,11 @@ export const htmlChapters = [
     title: "Структура HTML-документа",
     sections: htmlSections.html_structure,
     testKeys: ["html_structure_test"],
-    practiceIds: ["html_structure_task_1", "html_structure_task_2"],
+    practiceIds: [
+      "html_structure_task_1",
+      "html_structure_task_2",
+      "html_structure_task_3",
+    ],
   },
   {
     id: "html_elements",
@@ -30,6 +34,14 @@ export const htmlChapters = [
       "html_block_inline_3",
       "html_block_inline_4",
       "html_block_inline_5",
+      "html_block_inline_6",
+      "html_block_inline_7",
+      "html_block_inline_8",
+      "html_block_inline_9",
+      "html_block_inline_10",
+      "html_block_inline_11",
+      "html_block_inline_12",
+      "html_block_inline_13",
     ],
   },
   {
@@ -48,6 +60,7 @@ export const htmlChapters = [
       "html_semantic_landing_1",
       "html_semantic_landing_2",
       "html_semantic_landing_3",
+      "html_semantic_landing_4",
     ],
   },
   {

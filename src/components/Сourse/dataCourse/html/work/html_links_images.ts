@@ -4,17 +4,23 @@ export const html_links_creation_1 = {
   title: "Создание ссылок с различными атрибутами",
   topic: "Ссылки и изображения",
   topicId: "html_links_images",
+  sectionId: "html_link_1",
   description:
     "Создайте HTML-документ с несколькими ссылками, используя тег `<a>` и атрибуты `href`, `target`, `rel`.",
   steps: [
     "Создайте новый HTML-файл, например `links.html`.",
-    "Добавьте базовую структуру HTML-документа.",
-    "Внутри `<body>` создайте следующие элементы:",
-    '- Ссылку на внешний сайт (например, https://example.com), которая открывается в новой вкладке с атрибутами `target="_blank"` и `rel="noopener noreferrer"`.',
-    "- Ссылку на другой HTML-файл в текущем проекте (например, `about.html`).",
-    "- Якорную ссылку, которая ведёт к определённому разделу на той же странице.",
-    '- Добавьте элемент с `id`, на который ведёт якорная ссылка (например, `id="contacts"`).',
-    "Проверьте в браузере корректность переходов по всем ссылкам.",
+    "Добавьте базовую структуру HTML-документа: `<!DOCTYPE html>`, `<html>`, `<head>`, `<body>`.",
+    "Внутри `<head>` добавьте заголовок страницы с помощью тега `<title>`.",
+    "Внутри `<body>` реализуйте следующие элементы:",
+    '- Внешнюю ссылку на сайт (например, https://example.com), которая откроется в новой вкладке. Используйте атрибуты: `target="_blank"` и `rel="noopener noreferrer"`.',
+    "- Внутреннюю ссылку на другой HTML-файл (например, `about.html`) в рамках вашего проекта.",
+    '- Якорную ссылку, которая будет прокручивать страницу к нижнему разделу с контактами (например, `href="#contacts"`).',
+    '- Добавьте заголовок или раздел `<h2 id="contacts">Контакты</h2>` внизу страницы, чтобы он был целью якорной ссылки.',
+    "- Между якорной ссылкой и целевым элементом вставьте **большой блок текста** (`Lorem ipsum` или повторяющийся текст), чтобы на странице появилась вертикальная прокрутка.",
+    "Откройте страницу в браузере и проверьте:",
+    "- Внешняя ссылка открывается в новой вкладке.",
+    "- Внутренняя ссылка ведёт на другой файл.",
+    "- Якорная ссылка прокручивает страницу к блоку 'Контакты'.",
   ],
   difficulty: 2,
   resources: ["https://developer.mozilla.org/ru/docs/Web/HTML/Element/a"],
@@ -44,6 +50,58 @@ export const html_links_creation_1 = {
       <a href="#contacts">Перейти к контактам</a>
     </p>
 
+    <!-- Наполняем страницу текстом, чтобы появился скролл -->
+    <div>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
+        euismod, nisi vel consectetur interdum, nisl nisi aliquam nisi, eget
+        consectetur nisl nisi eget nisl. Pellentesque habitant morbi tristique
+        senectus et netus et malesuada fames ac turpis egestas.
+      </p>
+        <p>Повторение для прокрутки:</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+    </div>
+
+    <!-- Якорь -->
     <h2 id="contacts">Контакты</h2>
     <p>Почта: contact@example.com</p>
   </body>
@@ -74,6 +132,59 @@ export const html_links_creation_1 = {
       <a href="#contacts">Перейти к контактам</a>
     </p>
 
+    <!-- Наполняем страницу текстом, чтобы появился скролл -->
+    <div>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
+        euismod, nisi vel consectetur interdum, nisl nisi aliquam nisi, eget
+        consectetur nisl nisi eget nisl. Pellentesque habitant morbi tristique
+        senectus et netus et malesuada fames ac turpis egestas.
+        
+      </p>
+      <p>Повторение для прокрутки:</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Lorem ipsum dolor sit amet...</p>
+    </div>
+
+    <!-- Якорь -->
     <h2 id="contacts">Контакты</h2>
     <p>Почта: contact@example.com</p>
   </body>
@@ -86,6 +197,7 @@ export const html_links_creation_2 = {
   title: "Добавление изображений с атрибутами и обсуждение форматов",
   topic: "Ссылки и изображения",
   topicId: "html_links_images",
+  sectionId: "html_link_2",
   description:
     "Создайте HTML-документ с изображениями, используя тег `<img>` и его основные атрибуты: `src` и `alt`. Также разберитесь с форматами изображений и их особенностями.",
   steps: [
@@ -173,28 +285,30 @@ export const html_links_creation_3 = {
   title: "Расширенная работа со ссылками",
   topic: "Ссылки и изображения",
   topicId: "html_links_images",
+  sectionId: "html_link_1",
   description:
     "Создайте HTML-страницу, содержащую несколько типов ссылок: обычные, якорные, изображение-ссылка и псевдоссылку. Добавьте комментарии к каждому типу.",
   steps: [
     "Создайте HTML-файл, например `advanced-links.html`.",
     "Добавьте базовую HTML-структуру с заголовком 'Типы ссылок'.",
     "Внутри `<body>` реализуйте следующее:",
-    '- Обычную внешнюю ссылку с `target="_blank"` и `rel="noopener noreferrer"`.',
-    "- Внутреннюю ссылку на файл `about.html` с пояснением через `title`.",
-    '- Якорную ссылку `href="#bottom"` и элемент с `id="bottom"` внизу страницы.',
-    "- Изображение, обёрнутое в ссылку (например, на https://example.com), с `alt` и `width`.",
-    '- Псевдоссылку без перехода (`<a href="#">`) с `onclick`, которая вызывает `alert()`.',
-    "- Для каждого вида ссылки добавьте HTML-комментарий с пояснением.",
-    "Проверьте, как работают переходы, и убедитесь в правильности поведения псевдоссылки.",
+    '- Внешнюю ссылку на другой сайт с атрибутами `target="_blank"` и `rel="noopener noreferrer"`.',
+    "- Внутреннюю ссылку на файл `about.html` и атрибутом `title` с пояснением.",
+    '- Якорную ссылку `href="#bottom"`, которая ведёт в конец страницы.',
+    "- Изображение, обёрнутое в ссылку.",
+    "- Псевдоссылку без перехода (`<a href=\"#\">`), можно оставить с текстом 'Заглушка'.",
+    "- Добавьте **несколько абзацев с текстом-рыбой**, чтобы страница имела вертикальный скролл и поведение якоря было заметным.",
+    '- Внизу страницы разместите элемент с `id="bottom"`, к которому ведёт якорная ссылка.',
+    "- Для каждой ссылки добавьте HTML-комментарий, объясняющий её назначение.",
   ],
   difficulty: 4,
   resources: [
     "https://developer.mozilla.org/ru/docs/Web/HTML/Reference/Elements/img",
   ],
-  solution: `<!DOCTYPE html>
+  solution: `<<!DOCTYPE html>
 <html lang="ru">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
     <title>Типы ссылок</title>
   </head>
   <body>
@@ -228,9 +342,27 @@ export const html_links_creation_3 = {
       </a>
     </p>
 
- 
+    <!-- Псевдоссылка -->
+    <p>
+      <a href="#">Это псевдоссылка</a>
+    </p>
 
-    <!-- Цель для якорной ссылки -->
+    <!-- Текст-рыба для прокрутки -->
+    <div>
+      <p>Текст-рыба для прокрутки:</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+    </div>
+
+    <!-- Цель якорной ссылки -->
     <h2 id="bottom">Конец страницы</h2>
     <p>Спасибо за внимание!</p>
   </body>
@@ -238,26 +370,30 @@ export const html_links_creation_3 = {
   show: `<!DOCTYPE html>
 <html lang="ru">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
     <title>Типы ссылок</title>
   </head>
   <body>
+    <!-- Внешняя ссылка -->
     <p>
       <a href="https://example.com" target="_blank" rel="noopener noreferrer">
         Перейти на внешний сайт
       </a>
     </p>
 
+    <!-- Внутренняя ссылка -->
     <p>
       <a href="about.html" title="Переход на about.html">
         О нас
       </a>
     </p>
 
+    <!-- Якорная ссылка -->
     <p>
       <a href="#bottom">Перейти в конец страницы</a>
     </p>
 
+    <!-- Ссылка-изображение -->
     <p>
       <a href="https://example.com">
         <img 
@@ -267,6 +403,58 @@ export const html_links_creation_3 = {
         />
       </a>
     </p>
+
+    <!-- Псевдоссылка -->
+    <p>
+      <a href="#">Это псевдоссылка</a>
+    </p>
+
+    <!-- Текст-рыба для прокрутки -->
+    <div>
+      <p>Текст-рыба для прокрутки:</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p> 
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p> 
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+    </div>
+
+    <!-- Цель якорной ссылки -->
     <h2 id="bottom">Конец страницы</h2>
     <p>Спасибо за внимание!</p>
   </body>
@@ -278,8 +466,9 @@ export const html_links_creation_4 = {
   title: "Комплексная структура со ссылками",
   topic: "Ссылки и изображения",
   topicId: "html_links_images",
+  sectionId: "html_link_2",
   description:
-    "Создайте HTML-страницу с семантической структурой и разнообразными типами ссылок: внешняя, внутренняя, якорная, ссылка-изображение. Примените атрибуты `target`, `rel`, `title` и добавьте якорь на раздел.",
+    "Создайте HTML-страницу с семантической структурой и разнообразными типами ссылок: внешняя, внутренняя, якорная, ссылка-изображение. Добавьте большой текстовый блок, чтобы появился скролл, и можно было увидеть, как работает якорная ссылка.",
   steps: [
     "Создайте HTML-файл, например `links-full.html`.",
     "Добавьте базовую HTML-структуру и укажите `<title>`: 'Ссылки и структура'.",
@@ -288,6 +477,7 @@ export const html_links_creation_4 = {
     "- `nav` с тремя ссылками: якорная на 'контакты', внутренняя (`about.html`), внешняя (например, MDN).",
     "- `main` с двумя разделами `section`: 'О нас' и 'Контакты'.",
     '- Вставьте якорь через `id="contacts"`.',
+    "- Добавьте несколько абзацев с текстом-рыбой (`Lorem ipsum`), чтобы появился вертикальный скролл.",
     "- В `footer` добавьте копирайт и ссылку на главную страницу.",
     "- Для каждой ссылки укажите соответствующие атрибуты: `target`, `rel`, `title`, где применимо.",
     "- Добавьте комментарии перед каждым типом ссылок.",
@@ -297,25 +487,25 @@ export const html_links_creation_4 = {
     "https://developer.mozilla.org/ru/docs/Web/HTML/Reference/Elements/img",
   ],
   solution: `<!DOCTYPE html>
-<html lang="ru">
+<html lang=\"ru\">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset=\"UTF-8\" />
     <title>Ссылки и структура</title>
   </head>
   <body>
     <!-- Заголовок и логотип -->
     <header>
-      <a href="index.html" title="На главную страницу">
-        <img src="https://www.w3schools.com/html/logo.png" alt="Логотип" width="100" />
+      <a href=\"index.html\" title=\"На главную страницу\">
+        <img src="icons8-favicon-48.png" alt=\"Логотип\" width=\"100\" />
       </a>
       <h1>Учебный проект</h1>
     </header>
 
     <!-- Навигационное меню -->
     <nav>
-      <a href="#contacts">Контакты</a>
-      <a href="about.html" title="Подробнее о нас">О нас</a>
-      <a href="https://developer.mozilla.org/ru/" target="_blank" rel="noopener noreferrer">
+      <a href=\"#contacts\">Контакты</a>
+      <a href=\"about.html\" title=\"Подробнее о нас\">О нас</a>
+      <a href=\"https://developer.mozilla.org/ru/\" target=\"_blank\" rel=\"noopener noreferrer\">
         MDN Web Docs
       </a>
     </nav>
@@ -325,10 +515,55 @@ export const html_links_creation_4 = {
       <section>
         <h2>О нас</h2>
         <p>Мы занимаемся обучением HTML, CSS и JavaScript с нуля.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
       </section>
 
       <!-- Раздел Контакты -->
-      <section id="contacts">
+      <section id=\"contacts\">
         <h2>Контакты</h2>
         <p>Адрес: ул. Примерная, д. 1</p>
         <p>Email: info@example.com</p>
@@ -337,28 +572,28 @@ export const html_links_creation_4 = {
 
     <!-- Подвал сайта -->
     <footer>
-      <p>© 2025 Учебный проект | <a href="index.html">Главная</a></p>
+      <p>© 2025 Учебный проект | <a href=\"index.html\">Главная</a></p>
     </footer>
   </body>
 </html>`,
   show: `<!DOCTYPE html>
-<html lang="ru">
+<html lang=\"ru\">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset=\"UTF-8\">
     <title>Ссылки и структура</title>
   </head>
   <body>
     <header>
-      <a href="index.html" title="На главную страницу">
-        <img src="https://www.w3schools.com/html/logo.png" alt="Логотип" width="100" />
+      <a href=\"index.html\" title=\"На главную страницу\">
+        <img src=\"https://www.w3schools.com/html/logo.png\" alt=\"Логотип\" width=\"100\" />
       </a>
       <h1>Учебный проект</h1>
     </header>
 
     <nav>
-      <a href="#contacts">Контакты</a>
-      <a href="about.html" title="Подробнее о нас">О нас</a>
-      <a href="https://developer.mozilla.org/ru/" target="_blank" rel="noopener noreferrer">
+      <a href=\"#contacts\">Контакты</a>
+      <a href=\"about.html\" title=\"Подробнее о нас\">О нас</a>
+      <a href=\"https://developer.mozilla.org/ru/\" target=\"_blank\" rel=\"noopener noreferrer\">
         MDN Web Docs
       </a>
     </nav>
@@ -367,9 +602,54 @@ export const html_links_creation_4 = {
       <section>
         <h2>О нас</h2>
         <p>Мы занимаемся обучением HTML, CSS и JavaScript с нуля.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
       </section>
 
-      <section id="contacts">
+      <section id=\"contacts\">
         <h2>Контакты</h2>
         <p>Адрес: ул. Примерная, д. 1</p>
         <p>Email: info@example.com</p>
@@ -377,7 +657,7 @@ export const html_links_creation_4 = {
     </main>
 
     <footer>
-      <p>© 2025 Учебный проект | <a href="index.html">Главная</a></p>
+      <p>© 2025 Учебный проект | <a href=\"index.html\">Главная</a></p>
     </footer>
   </body>
 </html>`,

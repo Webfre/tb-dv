@@ -4,6 +4,7 @@ export const html_semantic_landing_1 = {
   title: "Первое знакомство с семантическими тегами",
   topic: "Семантические теги",
   topicId: "html_semantics",
+  sectionId: "html_sem_1",
   description:
     "Создайте HTML-страницу с базовой структурой, в которой применяются теги `<header>`, `<main>` и `<footer>` для выделения основных блоков страницы.",
   steps: [
@@ -61,6 +62,8 @@ export const html_semantic_landing_2 = {
   title: "Создание простого семантического макета",
   topic: "Семантические теги",
   topicId: "html_semantics",
+  sectionId: "html_sem_2",
+
   description:
     "Создайте HTML-страницу с семантической разметкой, включающей `header`, `main`, `section`, `article` и `footer`. Наполните каждый блок простым текстом.",
   steps: [
@@ -134,6 +137,7 @@ export const html_semantic_landing_3 = {
   title: "Семантическая разметка страницы",
   topic: "Семантические теги",
   topicId: "html_semantics",
+  sectionId: "html_sem_2",
   description:
     "Создайте HTML-документ с использованием основных семантических тегов: `header`, `nav`, `main`, `article`, `section`, `aside`, `footer`.",
   steps: [
@@ -220,6 +224,99 @@ export const html_semantic_landing_3 = {
     </main>
     <footer>
       <p>&copy; 2025 Мой блог</p>
+    </footer>
+  </body>
+</html>`,
+};
+
+export const html_semantic_landing_4 = {
+  id: "html_semantic_landing_4",
+  module: "HTML",
+  title: "Семантическая структура с разделителями",
+  topic: "Семантические теги",
+  topicId: "html_semantics",
+  sectionId: "html_sem_1",
+  description:
+    "Создайте HTML-страницу с расширенной семантической разметкой, применяя теги `<header>`, `<main>`, `<section>`, `<footer>` и разделители `<hr>`, `<br>` для логического и визуального оформления содержимого.",
+  steps: [
+    "Создайте файл `semantic-structure.html` с базовой структурой HTML.",
+    "Внутри тега `<body>` добавьте следующие семантические блоки:",
+    "- `header` — с заголовком `<h1>`, например 'Добро пожаловать на сайт'.",
+    "- `main` — основной раздел страницы, внутри которого:",
+    "  - создайте `section` с заголовком `<h2>` и абзацем `<p>` о цели сайта;",
+    "  - добавьте горизонтальную линию `<hr>` после раздела;",
+    "  - добавьте `section` с адресной информацией, используя переносы строк `<br>`.",
+    "- `footer` — с копирайтом и контактной информацией.",
+    "Откройте страницу в браузере и убедитесь, что структура логичная и визуально разделена.",
+  ],
+  difficulty: 3,
+  resources: [
+    "https://developer.mozilla.org/ru/docs/Web/HTML/Element/header",
+    "https://developer.mozilla.org/ru/docs/Web/HTML/Element/main",
+    "https://developer.mozilla.org/ru/docs/Web/HTML/Element/section",
+    "https://developer.mozilla.org/ru/docs/Web/HTML/Element/footer",
+  ],
+  solution: `<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <title>Семантическая структура</title>
+  </head>
+  <body>
+    <header>
+      <h1>Добро пожаловать на сайт</h1>
+    </header>
+    <main>
+      <section>
+        <h2>О сайте</h2>
+        <p>Этот сайт посвящён обучению HTML и лучшим практикам вёрстки.</p>
+      </section>
+
+      <hr />
+
+      <section>
+        <h2>Контактная информация</h2>
+        <p>
+          Адрес: ул. Образцовая, д. 7<br />
+          Город: Москва<br />
+          Телефон: +7 (495) 000-00-00
+        </p>
+      </section>
+    </main>
+    <footer>
+      <p>© 2025 Учебный портал</p>
+    </footer>
+  </body>
+</html>`,
+  show: `<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <title>Семантическая структура</title>
+  </head>
+  <body>
+    <header>
+      <h1>Добро пожаловать на сайт</h1>
+    </header>
+    <main>
+      <section>
+        <h2>О сайте</h2>
+        <p>Этот сайт посвящён обучению HTML и лучшим практикам вёрстки.</p>
+      </section>
+
+      <hr />
+
+      <section>
+        <h2>Контактная информация</h2>
+        <p>
+          Адрес: ул. Образцовая, д. 7<br />
+          Город: Москва<br />
+          Телефон: +7 (495) 000-00-00
+        </p>
+      </section>
+    </main>
+    <footer>
+      <p>© 2025 Учебный портал</p>
     </footer>
   </body>
 </html>`,

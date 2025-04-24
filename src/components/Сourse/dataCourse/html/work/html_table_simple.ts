@@ -4,6 +4,7 @@ export const html_table_simple_1 = {
   title: "Создание базовой таблицы",
   topic: "HTML таблицы",
   topicId: "html_tables",
+  sectionId: "html_table_1",
   description:
     "Создайте HTML-таблицу с заголовками и строками, используя теги `<table>`, `<tr>`, `<th>` и `<td>`.",
   steps: [
@@ -85,6 +86,7 @@ export const html_table_simple_2 = {
   title: "Структурирование таблицы с помощью thead, tbody и tfoot",
   topic: "HTML таблицы",
   topicId: "html_tables",
+  sectionId: "html_table_2",
   description:
     "Создайте таблицу, в которой используются секции `<thead>`, `<tbody>` и `<tfoot>` для логического разделения заголовков, содержимого и итогов.",
   steps: [
@@ -193,6 +195,7 @@ export const html_table_simple_3 = {
   title: "Объединение ячеек с помощью colspan и rowspan",
   topic: "HTML таблицы",
   topicId: "html_tables",
+  sectionId: "html_table_3",
   description:
     "Создайте таблицу, в которой используются атрибуты `colspan` и `rowspan` для объединения ячеек по горизонтали и вертикали.",
   steps: [

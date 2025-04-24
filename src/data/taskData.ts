@@ -11,10 +11,18 @@ import {
 } from "../components/Сourse/dataCourse/html/work/html_attributes_usage";
 import {
   html_block_inline_1,
+  html_block_inline_10,
+  html_block_inline_11,
+  html_block_inline_12,
+  html_block_inline_13,
   html_block_inline_2,
   html_block_inline_3,
   html_block_inline_4,
   html_block_inline_5,
+  html_block_inline_6,
+  html_block_inline_7,
+  html_block_inline_8,
+  html_block_inline_9,
 } from "../components/Сourse/dataCourse/html/work/html_block_inline";
 import {
   html_form_login_1,
@@ -41,10 +49,12 @@ import {
   html_semantic_landing_1,
   html_semantic_landing_2,
   html_semantic_landing_3,
+  html_semantic_landing_4,
 } from "../components/Сourse/dataCourse/html/work/html_semantic_landing";
 import {
   html_structure_task_1,
   html_structure_task_2,
+  html_structure_task_3,
 } from "../components/Сourse/dataCourse/html/work/html_structure_task";
 import {
   html_table_simple_1,
@@ -71,6 +81,8 @@ import {
   js_basics_task_7,
   js_basics_task_8,
   js_basics_task_9,
+  js_basics_task_16,
+  js_basics_task_17,
 } from "../components/Сourse/dataCourse/js/work/js_basics_task";
 import {
   js_intro_task_1,
@@ -84,11 +96,20 @@ export const practiceMock: PracticeTask[] = [
   html_intro_task_3,
   html_structure_task_1,
   html_structure_task_2,
+  html_structure_task_3,
   html_block_inline_1,
   html_block_inline_2,
   html_block_inline_3,
   html_block_inline_4,
   html_block_inline_5,
+  html_block_inline_6,
+  html_block_inline_7,
+  html_block_inline_8,
+  html_block_inline_9,
+  html_block_inline_10,
+  html_block_inline_11,
+  html_block_inline_12,
+  html_block_inline_13,
   html_attributes_usage_1,
   html_attributes_usage_2,
 
@@ -108,6 +129,7 @@ export const practiceMock: PracticeTask[] = [
   html_semantic_landing_1,
   html_semantic_landing_2,
   html_semantic_landing_3,
+  html_semantic_landing_4,
   html_table_simple_1,
   html_table_simple_2,
   html_table_simple_3,
@@ -134,4 +156,6 @@ export const practiceMock: PracticeTask[] = [
   js_basics_task_7,
   js_basics_task_8,
   js_basics_task_9,
+  js_basics_task_16,
+  js_basics_task_17,
 ];

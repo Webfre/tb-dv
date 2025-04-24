@@ -4,6 +4,7 @@ export const html_form_login_1 = {
   title: "Создание формы с атрибутами action и method",
   topic: "HTML формы и элементы управления",
   topicId: "html_forms",
+  sectionId: "html_form_1",
   description:
     "Создайте простую HTML-форму с использованием тега `<form>` и настройкой атрибутов `action` и `method`.",
   steps: [
@@ -71,6 +72,8 @@ export const html_form_login_2 = {
   title: "Различные типы input-элементов",
   topic: "HTML формы и элементы управления",
   topicId: "html_forms",
+  sectionId: "html_form_2",
+
   description:
     "Создайте HTML-форму с полями различных типов: `text`, `email`, `password`, `checkbox`, `radio`.",
   steps: [
@@ -172,6 +175,8 @@ export const html_form_login_3 = {
   title: "Использование select, textarea и button в HTML-форме",
   topic: "HTML формы и элементы управления",
   topicId: "html_forms",
+  sectionId: "html_form_3",
+
   description:
     "Создайте HTML-форму, в которой используются элементы `select`, `textarea` и `button` для ввода и отправки данных.",
   steps: [
@@ -260,6 +265,8 @@ export const html_form_login_4 = {
   title: "Использование атрибутов required, disabled и readonly",
   topic: "HTML формы и элементы управления",
   topicId: "html_forms",
+  sectionId: "html_form_4",
+
   description:
     "Создайте HTML-форму и примените к полям атрибуты `required`, `disabled` и `readonly`, чтобы продемонстрировать их поведение.",
   steps: [
@@ -306,7 +313,6 @@ export const html_form_login_4 = {
   </head>
   <body>
     <h1>Регистрация</h1>
-
     <form action="/submit" method="post">
       <label for="name">Имя (обязательное):</label><br />
       <input type="text" id="name" name="name" required /><br /><br />
@@ -329,6 +335,7 @@ export const html_form_login_5 = {
   title: "Валидация формы средствами HTML5",
   topic: "HTML формы и элементы управления",
   topicId: "html_forms",
+  sectionId: "html_form_5",
   description:
     "Создайте HTML-форму, в которой используется встроенная валидация HTML5: ограничения по длине, шаблону, числовым значениям и типам данных.",
   steps: [

@@ -4,6 +4,7 @@ export const html_meta_basic_1 = {
   title: "Добавление метатегов в секцию <head>",
   topic: "HTML мета-информация",
   topicId: "html_meta_head",
+  sectionId: "html_meta_1",
   description:
     "Добавьте в HTML-документ метатеги, описывающие кодировку, адаптивность и описание страницы. Изучите назначение каждого из них.",
   steps: [
@@ -44,6 +45,8 @@ export const html_meta_basic_2 = {
   title: "Favicon, шрифты и стили в head",
   topic: "HTML мета-информация",
   topicId: "html_meta_head",
+  sectionId: "html_meta_3",
+
   description:
     "Добавьте в раздел `<head>` подключение favicon, шрифта с Google Fonts и CSS-файла. Изучите, как они влияют на отображение страницы.",
   steps: [
