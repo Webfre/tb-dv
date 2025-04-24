@@ -11,7 +11,7 @@ import {
 import HtmlDrawer from "../Сourse/HtmlDrawer";
 import CloseIcon from "@mui/icons-material/Close";
 import LinkIcon from "@mui/icons-material/Link";
-import { PracticeTask } from "../Сourse/CourseTopic";
+import { PracticeTask } from "../../dataCourse/CourseTopic";
 import { useNavigate } from "react-router-dom";
 import { CopyBlock, dracula } from "react-code-blocks";
 import { renderDifficulty } from "./renderDifficulty";

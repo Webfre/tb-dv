@@ -12,7 +12,7 @@ import {
   DialogActions,
 } from "@mui/material";
 import { FC, useState } from "react";
-import { FlashbackQuestion } from "./data/flashbackData";
+import { FlashbackQuestion } from "../../dataFlashback/flashbackData";
 import BtnCustom from "../../ui/BtnCustom";
 import { useNavigate } from "react-router-dom";
 
