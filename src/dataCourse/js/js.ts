@@ -8,4 +8,8 @@ export const jsTopic = {
   estimatedHours: 480,
   practiceIds: ["javascript"],
   chapters: jsChapters,
+  mentors: {
+    id: 3,
+    name: "Митина Ксения",
+  },
 };

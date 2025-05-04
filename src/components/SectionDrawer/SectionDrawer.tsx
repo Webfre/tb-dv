@@ -10,14 +10,15 @@ import {
   Chip,
   Grid,
 } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
+import { styleCodeBlock } from "../Сourse/CopyBlockStyle";
 import { CopyBlock, dracula } from "react-code-blocks";
 import { CourseSection } from "../../dataCourse/CourseTopic";
+import { useNavigate } from "react-router-dom";
 import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
+import CloseIcon from "@mui/icons-material/Close";
 import LinkIcon from "@mui/icons-material/Link";
 import HtmlDrawer from "../Сourse/HtmlDrawer";
 import styles from "./SectionDrawer.module.scss";
-import { styleCodeBlock } from "../Сourse/CopyBlockStyle";
 
 interface SectionDrawerProps {
   section: CourseSection | null;
@@ -26,11 +27,7 @@ interface SectionDrawerProps {
 
 const SectionDrawer: React.FC<SectionDrawerProps> = ({ section, onClose }) => {
   const [htmlDrawerOpen, setHtmlDrawerOpen] = useState(false);
-  const [showCodeExample, setShowCodeExample] = useState(false);
-
-  const handleShowExample = () => {
-    setShowCodeExample((e) => !e);
-  };
+  const navigate = useNavigate();
 
   return (
     <>
@@ -42,9 +39,43 @@ const SectionDrawer: React.FC<SectionDrawerProps> = ({ section, onClose }) => {
       >
         <Box px={4} py={2} sx={{ height: "100%", overflowY: "auto" }}>
           <Box className={styles.titleName}>
-            <Typography variant="h6" color="primary">
-              {section?.title}
-            </Typography>
+            <Box className={styles.titleNameShow}>
+              <Typography variant="h6" color="primary">
+                {section?.title}
+              </Typography>
+
+              <Box display="flex" gap={2}>
+                {section?.show && (
+                  <Box display="flex" gap={2}>
+                    <Stack direction="row">
+                      <Chip
+                        label="Показать пример"
+                        color="primary"
+                        onClick={() => setHtmlDrawerOpen(true)}
+                        clickable
+                      />
+                    </Stack>
+                  </Box>
+                )}
+              </Box>
+
+              <Box display="flex" gap={2}>
+                {section?.postMentor && (
+                  <Box display="flex" gap={2}>
+                    <Stack direction="row">
+                      <Chip
+                        label="Отправить на проверку"
+                        color="success"
+                        onClick={() =>
+                          navigate(`/mentorprofilepage/${section?.postMentor}`)
+                        }
+                        clickable
+                      />
+                    </Stack>
+                  </Box>
+                )}
+              </Box>
+            </Box>
 
             <IconButton onClick={onClose}>
               <CloseIcon />
@@ -99,47 +130,6 @@ const SectionDrawer: React.FC<SectionDrawerProps> = ({ section, onClose }) => {
                   codeBlock
                 />
               )}
-            </Box>
-          )}
-
-          <Box display="flex" gap={2}>
-            {section?.show && (
-              <Box display="flex" gap={2} mb={2}>
-                <Stack direction="row" spacing={1}>
-                  <Chip
-                    label="Показать решение"
-                    color="primary"
-                    onClick={handleShowExample}
-                    clickable
-                  />
-                </Stack>
-              </Box>
-            )}
-
-            {section?.show && (
-              <Box display="flex" gap={2}>
-                <Stack direction="row">
-                  <Chip
-                    label="Показать пример"
-                    color="primary"
-                    onClick={() => setHtmlDrawerOpen(true)}
-                    clickable
-                  />
-                </Stack>
-              </Box>
-            )}
-          </Box>
-
-          {showCodeExample && section?.showCode && (
-            <Box mb={3}>
-              <CopyBlock
-                text={section.showCode}
-                language="html"
-                showLineNumbers
-                theme={dracula}
-                customStyle={styleCodeBlock}
-                codeBlock
-              />
             </Box>
           )}
 

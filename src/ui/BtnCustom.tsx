@@ -6,7 +6,7 @@ import type { ReactNode } from "react";
 interface BtnCustomProps {
   icon?: ReactNode;
   text: string;
-  onClick?: () => void;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   sx?: SxProps<Theme>;
   disabled?: boolean;
   variant?: "text" | "outlined" | "contained";

@@ -118,7 +118,6 @@ export const htmlChapters = [
     title: "Современные практики и доступность",
     sections: htmlSections.html_best_practices,
     testKeys: ["html_best_practices_test"],
-    // practiceIds: ["task_html_accessibility", "task_html_seo_structure"],
   },
   {
     id: "html_final",
