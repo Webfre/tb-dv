@@ -19,9 +19,15 @@ interface TaskDrawerProps {
   open: boolean;
   onClose: () => void;
   task: PracticeTask | null;
+  hasAccess: boolean | undefined;
 }
 
-const TaskDrawer: React.FC<TaskDrawerProps> = ({ open, onClose, task }) => {
+const TaskDrawer: React.FC<TaskDrawerProps> = ({
+  open,
+  onClose,
+  task,
+  hasAccess,
+}) => {
   const [htmlDrawerOpen, setHtmlDrawerOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -50,7 +56,8 @@ const TaskDrawer: React.FC<TaskDrawerProps> = ({ open, onClose, task }) => {
           <Box mt={1}>{renderDifficulty(task.difficulty)}</Box>
           <Box display="flex" gap={2} alignItems="center">
             <Typography variant="h6">{task.title}</Typography>
-            {task.topic && (
+
+            {hasAccess && task.topic && (
               <Chip
                 label={task.topic}
                 onClick={handleTopicClick}
@@ -73,7 +80,7 @@ const TaskDrawer: React.FC<TaskDrawerProps> = ({ open, onClose, task }) => {
           </Box>
         </Box>
 
-        <TaskContent task={task} />
+        <TaskContent hasAccess={hasAccess} task={task} />
 
         <HtmlDrawer
           html={htmlDrawerOpen ? task?.show || null : null}

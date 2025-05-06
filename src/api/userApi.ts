@@ -71,6 +71,10 @@ export const userApi = baseApi.injectEndpoints({
       }),
     }),
 
+    checkToken: builder.query<{ valid: boolean; exists: boolean }, void>({
+      query: () => "/users/check-token",
+    }),
+
     revokeAdmin: builder.mutation<void, number>({
       query: (id) => ({
         url: `/users/${id}/revoke-admin`,
@@ -91,4 +95,5 @@ export const {
   useGetMyProfileQuery,
   useGetUserTaskTopicsQuery,
   useUpdateUserTaskTopicMutation,
+  useCheckTokenQuery,
 } = userApi;

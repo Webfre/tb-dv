@@ -1,12 +1,21 @@
 import React, { useState } from "react";
 import { Box, Paper, Tabs, Tab, Typography } from "@mui/material";
+import { useCheckCourseAccessQuery } from "../../api/userApi";
 import Progress from "../Progress/Progress";
 import UserInfo from "./UserInfo";
 
-const tabLabels = ["Прогресс", "События", "Портфолио", "Избранное", "Инфо"];
-
 const ProfileTabsCard: React.FC = () => {
   const [activeTab, setActiveTab] = useState(0);
+  const { data } = useCheckCourseAccessQuery();
+  const hasAccess = data?.hasAccess;
+
+  const tabLabels = hasAccess
+    ? ["Прогресс", "Избранное", "Инфо"]
+    : ["Избранное", "Инфо"];
+
+  const tabContent = hasAccess
+    ? [<Progress />, <Typography>Здесь избранное</Typography>, <UserInfo />]
+    : [<Typography>Здесь избранное</Typography>, <UserInfo />];
 
   const handleChange = (_: React.SyntheticEvent, newValue: number) => {
     setActiveTab(newValue);
@@ -34,13 +43,7 @@ const ProfileTabsCard: React.FC = () => {
         ))}
       </Tabs>
 
-      <Box p={3}>
-        {activeTab === 0 && <Progress />}
-        {activeTab === 1 && <Typography>Здесь будут события</Typography>}
-        {activeTab === 2 && <Typography>Здесь будет портфолио</Typography>}
-        {activeTab === 3 && <Typography>Здесь избранное</Typography>}
-        {activeTab === 4 && <UserInfo />}
-      </Box>
+      <Box p={3}>{tabContent[activeTab]}</Box>
     </Paper>
   );
 };

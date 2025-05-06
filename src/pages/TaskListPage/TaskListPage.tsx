@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { filterTasks, getAllTopics } from "./taskUtils";
+import { useCheckCourseAccessQuery } from "../../api/userApi";
 import { practiceMock } from "../../data/taskData";
 import { PracticeTask } from "../../dataCourse/CourseTopic";
 import { Box } from "@mui/material";
@@ -13,6 +14,9 @@ import TaskListHeader from "./TaskListHeader";
 
 const TaskListPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
+  const { data } = useCheckCourseAccessQuery();
+  const hasAccess = data?.hasAccess;
+
   const [selectedTask, setSelectedTask] = useState<PracticeTask | null>(null);
   const [difficultyLevel, setDifficultyLevel] = useState<number | null>(null);
   const [topicFilter, setTopicFilter] = useState<string | null>(null);
@@ -53,9 +57,14 @@ const TaskListPage: React.FC = () => {
         onReset={resetFilters}
       />
 
-      <TaskList tasks={filteredTasks} onSelect={setSelectedTask} />
+      <TaskList
+        hasAccess={hasAccess}
+        tasks={filteredTasks}
+        onSelect={setSelectedTask}
+      />
 
       <TaskDrawer
+        hasAccess={hasAccess}
         open={!!selectedTask}
         task={selectedTask}
         onClose={() => setSelectedTask(null)}

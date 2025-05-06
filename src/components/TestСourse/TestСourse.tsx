@@ -1,6 +1,5 @@
 import React from "react";
 import { Container, Typography } from "@mui/material";
-import { sendToTelegram } from "../../api/sendBot";
 import { useTestLogic } from "./useTestLogic";
 import { useNavigate } from "react-router-dom";
 import { Fab, Zoom } from "@mui/material";
@@ -14,7 +13,6 @@ import BtnCustom from "../../ui/BtnCustom";
 
 const TestСourse: React.FC = () => {
   const {
-    name,
     selectedTest,
     answers,
     handleChange,
@@ -92,11 +90,9 @@ const TestСourse: React.FC = () => {
       <ResultDialog
         open={open}
         onClose={() => setOpen(false)}
-        onSend={() =>
-          sendToTelegram(name, testData[selectedTest].name, score, grade)
-        }
         testKey={selectedTest}
         onRetry={handleRetry}
+        scrollToTop={scrollToTop}
         score={score}
         grade={grade}
       />

@@ -3,21 +3,15 @@ import {
   Popover,
   IconButton,
   Avatar,
-  Box,
   ListItemIcon,
   ListItemText,
   MenuItem,
   Divider,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import PersonIcon from "@mui/icons-material/Person";
-import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
-import ExtensionIcon from "@mui/icons-material/Extension";
-import UpgradeIcon from "@mui/icons-material/WorkspacePremium";
-import TuneIcon from "@mui/icons-material/Tune";
-import ChecklistIcon from "@mui/icons-material/Checklist";
-import { useNavigate } from "react-router-dom";
 import styles from "./Header.module.scss";
 
 interface UserMenuProps {

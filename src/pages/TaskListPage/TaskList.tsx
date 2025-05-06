@@ -1,7 +1,6 @@
 import React from "react";
 import { Stack, Card, CardContent, Typography, Chip, Box } from "@mui/material";
 import { useGetSolvedTasksQuery } from "../../api/progressApi";
-import { useHasCourseAccess } from "../../lib/useHasCourseAccess";
 import { PracticeTask } from "../../dataCourse/CourseTopic";
 import { renderDifficultyStars } from "./renderDifficultyStars";
 import EditAttributesIcon from "@mui/icons-material/EditAttributes";
@@ -10,11 +9,11 @@ import styles from "./TaskList.module.scss";
 interface TaskListProps {
   tasks: PracticeTask[];
   onSelect: (task: PracticeTask) => void;
+  hasAccess: boolean | undefined;
 }
 
-const TaskList: React.FC<TaskListProps> = ({ tasks, onSelect }) => {
+const TaskList: React.FC<TaskListProps> = ({ tasks, onSelect, hasAccess }) => {
   const { data: solvedTasks = [] } = useGetSolvedTasksQuery();
-  const { hasAccess } = useHasCourseAccess();
 
   if (tasks.length === 0) {
     return (
@@ -65,7 +64,7 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, onSelect }) => {
                 >
                   <Box>{renderDifficultyStars(task.difficulty)}</Box>
 
-                  {task.topic && (
+                  {hasAccess && task.topic && (
                     <Chip
                       label={task.topic}
                       variant="outlined"

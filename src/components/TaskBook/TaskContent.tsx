@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Box, Typography, Chip } from "@mui/material";
-import { useHasCourseAccess } from "../../lib/useHasCourseAccess";
 import { PracticeTask } from "../../dataCourse/CourseTopic";
 import TaskSolutions from "./TaskSolutions";
 import TaskResources from "./TaskResources";
@@ -10,11 +9,11 @@ import TaskCompletionToggle from "./TaskCompletionToggle";
 
 interface TaskContentProps {
   task: PracticeTask;
+  hasAccess: boolean | undefined;
 }
 
-const TaskContent: React.FC<TaskContentProps> = ({ task }) => {
+const TaskContent: React.FC<TaskContentProps> = ({ task, hasAccess }) => {
   const [showSolution, setShowSolution] = useState(false);
-  const { hasAccess } = useHasCourseAccess();
 
   return (
     <Box className={styles.topTask} mt={2}>
