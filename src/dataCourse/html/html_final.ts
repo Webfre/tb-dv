@@ -245,5 +245,5 @@ export const html_final_2 = {
   `.trim(),
 
   show: pr1,
-  showCode: pr1,
+  // showCode: pr1,
 };

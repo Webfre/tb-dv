@@ -115,7 +115,6 @@ const SectionDrawer: React.FC<SectionDrawerProps> = ({ section, onClose }) => {
                 </Stack>
               </Box>
             )}
-
             {section?.show && (
               <Box display="flex" gap={2}>
                 <Stack direction="row">
