@@ -5,7 +5,6 @@ export const useUserDialogManager = (users: User[] | undefined) => {
   const [selectedUserId, setSelectedUserId] = useState<number | null>(null);
   const [openAccessDialog, setOpenAccessDialog] = useState(false);
   const [openAdminDialog, setOpenAdminDialog] = useState(false);
-  const [openTasksDialog, setOpenTasksDialog] = useState(false);
 
   const selectedUser = useMemo(
     () => users?.find((u) => u.id === selectedUserId),
@@ -22,15 +21,9 @@ export const useUserDialogManager = (users: User[] | undefined) => {
     setOpenAdminDialog(true);
   };
 
-  const openTasksDialogHandler = (id: number) => {
-    setSelectedUserId(id);
-    setOpenTasksDialog(true);
-  };
-
   const closeAllDialogs = () => {
     setOpenAccessDialog(false);
     setOpenAdminDialog(false);
-    setOpenTasksDialog(false);
   };
 
   return {
@@ -38,13 +31,10 @@ export const useUserDialogManager = (users: User[] | undefined) => {
     selectedUser,
     openAccessDialog,
     openAdminDialog,
-    openTasksDialog,
     setOpenAccessDialog,
     setOpenAdminDialog,
-    setOpenTasksDialog,
     openAccessConfirm,
     openAdminConfirm,
-    openTasksDialogHandler,
     closeAllDialogs,
   };
 };

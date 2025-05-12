@@ -1,19 +1,22 @@
 import { CourseTopic } from "../dataCourse/CourseTopic";
-import { ProgressData } from "../components/Progress/ProgressUtils";
 import { getTotalTests } from "./topicMetrics";
+import { prDataList } from "../dataCourse/A_PR_WORK/prDataList";
+import { Progress } from "../api/progressApi";
 
 export interface TaskTopic {
   id: string;
   resolved: boolean;
+  moduleId: string;
+  title: string;
 }
 
 export const getIsTopicCompleted = (
   topic: CourseTopic,
-  progressData: ProgressData | undefined,
-  taskTopics: TaskTopic[] | undefined
+  progressData: Progress | undefined
 ): boolean => {
-  if (!topic) return false;
+  if (!topic || !progressData) return false;
 
+  // Проверка тестов
   const totalTests = getTotalTests(topic);
 
   const testKeysInTopic = [
@@ -22,31 +25,24 @@ export const getIsTopicCompleted = (
   ];
 
   const passedTestsCount = testKeysInTopic.filter((key) => {
-    const history = progressData?.history?.[key];
+    const history = progressData.history?.[key];
     if (!history || !Array.isArray(history)) return false;
-
     return history.some((attempt) => attempt.grade >= 3);
   }).length;
 
-  // Найдём id финальной практики, если она указана в topic
-  const finalPracticeId = topic.chapters
-    .flatMap(
-      (ch) => ch.practiceIds?.map((pid) => ({ pid, final: ch.final })) || []
-    )
-    .find((p) => p.final)?.pid;
+  const allTestsPassed = totalTests === passedTestsCount;
 
-  // Проверка на то, выполнена ли именно финальная практика
-  const isPracticePassed = finalPracticeId
-    ? taskTopics?.some((t) => t.id === finalPracticeId && t.resolved === true)
-    : undefined;
+  // Проверка практических работ
+  const totalPrWorks = prDataList.filter(
+    (pr) => pr.moduleId === topic.id
+  ).length;
 
-  // Если практика предусмотрена — учитывать её
-  if (finalPracticeId) {
-    return totalTests > 0
-      ? passedTestsCount === totalTests && !!isPracticePassed
-      : !!isPracticePassed;
-  }
+  const completedPrWorks = progressData.taskTopics.filter(
+    (task) => task.moduleId === topic.id && task.resolved
+  ).length;
 
-  // Если практика не предусмотрена в topic — ориентируемся только на тесты
-  return totalTests > 0 ? passedTestsCount === totalTests : false;
+  const allPrWorksPassed = totalPrWorks === completedPrWorks;
+
+  // Финальная проверка — пройдены и все тесты, и все практические работы
+  return allTestsPassed && allPrWorksPassed;
 };

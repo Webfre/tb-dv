@@ -1,10 +1,6 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import {
-  useGetMyProfileQuery,
-  useGetUserTaskTopicsQuery,
-} from "../../api/userApi";
-import {
   useGetUserProgressQuery,
   useGetSolvedTasksQuery,
 } from "../../api/progressApi";
@@ -16,6 +12,8 @@ import {
 } from "../../lib/topicMetrics";
 import { getIsTopicCompleted } from "../../lib/getIsTopicCompleted";
 import { getPassedTestsCount } from "../../lib/getPassedTestsCount";
+import { practiceMock } from "../../data/taskData";
+import { getPrWorksProgress } from "../../lib/getPrWorksProgress";
 import { mockTopics } from "../../dataCourse/CourseTopic";
 import BtnCustom from "../../ui/BtnCustom";
 import BookIcon from "@mui/icons-material/Book";
@@ -26,20 +24,14 @@ import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import TopicChaptersAccordion from "./TopicChaptersAccordion";
 import VerifiedIcon from "@mui/icons-material/Verified";
+import WorkIcon from "@mui/icons-material/Work";
 import styles from "./Course.module.scss";
-import { practiceMock } from "../../data/taskData";
 
 const CourseTopicDetails: React.FC = () => {
   const { id } = useParams();
-  const { data: userData } = useGetMyProfileQuery();
-  const userId = userData?.id;
   const navigate = useNavigate();
 
   const { data: progressData } = useGetUserProgressQuery();
-  const { data: taskTopics } = useGetUserTaskTopicsQuery(userId!, {
-    skip: !userId,
-  });
-
   const { data: solvedTasks = [] } = useGetSolvedTasksQuery();
 
   const topic = mockTopics.find((t) => t.id === id);
@@ -50,7 +42,7 @@ const CourseTopicDetails: React.FC = () => {
 
   const totalTests = getTotalTests(topic);
   const totalPractice = getTotalPractice(topic);
-  const isTopicCompleted = getIsTopicCompleted(topic, progressData, taskTopics);
+  const isTopicCompleted = getIsTopicCompleted(topic, progressData);
   const passedTestsCount = getPassedTestsCount(topic, progressData);
   const totalSections = getTotalSections(topic);
 
@@ -61,6 +53,11 @@ const CourseTopicDetails: React.FC = () => {
   const solvedPracticeCount = moduleTasks.filter((task) =>
     solvedTasks.some((solved) => solved.id === task.id)
   ).length;
+
+  const { totalPrWorks, completedPrWorksCount } = getPrWorksProgress(
+    topic.id,
+    progressData?.taskTopics
+  );
 
   return (
     <Box p={4}>
@@ -109,6 +106,14 @@ const CourseTopicDetails: React.FC = () => {
       <Divider sx={{ my: 3 }} />
 
       <Stack direction="row" spacing={2} flexWrap="wrap">
+        {totalPrWorks > 0 && (
+          <Chip
+            icon={<WorkIcon />}
+            color="default"
+            label={`Практических работ выполнено: ${completedPrWorksCount} из ${totalPrWorks}`}
+          />
+        )}
+
         {totalTests > 0 && (
           <Chip
             icon={<QuizIcon />}

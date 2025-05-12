@@ -27,7 +27,7 @@ const Header: React.FC = () => {
   const openMenu = Boolean(menuAnchorEl);
   const isAdmin = isUserAdmin();
 
-  const { token, valid, exists } = useAuthTokenCheck();
+  const { token, valid, exists, isLoading } = useAuthTokenCheck();
   const isAuthenticated = token && valid && exists;
 
   const handleOpenUserMenu = (e: React.MouseEvent<HTMLElement>) => {
@@ -61,30 +61,30 @@ const Header: React.FC = () => {
           <Box display="flex" alignItems="center" gap={1}>
             {!isMobile && <DesktopMenu.Right isAdmin={isAdmin} />}
 
-            {isAuthenticated ? (
-              <UserMenu
-                anchorEl={menuAnchorEl}
-                open={openMenu}
-                onOpen={handleOpenUserMenu}
-                onClose={handleCloseUserMenu}
-              />
-            ) : (
-              <>
-                <BtnCustom
-                  text="Войти"
-                  variant="contained"
-                  onClick={() => navigate("/login")}
-                  white
+            {!isLoading &&
+              (isAuthenticated ? (
+                <UserMenu
+                  anchorEl={menuAnchorEl}
+                  open={openMenu}
+                  onOpen={handleOpenUserMenu}
+                  onClose={handleCloseUserMenu}
                 />
-
-                <BtnCustom
-                  text="Регистрация"
-                  variant="text"
-                  onClick={() => navigate("/register")}
-                  white
-                />
-              </>
-            )}
+              ) : (
+                <>
+                  <BtnCustom
+                    text="Войти"
+                    variant="contained"
+                    onClick={() => navigate("/login")}
+                    white
+                  />
+                  <BtnCustom
+                    text="Регистрация"
+                    variant="text"
+                    onClick={() => navigate("/register")}
+                    white
+                  />
+                </>
+              ))}
 
             {isMobile && (
               <IconButton color="inherit" onClick={() => setDrawerOpen(true)}>

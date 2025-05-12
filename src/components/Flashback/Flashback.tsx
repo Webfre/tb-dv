@@ -13,7 +13,6 @@ import { FlashbackDrawer } from "./FlashbackDrawer";
 import { Stepper, Step, StepLabel } from "@mui/material";
 import { FlashbackTest } from "./FlashbackTest";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import jwtDecode from "jwt-decode";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import styles from "./Flashback.module.scss";
 import BtnCustom from "../../ui/BtnCustom";
@@ -29,13 +28,7 @@ export const Flashback = () => {
     FlashbackQuestion[]
   >([]);
 
-  const token = localStorage.getItem("token");
-  const decoded: any = token ? jwtDecode(token) : null;
-  const userId = decoded?.sub;
-
-  const { data: progressData } = useGetUserProgressQuery(userId!, {
-    skip: !userId,
-  });
+  const { data: progressData } = useGetUserProgressQuery();
 
   const {
     handleSubmit,

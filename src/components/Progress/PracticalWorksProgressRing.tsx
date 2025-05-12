@@ -1,13 +1,23 @@
 import React from "react";
 import { Box, CircularProgress, Typography } from "@mui/material";
-import { practiceMock } from "../../data/taskData";
-import { useGetSolvedTasksQuery } from "../../api/progressApi";
+import { prDataList } from "../../dataCourse/A_PR_WORK/prDataList";
+import { useGetUserProgressQuery } from "../../api/progressApi";
+import { getPrWorksProgress } from "../../lib/getPrWorksProgress";
 
-const TaskProgressRing: React.FC = () => {
-  const totalTasks = practiceMock.length;
-  const { data: solvedTasks = [] } = useGetSolvedTasksQuery();
-  const solvedCount = solvedTasks.length;
-  const taskProgress = totalTasks === 0 ? 0 : (solvedCount / totalTasks) * 100;
+const PracticalWorksProgressRing: React.FC = () => {
+  const { data: progressData } = useGetUserProgressQuery();
+  const totalPracticalWorks = prDataList.length;
+
+  const completedPracticalWorks = prDataList.reduce((acc, pr) => {
+    const { completedPrWorksCount } = getPrWorksProgress(
+      pr.moduleId,
+      progressData?.taskTopics
+    );
+    return acc + completedPrWorksCount;
+  }, 0);
+
+  const practicalProgress =
+    (completedPracticalWorks / totalPracticalWorks) * 100;
 
   return (
     <Box textAlign="center">
@@ -25,10 +35,9 @@ const TaskProgressRing: React.FC = () => {
       >
         <CircularProgress
           variant="determinate"
-          value={taskProgress}
+          value={practicalProgress}
           size={100}
           thickness={5}
-          color="secondary"
         />
         <Box
           top={0}
@@ -41,15 +50,15 @@ const TaskProgressRing: React.FC = () => {
           justifyContent="center"
         >
           <Typography variant="h6" component="div" color="textSecondary">
-            {`${Math.round(taskProgress)}%`}
+            {`${Math.round(practicalProgress)}%`}
           </Typography>
         </Box>
       </Box>
       <Typography variant="body1" mt={2}>
-        Решено задач: {solvedCount} из {totalTasks}
+        Выполнено работ: {completedPracticalWorks} из {totalPracticalWorks}
       </Typography>
     </Box>
   );
 };
 
-export default TaskProgressRing;
+export default PracticalWorksProgressRing;

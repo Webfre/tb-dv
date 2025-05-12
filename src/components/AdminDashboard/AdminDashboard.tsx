@@ -16,38 +16,30 @@ import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import FeatureRequestList from "../GlobalHelpDrawer/FeatureRequestList";
 import { useUserDialogManager } from "./useUserDialogManager";
 import { useUserManagement } from "./useUserManagement";
-import {
-  useGetAllUsersQuery,
-  useGetUserTaskTopicsQuery,
-} from "../../api/userApi";
+import { useNavigate } from "react-router-dom";
+import { useGetAllUsersQuery } from "../../api/userApi";
 import AccessConfirmDialog from "./AccessConfirmDialog";
 import AdminConfirmDialog from "./AdminConfirmDialog";
-import UserTasksDialog from "./UserTasksDialog";
 
 const AdminDashboard: React.FC = () => {
   const { data: users, isLoading, error, refetch } = useGetAllUsersQuery();
+  const navigate = useNavigate();
 
   const {
     selectedUserId,
     selectedUser,
     openAccessDialog,
     openAdminDialog,
-    openTasksDialog,
     setOpenAccessDialog,
     setOpenAdminDialog,
-    setOpenTasksDialog,
     openAccessConfirm,
     openAdminConfirm,
-    openTasksDialogHandler,
   } = useUserDialogManager(users);
 
-  const { data: taskTopics, refetch: refetchTopics } =
-    useGetUserTaskTopicsQuery(selectedUserId || 0, {
-      skip: !selectedUserId || !openTasksDialog,
-    });
-
-  const { handleAssign, handleToggleAdmin, handleToggleTaskStatus } =
-    useUserManagement(selectedUserId, refetch, refetchTopics);
+  const { handleAssign, handleToggleAdmin } = useUserManagement(
+    selectedUserId,
+    refetch
+  );
 
   if (isLoading) {
     return (
@@ -86,7 +78,7 @@ const AdminDashboard: React.FC = () => {
                   justifyContent: "space-between",
                   cursor: "pointer",
                 }}
-                onClick={() => openTasksDialogHandler(user.id)}
+                onClick={() => navigate(`/admin/user/${user.id}`)}
               >
                 <ListItemText
                   primary={`${user.lastName} ${user.firstName} ${user.middleName}`}
@@ -158,18 +150,6 @@ const AdminDashboard: React.FC = () => {
         onClose={() => setOpenAdminDialog(false)}
         onConfirm={() => handleToggleAdmin(selectedUser?.isAdmin)}
         isAdmin={selectedUser?.isAdmin}
-      />
-
-      <UserTasksDialog
-        open={openTasksDialog}
-        onClose={() => setOpenTasksDialog(false)}
-        tasks={taskTopics}
-        onToggleTask={handleToggleTaskStatus}
-        userName={
-          selectedUser
-            ? `${selectedUser.firstName} ${selectedUser.lastName}`
-            : ""
-        }
       />
     </Container>
   );

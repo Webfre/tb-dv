@@ -1,16 +1,21 @@
 import { Navigate } from "react-router-dom";
 import { isUserAdmin } from "../api/auth";
 import { useAuthTokenCheck } from "../lib/useAuthTokenCheck";
+import Spinner from "./Spinner";
 
 interface ProtectedRouteProps {
   children: React.ReactElement;
 }
 
 const AdminProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
-  const { token, isError, valid, exists } = useAuthTokenCheck();
+  const { token, isError, isLoading, valid, exists } = useAuthTokenCheck();
 
   if (!token) {
     return <Navigate to="/register" replace />;
+  }
+
+  if (isLoading) {
+    return <Spinner />;
   }
 
   if (isError || !valid) {

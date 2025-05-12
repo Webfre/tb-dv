@@ -5,19 +5,16 @@ import {
   useMakeAdminMutation,
   useRevokeAccessKeyMutation,
   useRevokeAdminMutation,
-  useUpdateUserTaskTopicMutation,
 } from "../../api/userApi";
 
 export const useUserManagement = (
   selectedUserId: number | null,
-  refetchUsers: () => void,
-  refetchTopics: () => void
+  refetchUsers: () => void
 ) => {
   const [assignAccessKey] = useAssignAccessKeyMutation();
   const [revokeAccessKey] = useRevokeAccessKeyMutation();
   const [makeAdmin] = useMakeAdminMutation();
   const [revokeAdmin] = useRevokeAdminMutation();
-  const [updateTaskTopic] = useUpdateUserTaskTopicMutation();
 
   const handleAssign = useCallback(
     async (isAccessKey?: boolean) => {
@@ -59,29 +56,8 @@ export const useUserManagement = (
     [selectedUserId, makeAdmin, revokeAdmin, refetchUsers]
   );
 
-  const handleToggleTaskStatus = useCallback(
-    async (taskId: string, resolved: boolean) => {
-      if (!selectedUserId) return;
-
-      try {
-        await updateTaskTopic({
-          userId: selectedUserId,
-          taskId,
-          resolved: !resolved,
-        }).unwrap();
-
-        toast.success("Статус задачи обновлен");
-        refetchTopics();
-      } catch {
-        toast.error("Ошибка при обновлении статуса задачи");
-      }
-    },
-    [selectedUserId, updateTaskTopic, refetchTopics]
-  );
-
   return {
     handleAssign,
     handleToggleAdmin,
-    handleToggleTaskStatus,
   };
 };

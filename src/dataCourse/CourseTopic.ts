@@ -1,3 +1,4 @@
+import { SvgIconComponent } from "@mui/icons-material";
 import { cssTopic } from "./css/css";
 import { htmlTopic } from "./html/html";
 import { jsTopic } from "./js/js";
@@ -15,6 +16,7 @@ export interface CourseSection {
   show?: string;
   showCode?: string;
   postMentor?: number;
+  moduleId?: string;
   codeExampleCSS?: string;
   type?: string;
 }

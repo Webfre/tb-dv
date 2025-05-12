@@ -18,6 +18,7 @@ import {
 import ProgressRing from "./ProgressRing";
 import TestItemCard from "./ProgressItemCard";
 import styles from "./Progress.module.scss";
+import PracticalWorksList from "./PracticalWorksList";
 
 const Progress: React.FC = () => {
   const { data: progressData } = useGetUserProgressQuery();
@@ -91,6 +92,8 @@ const Progress: React.FC = () => {
           </Accordion>
         );
       })}
+
+      <PracticalWorksList />
     </Box>
   );
 };

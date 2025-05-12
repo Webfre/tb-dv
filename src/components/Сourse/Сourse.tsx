@@ -13,7 +13,9 @@ import {
 import { useNavigate } from "react-router-dom";
 import { mockTopics } from "../../dataCourse/CourseTopic";
 import { useGetUserProgressQuery } from "../../api/progressApi";
+import { calculateTopicProgress } from "../../lib/calculateTopicProgress";
 import QuizIcon from "@mui/icons-material/Quiz";
+import WorkIcon from "@mui/icons-material/Work";
 import CodeIcon from "@mui/icons-material/Code";
 import BookIcon from "@mui/icons-material/MenuBook";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
@@ -74,32 +76,13 @@ const CoursePage: React.FC = () => {
 
       <Grid container spacing={3}>
         {mockTopics.map((topic, index) => {
-          const totalSections = topic.chapters.reduce(
-            (acc, ch) => acc + ch.sections.length,
-            0
-          );
-
-          const allTestKeys = [
-            ...(topic.testKeys || []),
-            ...topic.chapters.flatMap((ch) => ch.testKeys || []),
-          ];
-
-          const totalTests = allTestKeys.length;
-
-          const passedTests = allTestKeys.filter((key) =>
-            isTestPassed(key)
-          ).length;
-
-          const progress = totalTests
-            ? Math.round((passedTests / totalTests) * 100)
-            : 0;
-
-          const totalPractice =
-            (topic.practiceIds?.length || 0) +
-            topic.chapters.reduce(
-              (acc, ch) => acc + (ch.practiceIds?.length || 0),
-              0
-            );
+          const {
+            totalSections,
+            totalTests,
+            totalPrWorks,
+            progress,
+            totalPractice,
+          } = calculateTopicProgress(topic, progressData, isTestPassed);
 
           return (
             <Grid
@@ -121,7 +104,13 @@ const CoursePage: React.FC = () => {
                 }}
                 onClick={() => navigate(`/course/${topic.id}`)}
               >
-                <CardContent sx={{ flexGrow: 1 }}>
+                <CardContent
+                  sx={{
+                    flexGrow: 1,
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
                   <Typography
                     className={styles.titleNameTopic}
                     variant="h4"
@@ -169,10 +158,22 @@ const CoursePage: React.FC = () => {
                         sx={{ width: "100%" }}
                       />
                     </Grid>
+
+                    {totalPrWorks > 0 && (
+                      <Grid item xs={12}>
+                        <Chip
+                          icon={<WorkIcon />}
+                          label={`Практических работ: ${totalPrWorks}`}
+                          color="warning"
+                          size="small"
+                          sx={{ width: "100%", marginTop: "10px" }}
+                        />
+                      </Grid>
+                    )}
                   </Grid>
 
                   {index !== 0 && (
-                    <Box mt={4}>
+                    <Box sx={{ mt: "auto", pt: 2 }}>
                       <Typography
                         variant="body2"
                         color="textSecondary"

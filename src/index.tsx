@@ -29,13 +29,13 @@ import CourseInfoPage from "./pages/CourseInfoPage/CourseInfoPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage/ResetPasswordPage";
 import Profile from "./components/Profile/Profile";
 import Progress from "./components/Progress/Progress";
-
+import CourseProtectedRoute from "./ui/CourseProtectedRoute";
+import UserDetails from "./components/AdminDashboard/UserDetails";
 import TestСourse from "./components/TestСourse/TestСourse";
 import MentorProfilePage from "./components/MentorProfilePage/MentorProfilePage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import "react-toastify/dist/ReactToastify.css";
 import "./index.scss";
-import CourseProtectedRoute from "./ui/CourseProtectedRoute";
 
 const AppRoutes = () => {
   const location = useLocation();
@@ -77,6 +77,15 @@ const AppRoutes = () => {
             element={
               <AdminProtectedRoute>
                 <AdminDashboard />
+              </AdminProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/admin/user/:id"
+            element={
+              <AdminProtectedRoute>
+                <UserDetails />
               </AdminProtectedRoute>
             }
           />

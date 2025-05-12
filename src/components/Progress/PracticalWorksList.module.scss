@@ -1,0 +1,43 @@
+.practicalList {
+  margin-top: 32px;
+}
+
+.listItem {
+  border: 1px solid #e0e0e0;
+  margin-bottom: 8px;
+  border-radius: 16px;
+  display: flex !important;
+  justify-content: space-between !important;
+  padding: 12px 18px;
+}
+
+.moduleInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 18px !important;
+  font-weight: 500 !important;
+}
+
+.subtitle {
+  color: #757575 !important;
+  font-size: 0.9rem !important;
+}
+
+.mentorInfo {
+  border: 1px solid rgb(159, 159, 159);
+  border-radius: 24px;
+  padding: 2px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px !important;
+}
+
+.infoBlock {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}

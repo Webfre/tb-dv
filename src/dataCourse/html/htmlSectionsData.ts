@@ -1,3 +1,4 @@
+import { html_pr_1 } from "../A_PR_WORK/html_pr_1";
 import {
   html_attr_1,
   html_attr_2,
@@ -13,7 +14,7 @@ import {
   html_el_5,
   html_el_6,
 } from "./html_elements";
-import { html_final_1, html_final_2 } from "./html_final";
+import { html_final_1 } from "./html_final";
 import {
   html_form_1,
   html_form_2,
@@ -56,5 +57,5 @@ export const htmlSections = {
   html_meta_head: [html_meta_1, html_meta_2, html_meta_3],
   html_best_practices: [html_best_1, html_best_2],
 
-  html_final: [html_final_1, html_final_2],
+  html_final: [html_final_1, html_pr_1],
 };
