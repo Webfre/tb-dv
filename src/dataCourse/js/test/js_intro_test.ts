@@ -1,7 +1,7 @@
 export const js_intro_test = {
   id: 100,
   name: "Введение в JavaScript",
-  category: "JAVASCRIPT",
+  category: "JavaScript",
   ques: [
     {
       id: 1,

@@ -1,7 +1,6 @@
 import { Dispatch, SetStateAction, useCallback } from "react";
 import { Task } from "./tasks/types";
 import { runTests } from "./runTests";
-import { saveSolvedTask } from "./solvedTasksStorage";
 
 interface UseCodeCheckParams {
   task: Task | null;
@@ -34,12 +33,12 @@ export const useCodeCheck = ({
     const passedCount = testResults.filter((r) => r === true).length;
     const percent = Math.round((passedCount / testResults.length) * 100);
 
-    if (percent === 100) {
-      saveSolvedTask({
-        id: task.id,
-        title: task.title,
-        level: task.level,
-      });
-    }
+    // if (percent === 100) {
+    //   saveSolvedTask({
+    //     id: task.id,
+    //     title: task.title,
+    //     level: task.level,
+    //   });
+    // }
   }, [task, code, setResults, setCompileError]);
 };

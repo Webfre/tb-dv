@@ -11,7 +11,6 @@ import {
 } from "@mui/material";
 import { Level } from "./data";
 import { Task } from "./tasks/types";
-import { getSolvedTasks } from "./solvedTasksStorage";
 
 interface TaskSelectorDialogProps {
   open: boolean;
@@ -32,11 +31,11 @@ const TaskSelectorDialog: React.FC<TaskSelectorDialogProps> = ({
 
   useEffect(() => {
     if (open && level) {
-      const allSolved = getSolvedTasks();
-      const solvedForLevel = allSolved
-        .filter((t) => t.level === level)
-        .reduce((acc, t) => ({ ...acc, [t.id]: true }), {});
-      setSolved(solvedForLevel);
+      // const allSolved = getSolvedTasks();
+      // const solvedForLevel = allSolved
+      //   .filter((t) => t.level === level)
+      //   .reduce((acc, t) => ({ ...acc, [t.id]: true }), {});
+      // setSolved(solvedForLevel);
     }
   }, [open, level]);
 

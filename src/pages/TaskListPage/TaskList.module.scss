@@ -15,3 +15,15 @@
   right: 20px;
   top: 0px;
 }
+
+.filterBlock {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.filterSolved {
+  margin-bottom: 5px;
+}

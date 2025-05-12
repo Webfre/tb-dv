@@ -1,16 +1,11 @@
 import React from "react";
 import { Box, CircularProgress, Typography } from "@mui/material";
-import { getSolvedTasks } from "../CodeEditorBlock/solvedTasksStorage";
-import { mockTasks } from "../CodeEditorBlock/data";
+import { practiceMock } from "../../data/taskData";
+import { useGetSolvedTasksQuery } from "../../api/progressApi";
 
 const TaskProgressRing: React.FC = () => {
-  const solvedTasks = getSolvedTasks();
-
-  const totalTasks = Object.values(mockTasks).reduce(
-    (acc, levelTasks) => acc + levelTasks.length,
-    0
-  );
-
+  const totalTasks = practiceMock.length;
+  const { data: solvedTasks = [] } = useGetSolvedTasksQuery();
   const solvedCount = solvedTasks.length;
   const taskProgress = totalTasks === 0 ? 0 : (solvedCount / totalTasks) * 100;
 
@@ -51,7 +46,7 @@ const TaskProgressRing: React.FC = () => {
         </Box>
       </Box>
       <Typography variant="body1" mt={2}>
-        Решено задач: {solvedCount} из {totalTasks}
+        Решено задач из задачника: {solvedCount} из {totalTasks}
       </Typography>
     </Box>
   );

@@ -18,6 +18,6 @@ export const getPassedTestsCount = (
     const testAttempts = history[key];
     if (!testAttempts || !Array.isArray(testAttempts)) return false;
 
-    return testAttempts.some((attempt) => attempt.grade >= 4);
+    return testAttempts.some((attempt) => attempt.grade >= 3);
   }).length;
 };

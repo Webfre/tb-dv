@@ -17,11 +17,13 @@ import {
   Box,
   Chip,
   Stack,
+  Tooltip,
 } from "@mui/material";
+import {
+  getTestAttemptsCount,
+  getTestTitle,
+} from "../../lib/getTestAttemptsCount";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import EditAttributesIcon from "@mui/icons-material/EditAttributes";
-import StarIcon from "@mui/icons-material/Star";
-import BookIcon from "@mui/icons-material/Book";
 import QuizIcon from "@mui/icons-material/Quiz";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import {
@@ -34,7 +36,7 @@ import PracticeDrawer from "../PracticeDrawer/PracticeDrawer";
 import jwtDecode from "jwt-decode";
 import styles from "./TopicChaptersAccordion.module.scss";
 import PracticeChipProgress from "./PracticeChipProgress";
-import { getSolvedCountBySection } from "./getSolvedCountBySection";
+import ChapterIcon from "./ChapterIcon";
 
 interface TopicChaptersAccordionProps {
   chapters: CourseChapter[];
@@ -57,11 +59,6 @@ const TopicChaptersAccordion: React.FC<TopicChaptersAccordionProps> = ({
   const [highlightedId, setHighlightedId] = useState<string | null>(null);
 
   const { data: solvedTasks = [] } = useGetSolvedTasksQuery();
-
-  const solvedCountBySectionId = getSolvedCountBySection(
-    solvedTasks,
-    practiceMock
-  );
 
   const token = localStorage.getItem("token");
   const decoded: any = token ? jwtDecode(token) : null;
@@ -118,6 +115,7 @@ const TopicChaptersAccordion: React.FC<TopicChaptersAccordionProps> = ({
       setHighlightedId(targetId);
 
       const element = chapterRefs.current[targetId];
+
       if (element) {
         element.scrollIntoView({ behavior: "smooth", block: "start" });
       }
@@ -171,48 +169,41 @@ const TopicChaptersAccordion: React.FC<TopicChaptersAccordionProps> = ({
                     variant="subtitle1"
                     sx={{ display: "flex", alignItems: "center" }}
                   >
-                    {isFinal ? (
-                      <StarIcon
-                        fontSize="small"
-                        sx={{ mr: 1, color: "rgb(97, 97, 255)" }}
-                      />
-                    ) : testPassed === true ? (
-                      <EditAttributesIcon
-                        sx={{ mr: 1, fontSize: "28px" }}
-                        color="success"
-                        titleAccess="Тест пройден"
-                      />
-                    ) : testPassed === false ? (
-                      <EditAttributesIcon
-                        sx={{
-                          mr: 1,
-                          fontSize: "28px",
-                          color: "rgb(197, 86, 86) !important",
-                        }}
-                        titleAccess="Тест не пройден"
-                      />
-                    ) : (
-                      <BookIcon fontSize="small" sx={{ mr: 1 }} />
-                    )}
-
+                    <ChapterIcon isFinal={isFinal} testPassed={testPassed} />
                     {chapter.title}
                   </Typography>
 
                   <Stack direction="row" spacing={1} mr={1}>
                     {testCount > 0 && (
-                      <Chip
-                        label={`Тестов: ${testCount}`}
-                        icon={<QuizIcon fontSize="small" />}
-                        size="small"
-                        color="primary"
-                        onClick={(e) =>
-                          handleTestClick(
-                            e,
-                            chapter.testKeys?.[0] || topicTestKeys?.[0],
-                            chapter.title
-                          )
-                        }
-                      />
+                      <>
+                        <Chip
+                          label={`Тест: ${getTestTitle(
+                            chapter.testKeys?.[0] || topicTestKeys?.[0]
+                          )}`}
+                          icon={<QuizIcon fontSize="small" />}
+                          size="small"
+                          color="primary"
+                          onClick={(e) =>
+                            handleTestClick(
+                              e,
+                              chapter.testKeys?.[0] || topicTestKeys?.[0],
+                              chapter.title
+                            )
+                          }
+                        />
+
+                        <Tooltip title="Количество попыток пройденного теста">
+                          <Chip
+                            label={`${getTestAttemptsCount(
+                              progressData,
+                              chapter.testKeys?.[0] || topicTestKeys?.[0]
+                            )} / 2`}
+                            size="small"
+                            color="secondary"
+                            variant="outlined"
+                          />
+                        </Tooltip>
+                      </>
                     )}
                   </Stack>
                 </Box>
@@ -234,14 +225,15 @@ const TopicChaptersAccordion: React.FC<TopicChaptersAccordionProps> = ({
                       <Stack direction="row" spacing={1} alignItems="center">
                         <PracticeChipProgress
                           sectionId={section.id}
-                          total={practiceCountBySectionId[section.id] || 0}
-                          solved={solvedCountBySectionId[section.id] || 0}
                           onOpen={(tasks) => {
                             setChapterTasks(tasks);
                             setPracticeOpen(true);
                           }}
                           allTasks={practiceMock}
+                          practiceIds={chapter.practiceIds}
+                          solvedTasksIds={solvedTasks.map((task) => task.id)}
                         />
+
                         <KeyboardArrowRightIcon color="action" />
                       </Stack>
                     </ListItem>

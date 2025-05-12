@@ -1,14 +1,29 @@
 import { Navigate } from "react-router-dom";
 import { isUserAdmin } from "../api/auth";
+import { useAuthTokenCheck } from "../lib/useAuthTokenCheck";
 
 interface ProtectedRouteProps {
   children: React.ReactElement;
 }
 
 const AdminProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
-  const token = localStorage.getItem("token");
+  const { token, isError, valid, exists } = useAuthTokenCheck();
 
   if (!token) {
+    return <Navigate to="/register" replace />;
+  }
+
+  if (isError || !valid) {
+    // токен протух или подпись неверна
+    localStorage.removeItem("token");
+    localStorage.removeItem("isAccessKey");
+    return <Navigate to="/login" replace />;
+  }
+
+  if (valid && !exists) {
+    // токен валиден, но пользователь не найден
+    localStorage.removeItem("token");
+    localStorage.removeItem("isAccessKey");
     return <Navigate to="/register" replace />;
   }
 

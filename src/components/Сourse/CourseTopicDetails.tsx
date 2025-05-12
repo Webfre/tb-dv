@@ -4,14 +4,18 @@ import {
   useGetMyProfileQuery,
   useGetUserTaskTopicsQuery,
 } from "../../api/userApi";
+import {
+  useGetUserProgressQuery,
+  useGetSolvedTasksQuery,
+} from "../../api/progressApi";
 import { Box, Typography, Divider, Chip, Stack, Tooltip } from "@mui/material";
-import { useGetUserProgressQuery } from "../../api/progressApi";
 import {
   getTotalPractice,
   getTotalSections,
   getTotalTests,
 } from "../../lib/topicMetrics";
 import { getIsTopicCompleted } from "../../lib/getIsTopicCompleted";
+import { getPassedTestsCount } from "../../lib/getPassedTestsCount";
 import { mockTopics } from "../../dataCourse/CourseTopic";
 import BtnCustom from "../../ui/BtnCustom";
 import BookIcon from "@mui/icons-material/Book";
@@ -23,6 +27,7 @@ import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import TopicChaptersAccordion from "./TopicChaptersAccordion";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import styles from "./Course.module.scss";
+import { practiceMock } from "../../data/taskData";
 
 const CourseTopicDetails: React.FC = () => {
   const { id } = useParams();
@@ -35,6 +40,8 @@ const CourseTopicDetails: React.FC = () => {
     skip: !userId,
   });
 
+  const { data: solvedTasks = [] } = useGetSolvedTasksQuery();
+
   const topic = mockTopics.find((t) => t.id === id);
 
   if (!topic) {
@@ -44,7 +51,16 @@ const CourseTopicDetails: React.FC = () => {
   const totalTests = getTotalTests(topic);
   const totalPractice = getTotalPractice(topic);
   const isTopicCompleted = getIsTopicCompleted(topic, progressData, taskTopics);
+  const passedTestsCount = getPassedTestsCount(topic, progressData);
   const totalSections = getTotalSections(topic);
+
+  const moduleTasks = practiceMock.filter(
+    (task) => task.module === topic.title
+  );
+
+  const solvedPracticeCount = moduleTasks.filter((task) =>
+    solvedTasks.some((solved) => solved.id === task.id)
+  ).length;
 
   return (
     <Box p={4}>
@@ -94,12 +110,23 @@ const CourseTopicDetails: React.FC = () => {
 
       <Stack direction="row" spacing={2} flexWrap="wrap">
         {totalTests > 0 && (
-          <Chip icon={<QuizIcon />} label={`Тестов: ${totalTests}`} />
+          <Chip
+            icon={<QuizIcon />}
+            color="default"
+            label={`Тестов пройдено: ${passedTestsCount} из ${totalTests}`}
+          />
         )}
+
         {totalPractice > 0 && (
-          <Chip icon={<CodeIcon />} label={`Практик: ${totalPractice}`} />
+          <Chip
+            icon={<CodeIcon />}
+            color="default"
+            label={`Практик пройдено: ${solvedPracticeCount} из ${moduleTasks.length}`}
+          />
         )}
+
         <Chip icon={<BookIcon />} label={`Разделов: ${totalSections}`} />
+
         <Chip
           icon={<AccessTimeIcon />}
           label={`~ ${topic.estimatedHours} ч. на изучение`}

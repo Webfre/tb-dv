@@ -9,11 +9,14 @@ import {
   Select,
   MenuItem,
   SelectChangeEvent,
+  FormControlLabel,
+  Switch,
 } from "@mui/material";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import BtnCustom from "../../ui/BtnCustom";
+import styles from "./TaskList.module.scss";
 
 interface TaskFiltersProps {
   difficulty: number | null;
@@ -22,6 +25,9 @@ interface TaskFiltersProps {
   onTopicChange: (value: string | null) => void;
   allTopics: string[];
   onReset: () => void;
+  showUnsolved: boolean;
+  onShowUnsolvedChange: (value: boolean) => void;
+  hasAccess: boolean | undefined;
 }
 
 const TaskFilters: React.FC<TaskFiltersProps> = ({
@@ -31,6 +37,9 @@ const TaskFilters: React.FC<TaskFiltersProps> = ({
   onTopicChange,
   allTopics,
   onReset,
+  showUnsolved,
+  onShowUnsolvedChange,
+  hasAccess,
 }) => {
   const handleTopicChange = (event: SelectChangeEvent<string>) => {
     onTopicChange(event.target.value || null);
@@ -51,16 +60,30 @@ const TaskFilters: React.FC<TaskFiltersProps> = ({
         gutterBottom
         sx={{ display: "flex", alignItems: "center" }}
       >
-        <FilterAltIcon sx={{ mr: 1 }} /> Фильтры задач
+        <FilterAltIcon sx={{ mr: 1 }} /> Фильтры задач:
       </Typography>
 
-      <Box
-        display="flex"
-        justifyContent="space-between"
-        alignItems="center"
-        flexWrap="wrap"
-        gap={2}
-      >
+      {hasAccess && (
+        <Box className={styles.filterSolved}>
+          <FormControlLabel
+            label="Показать нерешённые"
+            sx={{
+              "& .MuiFormControlLabel-label": {
+                fontSize: "0.895rem",
+                color: "#000000",
+              },
+            }}
+            control={
+              <Switch
+                checked={showUnsolved}
+                onChange={(e) => onShowUnsolvedChange(e.target.checked)}
+              />
+            }
+          />
+        </Box>
+      )}
+
+      <Box className={styles.filterBlock}>
         <Box>
           <Typography variant="subtitle2" gutterBottom>
             Уровень сложности:

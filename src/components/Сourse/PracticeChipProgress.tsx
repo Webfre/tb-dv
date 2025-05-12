@@ -5,32 +5,45 @@ import CodeIcon from "@mui/icons-material/Code";
 
 interface PracticeChipProgressProps {
   sectionId: string;
-  total: number;
-  solved: number;
   onOpen: (tasks: PracticeTask[]) => void;
   allTasks: PracticeTask[];
+  practiceIds?: string[];
+  solvedTasksIds?: string[];
 }
 
 const PracticeChipProgress: React.FC<PracticeChipProgressProps> = ({
   sectionId,
-  total,
-  solved,
   onOpen,
   allTasks,
+  practiceIds = [],
+  solvedTasksIds = [],
 }) => {
-  if (total === 0) return null;
+  const matchedBySection = allTasks.filter(
+    (task) => task.sectionId === sectionId
+  );
+
+  const matchedTasks = matchedBySection.filter((task) =>
+    practiceIds.includes(task.id)
+  );
+
+  const solvedCount = matchedTasks.filter((task) =>
+    solvedTasksIds.includes(task.id)
+  ).length;
+
+  const totalCount = matchedTasks.length;
+
+  if (totalCount === 0) return null;
 
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    const matched = allTasks.filter((task) => task.sectionId === sectionId);
-    onOpen(matched);
+    onOpen(matchedTasks);
   };
 
-  const progressPercent = Math.round((solved / total) * 100);
+  const progressPercent = Math.round((solvedCount / totalCount) * 100);
 
   return (
     <Chip
-      label={`Практик: ${solved} / ${total}`}
+      label={`Практик: ${solvedCount} / ${totalCount}`}
       icon={<CodeIcon fontSize="small" />}
       size="small"
       onClick={handleClick}
