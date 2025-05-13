@@ -1,6 +1,13 @@
 import { useEffect, useState } from "react";
 import SettingsIcon from "@mui/icons-material/Settings";
-import { Box, IconButton, Typography, Collapse } from "@mui/material";
+import {
+  Box,
+  IconButton,
+  Typography,
+  Collapse,
+  Chip,
+  Tooltip,
+} from "@mui/material";
 import { FLASHBACK_SETTINGS_KEY, schema, steps } from "./schema";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -24,6 +31,7 @@ export const Flashback = () => {
   const [open, setOpen] = useState(false);
   const [showTips, setShowTips] = useState(false);
   const [startTest, setStartTest] = useState(false);
+  const [restartKey, setRestartKey] = useState(0);
   const [filteredQuestions, setFilteredQuestions] = useState<
     FlashbackQuestion[]
   >([]);
@@ -84,8 +92,15 @@ export const Flashback = () => {
     }
 
     const selected = filterFlashbackQuestions(settings, exampleQuestions);
-    setFilteredQuestions(selected);
-    setStartTest(true);
+
+    setStartTest(false);
+    setFilteredQuestions([]);
+
+    setTimeout(() => {
+      setFilteredQuestions(selected);
+      setRestartKey((prev) => prev + 1);
+      setStartTest(true);
+    }, 50);
   };
 
   useEffect(() => {
@@ -141,6 +156,19 @@ export const Flashback = () => {
           </Collapse>
         </Box>
 
+        <Box className={styles.sectionsBlock} mt={2}>
+          <Typography mb={1} variant="subtitle1" gutterBottom>
+            Перечень тем, по которым будет составлен тест (вы всегда можете их
+            изменить в настройках):
+          </Typography>
+
+          <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}>
+            {watch("sections").map((section: any, index: number) => (
+              <Chip key={index} label={section.title} variant="outlined" />
+            ))}
+          </Box>
+        </Box>
+
         <Box className={styles.startTest}>
           <BtnCustom
             text="Повторить материал"
@@ -150,17 +178,20 @@ export const Flashback = () => {
             onClick={handleStartTest}
           />
 
-          <IconButton
-            className={styles.startTestBtn}
-            onClick={() => setOpen(true)}
-          >
-            <SettingsIcon />
-          </IconButton>
+          <Tooltip title="Настройки теста" arrow>
+            <IconButton
+              className={styles.startTestBtn}
+              onClick={() => setOpen(true)}
+            >
+              <SettingsIcon />
+            </IconButton>
+          </Tooltip>
         </Box>
       </Box>
 
       {startTest && (
         <FlashbackTest
+          key={restartKey}
           questions={filteredQuestions}
           onFinish={() => setStartTest(false)}
         />
