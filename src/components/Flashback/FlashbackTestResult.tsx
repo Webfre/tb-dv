@@ -10,6 +10,9 @@ import {
 import BtnCustom from "../../ui/BtnCustom";
 import styles from "./Flashback.module.scss";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
+import { Stats } from "./useTestStatistics";
+import { useRecommendations } from "./useRecommendations";
+import Recommendations from "./Recommendations";
 
 interface FlashbackTestResultProps {
   open: boolean;
@@ -17,17 +20,14 @@ interface FlashbackTestResultProps {
   correctCount: number;
   totalQuestions: number;
   topics: string;
-  stats: {
-    byModules: Record<string, { correct: number; incorrect: number }>;
-    bySections: Record<string, { correct: number; incorrect: number }>;
-  };
+  stats: Stats;
   onClose: () => void;
 }
 
 const COLORS = ["#1976d2", "#b64a3e"];
 
 const renderCustomLabel = (props: any) => {
-  const { percent, name, x, y } = props;
+  const { percent, x, y } = props;
   return (
     <text
       x={x}
@@ -51,31 +51,8 @@ const FlashbackTestResult: React.FC<FlashbackTestResultProps> = ({
   stats,
   onClose,
 }) => {
-  // 🔍 Рекомендации: Модули и разделы с результатом ниже 55%
-  const recommendations: string[] = [];
-
-  const checkRecommendation = (
-    name: string,
-    correct: number,
-    total: number
-  ) => {
-    const percent = total ? (correct / total) * 100 : 0;
-    if (percent < 55) {
-      recommendations.push(name);
-    }
-  };
-
-  // Проверяем модули на необходимость повторения
-  Object.entries(stats.byModules).forEach(([moduleName, data]) => {
-    const total = data.correct + data.incorrect;
-    checkRecommendation(`Модуль: ${moduleName}`, data.correct, total);
-  });
-
-  // Проверяем разделы на необходимость повторения
-  Object.entries(stats.bySections).forEach(([section, data]) => {
-    const total = data.correct + data.incorrect;
-    checkRecommendation(`Раздел: ${section}`, data.correct, total);
-  });
+  const { recommendationsModules, recommendationsSections } =
+    useRecommendations(stats);
 
   return (
     <Dialog
@@ -242,17 +219,12 @@ const FlashbackTestResult: React.FC<FlashbackTestResultProps> = ({
           </Grid>
         </Box>
 
-        {recommendations.length > 0 && (
-          <Box mt={4} p={2} bgcolor="#f5f5f5" borderRadius="8px">
-            <Typography variant="h6" gutterBottom>
-              Рекомендации:
-            </Typography>
-            {recommendations.map((rec, idx) => (
-              <Typography key={idx} color="info">
-                Повторите - {rec}
-              </Typography>
-            ))}
-          </Box>
+        {(recommendationsModules.length > 0 ||
+          recommendationsSections.length > 0) && (
+          <Recommendations
+            modules={recommendationsModules}
+            sections={recommendationsSections}
+          />
         )}
       </DialogContent>
 

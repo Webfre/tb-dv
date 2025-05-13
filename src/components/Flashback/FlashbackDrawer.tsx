@@ -58,7 +58,6 @@ export const FlashbackDrawer: FC<FlashbackDrawerProps> = ({
       open={open}
       onClose={() => {
         onClose();
-        reset();
       }}
     >
       <Box sx={{ width: 900, p: 3 }} component="form" onSubmit={onSubmit}>
@@ -102,7 +101,7 @@ export const FlashbackDrawer: FC<FlashbackDrawerProps> = ({
 
                 const filteredSections = selectedSections.filter(
                   (section: ChapterOption) =>
-                    selected.some((mod) => mod.title === section.group)
+                    selected.some((mod) => mod.id === section.group)
                 );
 
                 setValue("sections", filteredSections);

@@ -28,16 +28,21 @@ interface FlashbackSettings {
 
 export const questionCounts = [10, 15, 20, 25];
 
-export const flashbackModules: IFlashbackModule[] = mockTopics.map(
-  (topic): IFlashbackModule => ({
-    id: topic.id,
-    title: topic.title,
-    chapters: topic.chapters.map((chapter) => ({
-      id: chapter.id,
-      title: chapter.title,
-    })),
-  })
-);
+// Список исключаемых модулей
+const EXCLUDED_MODULES = ["intro", "ide"];
+
+export const flashbackModules: IFlashbackModule[] = mockTopics
+  .filter((topic) => !EXCLUDED_MODULES.includes(topic.id))
+  .map(
+    (topic): IFlashbackModule => ({
+      id: topic.id,
+      title: topic.title,
+      chapters: topic.chapters.map((chapter) => ({
+        id: chapter.id,
+        title: chapter.title,
+      })),
+    })
+  );
 
 export const filterFlashbackQuestions = (
   settings: FlashbackSettings,

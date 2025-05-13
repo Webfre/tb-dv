@@ -93,13 +93,14 @@ const TopicChaptersAccordion: React.FC<TopicChaptersAccordionProps> = ({
   };
 
   useEffect(() => {
-    const targetId = location.state?.scrollToChapterId;
+    const searchParams = new URLSearchParams(location.search);
+    const chapterId = searchParams.get("chapterId");
 
-    if (targetId) {
-      setExpandedChapterId(targetId);
-      setHighlightedId(targetId);
+    if (chapterId) {
+      setExpandedChapterId(chapterId);
+      setHighlightedId(chapterId);
 
-      const element = chapterRefs.current[targetId];
+      const element = chapterRefs.current[chapterId];
 
       if (element) {
         element.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -108,7 +109,7 @@ const TopicChaptersAccordion: React.FC<TopicChaptersAccordionProps> = ({
       const timeout = setTimeout(() => setHighlightedId(null), 2000);
       return () => clearTimeout(timeout);
     }
-  }, [location.state]);
+  }, [location.search]);
 
   return (
     <Box mt={4}>

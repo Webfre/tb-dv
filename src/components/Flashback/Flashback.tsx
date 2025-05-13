@@ -19,13 +19,11 @@ import {
 import { FlashbackDrawer } from "./FlashbackDrawer";
 import { Stepper, Step, StepLabel } from "@mui/material";
 import { FlashbackTest } from "./FlashbackTest";
+import { exampleQuestions } from "../../dataFlashback/flashbackQuestion";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import styles from "./Flashback.module.scss";
 import BtnCustom from "../../ui/BtnCustom";
-import { exampleQuestions } from "../../dataFlashback/flashbackQuestion";
-import { getModulesAndSectionsFromProgress } from "./getModulesAndSectionsFromProgress";
-import { useGetUserProgressQuery } from "../../api/progressApi";
 
 export const Flashback = () => {
   const [open, setOpen] = useState(false);
@@ -35,8 +33,6 @@ export const Flashback = () => {
   const [filteredQuestions, setFilteredQuestions] = useState<
     FlashbackQuestion[]
   >([]);
-
-  const { data: progressData } = useGetUserProgressQuery();
 
   const {
     handleSubmit,
@@ -62,34 +58,23 @@ export const Flashback = () => {
     .flatMap((mod) =>
       mod.chapters.map((chapter) => ({
         title: chapter.title,
-        group: mod.title,
+        group: mod.id,
       }))
     );
 
   const onSubmit = (data: any) => {
     localStorage.setItem(FLASHBACK_SETTINGS_KEY, JSON.stringify(data));
+    reset(data);
     setOpen(false);
   };
 
   const handleStartTest = () => {
-    const stored = localStorage.getItem(FLASHBACK_SETTINGS_KEY);
-    let settings;
-
-    if (stored) {
-      const rawSettings = getValues();
-      settings = {
-        modules: rawSettings.modules ?? [],
-        sections: rawSettings.sections ?? [],
-        count: rawSettings.count,
-      };
-    } else {
-      const generated = getModulesAndSectionsFromProgress(progressData);
-
-      settings = {
-        ...generated,
-        count: 10,
-      };
-    }
+    const rawSettings = getValues();
+    const settings = {
+      modules: rawSettings.modules ?? [],
+      sections: rawSettings.sections ?? [],
+      count: rawSettings.count,
+    };
 
     const selected = filterFlashbackQuestions(settings, exampleQuestions);
 
@@ -163,9 +148,15 @@ export const Flashback = () => {
           </Typography>
 
           <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}>
-            {watch("sections").map((section: any, index: number) => (
-              <Chip key={index} label={section.title} variant="outlined" />
-            ))}
+            {watch("sections").length > 0 ? (
+              watch("sections").map((section: any, index: number) => (
+                <Chip key={index} label={section.title} variant="outlined" />
+              ))
+            ) : (
+              <Typography variant="body2" color="text.secondary">
+                Вы пока еще не выбрали темы для прохождения теста
+              </Typography>
+            )}
           </Box>
         </Box>
 

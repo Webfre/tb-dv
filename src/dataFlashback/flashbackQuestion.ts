@@ -18,8 +18,12 @@ import { htmlMultimedia } from "./html/htmlMultimedia";
 import { htmlMetaHead } from "./html/htmlMetaHead";
 import { htmlbBestPractices } from "./html/htmlbBestPractices";
 import { html5 } from "./html/html5";
+import { browserIntro } from "./www/browserIntro";
 
 export const exampleQuestions: FlashbackQuestion[] = [
+  // Работа браузера основы
+  ...browserIntro,
+
   // HTML
   ...htmlIntroQuestions,
   ...htmlHistoryQuestions,
@@ -40,6 +44,6 @@ export const exampleQuestions: FlashbackQuestion[] = [
   ...htmlbBestPractices,
   ...html5,
 
-  /// CSS
+  /// CSS основы
   ...cssIntroQuestions,
 ];
