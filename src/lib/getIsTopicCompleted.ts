@@ -37,7 +37,7 @@ export const getIsTopicCompleted = (
     (pr) => pr.moduleId === topic.id
   ).length;
 
-  const completedPrWorks = progressData.taskTopics.filter(
+  const completedPrWorks = progressData?.taskTopics?.filter(
     (task) => task.moduleId === topic.id && task.resolved
   ).length;
 

@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import { renderDifficulty } from "../TaskBook/renderDifficulty";
 import { useCheckCourseAccessQuery } from "../../api/userApi";
+import { ToggleSolvedTaskDto } from "../../api/progressApi";
 import { CopyBlock, dracula } from "react-code-blocks";
 import { PracticeTask } from "../../dataCourse/CourseTopic";
 import { styleCodeBlock } from "../Сourse/CopyBlockStyle";
@@ -23,12 +24,14 @@ interface PracticeDrawerProps {
   open: boolean;
   onClose: () => void;
   tasks: PracticeTask[];
+  solvedTasks: ToggleSolvedTaskDto[];
 }
 
 const PracticeDrawer: React.FC<PracticeDrawerProps> = ({
   open,
   onClose,
   tasks,
+  solvedTasks,
 }) => {
   const [selectedTask, setSelectedTask] = useState<PracticeTask | null>(null);
   const [htmlDrawerOpen, setHtmlDrawerOpen] = useState(false);
@@ -67,17 +70,31 @@ const PracticeDrawer: React.FC<PracticeDrawerProps> = ({
           </Box>
 
           <Grid container spacing={2}>
-            {tasks.map((task) => (
-              <Grid item key={task.id}>
-                <Chip
-                  label={task.title}
-                  onClick={() => setSelectedTask(task)}
-                  clickable
-                  variant={selectedTask?.id === task.id ? "filled" : "outlined"}
-                  color={selectedTask?.id === task.id ? "primary" : "default"}
-                />
-              </Grid>
-            ))}
+            {tasks.map((task) => {
+              const isSolved = solvedTasks.some(
+                (solved) => solved.id === task.id && solved.solved
+              );
+
+              return (
+                <Grid item key={task.id}>
+                  <Chip
+                    label={task.title}
+                    onClick={() => setSelectedTask(task)}
+                    clickable
+                    variant={
+                      selectedTask?.id === task.id ? "filled" : "outlined"
+                    }
+                    color={
+                      isSolved
+                        ? "success"
+                        : selectedTask?.id === task.id
+                        ? "primary"
+                        : "default"
+                    }
+                  />
+                </Grid>
+              );
+            })}
           </Grid>
         </Box>
 

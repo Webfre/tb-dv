@@ -83,6 +83,10 @@ import {
   js_basics_task_9,
   js_basics_task_16,
   js_basics_task_17,
+  js_basics_task_18,
+  js_basics_task_19,
+  js_basics_task_20,
+  js_basics_task_21,
 } from "../dataCourse/js/work/js_basics_task";
 import {
   js_intro_task_1,
@@ -159,4 +163,8 @@ export const practiceMock: PracticeTask[] = [
   js_basics_task_9,
   js_basics_task_16,
   js_basics_task_17,
+  js_basics_task_18,
+  js_basics_task_19,
+  js_basics_task_20,
+  js_basics_task_21,
 ];

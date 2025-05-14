@@ -232,6 +232,7 @@ const TopicChaptersAccordion: React.FC<TopicChaptersAccordionProps> = ({
         open={practiceOpen}
         onClose={() => setPracticeOpen(false)}
         tasks={chapterTasks}
+        solvedTasks={solvedTasks}
       />
     </Box>
   );
