@@ -8,4 +8,8 @@ export const browserTopic = {
   estimatedHours: 6,
   practiceIds: [],
   chapters: browserChapters,
+  mentors: {
+    id: 2,
+    name: "Митин Олег",
+  },
 };

@@ -8,4 +8,8 @@ export const introTopic = {
   estimatedHours: 2,
   practiceIds: [],
   chapters: startChapters,
+  mentors: {
+    id: 2,
+    name: "Митин Олег",
+  },
 };

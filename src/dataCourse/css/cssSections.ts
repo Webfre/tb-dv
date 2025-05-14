@@ -74,7 +74,6 @@ export const cssSections = {
   ],
   css_pseudo: [css_pseudo1, css_pseudo2, css_pseudo3],
   css_methodologies: [css_methodologies_1, css_methodologies_2],
-  css_layout: [css_layout_1, css_layout_2, css_layout_3],
   css_flexbox: [
     css_flexbox_1,
     css_flexbox_2,
@@ -84,6 +83,7 @@ export const cssSections = {
     css_flexbox_6,
   ],
   css_grid: [css_grid_1, css_grid_2, css_grid_3, css_grid_4, css_grid_5],
+  css_layout: [css_layout_1, css_layout_2, css_layout_3],
   css_images: [css_images_1, css_images_2, css_images_3],
   css_responsive: [css_responsive_1, css_responsive_2, css_responsive_3],
   css_animations: [css_animations_1, css_animations_2],

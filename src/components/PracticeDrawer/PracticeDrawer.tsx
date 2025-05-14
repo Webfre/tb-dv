@@ -8,16 +8,16 @@ import {
   Chip,
   Grid,
 } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
 import { renderDifficulty } from "../TaskBook/renderDifficulty";
-import { useHasCourseAccess } from "../../lib/useHasCourseAccess";
+import { useCheckCourseAccessQuery } from "../../api/userApi";
+import { CopyBlock, dracula } from "react-code-blocks";
+import { PracticeTask } from "../../dataCourse/CourseTopic";
+import { styleCodeBlock } from "../Сourse/CopyBlockStyle";
 import LinkIcon from "@mui/icons-material/Link";
 import HtmlDrawer from "../Сourse/HtmlDrawer";
-import { PracticeTask } from "../../dataCourse/CourseTopic";
-import { CopyBlock, dracula } from "react-code-blocks";
-import styles from "./PracticeDrawer.module.scss";
-import { styleCodeBlock } from "../Сourse/CopyBlockStyle";
+import CloseIcon from "@mui/icons-material/Close";
 import TaskCompletionToggle from "../TaskBook/TaskCompletionToggle";
+import styles from "./PracticeDrawer.module.scss";
 
 interface PracticeDrawerProps {
   open: boolean;
@@ -33,7 +33,8 @@ const PracticeDrawer: React.FC<PracticeDrawerProps> = ({
   const [selectedTask, setSelectedTask] = useState<PracticeTask | null>(null);
   const [htmlDrawerOpen, setHtmlDrawerOpen] = useState(false);
   const [showSolution, setShowSolution] = useState(false);
-  const { hasAccess } = useHasCourseAccess();
+  const { data } = useCheckCourseAccessQuery();
+  const hasAccess = data?.hasAccess;
 
   useEffect(() => {
     setShowSolution(false);

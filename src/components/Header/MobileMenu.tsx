@@ -7,7 +7,8 @@ import {
   ListItemText,
 } from "@mui/material";
 import { useNavigate, useLocation } from "react-router-dom";
-import { menuItems } from "./menuItems";
+import { useCheckCourseAccessQuery } from "../../api/userApi";
+import { getMenuItems } from "./menuItems";
 import styles from "./Header.module.scss";
 
 export const MobileMenu: React.FC<{
@@ -17,6 +18,10 @@ export const MobileMenu: React.FC<{
 }> = ({ open, onClose, isAdmin }) => {
   const navigate = useNavigate();
   const location = useLocation();
+
+  const { data } = useCheckCourseAccessQuery();
+  const hasAccess = data?.hasAccess;
+  const menuItems = getMenuItems(hasAccess);
 
   const isActive = (path: string) =>
     path === "/"

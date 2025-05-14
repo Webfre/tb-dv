@@ -19,21 +19,21 @@ import BtnCustom from "../../ui/BtnCustom";
 interface ResultDialogProps {
   open: boolean;
   onClose: () => void;
-  onSend: () => void;
   onRetry: () => void;
   testKey: keyof typeof testData;
   score: number;
   grade: number;
+  scrollToTop: () => void;
 }
 
 const ResultDialog: React.FC<ResultDialogProps> = ({
   open,
   onClose,
   onRetry,
-  onSend,
   testKey,
   score,
   grade,
+  scrollToTop,
 }) => {
   const isPassed = grade > 2;
 
@@ -108,9 +108,12 @@ const ResultDialog: React.FC<ResultDialogProps> = ({
           }}
         />
         <BtnCustom
-          text="Отправить руководителю"
-          onClick={onSend}
+          text="Просмотреть ошибки"
           variant="contained"
+          onClick={() => {
+            onClose();
+            scrollToTop();
+          }}
         />
       </DialogActions>
     </Dialog>

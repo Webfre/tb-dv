@@ -164,7 +164,6 @@ export const css_selectors1 = {
     "https://css-tricks.com/hsl-hsla-is-great-for-programmatic-color-control/",
   ],
 };
-
 export const css_selectors2 = {
   id: "css_selectors2",
   title: "Шрифты и текст: font-family, line-height, letter-spacing, text-align",

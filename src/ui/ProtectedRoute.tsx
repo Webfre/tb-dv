@@ -1,6 +1,6 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
-import { useHasCourseAccess } from "../lib/useHasCourseAccess";
+import { useAuthTokenCheck } from "../lib/useAuthTokenCheck";
 import Spinner from "./Spinner";
 
 interface ProtectedRouteProps {
@@ -8,14 +8,28 @@ interface ProtectedRouteProps {
 }
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
-  const { token, hasAccess, isLoading } = useHasCourseAccess();
+  const { token, isLoading, isError, valid, exists } = useAuthTokenCheck();
 
-  if (!token) return <Navigate to="/register" replace />;
+  if (!token) {
+    return <Navigate to="/register" replace />;
+  }
 
-  if (isLoading) return <Spinner />;
+  if (isLoading) {
+    return <Spinner />;
+  }
 
-  if (!hasAccess) {
-    return <Navigate to="/course-info" replace />;
+  if (isError || !valid) {
+    // токен протух или подпись неверна
+    localStorage.removeItem("token");
+    localStorage.removeItem("isAccessKey");
+    return <Navigate to="/login" replace />;
+  }
+
+  if (valid && !exists) {
+    // токен валиден, но пользователь не найден
+    localStorage.removeItem("token");
+    localStorage.removeItem("isAccessKey");
+    return <Navigate to="/register" replace />;
   }
 
   return children;

@@ -1,0 +1,143 @@
+export const css_flexbox_test = {
+  id: 506,
+  name: "CSS: Flexbox",
+  category: "CSS",
+  ques: [
+    {
+      id: 1,
+      name: "Какое значение свойства display включает режим Flexbox?",
+      variants: ["block", "inline-block", "flex"],
+      correct: [2],
+    },
+    {
+      id: 2,
+      name: "Какое свойство отвечает за направление расположения элементов внутри Flex-контейнера?",
+      variants: ["align-items", "flex-direction", "justify-content"],
+      correct: [1],
+    },
+    {
+      id: 3,
+      name: "Что делает значение row-reverse у свойства flex-direction?",
+      variants: [
+        "Элементы выстраиваются в колонку снизу вверх",
+        "Элементы выстраиваются в строку справа налево",
+        "Элементы накладываются друг на друга",
+      ],
+      correct: [1],
+    },
+    {
+      id: 4,
+      name: "Какое значение justify-content распределяет элементы с равными отступами по краям и между ними?",
+      variants: ["space-between", "space-around", "space-evenly"],
+      correct: [2],
+    },
+    {
+      id: 5,
+      name: "Какое значение align-items растягивает элементы на всю высоту контейнера?",
+      variants: ["center", "flex-start", "stretch"],
+      correct: [2],
+    },
+    {
+      id: 6,
+      name: "Какое свойство Flexbox позволяет элементам переноситься на новую строку при недостатке места?",
+      variants: ["flex-wrap", "flex-flow", "flex-shrink"],
+      correct: [0],
+    },
+    {
+      id: 7,
+      name: "Что делает свойство order?",
+      variants: [
+        "Определяет, насколько элемент может растягиваться",
+        "Меняет порядок элементов в Flex-контейнере",
+        "Выравнивает элементы по центру",
+      ],
+      correct: [1],
+    },
+    {
+      id: 8,
+      name: "Какое значение flex-wrap переносит элементы на новую строку в обратном направлении?",
+      variants: ["wrap", "nowrap", "wrap-reverse"],
+      correct: [2],
+    },
+    {
+      id: 9,
+      name: "Какое свойство позволяет указать начальный размер flex-элемента?",
+      variants: ["flex-grow", "flex-basis", "flex-shrink"],
+      correct: [1],
+    },
+    {
+      id: 10,
+      name: "Какое значение flex-grow позволяет элементу заполнять все доступное пространство?",
+      variants: ["0", "1", "auto"],
+      correct: [1],
+    },
+    {
+      id: 11,
+      name: "Какое свойство управляет сжатием flex-элемента при недостатке места?",
+      variants: ["flex-basis", "flex-grow", "flex-shrink"],
+      correct: [2],
+    },
+    {
+      id: 12,
+      name: "Что произойдет, если у элемента в Flexbox указано flex-shrink: 0?",
+      variants: [
+        "Элемент не будет сжиматься",
+        "Элемент будет скрыт",
+        "Элемент займёт всю доступную ширину",
+      ],
+      correct: [0],
+    },
+    {
+      id: 13,
+      name: "Какое значение justify-content разместит все элементы по центру главной оси?",
+      variants: ["flex-start", "center", "space-between"],
+      correct: [1],
+    },
+    {
+      id: 14,
+      name: "Какое значение align-items выровняет все элементы по низу Flex-контейнера?",
+      variants: ["flex-end", "center", "space-between"],
+      correct: [0],
+    },
+    {
+      id: 15,
+      name: "Что произойдет при использовании flex-direction: column?",
+      variants: [
+        "Элементы будут располагаться в строку",
+        "Элементы будут располагаться в колонку",
+        "Элементы будут наложены друг на друга",
+      ],
+      correct: [1],
+    },
+    {
+      id: 16,
+      name: "Какое свойство управляет порядком flex-элементов, даже если HTML остаётся неизменным?",
+      variants: ["align-items", "order", "justify-content"],
+      correct: [1],
+    },
+    {
+      id: 17,
+      name: "Какой метод верстки удобнее использовать для создания равномерных отступов между элементами?",
+      variants: ["float", "margin-left", "gap"],
+      correct: [2],
+    },
+    {
+      id: 18,
+      name: "Какое значение justify-content равномерно распределяет элементы, включая отступы по краям?",
+      variants: ["space-between", "space-around", "space-evenly"],
+      correct: [2],
+    },
+    {
+      id: 19,
+      name: "Какое значение align-items выравнивает элементы по центру второстепенной оси?",
+      variants: ["flex-start", "flex-end", "center"],
+      correct: [2],
+    },
+    {
+      id: 20,
+      name: "Какой метод верстки является наиболее современным и гибким для создания адаптивных макетов?",
+      variants: ["float", "inline-block", "flex"],
+      correct: [2],
+    },
+  ],
+};

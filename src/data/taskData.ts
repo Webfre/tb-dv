@@ -1,5 +1,43 @@
 import { PracticeTask } from "../dataCourse/CourseTopic";
+import {
+  css_block_model_task_1,
+  css_block_model_task_2,
+  css_block_model_task_3,
+  css_block_model_task_4,
+  css_block_model_task_5,
+} from "../dataCourse/css/work/css_block_task";
+import {
+  css_box_model_task_1,
+  css_box_model_task_10,
+  css_box_model_task_2,
+  css_box_model_task_3,
+  css_box_model_task_4,
+  css_box_model_task_5,
+  css_box_model_task_6,
+  css_box_model_task_7,
+  css_box_model_task_8,
+  css_box_model_task_9,
+} from "../dataCourse/css/work/css_box_model_task";
 import { css_intro_task_1 } from "../dataCourse/css/work/css_intro_task";
+import {
+  css_pseudo_task_1,
+  css_pseudo_task_2,
+  css_pseudo_task_3,
+  css_pseudo_task_4,
+  css_pseudo_task_5,
+  css_pseudo_task_6,
+  css_pseudo_task_7,
+} from "../dataCourse/css/work/css_pseudo_task";
+import {
+  css_selectors_task_1,
+  css_selectors_task_2,
+  css_selectors_task_3,
+  css_selectors_task_4,
+  css_selectors_task_5,
+  css_selectors_task_6,
+  css_selectors_task_7,
+  css_selectors_task_8,
+} from "../dataCourse/css/work/css_selectors_task";
 import {
   html_intro_task_1,
   html_intro_task_2,
@@ -138,6 +176,40 @@ export const practiceMock: PracticeTask[] = [
 
   // CSS
   css_intro_task_1,
+
+  css_selectors_task_1,
+  css_selectors_task_2,
+  css_selectors_task_3,
+  css_selectors_task_4,
+  css_selectors_task_5,
+  css_selectors_task_6,
+  css_selectors_task_7,
+  css_selectors_task_8,
+
+  css_box_model_task_1,
+  css_box_model_task_2,
+  css_box_model_task_3,
+  css_box_model_task_4,
+  css_box_model_task_5,
+  css_box_model_task_6,
+  css_box_model_task_7,
+  css_box_model_task_8,
+  css_box_model_task_9,
+  css_box_model_task_10,
+
+  css_block_model_task_1,
+  css_block_model_task_2,
+  css_block_model_task_3,
+  css_block_model_task_4,
+  css_block_model_task_5,
+
+  css_pseudo_task_1,
+  css_pseudo_task_2,
+  css_pseudo_task_3,
+  css_pseudo_task_4,
+  css_pseudo_task_5,
+  css_pseudo_task_6,
+  css_pseudo_task_7,
 
   // JS
   js_basics_task_10,

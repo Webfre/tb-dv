@@ -1,18 +1,46 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { Box, Typography, Divider, Chip, Stack } from "@mui/material";
+import {
+  useGetMyProfileQuery,
+  useGetUserTaskTopicsQuery,
+} from "../../api/userApi";
+import {
+  useGetUserProgressQuery,
+  useGetSolvedTasksQuery,
+} from "../../api/progressApi";
+import { Box, Typography, Divider, Chip, Stack, Tooltip } from "@mui/material";
+import {
+  getTotalPractice,
+  getTotalSections,
+  getTotalTests,
+} from "../../lib/topicMetrics";
+import { getIsTopicCompleted } from "../../lib/getIsTopicCompleted";
+import { getPassedTestsCount } from "../../lib/getPassedTestsCount";
+import { mockTopics } from "../../dataCourse/CourseTopic";
+import BtnCustom from "../../ui/BtnCustom";
 import BookIcon from "@mui/icons-material/Book";
 import QuizIcon from "@mui/icons-material/Quiz";
 import CodeIcon from "@mui/icons-material/Code";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import { mockTopics } from "../../dataCourse/CourseTopic";
+import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import TopicChaptersAccordion from "./TopicChaptersAccordion";
-import BtnCustom from "../../ui/BtnCustom";
+import VerifiedIcon from "@mui/icons-material/Verified";
+import styles from "./Course.module.scss";
+import { practiceMock } from "../../data/taskData";
 
 const CourseTopicDetails: React.FC = () => {
   const { id } = useParams();
+  const { data: userData } = useGetMyProfileQuery();
+  const userId = userData?.id;
   const navigate = useNavigate();
+
+  const { data: progressData } = useGetUserProgressQuery();
+  const { data: taskTopics } = useGetUserTaskTopicsQuery(userId!, {
+    skip: !userId,
+  });
+
+  const { data: solvedTasks = [] } = useGetSolvedTasksQuery();
 
   const topic = mockTopics.find((t) => t.id === id);
 
@@ -20,33 +48,61 @@ const CourseTopicDetails: React.FC = () => {
     return <Typography>Тема не найдена</Typography>;
   }
 
-  const totalSections = topic.chapters.reduce(
-    (acc, ch) => acc + ch.sections.length,
-    0
+  const totalTests = getTotalTests(topic);
+  const totalPractice = getTotalPractice(topic);
+  const isTopicCompleted = getIsTopicCompleted(topic, progressData, taskTopics);
+  const passedTestsCount = getPassedTestsCount(topic, progressData);
+  const totalSections = getTotalSections(topic);
+
+  const moduleTasks = practiceMock.filter(
+    (task) => task.module === topic.title
   );
 
-  const totalTests =
-    (topic.testKeys?.length || 0) +
-    topic.chapters.reduce((acc, ch) => acc + (ch.testKeys?.length || 0), 0);
-
-  const totalPractice =
-    (topic.practiceIds?.length || 0) +
-    topic.chapters.reduce((acc, ch) => acc + (ch.practiceIds?.length || 0), 0);
+  const solvedPracticeCount = moduleTasks.filter((task) =>
+    solvedTasks.some((solved) => solved.id === task.id)
+  ).length;
 
   return (
     <Box p={4}>
-      <BtnCustom
-        sx={{ mb: 2 }}
-        text="Назад"
-        icon={<NavigateBeforeIcon />}
-        onClick={() => navigate(-1)}
-      />
+      <Box className={styles.btnActions}>
+        <BtnCustom
+          sx={{ mb: 2 }}
+          text="Назад"
+          icon={<NavigateBeforeIcon />}
+          onClick={() => navigate(-1)}
+        />
 
-      <Typography variant="h4" gutterBottom>
-        {topic.title}
-      </Typography>
+        <BtnCustom
+          sx={{ mb: 2 }}
+          text={`Ментор: ${topic.mentors.name}`}
+          color="primary"
+          variant="contained"
+          icon={<ManageAccountsIcon />}
+          onClick={() => navigate(`/mentorprofilepage/${topic.mentors.id}`)}
+        />
+      </Box>
 
-      <Typography variant="subtitle1" gutterBottom>
+      <Box className={styles.titleActions}>
+        <Typography variant="h4">{topic.title}</Typography>
+
+        {totalTests > 0 && (
+          <Tooltip
+            title={
+              isTopicCompleted
+                ? "Модуль пройден! Вы успешно завершили все тесты и практические задания."
+                : "Вы не прошли модуль. Модуль считается пройденным, когда вы прошли все тесты и выполнили практическую работу."
+            }
+            arrow
+          >
+            <VerifiedIcon
+              className={styles.btnVerified}
+              color={isTopicCompleted ? "primary" : "disabled"}
+            />
+          </Tooltip>
+        )}
+      </Box>
+
+      <Typography mt={1} variant="subtitle1" gutterBottom>
         {topic.description}
       </Typography>
 
@@ -54,12 +110,23 @@ const CourseTopicDetails: React.FC = () => {
 
       <Stack direction="row" spacing={2} flexWrap="wrap">
         {totalTests > 0 && (
-          <Chip icon={<QuizIcon />} label={`Тестов: ${totalTests}`} />
+          <Chip
+            icon={<QuizIcon />}
+            color="default"
+            label={`Тестов пройдено: ${passedTestsCount} из ${totalTests}`}
+          />
         )}
+
         {totalPractice > 0 && (
-          <Chip icon={<CodeIcon />} label={`Практик: ${totalPractice}`} />
+          <Chip
+            icon={<CodeIcon />}
+            color="default"
+            label={`Практик пройдено: ${solvedPracticeCount} из ${moduleTasks.length}`}
+          />
         )}
+
         <Chip icon={<BookIcon />} label={`Разделов: ${totalSections}`} />
+
         <Chip
           icon={<AccessTimeIcon />}
           label={`~ ${topic.estimatedHours} ч. на изучение`}

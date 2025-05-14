@@ -14,6 +14,7 @@ export interface CourseSection {
   attachments?: string[]; // Пути к файлам или ссылки для скачивания
   show?: string;
   showCode?: string;
+  postMentor?: number;
   codeExampleCSS?: string;
   type?: string;
 }
@@ -27,6 +28,11 @@ export interface CourseChapter {
   practiceIds?: string[];
 }
 
+export interface MentorCourseTopic {
+  id: number;
+  name: string;
+}
+
 export interface CourseTopic {
   id: string;
   title: string;
@@ -35,6 +41,7 @@ export interface CourseTopic {
   testKeys?: string[];
   practiceIds?: string[];
   estimatedHours: number;
+  mentors: MentorCourseTopic;
 }
 
 export interface PracticeTask {
@@ -54,22 +61,6 @@ export interface PracticeTask {
   codeExampleJS?: string; // js код решение
   sectionId?: string; // раздел
 }
-
-const topics = [
-  "HTML",
-  "CSS",
-  "JavaScript",
-  "TypeScript",
-  "Redux",
-  "RTK Query",
-  "React",
-  "Основы браузера",
-  "Работа с IDE",
-  "Git",
-  "Пет-проекты",
-  "Собеседования",
-  "Резюме",
-];
 
 export const mockTopics: CourseTopic[] = [
   introTopic,

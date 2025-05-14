@@ -1,0 +1,101 @@
+export const css_selectors_test = {
+  id: 401,
+  name: "CSS: Селекторы и стили текста",
+  category: "CSS",
+  ques: [
+    {
+      id: 1,
+      name: "Какой формат цвета используется для задания полупрозрачного фона?",
+      variants: ["HEX", "RGBA", "HSL"],
+      correct: [1],
+    },
+    {
+      id: 2,
+      name: "Какой формат записи цвета используется в примере: color: #ff0000;",
+      variants: ["HEX", "RGB", "HSL"],
+      correct: [0],
+    },
+    {
+      id: 3,
+      name: "Какое значение альфа-канала делает цвет полностью прозрачным?",
+      variants: ["0", "0.5", "1"],
+      correct: [0],
+    },
+    {
+      id: 4,
+      name: "Какой формат цвета позволяет удобно управлять оттенками?",
+      variants: ["RGB", "HSL", "HEX"],
+      correct: [1],
+    },
+    {
+      id: 5,
+      name: "Какое свойство позволяет изменять расстояние между строками текста?",
+      variants: ["letter-spacing", "line-height", "text-align"],
+      correct: [1],
+    },
+    {
+      id: 6,
+      name: "Какой способ выравнивания текста растягивает его на всю ширину?",
+      variants: ["left", "right", "justify"],
+      correct: [2],
+    },
+    {
+      id: 7,
+      name: "Какой формат записи шрифта является правильным?",
+      variants: [
+        "font-family: Arial, sans-serif;",
+        "font-style: 'Arial';",
+        "font-size: Arial;",
+      ],
+      correct: [0],
+    },
+    {
+      id: 8,
+      name: "Какое свойство используется для задания высоты элемента?",
+      variants: ["width", "height", "margin"],
+      correct: [1],
+    },
+    {
+      id: 9,
+      name: "Какое значение свойства box-sizing включает padding и границы в общую ширину элемента?",
+      variants: ["content-box", "border-box", "padding-box"],
+      correct: [1],
+    },
+    {
+      id: 10,
+      name: "Какой тип селектора позволяет выбрать все элементы на странице?",
+      variants: ["*", "#", "."],
+      correct: [0],
+    },
+    {
+      id: 11,
+      name: "Какой псевдокласс используется для стилизации элемента при наведении курсора?",
+      variants: [":hover", ":focus", ":active"],
+      correct: [0],
+    },
+    {
+      id: 12,
+      name: "Какой псевдоэлемент позволяет добавить контент перед элементом?",
+      variants: ["::after", "::before", "::first-line"],
+      correct: [1],
+    },
+    {
+      id: 13,
+      name: "Какое свойство позволяет изменить толщину линии текста?",
+      variants: ["text-decoration-thickness", "font-weight", "border-width"],
+      correct: [0],
+    },
+    {
+      id: 14,
+      name: "Какой вид декорации используется для зачёркивания текста?",
+      variants: ["line-through", "underline", "overline"],
+      correct: [0],
+    },
+    {
+      id: 15,
+      name: "Какой формат задания цвета поддерживает прозрачность?",
+      variants: ["HEX", "RGBA", "HSL"],
+      correct: [1],
+    },
+  ],
+};

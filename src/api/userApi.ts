@@ -13,6 +13,11 @@ export interface User {
   isAdmin: boolean;
 }
 
+export interface TaskTopic {
+  id: string;
+  resolved: boolean;
+}
+
 export const userApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAllUsers: builder.query<User[], void>({
@@ -51,6 +56,25 @@ export const userApi = baseApi.injectEndpoints({
       }),
     }),
 
+    getUserTaskTopics: builder.query<TaskTopic[], number>({
+      query: (userId) => `/progress/admin/task-topics/${userId}`,
+    }),
+
+    updateUserTaskTopic: builder.mutation<
+      TaskTopic[],
+      { userId: number; taskId: string; resolved: boolean }
+    >({
+      query: ({ userId, taskId, resolved }) => ({
+        url: `/progress/admin/task-topics/${userId}`,
+        method: "POST",
+        body: { taskId, resolved },
+      }),
+    }),
+
+    checkToken: builder.query<{ valid: boolean; exists: boolean }, void>({
+      query: () => "/users/check-token",
+    }),
+
     revokeAdmin: builder.mutation<void, number>({
       query: (id) => ({
         url: `/users/${id}/revoke-admin`,
@@ -69,4 +93,7 @@ export const {
   useMakeAdminMutation,
   useRevokeAdminMutation,
   useGetMyProfileQuery,
+  useGetUserTaskTopicsQuery,
+  useUpdateUserTaskTopicMutation,
+  useCheckTokenQuery,
 } = userApi;

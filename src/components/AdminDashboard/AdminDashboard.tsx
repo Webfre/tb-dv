@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Container,
   Paper,
@@ -8,88 +8,46 @@ import {
   ListItemText,
   CircularProgress,
   Box,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  Button,
   IconButton,
   Tooltip,
 } from "@mui/material";
-import { toast } from "react-toastify";
 import BtnCustom from "../../ui/BtnCustom";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import FeatureRequestList from "../GlobalHelpDrawer/FeatureRequestList";
+import { useUserDialogManager } from "./useUserDialogManager";
+import { useUserManagement } from "./useUserManagement";
 import {
-  useAssignAccessKeyMutation,
   useGetAllUsersQuery,
-  useMakeAdminMutation,
-  useRevokeAccessKeyMutation,
-  useRevokeAdminMutation,
+  useGetUserTaskTopicsQuery,
 } from "../../api/userApi";
+import AccessConfirmDialog from "./AccessConfirmDialog";
+import AdminConfirmDialog from "./AdminConfirmDialog";
+import UserTasksDialog from "./UserTasksDialog";
 
 const AdminDashboard: React.FC = () => {
   const { data: users, isLoading, error, refetch } = useGetAllUsersQuery();
-  const [assignAccessKey] = useAssignAccessKeyMutation();
-  const [makeAdmin] = useMakeAdminMutation();
-  const [revokeAccessKey] = useRevokeAccessKeyMutation();
-  const [revokeAdmin] = useRevokeAdminMutation();
 
-  const [selectedUserId, setSelectedUserId] = useState<number | null>(null);
-  const [openAccessDialog, setOpenAccessDialog] = useState(false);
-  const [openAdminDialog, setOpenAdminDialog] = useState(false);
+  const {
+    selectedUserId,
+    selectedUser,
+    openAccessDialog,
+    openAdminDialog,
+    openTasksDialog,
+    setOpenAccessDialog,
+    setOpenAdminDialog,
+    setOpenTasksDialog,
+    openAccessConfirm,
+    openAdminConfirm,
+    openTasksDialogHandler,
+  } = useUserDialogManager(users);
 
-  const handleAssign = async () => {
-    if (!selectedUserId || !users) return;
+  const { data: taskTopics, refetch: refetchTopics } =
+    useGetUserTaskTopicsQuery(selectedUserId || 0, {
+      skip: !selectedUserId || !openTasksDialog,
+    });
 
-    try {
-      const user = users.find((u) => u.id === selectedUserId);
-      if (user?.isAccessKey) {
-        await revokeAccessKey(selectedUserId).unwrap();
-        toast.success("Доступ к курсу закрыт");
-      } else {
-        await assignAccessKey(selectedUserId).unwrap();
-        toast.success("Доступ к курсу открыт");
-      }
-
-      refetch();
-    } catch {
-      toast.error("Ошибка при обновлении доступа");
-    } finally {
-      setOpenAccessDialog(false);
-    }
-  };
-
-  const handleToggleAdmin = async () => {
-    if (!selectedUserId || !users) return;
-
-    try {
-      const user = users.find((u) => u.id === selectedUserId);
-      if (user?.isAdmin) {
-        await revokeAdmin(selectedUserId).unwrap();
-        toast.success("Права администратора сняты");
-      } else {
-        await makeAdmin(selectedUserId).unwrap();
-        toast.success("Пользователь назначен админом");
-      }
-
-      refetch();
-    } catch {
-      toast.error("Ошибка при обновлении прав администратора");
-    } finally {
-      setOpenAdminDialog(false);
-    }
-  };
-
-  const openAccessConfirm = (id: number) => {
-    setSelectedUserId(id);
-    setOpenAccessDialog(true);
-  };
-
-  const openAdminConfirm = (id: number) => {
-    setSelectedUserId(id);
-    setOpenAdminDialog(true);
-  };
+  const { handleAssign, handleToggleAdmin, handleToggleTaskStatus } =
+    useUserManagement(selectedUserId, refetch, refetchTopics);
 
   if (isLoading) {
     return (
@@ -126,7 +84,9 @@ const AdminDashboard: React.FC = () => {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "space-between",
+                  cursor: "pointer",
                 }}
+                onClick={() => openTasksDialogHandler(user.id)}
               >
                 <ListItemText
                   primary={`${user.lastName} ${user.firstName} ${user.middleName}`}
@@ -150,7 +110,10 @@ const AdminDashboard: React.FC = () => {
                     }
                     variant="outlined"
                     color={user.isAccessKey ? "error" : "primary"}
-                    onClick={() => openAccessConfirm(user.id)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      openAccessConfirm(user.id);
+                    }}
                   />
 
                   <Tooltip
@@ -160,7 +123,12 @@ const AdminDashboard: React.FC = () => {
                         : "Сделать админом"
                     }
                   >
-                    <IconButton onClick={() => openAdminConfirm(user.id)}>
+                    <IconButton
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        openAdminConfirm(user.id);
+                      }}
+                    >
                       <AdminPanelSettingsIcon
                         sx={{
                           color: user.isAdmin ? "primary.main" : "grey.500",
@@ -179,46 +147,30 @@ const AdminDashboard: React.FC = () => {
         </List>
       </Paper>
 
-      {/* Модалка для доступа */}
-      <Dialog
+      <AccessConfirmDialog
         open={openAccessDialog}
         onClose={() => setOpenAccessDialog(false)}
-      >
-        <DialogTitle>Подтверждение доступа</DialogTitle>
-        <DialogContent>
-          <Typography>
-            Вы уверены, что хотите обновить доступ к курсу для пользователя?
-          </Typography>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setOpenAccessDialog(false)}>Отмена</Button>
-          <Button onClick={handleAssign} variant="contained" color="primary">
-            Подтвердить
-          </Button>
-        </DialogActions>
-      </Dialog>
+        onConfirm={() => handleAssign(selectedUser?.isAccessKey)}
+      />
 
-      {/* Модалка для назначения админом */}
-      <Dialog open={openAdminDialog} onClose={() => setOpenAdminDialog(false)}>
-        <DialogTitle>Изменение прав администратора</DialogTitle>
-        <DialogContent>
-          <Typography>
-            {users?.find((u) => u.id === selectedUserId)?.isAdmin
-              ? "Вы уверены, что хотите снять права администратора?"
-              : "Вы уверены, что хотите назначить пользователя админом?"}
-          </Typography>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setOpenAdminDialog(false)}>Отмена</Button>
-          <Button
-            onClick={handleToggleAdmin}
-            variant="contained"
-            color="primary"
-          >
-            Подтвердить
-          </Button>
-        </DialogActions>
-      </Dialog>
+      <AdminConfirmDialog
+        open={openAdminDialog}
+        onClose={() => setOpenAdminDialog(false)}
+        onConfirm={() => handleToggleAdmin(selectedUser?.isAdmin)}
+        isAdmin={selectedUser?.isAdmin}
+      />
+
+      <UserTasksDialog
+        open={openTasksDialog}
+        onClose={() => setOpenTasksDialog(false)}
+        tasks={taskTopics}
+        onToggleTask={handleToggleTaskStatus}
+        userName={
+          selectedUser
+            ? `${selectedUser.firstName} ${selectedUser.lastName}`
+            : ""
+        }
+      />
     </Container>
   );
 };

@@ -1,6 +1,7 @@
 import ReactDOM from "react-dom/client";
 import { CssBaseline, Container, ThemeProvider } from "@mui/material";
 import { Routes, Route, useLocation } from "react-router-dom";
+// import { HashRouter as Router } from "react-router-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
@@ -28,19 +29,19 @@ import CourseInfoPage from "./pages/CourseInfoPage/CourseInfoPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage/ResetPasswordPage";
 import Profile from "./components/Profile/Profile";
 import Progress from "./components/Progress/Progress";
-// import { HashRouter as Router } from "react-router-dom";
 
-import "./index.scss";
-import "react-toastify/dist/ReactToastify.css";
 import TestСourse from "./components/TestСourse/TestСourse";
 import MentorProfilePage from "./components/MentorProfilePage/MentorProfilePage";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
+import "react-toastify/dist/ReactToastify.css";
+import "./index.scss";
+import CourseProtectedRoute from "./ui/CourseProtectedRoute";
 
 const AppRoutes = () => {
   const location = useLocation();
-  const hideHeader =
-    location.pathname === "/register" || location.pathname === "/login";
-  // location.pathname === "/reset-password" ||
-  // location.pathname === "/course-info";
+  const hideHeader = ["/register", "/login", "/reset-password"].includes(
+    location.pathname
+  );
 
   return (
     <>
@@ -54,7 +55,6 @@ const AppRoutes = () => {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/course-info" element={<CourseInfoPage open={true} />} />
           <Route path="/reset-password" element={<ResetPasswordPage />} />
-          <Route path="/flashback" element={<Flashback />} />
           <Route path="/live" element={<LiveCodingPage />} />
           <Route path="/cheatsheet" element={<CheatsheetPage />} />
           <Route path="/interview" element={<InterviewPage />} />
@@ -62,6 +62,16 @@ const AppRoutes = () => {
           <Route path="/taskbook" element={<TaskBook />} />
           <Route path="/roadmap" element={<RoadmapPage />} />
           <Route path="/tasks/:id" element={<TaskListPage />} />
+
+          <Route
+            path="/flashback"
+            element={
+              <CourseProtectedRoute>
+                <Flashback />
+              </CourseProtectedRoute>
+            }
+          />
+
           <Route
             path="/admin-dashboard"
             element={
@@ -70,6 +80,7 @@ const AppRoutes = () => {
               </AdminProtectedRoute>
             }
           />
+
           <Route
             path="/profile"
             element={
@@ -78,6 +89,7 @@ const AppRoutes = () => {
               </ProtectedRoute>
             }
           />
+
           <Route
             path="/progress"
             element={
@@ -86,12 +98,13 @@ const AppRoutes = () => {
               </ProtectedRoute>
             }
           />
+
           <Route
             path="/course"
             element={
-              <ProtectedRoute>
+              <CourseProtectedRoute>
                 <Сourse />
-              </ProtectedRoute>
+              </CourseProtectedRoute>
             }
           />
 
@@ -121,6 +134,8 @@ const AppRoutes = () => {
               </ProtectedRoute>
             }
           />
+
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Container>
 

@@ -9,12 +9,14 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
-import MenuIcon from "@mui/icons-material/Menu";
+import { useAuthTokenCheck } from "../../lib/useAuthTokenCheck";
 import { isUserAdmin } from "../../api/auth";
 import { DesktopMenu } from "./DesktopMenu";
 import { MobileMenu } from "./MobileMenu";
 import { UserMenu } from "./UserMenu";
+import MenuIcon from "@mui/icons-material/Menu";
 import styles from "./Header.module.scss";
+import BtnCustom from "../../ui/BtnCustom";
 
 const Header: React.FC = () => {
   const theme = useTheme();
@@ -24,6 +26,9 @@ const Header: React.FC = () => {
   const [menuAnchorEl, setMenuAnchorEl] = useState<null | HTMLElement>(null);
   const openMenu = Boolean(menuAnchorEl);
   const isAdmin = isUserAdmin();
+
+  const { token, valid, exists } = useAuthTokenCheck();
+  const isAuthenticated = token && valid && exists;
 
   const handleOpenUserMenu = (e: React.MouseEvent<HTMLElement>) => {
     setMenuAnchorEl(e.currentTarget);
@@ -55,12 +60,32 @@ const Header: React.FC = () => {
 
           <Box display="flex" alignItems="center" gap={1}>
             {!isMobile && <DesktopMenu.Right isAdmin={isAdmin} />}
-            <UserMenu
-              anchorEl={menuAnchorEl}
-              open={openMenu}
-              onOpen={handleOpenUserMenu}
-              onClose={handleCloseUserMenu}
-            />
+
+            {isAuthenticated ? (
+              <UserMenu
+                anchorEl={menuAnchorEl}
+                open={openMenu}
+                onOpen={handleOpenUserMenu}
+                onClose={handleCloseUserMenu}
+              />
+            ) : (
+              <>
+                <BtnCustom
+                  text="Войти"
+                  variant="contained"
+                  onClick={() => navigate("/login")}
+                  white
+                />
+
+                <BtnCustom
+                  text="Регистрация"
+                  variant="text"
+                  onClick={() => navigate("/register")}
+                  white
+                />
+              </>
+            )}
+
             {isMobile && (
               <IconButton color="inherit" onClick={() => setDrawerOpen(true)}>
                 <MenuIcon />

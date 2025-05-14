@@ -13,6 +13,7 @@ import {
   Step,
   StepLabel,
   Chip,
+  Alert,
 } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { mentors } from "./mentorsData";
@@ -26,6 +27,17 @@ const MentorProfilePage: React.FC = () => {
     () => mentors.find((m) => m.id === mentorId),
     [mentorId]
   );
+
+  if (!frontMentor) {
+    return (
+      <Box p={4}>
+        <Alert severity="error" sx={{ mt: 2 }}>
+          Ментор с ID {id} не найден. Пожалуйста, проверьте ссылку или вернитесь
+          на страницу списка менторов.
+        </Alert>
+      </Box>
+    );
+  }
 
   return (
     <Box p={4}>
@@ -51,6 +63,17 @@ const MentorProfilePage: React.FC = () => {
               Телефон: {frontMentor?.phone}
               <br />
               Почта: {frontMentor?.email}
+            </Typography>
+
+            <Typography
+              variant="body2"
+              mt={2}
+              color="text.secondary"
+              fontStyle="italic"
+            >
+              При выполнении практических работ присылайте архив файлов на почту
+              или в Telegram своему ментору{" "}
+              <strong>(укажите свое ФИО и номер Практической задачи)</strong>
             </Typography>
 
             <Link

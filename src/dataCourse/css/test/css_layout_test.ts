@@ -1,0 +1,97 @@
+export const css_layout_test = {
+  id: 508,
+  name: "Макеты и позиционирование",
+  category: "CSS",
+  ques: [
+    {
+      id: 1,
+      name: "Какое свойство отвечает за центрирование блока по горизонтали?",
+      variants: ["text-align: center", "display: flex", "margin: 0 auto"],
+      correct: [2],
+    },
+    {
+      id: 2,
+      name: "Какое значение свойства display позволяет закрепить элемент при прокрутке?",
+      variants: ["fixed", "relative", "absolute"],
+      correct: [0],
+    },
+    {
+      id: 3,
+      name: "Какое значение свойства display позволяет контейнеру растягиваться на всю ширину?",
+      variants: ["block", "inline", "inline-block"],
+      correct: [0],
+    },
+    {
+      id: 4,
+      name: "Какое свойство отвечает за ограничение максимальной ширины элемента?",
+      variants: ["max-width", "width", "min-width"],
+      correct: [0],
+    },
+    {
+      id: 5,
+      name: "Какие отступы создаёт padding в контейнере?",
+      variants: ["Внешние", "Внутренние", "Между блоками"],
+      correct: [1],
+    },
+    {
+      id: 6,
+      name: "Какое значение свойства position позволяет элементу прилипать при прокрутке?",
+      variants: ["fixed", "absolute", "sticky"],
+      correct: [2],
+    },
+    {
+      id: 7,
+      name: "Какое значение свойства position позволяет элементу оставаться на экране при прокрутке?",
+      variants: ["relative", "fixed", "sticky"],
+      correct: [1],
+    },
+    {
+      id: 8,
+      name: "Какое значение margin позволяет элементу центрироваться по горизонтали?",
+      variants: ["margin: auto", "margin: 0", "margin: 10px"],
+      correct: [0],
+    },
+    {
+      id: 9,
+      name: "Какой элемент можно использовать для полной ширины фона, но ограниченной ширины контента?",
+      variants: ["header", "wrapper", "section"],
+      correct: [1],
+    },
+    {
+      id: 10,
+      name: "Какое свойство позволяет элементу занимать всю доступную высоту экрана?",
+      variants: ["height: auto", "height: 100vh", "height: 100%"],
+      correct: [1],
+    },
+    {
+      id: 11,
+      name: "Какое свойство лучше всего подходит для создания секций на странице?",
+      variants: ["div", "section", "header"],
+      correct: [1],
+    },
+    {
+      id: 12,
+      name: "Какое значение  создаёт равномерные отступы между карточками в Flex-контейнере?",
+      variants: ["gap: 10px", "margin: 10px", "padding: 10px"],
+      correct: [0],
+    },
+    {
+      id: 13,
+      name: "Какое значение свойства display лучше всего подходит для карточек, стоящих в ряд?",
+      variants: ["block", "flex", "inline-block"],
+      correct: [1],
+    },
+    {
+      id: 14,
+      name: "Какое свойство задаёт отступы между секциями на странице?",
+      variants: ["padding", "margin", "gap"],
+      correct: [1],
+    },
+    {
+      id: 15,
+      name: "Какое свойство используется для управления высотой секции в зависимости от содержимого?",
+      variants: ["height", "min-height", "max-height"],
+      correct: [1],
+    },
+  ],
+};

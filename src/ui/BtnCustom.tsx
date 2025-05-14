@@ -6,13 +6,14 @@ import type { ReactNode } from "react";
 interface BtnCustomProps {
   icon?: ReactNode;
   text: string;
-  onClick?: () => void;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   sx?: SxProps<Theme>;
   disabled?: boolean;
   variant?: "text" | "outlined" | "contained";
   type?: "button" | "submit" | "reset";
   color?: "primary" | "secondary" | "error" | "info" | "success" | "warning";
   fullWidth?: boolean;
+  white?: boolean;
 }
 
 const BtnCustom: React.FC<BtnCustomProps> = ({
@@ -25,7 +26,18 @@ const BtnCustom: React.FC<BtnCustomProps> = ({
   color,
   fullWidth,
   variant = "outlined",
+  white = false,
 }) => {
+  const whiteStyles: SxProps<Theme> = white
+    ? {
+        backgroundColor: "#fff",
+        color: "#000",
+        "&:hover": {
+          backgroundColor: "#f5f5f5",
+        },
+      }
+    : {};
+
   return (
     <Button
       type={type}
@@ -40,6 +52,7 @@ const BtnCustom: React.FC<BtnCustomProps> = ({
         textTransform: "none",
         px: 3,
         fontWeight: 500,
+        ...whiteStyles,
         ...sx,
       }}
     >

@@ -16,21 +16,13 @@ import { useGetUserProgressQuery } from "../../api/progressApi";
 import QuizIcon from "@mui/icons-material/Quiz";
 import CodeIcon from "@mui/icons-material/Code";
 import BookIcon from "@mui/icons-material/MenuBook";
-import jwtDecode from "jwt-decode";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import AddReactionIcon from "@mui/icons-material/AddReaction";
 import styles from "./Course.module.scss";
 
 const CoursePage: React.FC = () => {
   const navigate = useNavigate();
-
-  const token = localStorage.getItem("token");
-  const decoded: any = token ? jwtDecode(token) : null;
-  const userId = decoded?.sub;
-
-  const { data: progressData } = useGetUserProgressQuery(userId!, {
-    skip: !userId,
-  });
+  const { data: progressData } = useGetUserProgressQuery();
 
   const isTestPassed = (key: string): boolean => {
     if (!progressData?.history?.[key]) return false;

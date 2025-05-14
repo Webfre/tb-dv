@@ -8,4 +8,8 @@ export const htmlTopic = {
   estimatedHours: 40,
   practiceIds: ["html"],
   chapters: htmlChapters,
+  mentors: {
+    id: 2,
+    name: "Митин Олег",
+  },
 };

@@ -1,17 +1,22 @@
 import React from "react";
 import { Box, IconButton, Tooltip } from "@mui/material";
+import { ButtonCustom } from "../../ui/ButtonCustom";
+import { useCheckCourseAccessQuery } from "../../api/userApi";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { getMenuItems } from "./menuItems";
+import { openHelp } from "../../store/uiSlice";
 import FullscreenIcon from "@mui/icons-material/Fullscreen";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
-import { useNavigate, useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { openHelp } from "../../store/uiSlice";
-import { menuItems } from "./menuItems";
-import { ButtonCustom } from "../../ui/ButtonCustom";
 
 const MenuCenter: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
+
+  const { data } = useCheckCourseAccessQuery();
+  const hasAccess = data?.hasAccess;
+  const menuItems = getMenuItems(hasAccess);
 
   return (
     <Box display="flex" alignItems="center" gap={1}>

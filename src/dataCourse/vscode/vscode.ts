@@ -9,4 +9,8 @@ export const ideTopic = {
   estimatedHours: 3,
   practiceIds: [],
   chapters: ideChapters,
+  mentors: {
+    id: 2,
+    name: "Митин Олег",
+  },
 };

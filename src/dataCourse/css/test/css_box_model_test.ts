@@ -1,0 +1,101 @@
+export const css_box_model_test = {
+  id: 402,
+  name: "CSS: Блочная модель и позиционирование",
+  category: "CSS",
+  ques: [
+    {
+      id: 1,
+      name: "Какие слои включает в себя блочная модель (Box Model)?",
+      variants: [
+        "Содержимое, границы, фон, тень",
+        "Содержимое, внутренние отступы, границы, внешние отступы",
+        "Тень, фон, содержимое, позиционирование",
+      ],
+      correct: [1],
+    },
+    {
+      id: 2,
+      name: "Какое значение свойства `box-sizing` включает padding и border в общую ширину элемента?",
+      variants: ["content-box", "border-box", "padding-box"],
+      correct: [1],
+    },
+    {
+      id: 3,
+      name: "Какой элемент занимает всю доступную ширину родителя и начинается с новой строки?",
+      variants: ["inline", "block", "inline-block"],
+      correct: [1],
+    },
+    {
+      id: 4,
+      name: "Какое значение свойства `display` позволяет элементу занимать место в потоке, но не начинать с новой строки?",
+      variants: ["block", "inline", "inline-block"],
+      correct: [1],
+    },
+    {
+      id: 5,
+      name: "Какой тип отображения позволяет одновременно занимать место в потоке и задавать размеры?",
+      variants: ["inline", "block", "inline-block"],
+      correct: [2],
+    },
+    {
+      id: 6,
+      name: "Какой тип позиционирования позволяет элементу оставаться на месте при прокрутке страницы?",
+      variants: ["absolute", "fixed", "relative"],
+      correct: [1],
+    },
+    {
+      id: 7,
+      name: "Какое значение `position` позволяет элементу смещаться относительно его обычного положения, не нарушая поток документа?",
+      variants: ["absolute", "fixed", "relative"],
+      correct: [2],
+    },
+    {
+      id: 8,
+      name: "Какое свойство позволяет элементу быть видимым, но не занимать место в документе?",
+      variants: ["display: none", "visibility: hidden", "opacity: 0"],
+      correct: [1],
+    },
+    {
+      id: 9,
+      name: "Какое значение `position` удаляет элемент из нормального потока и позиционирует его относительно ближайшего родителя с `position: relative`?",
+      variants: ["fixed", "relative", "absolute"],
+      correct: [2],
+    },
+    {
+      id: 10,
+      name: "Какое свойство отвечает за расположение элементов по слоям (порядок наложения)?",
+      variants: ["opacity", "z-index", "display"],
+      correct: [1],
+    },
+    {
+      id: 11,
+      name: "Какой тип позиционирования делает элемент липким к определённой позиции при скроллинге?",
+      variants: ["fixed", "sticky", "absolute"],
+      correct: [1],
+    },
+    {
+      id: 12,
+      name: "Какое значение overflow позволяет добавить скроллинг к элементу при переполнении его содержимым?",
+      variants: ["hidden", "visible", "scroll"],
+      correct: [2],
+    },
+    {
+      id: 13,
+      name: "Какое значение свойства `display` полностью убирает элемент из потока и скрывает его?",
+      variants: ["display: none", "visibility: hidden", "opacity: 0"],
+      correct: [0],
+    },
+    {
+      id: 14,
+      name: "Какое свойство определяет прозрачность элемента в CSS?",
+      variants: ["opacity", "visibility", "display"],
+      correct: [0],
+    },
+    {
+      id: 15,
+      name: "Какой тип отображения позволяет задавать width и height для элемента?",
+      variants: ["block", "inline", "inline-block"],
+      correct: [2],
+    },
+  ],
+};
