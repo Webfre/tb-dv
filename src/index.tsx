@@ -29,11 +29,11 @@ import CourseInfoPage from "./pages/CourseInfoPage/CourseInfoPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage/ResetPasswordPage";
 import Profile from "./components/Profile/Profile";
 import Progress from "./components/Progress/Progress";
-import CourseProtectedRoute from "./ui/CourseProtectedRoute";
 import UserDetails from "./components/AdminDashboard/UserDetails";
 import TestСourse from "./components/TestСourse/TestСourse";
 import MentorProfilePage from "./components/MentorProfilePage/MentorProfilePage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
+import CoursesPageList from "./pages/CoursesPageList/CoursesPageList";
 import "react-toastify/dist/ReactToastify.css";
 import "./index.scss";
 
@@ -51,6 +51,7 @@ const AppRoutes = () => {
       <Container maxWidth="lg">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/listcourse" element={<CoursesPageList />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/course-info" element={<CourseInfoPage open={true} />} />
@@ -66,9 +67,9 @@ const AppRoutes = () => {
           <Route
             path="/flashback"
             element={
-              <CourseProtectedRoute>
+              <ProtectedRoute>
                 <Flashback />
-              </CourseProtectedRoute>
+              </ProtectedRoute>
             }
           />
 
@@ -111,9 +112,9 @@ const AppRoutes = () => {
           <Route
             path="/course"
             element={
-              <CourseProtectedRoute>
+              <ProtectedRoute>
                 <Сourse />
-              </CourseProtectedRoute>
+              </ProtectedRoute>
             }
           />
 

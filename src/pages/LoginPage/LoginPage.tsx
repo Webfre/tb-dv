@@ -1,5 +1,12 @@
-import React from "react";
-import { Box, TextField, Typography, Container, Paper } from "@mui/material";
+import React, { useState } from "react";
+import {
+  Box,
+  TextField,
+  Typography,
+  Container,
+  Paper,
+  CircularProgress,
+} from "@mui/material";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { useLoginMutation } from "../../api/authApi";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -24,8 +31,12 @@ const LoginPage: React.FC = () => {
   const [login] = useLoginMutation();
   const navigate = useNavigate();
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const onSubmit: SubmitHandler<LoginForm> = async (data) => {
     try {
+      setIsLoading(true);
+
       const result = await login(data).unwrap();
       localStorage.setItem("token", result.token);
       localStorage.setItem("isAccessKey", String(result.isAccessKey));
@@ -37,6 +48,8 @@ const LoginPage: React.FC = () => {
       navigate("/");
     } catch (error: any) {
       toast.error("Ошибка входа, неверный пароль или email");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -51,7 +64,26 @@ const LoginPage: React.FC = () => {
       }}
     >
       <Container maxWidth="sm">
-        <Paper sx={{ p: 4, borderRadius: 4 }}>
+        <Paper sx={{ p: 4, borderRadius: 4, position: "relative" }}>
+          {isLoading && (
+            <Box
+              sx={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                backgroundColor: "rgba(255, 255, 255, 0.5)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                zIndex: 10,
+              }}
+            >
+              <CircularProgress />
+            </Box>
+          )}
+
           <Typography variant="h5" gutterBottom align="center">
             Войти в профиль
           </Typography>
@@ -99,6 +131,7 @@ const LoginPage: React.FC = () => {
               fullWidth
               text="Войти"
               sx={{ mt: 2 }}
+              disabled={isLoading}
             />
 
             <BtnCustom
@@ -107,6 +140,7 @@ const LoginPage: React.FC = () => {
               sx={{ mt: 2 }}
               text="Регистрация"
               onClick={() => navigate("/register")}
+              disabled={isLoading}
             />
 
             <Box display="flex" mt={2}>
@@ -116,6 +150,7 @@ const LoginPage: React.FC = () => {
                 sx={{ mt: 1 }}
                 text="Сбросить пароль"
                 onClick={() => navigate("/reset-password")}
+                disabled={isLoading}
               />
 
               <BtnCustom
@@ -124,6 +159,7 @@ const LoginPage: React.FC = () => {
                 variant="text"
                 sx={{ mt: 1 }}
                 onClick={() => navigate("/")}
+                disabled={isLoading}
               />
             </Box>
           </Box>

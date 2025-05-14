@@ -1,5 +1,12 @@
-import React from "react";
-import { Box, TextField, Typography, Container, Paper } from "@mui/material";
+import React, { useState } from "react";
+import {
+  Box,
+  TextField,
+  Typography,
+  Container,
+  Paper,
+  CircularProgress,
+} from "@mui/material";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { IFormData } from "./FormData.types";
 import { schema } from "./schema";
@@ -21,10 +28,13 @@ const RegisterPage: React.FC = () => {
   });
 
   const [registerUser] = useRegisterUserMutation();
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<IFormData> = async (data) => {
     try {
+      setIsLoading(true);
+
       const cleanedPhone = data.phone.replace(/\s/g, "");
 
       const result = await registerUser({
@@ -41,6 +51,8 @@ const RegisterPage: React.FC = () => {
       navigate("/");
     } catch (error: any) {
       toast.error(error?.data?.message || "Ошибка регистрации");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -56,6 +68,25 @@ const RegisterPage: React.FC = () => {
     >
       <Container maxWidth="sm">
         <Paper sx={{ p: 4, borderRadius: 4 }}>
+          {isLoading && (
+            <Box
+              sx={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                backgroundColor: "rgba(255, 255, 255, 0.5)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                zIndex: 10,
+              }}
+            >
+              <CircularProgress />
+            </Box>
+          )}
+
           <Typography variant="h5" gutterBottom align="center">
             Регистрация
           </Typography>

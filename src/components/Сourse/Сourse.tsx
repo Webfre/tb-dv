@@ -66,7 +66,7 @@ const CoursePage: React.FC = () => {
         <Typography textAlign="left" variant="body2" color="textSecondary">
           Не знаете, с чего начать? Напишите вашему наставнику или загляните в
           <Link href="/roadmap" underline="hover" sx={{ mx: 0.5 }}>
-            Roadmap (Junior)
+            Roadmap
           </Link>
           — это пошаговое руководство, которое подскажет, в каком порядке
           изучать темы и выполнять задания. Следуйте по пунктам от начала и до

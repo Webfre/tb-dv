@@ -15,9 +15,7 @@ import {
   ListItem,
   ListItemText,
   Box,
-  Chip,
   Stack,
-  Tooltip,
 } from "@mui/material";
 import {
   getTestAttemptsCount,

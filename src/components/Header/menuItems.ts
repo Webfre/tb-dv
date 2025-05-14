@@ -1,6 +1,7 @@
 export const getMenuItems = (hasAccess: boolean | undefined) => {
   return [
     { label: "Главная", path: "/" },
+    { label: "Курсы", path: "/listcourse" },
     { label: "Курс", path: "/course" },
     ...(hasAccess ? [{ label: "Флешбек", path: "/flashback" }] : []),
     // { label: "Челлендж", path: "/live" },
