@@ -8,6 +8,11 @@
   color: rgb(65, 65, 65) !important;
 }
 
+.getBtn {
+  margin-top: 25px;
+  width: 100% !important;
+}
+
 .cardInfo {
   border-radius: 24px !important;
   display: flex !important;
@@ -32,15 +37,21 @@
 
 .containerInfo {
   border-radius: 24px;
+  margin-top: 60px;
   border: 1px solid rgb(201, 201, 201);
   padding: 20px;
+  margin-bottom: 20px;
+
+  @media (max-width: 1300px) {
+    margin-top: 0px !important;
+  }
 }
 
 .chipInfo {
   border-radius: 24px !important;
   padding: 10px !important;
-  background-color: #1976d2 !important;
-  color: whitesmoke !important;
+  background-color: #e6e6e6 !important;
+  color: rgb(32, 32, 32) !important;
 }
 
 .targetAudience {
@@ -82,13 +93,43 @@
 
 .closeButton {
   position: fixed !important;
-  top: 20px !important;
+  top: 15px !important;
   right: 30px !important;
-  z-index: 10 !important;
+  z-index: 2000 !important;
   background-color: rgba(233, 233, 233, 0.7) !important;
   border-radius: 50% !important;
 
   &:hover {
     background-color: rgba(197, 197, 197, 0.9) !important;
   }
+}
+
+.tabs {
+  position: fixed !important;
+  z-index: 1000 !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: 100vw;
+
+  top: -2px !important;
+  padding: 15px !important;
+
+  display: flex !important;
+  justify-content: center !important;
+  background-color: #e0e0e0 !important;
+  gap: 7px;
+
+  @media (max-width: 1300px) {
+    display: none !important;
+  }
+}
+
+.tabsItem {
+  cursor: pointer !important;
+  color: rgb(21, 21, 21) !important;
+  border-radius: 16px !important;
+  font-size: 14px !important;
+
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.971) !important;
 }

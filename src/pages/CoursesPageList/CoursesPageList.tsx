@@ -16,10 +16,23 @@ import VerifiedIcon from "@mui/icons-material/Verified";
 import BtnCustom from "../../ui/BtnCustom";
 import styles from "./CoursesPageList.module.scss";
 import CourseDetailsDrawer from "./CourseDetailsDrawer";
+import CourseEnrollmentModal from "./CourseEnrollmentModal";
 
 const CoursesPageList: React.FC = () => {
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedCourseId, setSelectedCourseId] = useState<number>();
+
+  const handleOpenModal = (courseId: number) => {
+    setSelectedCourseId(courseId);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
 
   const handleOpenDrawer = (course: any) => {
     setSelectedCourse(course);
@@ -136,6 +149,7 @@ const CoursesPageList: React.FC = () => {
                     text="Записаться"
                     variant="contained"
                     color="primary"
+                    onClick={() => handleOpenModal(course.id)}
                     fullWidth
                   ></BtnCustom>
                 </Box>
@@ -148,8 +162,17 @@ const CoursesPageList: React.FC = () => {
       <CourseDetailsDrawer
         open={isDrawerOpen}
         onClose={handleCloseDrawer}
+        handleOpenModal={handleOpenModal}
         course={selectedCourse}
       />
+
+      {selectedCourseId && (
+        <CourseEnrollmentModal
+          open={isModalOpen}
+          onClose={handleCloseModal}
+          courseId={selectedCourseId}
+        />
+      )}
     </Container>
   );
 };

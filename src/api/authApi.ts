@@ -10,6 +10,17 @@ export interface RegisterDto {
   password: string;
 }
 
+export interface EnrollCourseDto {
+  title: string;
+  fullName: string;
+  email: string;
+  phone: string;
+}
+
+export interface EnrollCourseResponse {
+  message: string;
+}
+
 export interface RegisterResponse {
   token: string;
   lastName: string;
@@ -60,6 +71,14 @@ export const authApi = baseApi.injectEndpoints({
         body,
       }),
     }),
+
+    enrollCourse: builder.mutation<EnrollCourseResponse, EnrollCourseDto>({
+      query: (body) => ({
+        url: "/auth/enroll-course",
+        method: "POST",
+        body,
+      }),
+    }),
   }),
 
   overrideExisting: false,
@@ -69,4 +88,5 @@ export const {
   useRegisterUserMutation,
   useLoginMutation,
   useResetPasswordMutation,
+  useEnrollCourseMutation,
 } = authApi;

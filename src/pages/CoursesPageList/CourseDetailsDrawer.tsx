@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Drawer,
   Container,
@@ -21,8 +21,13 @@ import {
   Chip,
   Tooltip,
   IconButton,
+  Zoom,
+  Fab,
 } from "@mui/material";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { InfoCourse } from "../../DB";
+import { FrontariumFeatures } from "../CoursesPageList/FrontariumFeatures";
+import { tabs } from "./tabs";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
@@ -32,22 +37,66 @@ import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
 import CloseIcon from "@mui/icons-material/Close";
 import styles from "./CoursesPageList.module.scss";
 import CourseProgram from "./CourseProgram";
-import { FrontariumFeatures } from "../CoursesPageList/FrontariumFeatures";
 import BtnCustom from "../../ui/BtnCustom";
 
 interface CourseDetailsDrawerProps {
   open: boolean;
   onClose: () => void;
   course: InfoCourse | null;
+  handleOpenModal: (courseId: number) => void;
 }
 
 const CourseDetailsDrawer: React.FC<CourseDetailsDrawerProps> = ({
   open,
   onClose,
   course,
+  handleOpenModal,
 }) => {
   const theme = useTheme();
+  const [showScrollTop, setShowScrollTop] = useState(false);
+  const drawerContentRef = useRef<HTMLDivElement | null>(null);
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
+  const smoothScrollTo = (id: string) => {
+    if (drawerContentRef.current) {
+      const element = drawerContentRef.current.querySelector<HTMLElement>(
+        `#${id}`
+      );
+      if (element) {
+        const elementTop = element.getBoundingClientRect().top;
+        const containerTop =
+          drawerContentRef.current.getBoundingClientRect().top;
+        const offset =
+          elementTop - containerTop + drawerContentRef.current.scrollTop - 100;
+
+        drawerContentRef.current.scrollTo({
+          top: offset,
+          behavior: "smooth",
+        });
+      }
+    }
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (drawerContentRef.current) {
+        setShowScrollTop(drawerContentRef.current.scrollTop > 300);
+      }
+    };
+
+    const currentRef = drawerContentRef.current;
+    currentRef?.addEventListener("scroll", handleScroll);
+
+    return () => {
+      currentRef?.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const scrollToTop = () => {
+    if (drawerContentRef.current) {
+      drawerContentRef.current.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
 
   if (!course) return null;
 
@@ -68,9 +117,31 @@ const CourseDetailsDrawer: React.FC<CourseDetailsDrawerProps> = ({
         <CloseIcon />
       </IconButton>
 
-      <Container maxWidth="md" sx={{ py: 4 }}>
+      <Container
+        ref={drawerContentRef}
+        sx={{
+          py: 4,
+          overflowY: "auto",
+          scrollbarWidth: "none",
+          "&::-webkit-scrollbar": {
+            display: "none",
+          },
+        }}
+      >
+        <Box className={styles.tabs}>
+          {tabs.map((tab) => (
+            <Box
+              className={styles.tabsItem}
+              key={tab.id}
+              onClick={() => smoothScrollTo(tab.id)}
+            >
+              {tab.label}
+            </Box>
+          ))}
+        </Box>
+
         {/* Секция 1: Демо-баннер */}
-        <Box className={styles.containerInfo}>
+        <Box id="overview" className={styles.containerInfo}>
           <Typography variant="h3" component="h1" gutterBottom>
             {course.title}
           </Typography>
@@ -90,9 +161,20 @@ const CourseDetailsDrawer: React.FC<CourseDetailsDrawerProps> = ({
               ))}
             </Stack>
           </Box>
+
+          <Box className={styles.getBtn}>
+            <BtnCustom
+              variant="contained"
+              color="primary"
+              fullWidth
+              text="Записаться"
+              sx={{ p: 2, fontSize: "18px" }}
+              onClick={() => handleOpenModal(course.id)}
+            />
+          </Box>
         </Box>
 
-        <Box mt={2} className={styles.containerInfo}>
+        <Box id="profession" mt={2} className={styles.containerInfo}>
           <Typography variant="h4" gutterBottom sx={{ fontWeight: "bold" }}>
             О профессии
           </Typography>
@@ -142,7 +224,7 @@ const CourseDetailsDrawer: React.FC<CourseDetailsDrawerProps> = ({
         </Box>
 
         {/* Секция 2: Кому подойдёт курс */}
-        <Box mt={5}>
+        <Box id="audience" mt={5}>
           <Typography variant="h4" gutterBottom sx={{ fontWeight: "bold" }}>
             Кому подойдёт курс
           </Typography>
@@ -172,10 +254,12 @@ const CourseDetailsDrawer: React.FC<CourseDetailsDrawerProps> = ({
         </Box>
 
         {/* Секция 3: О чём этот курс (Программа) */}
-        <CourseProgram courseId={course.courseId} />
+        <Box id="program">
+          <CourseProgram courseId={course.courseId} />
+        </Box>
 
         {/* Секция 4: Как проходит обучение */}
-        <Box mt={5}>
+        <Box id="learning" mt={5}>
           <Typography variant="h4" gutterBottom sx={{ fontWeight: "bold" }}>
             Как проходит обучение
           </Typography>
@@ -197,7 +281,7 @@ const CourseDetailsDrawer: React.FC<CourseDetailsDrawerProps> = ({
         </Box>
 
         {/* Секция 5: Чему вы научитесь */}
-        <Box mt={5}>
+        <Box id="skills" mt={5}>
           <Typography variant="h4" gutterBottom sx={{ fontWeight: "bold" }}>
             Чему вы научитесь
           </Typography>
@@ -216,7 +300,7 @@ const CourseDetailsDrawer: React.FC<CourseDetailsDrawerProps> = ({
         </Box>
 
         {/* Секция 6: Инструменты и технологии */}
-        <Box mt={5}>
+        <Box id="tools" mt={5}>
           <Typography variant="h4" gutterBottom sx={{ fontWeight: "bold" }}>
             Инструменты
           </Typography>
@@ -237,7 +321,7 @@ const CourseDetailsDrawer: React.FC<CourseDetailsDrawerProps> = ({
         </Box>
 
         {/* Секция 7: После обучения */}
-        <Box mt={5}>
+        <Box id="portfolio" mt={5}>
           <Typography variant="h4" gutterBottom sx={{ fontWeight: "bold" }}>
             Портфолио
           </Typography>
@@ -264,7 +348,7 @@ const CourseDetailsDrawer: React.FC<CourseDetailsDrawerProps> = ({
         <FrontariumFeatures />
 
         {/* Секция 8: Вопросы и ответы */}
-        <Box mt={5}>
+        <Box id="faq" mt={5}>
           <Typography variant="h4" gutterBottom sx={{ fontWeight: "bold" }}>
             Отвечаем на вопросы
           </Typography>
@@ -293,18 +377,36 @@ const CourseDetailsDrawer: React.FC<CourseDetailsDrawerProps> = ({
           <BtnCustom
             variant="contained"
             color="primary"
-            text="Записаться на курс"
-            sx={{ px: 4, py: 2 }}
+            text="Записаться"
+            onClick={() => handleOpenModal(course.id)}
+            sx={{ px: 4, py: 2, fontSize: "16px" }}
           ></BtnCustom>
           <BtnCustom
             variant="outlined"
             color="primary"
             text="Вернуться к курсам"
-            sx={{ px: 4, py: 2 }}
+            sx={{ px: 4, py: 2, fontSize: "16px" }}
             onClick={onClose}
           ></BtnCustom>
         </Box>
       </Container>
+
+      <Zoom in={showScrollTop}>
+        <Fab
+          color="primary"
+          size="medium"
+          onClick={scrollToTop}
+          sx={{
+            position: "fixed",
+            bottom: 24,
+            right: 24,
+            zIndex: 1300,
+          }}
+          aria-label="scroll back to top"
+        >
+          <KeyboardArrowUpIcon />
+        </Fab>
+      </Zoom>
     </Drawer>
   );
 };
