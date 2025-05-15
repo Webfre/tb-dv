@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import {
   Drawer,
   Container,
@@ -21,10 +21,7 @@ import {
   Chip,
   Tooltip,
   IconButton,
-  Zoom,
-  Fab,
 } from "@mui/material";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { InfoCourse } from "../../DB";
 import { FrontariumFeatures } from "../CoursesPageList/FrontariumFeatures";
 import { tabs } from "./tabs";
@@ -53,48 +50,18 @@ const CourseDetailsDrawer: React.FC<CourseDetailsDrawerProps> = ({
   handleOpenModal,
 }) => {
   const theme = useTheme();
-  const [showScrollTop, setShowScrollTop] = useState(false);
   const drawerContentRef = useRef<HTMLDivElement | null>(null);
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const smoothScrollTo = (id: string) => {
     if (drawerContentRef.current) {
-      const element = drawerContentRef.current.querySelector<HTMLElement>(
-        `#${id}`
-      );
+      const element = drawerContentRef.current.querySelector(`#${id}`);
       if (element) {
-        const elementTop = element.getBoundingClientRect().top;
-        const containerTop =
-          drawerContentRef.current.getBoundingClientRect().top;
-        const offset =
-          elementTop - containerTop + drawerContentRef.current.scrollTop - 100;
-
-        drawerContentRef.current.scrollTo({
-          top: offset,
+        element.scrollIntoView({
           behavior: "smooth",
+          block: "start",
         });
       }
-    }
-  };
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (drawerContentRef.current) {
-        setShowScrollTop(drawerContentRef.current.scrollTop > 300);
-      }
-    };
-
-    const currentRef = drawerContentRef.current;
-    currentRef?.addEventListener("scroll", handleScroll);
-
-    return () => {
-      currentRef?.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  const scrollToTop = () => {
-    if (drawerContentRef.current) {
-      drawerContentRef.current.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
@@ -110,6 +77,7 @@ const CourseDetailsDrawer: React.FC<CourseDetailsDrawerProps> = ({
           width: isMobile ? "100%" : "100%",
           height: isMobile ? "90vh" : "100vh",
           overflowY: "auto",
+          position: "relative",
         },
       }}
     >
@@ -121,11 +89,6 @@ const CourseDetailsDrawer: React.FC<CourseDetailsDrawerProps> = ({
         ref={drawerContentRef}
         sx={{
           py: 4,
-          overflowY: "auto",
-          scrollbarWidth: "none",
-          "&::-webkit-scrollbar": {
-            display: "none",
-          },
         }}
       >
         <Box className={styles.tabs}>
@@ -224,7 +187,7 @@ const CourseDetailsDrawer: React.FC<CourseDetailsDrawerProps> = ({
         </Box>
 
         {/* Секция 2: Кому подойдёт курс */}
-        <Box id="audience" mt={5}>
+        <Box id="audience" sx={{ paddingTop: "75px" }}>
           <Typography variant="h4" gutterBottom sx={{ fontWeight: "bold" }}>
             Кому подойдёт курс
           </Typography>
@@ -254,12 +217,12 @@ const CourseDetailsDrawer: React.FC<CourseDetailsDrawerProps> = ({
         </Box>
 
         {/* Секция 3: О чём этот курс (Программа) */}
-        <Box id="program">
+        <Box id="program" sx={{ paddingTop: "75px" }}>
           <CourseProgram courseId={course.courseId} />
         </Box>
 
         {/* Секция 4: Как проходит обучение */}
-        <Box id="learning" mt={5}>
+        <Box sx={{ paddingTop: "75px" }} id="learning">
           <Typography variant="h4" gutterBottom sx={{ fontWeight: "bold" }}>
             Как проходит обучение
           </Typography>
@@ -281,7 +244,7 @@ const CourseDetailsDrawer: React.FC<CourseDetailsDrawerProps> = ({
         </Box>
 
         {/* Секция 5: Чему вы научитесь */}
-        <Box id="skills" mt={5}>
+        <Box id="skills" sx={{ paddingTop: "75px" }}>
           <Typography variant="h4" gutterBottom sx={{ fontWeight: "bold" }}>
             Чему вы научитесь
           </Typography>
@@ -300,7 +263,7 @@ const CourseDetailsDrawer: React.FC<CourseDetailsDrawerProps> = ({
         </Box>
 
         {/* Секция 6: Инструменты и технологии */}
-        <Box id="tools" mt={5}>
+        <Box id="tools" sx={{ paddingTop: "75px" }}>
           <Typography variant="h4" gutterBottom sx={{ fontWeight: "bold" }}>
             Инструменты
           </Typography>
@@ -321,7 +284,7 @@ const CourseDetailsDrawer: React.FC<CourseDetailsDrawerProps> = ({
         </Box>
 
         {/* Секция 7: После обучения */}
-        <Box id="portfolio" mt={5}>
+        <Box id="portfolio" sx={{ paddingTop: "75px" }}>
           <Typography variant="h4" gutterBottom sx={{ fontWeight: "bold" }}>
             Портфолио
           </Typography>
@@ -348,7 +311,7 @@ const CourseDetailsDrawer: React.FC<CourseDetailsDrawerProps> = ({
         <FrontariumFeatures />
 
         {/* Секция 8: Вопросы и ответы */}
-        <Box id="faq" mt={5}>
+        <Box id="faq" sx={{ paddingTop: "75px" }}>
           <Typography variant="h4" gutterBottom sx={{ fontWeight: "bold" }}>
             Отвечаем на вопросы
           </Typography>
@@ -390,23 +353,6 @@ const CourseDetailsDrawer: React.FC<CourseDetailsDrawerProps> = ({
           ></BtnCustom>
         </Box>
       </Container>
-
-      <Zoom in={showScrollTop}>
-        <Fab
-          color="primary"
-          size="medium"
-          onClick={scrollToTop}
-          sx={{
-            position: "fixed",
-            bottom: 24,
-            right: 24,
-            zIndex: 1300,
-          }}
-          aria-label="scroll back to top"
-        >
-          <KeyboardArrowUpIcon />
-        </Fab>
-      </Zoom>
     </Drawer>
   );
 };

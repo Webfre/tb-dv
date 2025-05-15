@@ -39,7 +39,7 @@ const CourseProgram: React.FC<CourseProgramProps> = ({ courseId }) => {
   });
 
   return (
-    <Box mt={5}>
+    <Box>
       <Typography variant="h4" gutterBottom sx={{ fontWeight: "bold" }}>
         Программа курса
       </Typography>

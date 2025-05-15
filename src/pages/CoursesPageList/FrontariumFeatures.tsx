@@ -5,7 +5,7 @@ import { Box, Typography } from "@mui/material";
 
 export const FrontariumFeatures: React.FC = () => {
   return (
-    <Box mt={5}>
+    <Box sx={{ paddingTop: "75px" }}>
       <Typography variant="h4" gutterBottom sx={{ fontWeight: "bold" }}>
         Бонус Frontarium
       </Typography>
