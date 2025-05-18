@@ -12,16 +12,24 @@ import {
   AlertTitle,
 } from "@mui/material";
 import { courseList } from "../../DB";
+import { useCheckCourseAccessQuery } from "../../api/userApi";
+import { hasAccessToCourse } from "../../lib/hasAccessToCourses";
+import { useNavigate } from "react-router-dom";
+import NextPlanIcon from "@mui/icons-material/NextPlan";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import BtnCustom from "../../ui/BtnCustom";
 import styles from "./CoursesPageList.module.scss";
 import CourseDetailsDrawer from "./CourseDetailsDrawer";
 import CourseEnrollmentModal from "./CourseEnrollmentModal";
+import CourseCardContent from "./CourseCardContent";
 
 const CoursesPageList: React.FC = () => {
+  const navigate = useNavigate();
+  const { data } = useCheckCourseAccessQuery();
+  const accessCourses = data?.accessCourse || [];
+
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCourseId, setSelectedCourseId] = useState<number>();
 
@@ -45,7 +53,7 @@ const CoursesPageList: React.FC = () => {
   };
 
   return (
-    <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+    <Container maxWidth="lg" sx={{ p: 2 }}>
       <Paper
         elevation={3}
         sx={{ p: 3, mb: 4, borderRadius: 3, backgroundColor: "#f9f9f9" }}
@@ -100,60 +108,30 @@ const CoursesPageList: React.FC = () => {
                   sx={{ borderRadius: "20px", objectFit: "cover", mb: 2 }}
                 />
               </CardContent>
-              <CardContent>
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    mb: 2,
-                  }}
-                >
-                  <Typography className={styles.priceInfo}>
-                    {course.totalPrice.toLocaleString()} ₽
+
+              {hasAccessToCourse(accessCourses, course.id) ? (
+                <Box sx={{ p: 2 }}>
+                  <Typography className={styles.accessCoursesTitle}>
+                    Вы имеете доступ к этому курсу
                   </Typography>
-                  <Box>
-                    <Typography
-                      className={styles.totalPrice}
-                      variant="h6"
-                      sx={{ fontWeight: "bold" }}
-                    >
-                      {(
-                        course.totalPrice / course.paymentMonths
-                      ).toLocaleString()}{" "}
-                      ₽/мес.
-                    </Typography>
-                    <Typography
-                      variant="caption"
-                      color="text.secondary"
-                      sx={{
-                        backgroundColor: "rgba(0, 0, 0, 0.05)",
-                        borderRadius: "4px",
-                        px: 0.5,
-                      }}
-                    >
-                      Рассрочка на {course.paymentMonths} мес.
-                    </Typography>
-                  </Box>
-                </Box>
-
-                <Box sx={{ display: "flex", gap: 2 }}>
-                  <BtnCustom
-                    text="О курсе"
-                    variant="outlined"
-                    fullWidth
-                    onClick={() => handleOpenDrawer(course)}
-                  ></BtnCustom>
 
                   <BtnCustom
-                    text="Записаться"
+                    text="Начать курс"
+                    icon={<NextPlanIcon />}
                     variant="contained"
-                    color="primary"
-                    onClick={() => handleOpenModal(course.id)}
+                    color="info"
+                    sx={{ p: 2, fontSize: "16px", mt: 1 }}
                     fullWidth
-                  ></BtnCustom>
+                    onClick={() => navigate(`/course-access/${course.id}`)}
+                  />
                 </Box>
-              </CardContent>
+              ) : (
+                <CourseCardContent
+                  course={course}
+                  onOpenDrawer={handleOpenDrawer}
+                  onOpenModal={handleOpenModal}
+                />
+              )}
             </Card>
           </Grid>
         ))}

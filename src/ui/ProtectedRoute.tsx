@@ -8,7 +8,7 @@ interface ProtectedRouteProps {
 }
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
-  const { token, isLoading, isError, valid, exists } = useAuthTokenCheck();
+  const { token, isLoading, isError, valid } = useAuthTokenCheck();
 
   if (!token) {
     return <Navigate to="/register" replace />;
@@ -18,17 +18,13 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
     return <Spinner />;
   }
 
-  if (isError || !valid) {
-    // токен протух или подпись неверна
+  if (isError) {
     localStorage.removeItem("token");
-    localStorage.removeItem("isAccessKey");
     return <Navigate to="/login" replace />;
   }
 
-  if (valid && !exists) {
-    // токен валиден, но пользователь не найден
+  if (!valid) {
     localStorage.removeItem("token");
-    localStorage.removeItem("isAccessKey");
     return <Navigate to="/register" replace />;
   }
 

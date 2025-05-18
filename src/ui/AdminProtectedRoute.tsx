@@ -1,5 +1,5 @@
 import { Navigate } from "react-router-dom";
-import { isUserAdmin } from "../api/auth";
+import { useIsUserAdmin } from "../lib/useIsUserAdmin";
 import { useAuthTokenCheck } from "../lib/useAuthTokenCheck";
 import Spinner from "./Spinner";
 
@@ -8,7 +8,8 @@ interface ProtectedRouteProps {
 }
 
 const AdminProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
-  const { token, isError, isLoading, valid, exists } = useAuthTokenCheck();
+  const { token, isError, isLoading, valid } = useAuthTokenCheck();
+  const { isAdmin } = useIsUserAdmin();
 
   if (!token) {
     return <Navigate to="/register" replace />;
@@ -18,21 +19,17 @@ const AdminProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
     return <Spinner />;
   }
 
-  if (isError || !valid) {
-    // токен протух или подпись неверна
+  if (isError) {
     localStorage.removeItem("token");
-    localStorage.removeItem("isAccessKey");
     return <Navigate to="/login" replace />;
   }
 
-  if (valid && !exists) {
-    // токен валиден, но пользователь не найден
+  if (!valid) {
     localStorage.removeItem("token");
-    localStorage.removeItem("isAccessKey");
     return <Navigate to="/register" replace />;
   }
 
-  if (!isUserAdmin()) {
+  if (!isAdmin) {
     return <Navigate to="/course-info" replace />;
   }
 

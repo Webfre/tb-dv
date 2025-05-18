@@ -13,6 +13,7 @@ export interface Progress {
 
 export interface UpdateProgressDto {
   testKey: string;
+  courseId: string;
   attempts: number;
   fullHistory: any[];
   result: {
@@ -39,8 +40,8 @@ export interface UpdateTaskTopicDto {
 
 export const progressApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    getUserProgress: builder.query<Progress, void>({
-      query: () => `/progress`,
+    getUserProgress: builder.query<Progress, { courseId: string }>({
+      query: ({ courseId }) => `/progress?courseId=${courseId}`,
       providesTags: ["Progress"],
     }),
 
@@ -58,10 +59,10 @@ export const progressApi = baseApi.injectEndpoints({
           title: string;
         }>;
       },
-      { userId: number; data: UpdateTaskTopicDto }
+      { userId: number; courseId: number; data: UpdateTaskTopicDto }
     >({
-      query: ({ userId, data }) => ({
-        url: `/progress/admin/task-topics/${userId}`,
+      query: ({ userId, courseId, data }) => ({
+        url: `/progress/admin/task-topics/${userId}/${courseId}`,
         method: "POST",
         body: data,
       }),
@@ -80,10 +81,11 @@ export const progressApi = baseApi.injectEndpoints({
     }),
 
     updateProgress: builder.mutation<void, UpdateProgressDto>({
-      query: ({ testKey, attempts, fullHistory }) => ({
+      query: ({ courseId, testKey, attempts, fullHistory }) => ({
         url: `/progress`,
         method: "POST",
         body: {
+          courseId,
           attempts: {
             [testKey]: attempts,
           },

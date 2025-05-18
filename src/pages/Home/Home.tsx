@@ -5,7 +5,7 @@ import styles from "./Home.module.scss";
 
 const Home: React.FC = () => {
   return (
-    <Container maxWidth="md" className={styles.home}>
+    <Container className={styles.home}>
       <Box className={styles.intro} mb={4} mt={4}>
         <Typography textAlign="center" variant="h4" gutterBottom>
           Добро пожаловать на Frontarium

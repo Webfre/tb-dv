@@ -6,6 +6,7 @@ import { practiceMock } from "../../data/taskData";
 import { PracticeTask } from "../../dataCourse/CourseTopic";
 import { useGetSolvedTasksQuery } from "../../api/progressApi";
 import { Box } from "@mui/material";
+import { hasAccessToCourses } from "../../lib/hasAccessToCourses";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import TaskDrawer from "../../components/TaskBook/TaskDrawer";
 import BtnCustom from "../../ui/BtnCustom";
@@ -17,7 +18,7 @@ const TaskListPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const { data } = useCheckCourseAccessQuery();
   const { data: solvedTasks = [] } = useGetSolvedTasksQuery();
-  const hasAccess = data?.hasAccess;
+  const hasAccess = hasAccessToCourses(data?.accessCourse || []);
 
   const [selectedTask, setSelectedTask] = useState<PracticeTask | null>(null);
   const [difficultyLevel, setDifficultyLevel] = useState<number | null>(null);

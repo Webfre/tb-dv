@@ -21,3 +21,65 @@
   width: 28px !important;
   height: 28px !important;
 }
+
+.btnGo {
+  border-radius: 50% !important;
+  padding: 14px !important;
+  background-color: white !important;
+  transition: all 0.3s ease !important;
+  margin: 0 20px !important;
+
+  svg {
+    font-size: 32px !important;
+    color: #1976d2 !important;
+    transition: color 0.3s ease;
+  }
+
+  &:hover {
+    background-color: #f3f1f1 !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.btnGo {
+  border-radius: 50% !important;
+  padding: 14px !important;
+  background-color: white !important;
+  overflow: hidden;
+  position: relative;
+  transition: background-color 0.3s ease;
+
+  .iconWrapper {
+    position: relative;
+    width: 32px;
+    height: 32px;
+  }
+
+  .iconPrimary {
+    font-size: 32px !important;
+    color: #1976d2 !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all 0.3s ease;
+  }
+
+  .iconSecondary {
+    font-size: 32px !important;
+    color: #1976d2 !important;
+    position: absolute;
+    bottom: -42px;
+    left: 0;
+    transition: all 0.3s ease;
+  }
+
+  &:hover {
+    .iconPrimary {
+      top: -43px; // уходит вверх
+    }
+
+    .iconSecondary {
+      bottom: 0; // появляется снизу
+    }
+  }
+}

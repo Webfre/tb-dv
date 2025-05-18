@@ -47,6 +47,7 @@ const TopicChaptersAccordion: React.FC<TopicChaptersAccordionProps> = ({
 }) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { courseId } = location.state || {};
   const [expandedChapterId, setExpandedChapterId] = useState<string | null>(
     null
   );
@@ -57,7 +58,7 @@ const TopicChaptersAccordion: React.FC<TopicChaptersAccordionProps> = ({
   const [highlightedId, setHighlightedId] = useState<string | null>(null);
 
   const { data: solvedTasks = [] } = useGetSolvedTasksQuery();
-  const { data: progressData } = useGetUserProgressQuery();
+  const { data: progressData } = useGetUserProgressQuery({ courseId });
 
   const isChapterTestPassed = (testKey?: string): boolean | null => {
     if (!testKey || !progressData?.history?.[testKey]) return null;
@@ -85,6 +86,7 @@ const TopicChaptersAccordion: React.FC<TopicChaptersAccordionProps> = ({
         state: {
           name: chapterTitle,
           selectedTest: testKey,
+          courseId: courseId,
         },
       });
     }

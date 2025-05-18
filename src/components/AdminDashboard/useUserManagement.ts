@@ -8,8 +8,8 @@ import {
 } from "../../api/userApi";
 
 export const useUserManagement = (
-  selectedUserId: number | null,
-  refetchUsers: () => void
+  userId: number | null,
+  refetchUser: () => void
 ) => {
   const [assignAccessKey] = useAssignAccessKeyMutation();
   const [revokeAccessKey] = useRevokeAccessKeyMutation();
@@ -17,43 +17,43 @@ export const useUserManagement = (
   const [revokeAdmin] = useRevokeAdminMutation();
 
   const handleAssign = useCallback(
-    async (isAccessKey?: boolean) => {
-      if (!selectedUserId) return;
+    async (idCourse: number, isAccess: boolean) => {
+      if (!userId) return;
 
       try {
-        if (isAccessKey) {
-          await revokeAccessKey(selectedUserId).unwrap();
+        if (isAccess) {
+          await revokeAccessKey({ userId, idCourse }).unwrap();
           toast.success("Доступ к курсу закрыт");
         } else {
-          await assignAccessKey(selectedUserId).unwrap();
+          await assignAccessKey({ userId, idCourse }).unwrap();
           toast.success("Доступ к курсу открыт");
         }
-        refetchUsers();
+        refetchUser();
       } catch {
         toast.error("Ошибка при обновлении доступа");
       }
     },
-    [selectedUserId, assignAccessKey, revokeAccessKey, refetchUsers]
+    [userId, assignAccessKey, revokeAccessKey, refetchUser]
   );
 
   const handleToggleAdmin = useCallback(
     async (isAdmin?: boolean) => {
-      if (!selectedUserId) return;
+      if (!userId) return;
 
       try {
         if (isAdmin) {
-          await revokeAdmin(selectedUserId).unwrap();
+          await revokeAdmin(userId).unwrap();
           toast.success("Права администратора сняты");
         } else {
-          await makeAdmin(selectedUserId).unwrap();
+          await makeAdmin(userId).unwrap();
           toast.success("Пользователь назначен админом");
         }
-        refetchUsers();
+        refetchUser();
       } catch {
         toast.error("Ошибка при обновлении прав администратора");
       }
     },
-    [selectedUserId, makeAdmin, revokeAdmin, refetchUsers]
+    [userId, makeAdmin, revokeAdmin, refetchUser]
   );
 
   return {

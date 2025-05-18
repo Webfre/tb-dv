@@ -32,3 +32,44 @@
   align-items: center;
   gap: 8px;
 }
+
+.courseCard {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  border-radius: 24px !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  padding: 10px 20px !important;
+
+  &:hover {
+    background-color: #b5d3f1 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+  }
+}
+
+.progressCircle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #e3f2fd;
+  font-weight: bold;
+  font-size: 20px;
+  color: #1976d2;
+}
+
+.headerCard {
+  padding: 16px 24px !important;
+  margin-bottom: 24px !important;
+  background-color: #1976d2 !important;
+  color: white !important;
+  border-radius: 12px !important;
+
+  h4 {
+    margin-bottom: 8px !important;
+  }
+}

@@ -8,14 +8,16 @@ import {
 
 const MAX_ATTEMPTS = 2;
 
-interface LocationState {
+export interface LocationState {
   name: string;
   selectedTest: keyof typeof testData;
+  courseId: string;
 }
 
 export const useTestLogic = () => {
   const location = useLocation();
-  const { name, selectedTest } = (location.state as LocationState) || {};
+  const { name, selectedTest, courseId } =
+    (location.state as LocationState) || {};
 
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [open, setOpen] = useState(false);
@@ -29,7 +31,9 @@ export const useTestLogic = () => {
     [key: number]: number[];
   }>({});
 
-  const { data: progressData, isSuccess } = useGetUserProgressQuery();
+  const { data: progressData, isSuccess } = useGetUserProgressQuery({
+    courseId,
+  });
 
   useEffect(() => {
     if (isSuccess && progressData?.attempts?.[selectedTest]) {
@@ -92,6 +96,7 @@ export const useTestLogic = () => {
       const updatedHistory = [...currentHistory, testResult];
 
       await updateProgress({
+        courseId,
         testKey: String(selectedTest),
         attempts: newAttemptsUsed,
         result: testResult,

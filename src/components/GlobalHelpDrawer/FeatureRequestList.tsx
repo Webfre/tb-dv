@@ -1,5 +1,13 @@
 import React from "react";
-import { Box, Typography, Divider } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Divider,
+} from "@mui/material";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useGetFeatureRequestsQuery } from "../../api/featureRequestApi";
 
 const FeatureRequestList: React.FC = () => {
@@ -9,19 +17,23 @@ const FeatureRequestList: React.FC = () => {
   if (error) return <Typography>Ошибка при загрузке данных</Typography>;
 
   return (
-    <Box p={3}>
+    <Box>
       <Typography variant="h5" gutterBottom>
         Все запросы пользователей
       </Typography>
 
       {data?.map((req) => (
-        <Box key={req.id} mb={2}>
-          <Typography variant="subtitle2" color="textSecondary">
-            [{new Date(req.createdAt).toLocaleString()}] {req.category}
-          </Typography>
-          <Typography>{req.message}</Typography>
-          <Divider sx={{ my: 1 }} />
-        </Box>
+        <Accordion key={req.id} sx={{ mb: 1 }}>
+          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+            <Typography variant="subtitle2" color="textSecondary">
+              [{new Date(req.createdAt).toLocaleString()}] {req.category}
+            </Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography>{req.message}</Typography>
+            <Divider sx={{ my: 1 }} />
+          </AccordionDetails>
+        </Accordion>
       ))}
     </Box>
   );

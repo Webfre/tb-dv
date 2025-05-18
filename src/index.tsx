@@ -29,13 +29,14 @@ import CourseInfoPage from "./pages/CourseInfoPage/CourseInfoPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage/ResetPasswordPage";
 import Profile from "./components/Profile/Profile";
 import Progress from "./components/Progress/Progress";
-import UserDetails from "./components/AdminDashboard/UserDetails";
+import UserDetails from "./components/AdminDashboard/UserDetails/UserDetails";
 import TestСourse from "./components/TestСourse/TestСourse";
 import MentorProfilePage from "./components/MentorProfilePage/MentorProfilePage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import CoursesPageList from "./pages/CoursesPageList/CoursesPageList";
 import "react-toastify/dist/ReactToastify.css";
 import "./index.scss";
+import CourseList from "./components/Сourse/CourseList";
 
 const AppRoutes = () => {
   const location = useLocation();
@@ -101,10 +102,19 @@ const AppRoutes = () => {
           />
 
           <Route
-            path="/progress"
+            path="/course-access/:id"
             element={
               <ProtectedRoute>
-                <Progress />
+                <Сourse />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/course/:id"
+            element={
+              <ProtectedRoute>
+                <CourseTopicDetails />
               </ProtectedRoute>
             }
           />
@@ -113,7 +123,7 @@ const AppRoutes = () => {
             path="/course"
             element={
               <ProtectedRoute>
-                <Сourse />
+                <CourseList />
               </ProtectedRoute>
             }
           />
@@ -132,15 +142,6 @@ const AppRoutes = () => {
             element={
               <ProtectedRoute>
                 <MentorProfilePage />
-              </ProtectedRoute>
-            }
-          />
-
-          <Route
-            path="/course/:id"
-            element={
-              <ProtectedRoute>
-                <CourseTopicDetails />
               </ProtectedRoute>
             }
           />

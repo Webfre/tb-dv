@@ -8,38 +8,17 @@ import {
   ListItemText,
   CircularProgress,
   Box,
-  IconButton,
-  Tooltip,
 } from "@mui/material";
-import BtnCustom from "../../ui/BtnCustom";
-import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import FeatureRequestList from "../GlobalHelpDrawer/FeatureRequestList";
-import { useUserDialogManager } from "./useUserDialogManager";
-import { useUserManagement } from "./useUserManagement";
 import { useNavigate } from "react-router-dom";
 import { useGetAllUsersQuery } from "../../api/userApi";
-import AccessConfirmDialog from "./AccessConfirmDialog";
-import AdminConfirmDialog from "./AdminConfirmDialog";
+import styles from "./AdminDashboard.module.scss";
+import AdminToggleButton from "./AdminToggleButton";
+import BtnCustom from "../../ui/BtnCustom";
 
 const AdminDashboard: React.FC = () => {
   const { data: users, isLoading, error, refetch } = useGetAllUsersQuery();
   const navigate = useNavigate();
-
-  const {
-    selectedUserId,
-    selectedUser,
-    openAccessDialog,
-    openAdminDialog,
-    setOpenAccessDialog,
-    setOpenAdminDialog,
-    openAccessConfirm,
-    openAdminConfirm,
-  } = useUserDialogManager(users);
-
-  const { handleAssign, handleToggleAdmin } = useUserManagement(
-    selectedUserId,
-    refetch
-  );
 
   if (isLoading) {
     return (
@@ -53,6 +32,9 @@ const AdminDashboard: React.FC = () => {
     return (
       <Box mt={6} textAlign="center">
         <Typography color="error">Ошибка загрузки пользователей</Typography>
+        <Typography color="error">
+          Попробуйте Выйти из Профиля и заново зайти
+        </Typography>
       </Box>
     );
   }
@@ -61,31 +43,20 @@ const AdminDashboard: React.FC = () => {
     <Container maxWidth="md">
       <FeatureRequestList />
 
-      <Paper sx={{ mt: 4, p: 4 }}>
-        <Typography variant="h5" gutterBottom>
-          Зарегистрированные пользователи
-        </Typography>
+      <Typography mt={4} variant="h5" gutterBottom>
+        Зарегистрированные пользователи
+      </Typography>
 
+      <Paper sx={{ p: 4 }}>
         <List>
           {users && users.length > 0 ? (
             users.map((user) => (
-              <ListItem
-                key={user.id}
-                divider
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  cursor: "pointer",
-                }}
-                onClick={() => navigate(`/admin/user/${user.id}`)}
-              >
+              <ListItem className={styles.list} key={user.id} divider>
                 <ListItemText
                   primary={`${user.lastName} ${user.firstName} ${user.middleName}`}
                   secondary={
                     <>
-                      📧 {user.email} | 📱 {user.phone} | 🔐 Ключ:{" "}
-                      {user.accessKey || "не выдан"}
+                      📧 {user.email} | 📱 {user.phone} |
                       {user.telegram && ` | Telegram: ${user.telegram}`}
                       {user.isAdmin && ` | 👑 Админ`}
                     </>
@@ -94,40 +65,15 @@ const AdminDashboard: React.FC = () => {
 
                 <Box sx={{ display: "flex", gap: 1 }}>
                   <BtnCustom
-                    sx={{ minWidth: 180 }}
-                    text={
-                      user.isAccessKey
-                        ? "Закрыть доступ"
-                        : "Открыть доступ к курсу"
-                    }
-                    variant="outlined"
-                    color={user.isAccessKey ? "error" : "primary"}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      openAccessConfirm(user.id);
-                    }}
+                    text="Подробнее"
+                    onClick={() => navigate(`/admin/user/${user.id}`)}
                   />
 
-                  <Tooltip
-                    title={
-                      user.isAdmin
-                        ? "Снять права администратора"
-                        : "Сделать админом"
-                    }
-                  >
-                    <IconButton
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        openAdminConfirm(user.id);
-                      }}
-                    >
-                      <AdminPanelSettingsIcon
-                        sx={{
-                          color: user.isAdmin ? "primary.main" : "grey.500",
-                        }}
-                      />
-                    </IconButton>
-                  </Tooltip>
+                  <AdminToggleButton
+                    isAdmin={user.isAdmin}
+                    userId={user.id}
+                    refetch={refetch}
+                  />
                 </Box>
               </ListItem>
             ))
@@ -138,19 +84,6 @@ const AdminDashboard: React.FC = () => {
           )}
         </List>
       </Paper>
-
-      <AccessConfirmDialog
-        open={openAccessDialog}
-        onClose={() => setOpenAccessDialog(false)}
-        onConfirm={() => handleAssign(selectedUser?.isAccessKey)}
-      />
-
-      <AdminConfirmDialog
-        open={openAdminDialog}
-        onClose={() => setOpenAdminDialog(false)}
-        onConfirm={() => handleToggleAdmin(selectedUser?.isAdmin)}
-        isAdmin={selectedUser?.isAdmin}
-      />
     </Container>
   );
 };

@@ -1,4 +1,5 @@
 import { learningProcess } from "../../learningProcess";
+import { mentors } from "../../../components/MentorProfilePage/mentorsData";
 import CodeIcon from "@mui/icons-material/Code";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import HtmlIcon from "@mui/icons-material/Html";
@@ -8,13 +9,15 @@ import TerminalIcon from "@mui/icons-material/Terminal";
 
 export const web_layout_info_course = {
   id: 1,
-  courseId: ["html", "css"],
+  courseId: ["browser", "ide", "html", "css"],
   title: "Вёрстка сайтов (HTML и CSS)",
   description: "Язык разметки • 4 месяца • С нуля",
   price: 4500,
   duration: "Рассрочка на 6 месяцев",
   totalPrice: 27000,
   paymentMonths: 6,
+  courseType: "Basic",
+  mentors,
   technologies: [
     {
       title: "HTML5",

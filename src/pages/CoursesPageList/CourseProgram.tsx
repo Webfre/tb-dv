@@ -9,23 +9,14 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
+import { chaptersMap } from "../../dataCourse/CourseTopic";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import { htmlChapters } from "../../dataCourse/html/htmlChaptersData";
-import { jsChapters } from "../../dataCourse/js/jsChapters";
-import { cssChapters } from "../../dataCourse/css/cssChapters";
-import { CourseChapter } from "../../dataCourse/CourseTopic";
 import styles from "./CoursesPageList.module.scss";
 
 interface CourseProgramProps {
   courseId: string[];
 }
-
-const chaptersMap: Record<string, CourseChapter[]> = {
-  html: htmlChapters,
-  css: cssChapters,
-  js: jsChapters,
-};
 
 const CourseProgram: React.FC<CourseProgramProps> = ({ courseId }) => {
   const courseProgram = courseId.flatMap((id) => {
