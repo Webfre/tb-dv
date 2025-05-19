@@ -198,3 +198,17 @@ export const mentors: Mentor[] = [
     ],
   },
 ];
+
+/**
+ * Функция для фильтрации списка менторов по ID
+ * @param ids - массив ID, которые необходимо отфильтровать
+ * @returns массив менторов, соответствующих переданным ID
+ */
+export const filterMentorsByIds = (ids: number[]): Mentor[] => {
+  if (!Array.isArray(ids) || ids.length === 0) {
+    console.warn("Передан пустой массив ID или неверный формат данных.");
+    return [];
+  }
+
+  return mentors.filter((mentor) => ids.includes(mentor.id));
+};

@@ -23,6 +23,7 @@ interface ProgressItemCardProps {
   testKey: string;
   testId: number;
   testName: string;
+  courseId: string;
   history?: ProgressHistoryEntry[];
 }
 
@@ -30,6 +31,7 @@ const ProgressItemCard: React.FC<ProgressItemCardProps> = ({
   testKey,
   testId,
   testName,
+  courseId,
   history = [],
 }) => {
   const navigate = useNavigate();
@@ -42,6 +44,23 @@ const ProgressItemCard: React.FC<ProgressItemCardProps> = ({
     ? "error"
     : "primary";
 
+  const handleTestClick = (
+    e: React.MouseEvent,
+    testKey?: string,
+    chapterTitle?: string
+  ) => {
+    e.stopPropagation();
+    if (testKey && chapterTitle) {
+      navigate("/test", {
+        state: {
+          name: chapterTitle,
+          selectedTest: testKey,
+          courseId: courseId,
+        },
+      });
+    }
+  };
+
   return (
     <ListItem
       key={testId}
@@ -49,11 +68,7 @@ const ProgressItemCard: React.FC<ProgressItemCardProps> = ({
       sx={{ mb: 1, border: "1px solid #ccc", borderRadius: 2 }}
     >
       <ListItemButton
-        onClick={() =>
-          navigate("/test", {
-            state: { selectedTest: testKey },
-          })
-        }
+        onClick={(e) => handleTestClick(e, testKey, testName)}
         sx={{ px: 2, py: 1.5 }}
       >
         <ListItemIcon>

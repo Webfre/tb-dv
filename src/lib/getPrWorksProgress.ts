@@ -19,9 +19,15 @@ export const getPrWorksProgress = (
   const prWorks = prDataList.filter((pr) => pr.moduleId === topicId);
   const totalPrWorks = prWorks.length;
 
-  const completedPrWorksCount =
-    taskTopics?.filter((task) => task.moduleId === topicId && task.resolved)
-      .length || 0;
+  const completedPrWorksSet = new Set(
+    taskTopics
+      ?.filter((task) => task.moduleId === topicId && task.resolved)
+      .map((task) => task.id)
+  );
+
+  const completedPrWorksCount = prWorks.filter((pr) =>
+    completedPrWorksSet.has(pr.id)
+  ).length;
 
   return { totalPrWorks, completedPrWorksCount };
 };

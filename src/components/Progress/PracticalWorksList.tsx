@@ -1,5 +1,6 @@
 import React from "react";
 import { List, ListItem, Chip, Stack, Box, Typography } from "@mui/material";
+import { getCourseIdsByCourseId } from "../../lib/getCourseIdsByCourseId";
 import { Progress } from "../../api/progressApi";
 import { prDataList } from "../../DB/prDataList";
 import { isTaskCompleted } from "../../lib/getPrWorksProgress";
@@ -8,14 +9,22 @@ import styles from "./PracticalWorksList.module.scss";
 
 interface PracticalWorksListProps {
   progressData: Progress;
+  courseId: string;
 }
 
 const PracticalWorksList: React.FC<PracticalWorksListProps> = ({
   progressData,
+  courseId,
 }) => {
   const findMentor = (mentorId: number) => {
     return mentors.find((mentor) => mentor.id === mentorId);
   };
+
+  const courseIds = getCourseIdsByCourseId(Number(courseId));
+
+  const filteredDataList = prDataList.filter((pr) =>
+    courseIds.includes(pr.moduleId)
+  );
 
   return (
     <Box className={styles.practicalList}>
@@ -24,7 +33,7 @@ const PracticalWorksList: React.FC<PracticalWorksListProps> = ({
       </Typography>
 
       <List disablePadding>
-        {prDataList.map((pr) => {
+        {filteredDataList.map((pr) => {
           const mentor = findMentor(pr.postMentor);
 
           return (

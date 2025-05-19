@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
-import GradeIcon from "@mui/icons-material/Grade";
+import NewReleasesIcon from "@mui/icons-material/NewReleases";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import BtnCustom from "../../ui/BtnCustom";
@@ -74,13 +74,6 @@ const ResultDialog: React.FC<ResultDialogProps> = ({
           </Typography>
         </Box>
 
-        <Box display="flex" alignItems="center" gap={1} mt={1}>
-          <GradeIcon color="action" />
-          <Typography>
-            Оценка: <b>{grade}</b>
-          </Typography>
-        </Box>
-
         <Box display="flex" alignItems="center" gap={1} mt={2}>
           {isPassed ? (
             <>
@@ -91,7 +84,7 @@ const ResultDialog: React.FC<ResultDialogProps> = ({
             </>
           ) : (
             <>
-              <ErrorOutlineIcon color="error" />
+              <NewReleasesIcon color="error" />
               <Typography color="error">Вы не сдали тест!</Typography>
             </>
           )}

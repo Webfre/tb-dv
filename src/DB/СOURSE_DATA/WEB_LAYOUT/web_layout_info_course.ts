@@ -1,5 +1,5 @@
 import { learningProcess } from "../../INFO/learningProcess";
-import { mentors } from "../../../components/MentorProfilePage/mentorsData";
+import { filterMentorsByIds } from "../../../components/MentorProfilePage/mentorsData";
 import CodeIcon from "@mui/icons-material/Code";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import HtmlIcon from "@mui/icons-material/Html";
@@ -17,7 +17,7 @@ export const web_layout_info_course = {
   totalPrice: 27000,
   paymentMonths: 6,
   courseType: "Basic",
-  mentors,
+  mentors: filterMentorsByIds([2]),
   technologies: [
     {
       title: "HTML5",

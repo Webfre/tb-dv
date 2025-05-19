@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Box, CircularProgress, Typography } from "@mui/material";
 import { prDataList } from "../../DB/prDataList";
 import { Progress } from "../../api/progressApi";
 import { getPrWorksProgress } from "../../lib/getPrWorksProgress";
+import styles from "./PracticalWorksProgressRing.module.scss";
 
 interface ProgressRingProps {
   progressData: Progress;
@@ -12,54 +13,67 @@ const PracticalWorksProgressRing: React.FC<ProgressRingProps> = ({
   progressData,
 }) => {
   const totalPracticalWorks = prDataList.length;
+  const completedWorkIds = new Set<string>();
 
-  const completedPracticalWorks = prDataList.reduce((acc, pr) => {
+  prDataList.forEach((pr) => {
     const { completedPrWorksCount } = getPrWorksProgress(
       pr.moduleId,
       progressData?.taskTopics
     );
-    return acc + completedPrWorksCount;
-  }, 0);
+
+    if (completedPrWorksCount > 0) {
+      const isCompleted = progressData.taskTopics.some(
+        (task) => task.id === pr.id && task.resolved
+      );
+
+      if (isCompleted) {
+        completedWorkIds.add(pr.id);
+      }
+    }
+  });
+
+  const completedPracticalWorks = completedWorkIds.size;
 
   const practicalProgress =
     (completedPracticalWorks / totalPracticalWorks) * 100;
 
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    let start = 0;
+    const end = Math.round(practicalProgress);
+    if (start === end) return;
+
+    const timer = setInterval(() => {
+      start += 1;
+      setProgress(start);
+      if (start >= end) clearInterval(timer);
+    }, 20);
+
+    return () => clearInterval(timer);
+  }, [practicalProgress]);
+
   return (
-    <Box textAlign="center">
-      <Box
-        position="relative"
-        display="inline-flex"
-        justifyContent="center"
-        alignItems="center"
-        sx={{
-          width: 110,
-          height: 110,
-          borderRadius: "50%",
-          border: "6px solid #e0e0e0",
-        }}
-      >
+    <Box className={styles.progressRingContainer}>
+      <Box className={styles.progressWrapper}>
         <CircularProgress
           variant="determinate"
           value={practicalProgress}
-          size={100}
+          size={120}
           thickness={5}
+          sx={{ color: "#3498db" }}
         />
-        <Box
-          top={0}
-          left={0}
-          bottom={0}
-          right={0}
-          position="absolute"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <Typography variant="h6" component="div" color="textSecondary">
-            {`${Math.round(practicalProgress)}%`}
+        <Box className={styles.progressValue}>
+          <Typography
+            variant="h5"
+            component="div"
+            className={styles.progressText}
+          >
+            {`${progress}%`}
           </Typography>
         </Box>
       </Box>
-      <Typography variant="body1" mt={2}>
+      <Typography variant="body1" className={styles.progressInfo}>
         Выполнено работ: {completedPracticalWorks} из {totalPracticalWorks}
       </Typography>
     </Box>

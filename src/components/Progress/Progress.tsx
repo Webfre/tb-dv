@@ -9,12 +9,13 @@ import {
   List,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { testData } from "../../DB/testData";
 import { useGetUserProgressQuery } from "../../api/progressApi";
 import {
   calculateCategoryProgress,
   groupTestsByCategory,
 } from "./ProgressUtils";
+import { getTestsByCourseIds } from "../../lib/getTestsByCourseIds";
+import { getCourseIdsByCourseId } from "../../lib/getCourseIdsByCourseId";
 import ProgressRing from "./ProgressRing";
 import TestItemCard from "./ProgressItemCard";
 import styles from "./Progress.module.scss";
@@ -32,7 +33,17 @@ const Progress: React.FC<ProgressProps> = ({ courseId }) => {
     }
   );
 
-  const groupedTests = useMemo(() => groupTestsByCategory(testData), []);
+  const moduleIds = getCourseIdsByCourseId(Number(courseId));
+
+  const filteredTests = useMemo(
+    () => getTestsByCourseIds(moduleIds),
+    [moduleIds]
+  );
+
+  const groupedTests = useMemo(
+    () => groupTestsByCategory(filteredTests),
+    [filteredTests]
+  );
 
   if (!courseId) {
     return <Typography>Выберите курс, чтобы увидеть прогресс.</Typography>;
@@ -48,7 +59,7 @@ const Progress: React.FC<ProgressProps> = ({ courseId }) => {
 
   return (
     <Box p={4}>
-      <ProgressRing progressData={progressData} />
+      <ProgressRing progressData={progressData} tests={filteredTests} />
 
       <Typography variant="h4" gutterBottom sx={{ mt: 4 }}>
         Доступные тесты
@@ -103,6 +114,7 @@ const Progress: React.FC<ProgressProps> = ({ courseId }) => {
                     testId={test.id}
                     testName={test.name}
                     history={progressData?.history?.[test.key]}
+                    courseId={courseId}
                   />
                 ))}
               </List>
@@ -111,7 +123,7 @@ const Progress: React.FC<ProgressProps> = ({ courseId }) => {
         );
       })}
 
-      <PracticalWorksList progressData={progressData} />
+      <PracticalWorksList courseId={courseId} progressData={progressData} />
     </Box>
   );
 };

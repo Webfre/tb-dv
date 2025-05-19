@@ -36,7 +36,7 @@ const CoursePage: React.FC = () => {
     if (!progressData?.history?.[key]) return false;
     const history = progressData.history[key];
     const best = Math.max(...history.map((h: any) => h.percentage));
-    return best >= 60;
+    return best >= 50;
   };
 
   useEffect(() => {
@@ -153,7 +153,7 @@ const CoursePage: React.FC = () => {
                     variant="h4"
                     gutterBottom
                   >
-                    {topic.title}
+                    {`${index + 1}. ${topic.title}`}
                   </Typography>
 
                   <Grid container spacing={1} my={1}>
@@ -209,7 +209,7 @@ const CoursePage: React.FC = () => {
                     )}
                   </Grid>
 
-                  {index !== 0 && (
+                  {totalTests !== 0 && (
                     <Box sx={{ mt: "auto", pt: 2 }}>
                       <Typography
                         variant="body2"

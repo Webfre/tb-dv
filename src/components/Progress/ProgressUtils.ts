@@ -53,7 +53,7 @@ export const calculateCategoryProgress = (
 
     if (history && history.length > 0) {
       const best = Math.max(...history.map((h) => h.percentage));
-      if (best >= 60) passed++;
+      if (best >= 50) passed++;
     }
   }
 

@@ -29,6 +29,42 @@ import { ide_intro_test } from "./IDE/DATA_COURSE/TEST/ide_intro_test";
 import { browser_intro_test } from "./WWW/DATA_COURSE/TEST/browser_intro_test";
 import { TestDataCollection } from "./index_type";
 
+// Для фильтрации профиля - прогресса по курсу  // TODO
+export const TEST_CATEGORY_MAP: Record<string, string[]> = {
+  browser: ["browser_intro_test"],
+  ide: ["ide_intro_test"],
+  html: [
+    "html_intro_test",
+    "html_structure_test",
+    "html_elements_test",
+    "html_attributes_test",
+    "html_semantics_test",
+    "html_links_images_test",
+    "html_forms_test",
+    "html_tables_test",
+    "html_multimedia_test",
+    "html_meta_head_test",
+    "html_best_practices_test",
+    "html_final_test",
+  ],
+  css: [
+    "css_intro_test",
+    "css_selectors_test",
+    "css_box_model_test",
+    "css_block_test",
+    "css_pseudo_test",
+    "css_methodologies_test",
+    "css_flexbox_test",
+    "css_grid_test",
+    "css_layout_test",
+    "css_images_test",
+    "css_responsive_test",
+    "css_animations_test",
+    "css_preprocessors_test",
+  ],
+  js: ["js_intro_test", "js_basics_test"],
+};
+
 export const testData: TestDataCollection = {
   // Browser
   browser_intro_test,

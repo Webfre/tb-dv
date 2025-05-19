@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Box, CircularProgress, Typography } from "@mui/material";
 import { practiceMock } from "../../DB/taskData";
 import { useGetSolvedTasksQuery } from "../../api/progressApi";
+import styles from "./PracticalWorksProgressRing.module.scss";
 
 const TaskProgressRing: React.FC = () => {
   const totalTasks = practiceMock.length;
@@ -9,43 +10,43 @@ const TaskProgressRing: React.FC = () => {
   const solvedCount = solvedTasks.length;
   const taskProgress = totalTasks === 0 ? 0 : (solvedCount / totalTasks) * 100;
 
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    let start = 0;
+    const end = Math.round(taskProgress);
+    if (start === end) return;
+
+    const timer = setInterval(() => {
+      start += 1;
+      setProgress(start);
+      if (start >= end) clearInterval(timer);
+    }, 20);
+
+    return () => clearInterval(timer);
+  }, [taskProgress]);
+
   return (
-    <Box textAlign="center">
-      <Box
-        position="relative"
-        display="inline-flex"
-        justifyContent="center"
-        alignItems="center"
-        sx={{
-          width: 110,
-          height: 110,
-          borderRadius: "50%",
-          border: "6px solid #e0e0e0",
-        }}
-      >
+    <Box className={styles.progressRingContainer}>
+      <Box className={styles.progressWrapper}>
         <CircularProgress
           variant="determinate"
           value={taskProgress}
-          size={100}
+          size={120}
           thickness={5}
-          color="secondary"
+          sx={{ color: "#3f51b5" }}
         />
-        <Box
-          top={0}
-          left={0}
-          bottom={0}
-          right={0}
-          position="absolute"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <Typography variant="h6" component="div" color="textSecondary">
-            {`${Math.round(taskProgress)}%`}
+        <Box className={styles.progressValue}>
+          <Typography
+            variant="h5"
+            component="div"
+            className={styles.progressText}
+          >
+            {`${progress}%`}
           </Typography>
         </Box>
       </Box>
-      <Typography variant="body1" mt={2}>
+      <Typography variant="body1" className={styles.progressInfo}>
         Решено задач: {solvedCount} из {totalTasks}
       </Typography>
     </Box>

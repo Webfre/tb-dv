@@ -1,60 +1,68 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Box, CircularProgress, Typography } from "@mui/material";
-import { testData } from "../../DB/testData";
 import { Progress } from "../../api/progressApi";
+import { TestDataCollection } from "../../DB/index_type";
+import styles from "./PracticalWorksProgressRing.module.scss";
 
 interface ProgressRingProps {
   progressData: Progress;
+  tests: TestDataCollection;
 }
 
-const TestProgressRing: React.FC<ProgressRingProps> = ({ progressData }) => {
-  const totalTests = Object.keys(testData).length;
+const TestProgressRing: React.FC<ProgressRingProps> = ({
+  progressData,
+  tests,
+}) => {
+  const testList = Object.values(tests);
+  const totalTests = testList.length;
 
   const successfulTests = Object.entries(progressData?.history || {}).filter(
     ([_, history]) => {
       const best = Math.max(...history.map((h: any) => h.percentage));
-      return best >= 60;
+      return best >= 50;
     }
   ).length;
 
-  const testProgress = (successfulTests / totalTests) * 100;
+  const testProgress =
+    totalTests > 0 ? (successfulTests / totalTests) * 100 : 0;
+
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    let start = 0;
+    const end = Math.round(testProgress);
+    if (start === end) return;
+
+    const timer = setInterval(() => {
+      start += 1;
+      setProgress(start);
+      if (start >= end) clearInterval(timer);
+    }, 20);
+
+    return () => clearInterval(timer);
+  }, [testProgress]);
 
   return (
-    <Box textAlign="center">
-      <Box
-        position="relative"
-        display="inline-flex"
-        justifyContent="center"
-        alignItems="center"
-        sx={{
-          width: 110,
-          height: 110,
-          borderRadius: "50%",
-          border: "6px solid #e0e0e0",
-        }}
-      >
+    <Box className={styles.progressRingContainer}>
+      <Box className={styles.progressWrapper}>
         <CircularProgress
           variant="determinate"
           value={testProgress}
-          size={100}
+          size={120}
           thickness={5}
+          sx={{ color: "#3498db" }}
         />
-        <Box
-          top={0}
-          left={0}
-          bottom={0}
-          right={0}
-          position="absolute"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <Typography variant="h6" component="div" color="textSecondary">
-            {`${Math.round(testProgress)}%`}
+        <Box className={styles.progressValue}>
+          <Typography
+            variant="h5"
+            component="div"
+            className={styles.progressText}
+          >
+            {`${progress}%`}
           </Typography>
         </Box>
       </Box>
-      <Typography variant="body1" mt={2}>
+      <Typography variant="body1" className={styles.progressInfo}>
         Пройдено тестов: {successfulTests} из {totalTests}
       </Typography>
     </Box>

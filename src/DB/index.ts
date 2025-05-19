@@ -1,10 +1,4 @@
-import { SvgIconComponent } from "@mui/icons-material";
-import { javascript_info_course } from "./СOURSE_DATA/JAVA_SCRIPT/javascript_info_course";
-import { react_basic_info_course } from "./СOURSE_DATA/REACT_BASIC/react_basic_info_course";
-import { react_advanced_info_course } from "./СOURSE_DATA/REACT_PRO/react_advanced_info_course";
-import { typescript_info_course } from "./СOURSE_DATA/TYPES_SCRIPT/typescript_info_course";
 import { web_layout_info_course } from "./СOURSE_DATA/WEB_LAYOUT/web_layout_info_course";
-
 import { cssTopic } from "./CSS/DATA_COURSE/css";
 import { browserTopic } from "./WWW/DATA_COURSE/www";
 import { htmlTopic } from "./HTML/DATA_COURSE/html";

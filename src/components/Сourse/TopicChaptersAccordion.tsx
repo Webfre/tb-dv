@@ -64,7 +64,7 @@ const TopicChaptersAccordion: React.FC<TopicChaptersAccordionProps> = ({
     if (!testKey || !progressData?.history?.[testKey]) return null;
     const entries = progressData.history[testKey];
     const best = Math.max(...entries.map((entry: any) => entry.percentage));
-    return best >= 60;
+    return best >= 50;
   };
 
   const handleOpen = (section: CourseSection) => {
