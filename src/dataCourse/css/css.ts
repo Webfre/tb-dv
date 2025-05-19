@@ -1,4 +1,4 @@
-import { cssChapters } from "./cssChapters";
+import { cssChapters } from "../A_PR_WORK/cssChapters";
 import CssIcon from "@mui/icons-material/Css";
 
 export const cssTopic = {

@@ -11,7 +11,22 @@
   border: 1px solid rgb(164, 164, 164);
   border-radius: 20px;
   padding: 2px 10px;
-  position: absolute;
-  right: 10px;
-  top: 10px;
+  justify-content: end;
+}
+.gridContainer {
+  @media (max-width: 1100px) {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+}
+.gridItem {
+  @media (max-width: 1100px) {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+.togleBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

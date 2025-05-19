@@ -103,7 +103,7 @@ const CourseTopicDetails: React.FC = () => {
 
       <Divider sx={{ my: 3 }} />
 
-      <Stack direction="row" spacing={2} flexWrap="wrap">
+      <Stack direction="row" gap={0.5} flexWrap="wrap">
         {totalPrWorks > 0 && (
           <Chip
             icon={<WorkIcon />}

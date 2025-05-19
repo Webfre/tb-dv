@@ -1,33 +1,37 @@
 export const css_intro_task_1 = {
   id: "css_intro_task_1",
   module: "CSS",
-  title: "Подключение стилей",
+  title: "Способы подключения CSS",
   topic: "Введение в CSS",
   topicId: "css_intro",
+  sectionId: "css_intro2",
   description:
     "Создайте HTML-документ, демонстрирующий три способа подключения CSS: внешний файл, внутренние стили и инлайн-стили.",
   steps: [
-    "Создайте файл `styles.html` с базовой структурой HTML",
-    "Подключите внешний CSS-файл `external.css` через `<link>` в `<head>`",
+    "Создайте файл `index.html` с базовой структурой HTML",
+    "Подключите внешний CSS-файл `styles.css` через `<link>` в `<head>`",
+    "Внутри файла `styles.css` задайте стили для `<body>` (фон, шрифт, цвет текста)",
     "Добавьте внутренние стили через тег `<style>` в `<head>`",
-    "Используйте инлайн-стили через атрибут `style` для одного элемента",
-    "В файле `external.css` задайте стили для body (фон, шрифт)",
-    "Во внутренних стилях задайте оформление для заголовка h1",
-    "Через инлайн-стили задайте цвет текста для одного абзаца",
+    "Задайте цвет заголовка `<h1>` — синий (`blue`)",
+    "Для одного из абзацев `<p>` пропишите инлайн-стиль `color: red`",
     "Убедитесь, что все три способа работают одновременно",
   ],
   difficulty: 1,
-  solution: `<!DOCTYPE html>
+  solution: `
+<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Способы подключения CSS</title>
+
   <!-- Внешний стиль -->
-  <link rel="stylesheet" href="external.css">
-  <!-- Внутренний стиль -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Внутренние стили -->
   <style>
     h1 {
-      color: navy;
+      color: blue;
       text-align: center;
     }
   </style>
@@ -35,30 +39,34 @@ export const css_intro_task_1 = {
 <body>
   <h1>Три способа подключения CSS</h1>
   <p>Этот абзац оформлен через внешний CSS-файл</p>
-  <p style="color: green; font-weight: bold;">Этот абзац оформлен инлайн-стилями</p>
+  <p style="color: red;">Этот абзац оформлен инлайн-стилями</p>
 </body>
-</html>`,
-  show: `<!DOCTYPE html>
+</html>
+  `.trim(),
+  show: `
+<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Способы подключения CSS</title>
   <style>
     /* Стили из external.css */
     body {
       font-family: Arial, sans-serif;
-      background-color: #f0f0f0;
-      line-height: 1.6;
+      background-color: #f9f9f9;
+      color: #333;
+      margin: 0;
       padding: 20px;
     }
     p {
       color: #333;
       padding: 10px;
     }
-    
+
     /* Внутренние стили */
     h1 {
-      color: navy;
+      color: blue;
       text-align: center;
     }
   </style>
@@ -66,13 +74,15 @@ export const css_intro_task_1 = {
 <body>
   <h1>Три способа подключения CSS</h1>
   <p>Этот абзац оформлен через внешний CSS-файл</p>
-  <p style="color: green; font-weight: bold;">Этот абзац оформлен инлайн-стилями</p>
+  <p style="color: red;">Этот абзац оформлен инлайн-стилями</p>
 </body>
-</html>`,
-  codeExampleCSS: `/* Файл external.css */
+</html>
+  `.trim(),
+  codeExampleCSS: `
+/* Файл external.css */
 body {
   font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
+  background-color: #f9f9f9;
   line-height: 1.6;
   padding: 20px;
 }
@@ -80,5 +90,10 @@ body {
 p {
   color: #333;
   padding: 10px;
-}`,
+}
+  `.trim(),
+  resources: [
+    "https://developer.mozilla.org/ru/docs/Web/CSS",
+    "https://html5book.ru/osnovy-css/",
+  ],
 };

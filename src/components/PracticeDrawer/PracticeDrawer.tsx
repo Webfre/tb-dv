@@ -103,16 +103,17 @@ const PracticeDrawer: React.FC<PracticeDrawerProps> = ({
           <Box className={styles.selectedTask}>
             <Box mt={1}>{renderDifficulty(selectedTask.difficulty)}</Box>
 
-            {hasAccess && (
-              <TaskCompletionToggle
-                taskId={selectedTask.id}
-                module={selectedTask.module}
-              />
-            )}
+            <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+              <Typography variant="h6">{selectedTask.title}</Typography>
+              {hasAccess && (
+                <TaskCompletionToggle
+                  taskId={selectedTask.id}
+                  module={selectedTask.module}
+                />
+              )}
+            </Box>
 
             <Box display="flex" gap={2} alignItems="center">
-              <Typography variant="h6">{selectedTask.title}</Typography>
-
               {selectedTask?.show && (
                 <Box display="flex" gap={2}>
                   <Stack direction="row">
@@ -159,10 +160,11 @@ const PracticeDrawer: React.FC<PracticeDrawerProps> = ({
                 />
 
                 {showSolution && (
-                  <Grid sx={{ marginBottom: "40px" }} container spacing={2}>
+                  <Grid container spacing={2} className={styles.gridContainer}>
                     {selectedTask.solution && (
                       <Grid
                         item
+                        className={styles.gridItem}
                         xs={
                           selectedTask.codeExampleCSS ||
                           selectedTask.codeExampleJS
@@ -185,7 +187,11 @@ const PracticeDrawer: React.FC<PracticeDrawerProps> = ({
                     )}
 
                     {selectedTask.codeExampleJS && (
-                      <Grid item xs={selectedTask.solution ? 6 : 12}>
+                      <Grid
+                        item
+                        className={styles.gridItem}
+                        xs={selectedTask.solution ? 6 : 12}
+                      >
                         <Typography variant="subtitle2" gutterBottom>
                           JavaScript решение:
                         </Typography>
@@ -201,7 +207,11 @@ const PracticeDrawer: React.FC<PracticeDrawerProps> = ({
                     )}
 
                     {selectedTask.codeExampleCSS && (
-                      <Grid item xs={selectedTask.solution ? 6 : 12}>
+                      <Grid
+                        item
+                        className={styles.gridItem}
+                        xs={selectedTask.solution ? 6 : 12}
+                      >
                         <Typography variant="subtitle2" gutterBottom>
                           CSS решение:
                         </Typography>

@@ -91,25 +91,5 @@ export const html_meta_head_test = {
       variants: ["<style>", "<script>", "<link>"],
       correct: [2],
     },
-    {
-      id: 11,
-      name: "Какой мета-тег указывает язык страницы?",
-      variants: [
-        "<meta lang='ru'>",
-        "<meta http-equiv='Content-Language' content='ru'>",
-        "<meta name='language' content='Russian'>",
-      ],
-      correct: [1],
-    },
-    {
-      id: 12,
-      name: "Какой тег применяется для добавления краткого описания страницы в поисковой выдаче?",
-      variants: [
-        "<meta name='description'>",
-        "<meta name='keywords'>",
-        "<meta name='viewport'>",
-      ],
-      correct: [0],
-    },
   ],
 };
