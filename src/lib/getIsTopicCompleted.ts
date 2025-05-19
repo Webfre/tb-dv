@@ -1,7 +1,7 @@
-import { CourseTopic } from "../dataCourse/CourseTopic";
 import { getTotalTests } from "./topicMetrics";
-import { prDataList } from "../dataCourse/A_PR_WORK/prDataList";
+import { prDataList } from "../DB/prDataList";
 import { Progress } from "../api/progressApi";
+import { CourseTopic } from "../DB/index_type";
 
 export interface TaskTopic {
   id: string;

@@ -17,7 +17,6 @@ import {
 import { useGetUserInfoForAdminQuery } from "../../../api/userApi";
 import { useUpdateTaskTopicMutation } from "../../../api/progressApi";
 import { toast } from "react-toastify";
-import { courseList, InfoCourse } from "../../../DB";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import BtnCustom from "../../../ui/BtnCustom";
 import UserTaskForm from "./UserTaskForm";
@@ -25,6 +24,8 @@ import UserInfoCard from "./UserInfoCard";
 import UserProgressCard from "./UserProgressCard";
 import AccessToggleButton from "../AccessToggleButton";
 import { useState } from "react";
+import { InfoCourse } from "../../../DB/index_type";
+import { courseList } from "../../../DB";
 
 const UserDetails: React.FC = () => {
   const navigate = useNavigate();

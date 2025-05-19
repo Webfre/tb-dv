@@ -11,10 +11,8 @@ import {
   Tooltip,
 } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
-import { mockTopics } from "../../dataCourse/CourseTopic";
 import { useGetUserProgressQuery } from "../../api/progressApi";
 import { calculateTopicProgress } from "../../lib/calculateTopicProgress";
-import { courseList, InfoCourse } from "../../DB";
 import QuizIcon from "@mui/icons-material/Quiz";
 import WorkIcon from "@mui/icons-material/Work";
 import CodeIcon from "@mui/icons-material/Code";
@@ -22,6 +20,8 @@ import BookIcon from "@mui/icons-material/MenuBook";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import AddReactionIcon from "@mui/icons-material/AddReaction";
 import styles from "./Course.module.scss";
+import { InfoCourse } from "../../DB/index_type";
+import { courseList, mockTopics } from "../../DB";
 
 const CoursePage: React.FC = () => {
   const navigate = useNavigate();

@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, CircularProgress, Typography } from "@mui/material";
-import { testData } from "../../data/testData";
+import { testData } from "../../DB/testData";
 import { Progress } from "../../api/progressApi";
 
 interface ProgressRingProps {

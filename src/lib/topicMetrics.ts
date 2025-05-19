@@ -1,4 +1,4 @@
-import { CourseTopic } from "../dataCourse/CourseTopic";
+import { CourseTopic } from "../DB/index_type";
 
 // Подсчет общего количества тестов в теме
 export const getTotalTests = (topic: CourseTopic): number => {

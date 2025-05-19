@@ -11,7 +11,7 @@ import {
   FormHelperText,
 } from "@mui/material";
 import { useForm, Controller } from "react-hook-form";
-import { prDataList } from "../../../dataCourse/A_PR_WORK/prDataList";
+import { prDataList } from "../../../DB/prDataList";
 
 interface UserTaskFormProps {
   onSubmit: (data: {

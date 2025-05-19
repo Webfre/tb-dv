@@ -12,13 +12,13 @@ import {
 } from "@mui/material";
 import { styleCodeBlock } from "../Сourse/CopyBlockStyle";
 import { CopyBlock, dracula } from "react-code-blocks";
-import { CourseSection } from "../../dataCourse/CourseTopic";
 import { useNavigate } from "react-router-dom";
 import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
 import CloseIcon from "@mui/icons-material/Close";
 import LinkIcon from "@mui/icons-material/Link";
 import HtmlDrawer from "../Сourse/HtmlDrawer";
 import styles from "./SectionDrawer.module.scss";
+import { CourseSection } from "../../DB/index_type";
 
 interface SectionDrawerProps {
   section: CourseSection | null;

@@ -13,13 +13,13 @@ import { useCheckCourseAccessQuery } from "../../api/userApi";
 import { ToggleSolvedTaskDto } from "../../api/progressApi";
 import { hasAccessToCourses } from "../../lib/hasAccessToCourses";
 import { CopyBlock, dracula } from "react-code-blocks";
-import { PracticeTask } from "../../dataCourse/CourseTopic";
 import { styleCodeBlock } from "../Сourse/CopyBlockStyle";
 import LinkIcon from "@mui/icons-material/Link";
 import HtmlDrawer from "../Сourse/HtmlDrawer";
 import CloseIcon from "@mui/icons-material/Close";
 import TaskCompletionToggle from "../TaskBook/TaskCompletionToggle";
 import styles from "./PracticeDrawer.module.scss";
+import { PracticeTask } from "../../DB/index_type";
 
 interface PracticeDrawerProps {
   open: boolean;

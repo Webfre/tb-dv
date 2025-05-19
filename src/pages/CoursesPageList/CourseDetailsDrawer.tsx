@@ -22,7 +22,6 @@ import {
   Tooltip,
   IconButton,
 } from "@mui/material";
-import { InfoCourse } from "../../DB";
 import { FrontariumFeatures } from "../CoursesPageList/FrontariumFeatures";
 import { tabs } from "./tabs";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -35,6 +34,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import styles from "./CoursesPageList.module.scss";
 import CourseProgram from "./CourseProgram";
 import BtnCustom from "../../ui/BtnCustom";
+import { InfoCourse } from "../../DB/index_type";
 
 interface CourseDetailsDrawerProps {
   open: boolean;

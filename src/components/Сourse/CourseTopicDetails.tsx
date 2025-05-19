@@ -14,7 +14,6 @@ import { getIsTopicCompleted } from "../../lib/getIsTopicCompleted";
 import { getPassedTestsCount } from "../../lib/getPassedTestsCount";
 import { getPrWorksProgress } from "../../lib/getPrWorksProgress";
 import { findPracticeTasksForTopic } from "../../lib/findPracticeTasksForTopic";
-import { mockTopics } from "../../dataCourse/CourseTopic";
 import BtnCustom from "../../ui/BtnCustom";
 import BookIcon from "@mui/icons-material/Book";
 import QuizIcon from "@mui/icons-material/Quiz";
@@ -26,6 +25,7 @@ import TopicChaptersAccordion from "./TopicChaptersAccordion";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import WorkIcon from "@mui/icons-material/Work";
 import styles from "./Course.module.scss";
+import { mockTopics } from "../../DB";
 
 const CourseTopicDetails: React.FC = () => {
   const { id } = useParams();

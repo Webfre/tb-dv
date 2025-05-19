@@ -4,69 +4,14 @@ import { react_basic_info_course } from "./СOURSE_DATA/REACT_BASIC/react_basic_
 import { react_advanced_info_course } from "./СOURSE_DATA/REACT_PRO/react_advanced_info_course";
 import { typescript_info_course } from "./СOURSE_DATA/TYPES_SCRIPT/typescript_info_course";
 import { web_layout_info_course } from "./СOURSE_DATA/WEB_LAYOUT/web_layout_info_course";
-import { Mentor } from "../components/MentorProfilePage/mentorsData";
 
-export interface InfroStatsCourse {
-  label: string;
-  count: number;
-}
-
-interface TechnologiesCourse {
-  title: string;
-  icon: SvgIconComponent;
-  titleTooltip: string;
-}
-
-interface ProjectsCourse {
-  title: string;
-  description: string;
-}
-
-interface TargetAudienceCourse {
-  title: string;
-  description: string;
-}
-
-interface DescriptionInfoCourse {
-  profession: string;
-  about: string;
-  demand: string;
-  activities: string[];
-  prospects: string[];
-}
-
-interface CourseFeature {
-  title: string;
-  description: string;
-  icon: SvgIconComponent;
-}
-
-interface FaqsCourse {
-  question: string;
-  answer: string;
-}
-
-export interface InfoCourse {
-  id: number;
-  courseId: string[];
-  title: string;
-  description: string;
-  price: number;
-  duration: string;
-  totalPrice: number;
-  paymentMonths: number;
-  image: string;
-  skills: string[];
-  mentors: Mentor[];
-  courseType: string; // "Basic" | "Pro"
-  infoStats: InfroStatsCourse[];
-  descriptionInfo: DescriptionInfoCourse;
-  targetAudience: TargetAudienceCourse[];
-  learningProcess: CourseFeature[];
-  technologies: TechnologiesCourse[];
-  projects: ProjectsCourse[];
-  faqs: FaqsCourse[];
-}
+import { cssTopic } from "./CSS/DATA_COURSE/css";
+import { browserTopic } from "./WWW/DATA_COURSE/www";
+import { htmlTopic } from "./HTML/DATA_COURSE/html";
+import { CourseChapter, CourseTopic, InfoCourse } from "./index_type";
+import { introTopic } from "./START/DATA_COURSE/start";
+import { ideTopic } from "./IDE/DATA_COURSE/vscode";
+import { jsTopic } from "./JAVASCRIPT/DATA_COURSE/js";
 
 export const courseList: InfoCourse[] = [
   web_layout_info_course,
@@ -75,3 +20,31 @@ export const courseList: InfoCourse[] = [
   // react_basic_info_course,
   // react_advanced_info_course,
 ];
+
+// Это вся база ТЕМ
+export const mockTopics: CourseTopic[] = [
+  introTopic,
+  browserTopic,
+  ideTopic,
+  htmlTopic,
+  cssTopic,
+  jsTopic,
+];
+
+// Для информации о курсе Программа блок
+export const chaptersMap: Record<string, CourseChapter[]> = {
+  // introHtml: introTopicHtml, // TODO нужно будет создать и заполнить для курса Верстка HTML CSS (идут как дополнительные)
+  // introJavaScript: introTopicJavaScript, // TODO нужно будет создать и заполнить для курса JavaScript (идут как дополнительные)
+  // introTypeScript: introTopicTypeScript, // TODO нужно будет создать и заполнить для курса TypeScript (идут как дополнительные)
+
+  intro: introTopic.chapters, // ДЛЯ КУРСА REACT (базовый)
+  html: htmlTopic.chapters, // HTML курс
+  css: cssTopic.chapters, // CSS курс
+  js: jsTopic.chapters, // JS курс
+  ide: ideTopic.chapters, // дополнение к какждому курсу
+  browser: browserTopic.chapters, // дополнение к какждому курсу
+
+  // typeScript: topicTypeScript, // TODO нужно будет создать и заполнить для курса TypeScript (идет как КУРС)
+  // reactBasic: topicReactBasic, // TODO нужно будет создать и заполнить для курса React (базовый) (идет как КУРС)
+  // reactPro: topicReactPro, // TODO нужно будет создать и заполнить для курса React (продвинутый) (идет как КУРС)
+};

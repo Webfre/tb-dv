@@ -1,4 +1,4 @@
-import { learningProcess } from "../../learningProcess";
+import { learningProcess } from "../../INFO/learningProcess";
 import { mentors } from "../../../components/MentorProfilePage/mentorsData";
 import CodeIcon from "@mui/icons-material/Code";
 import GitHubIcon from "@mui/icons-material/GitHub";

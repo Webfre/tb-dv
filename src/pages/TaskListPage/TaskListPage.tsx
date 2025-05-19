@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { filterTasks, getAllTopics } from "./taskUtils";
 import { useCheckCourseAccessQuery } from "../../api/userApi";
-import { practiceMock } from "../../data/taskData";
-import { PracticeTask } from "../../dataCourse/CourseTopic";
+import { practiceMock } from "../../DB/taskData";
 import { useGetSolvedTasksQuery } from "../../api/progressApi";
 import { Box } from "@mui/material";
 import { hasAccessToCourses } from "../../lib/hasAccessToCourses";
@@ -13,6 +12,7 @@ import BtnCustom from "../../ui/BtnCustom";
 import TaskList from "./TaskList";
 import TaskFilters from "./TaskFilters";
 import TaskListHeader from "./TaskListHeader";
+import { PracticeTask } from "../../DB/index_type";
 
 const TaskListPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();

@@ -1,7 +1,7 @@
 import React from "react";
 import { List, ListItem, Chip, Stack, Box, Typography } from "@mui/material";
 import { Progress } from "../../api/progressApi";
-import { prDataList } from "../../dataCourse/A_PR_WORK/prDataList";
+import { prDataList } from "../../DB/prDataList";
 import { isTaskCompleted } from "../../lib/getPrWorksProgress";
 import { mentors } from "../MentorProfilePage/mentorsData";
 import styles from "./PracticalWorksList.module.scss";

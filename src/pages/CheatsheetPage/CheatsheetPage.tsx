@@ -13,7 +13,7 @@ import {
   Paper,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { sections } from "../../data/sections";
+import { sections } from "../../DB/INFO/sections";
 
 const CheatsheetPage: React.FC = () => {
   return (

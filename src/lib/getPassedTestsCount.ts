@@ -1,5 +1,5 @@
 import { ProgressData } from "../components/Progress/ProgressUtils";
-import { CourseTopic } from "../dataCourse/CourseTopic";
+import { CourseTopic } from "../DB/index_type";
 
 export const getPassedTestsCount = (
   topic: CourseTopic,

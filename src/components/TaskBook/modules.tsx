@@ -1,4 +1,4 @@
-import { practiceMock } from "../../data/taskData";
+import { practiceMock } from "../../DB/taskData";
 import CodeIcon from "@mui/icons-material/Code";
 import HtmlIcon from "@mui/icons-material/Language";
 import CssIcon from "@mui/icons-material/Style";

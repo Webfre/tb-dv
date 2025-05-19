@@ -1,5 +1,5 @@
 import { AccessCourseUser } from "../api/userApi";
-import { InfoCourse } from "../DB";
+import { InfoCourse } from "../DB/index_type";
 
 /**
  * Проверяет, есть ли доступ хотя бы к одному курсу

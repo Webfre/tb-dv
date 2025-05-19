@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, CircularProgress, Typography } from "@mui/material";
-import { practiceMock } from "../../data/taskData";
+import { practiceMock } from "../../DB/taskData";
 import { useGetSolvedTasksQuery } from "../../api/progressApi";
 
 const TaskProgressRing: React.FC = () => {

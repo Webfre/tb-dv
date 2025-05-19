@@ -9,7 +9,7 @@ import {
   List,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { testData } from "../../data/testData";
+import { testData } from "../../DB/testData";
 import { useGetUserProgressQuery } from "../../api/progressApi";
 import {
   calculateCategoryProgress,

@@ -1,4 +1,4 @@
-import { prDataList } from "../dataCourse/A_PR_WORK/prDataList";
+import { prDataList } from "../DB/prDataList";
 
 export interface TaskTopic {
   id: string;

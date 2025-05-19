@@ -3,7 +3,7 @@ import { Container, Typography } from "@mui/material";
 import { useTestLogic } from "./useTestLogic";
 import { useNavigate } from "react-router-dom";
 import { Fab, Zoom } from "@mui/material";
-import { testData } from "../../data/testData";
+import { testData } from "../../DB/testData";
 import QuestionBlock from "./QuestionBlock";
 import ResultDialog from "./ResultDialog";
 import HistoryBlock from "./HistoryBlock";

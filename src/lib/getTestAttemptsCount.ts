@@ -1,5 +1,5 @@
 import { Progress } from "../api/progressApi";
-import { testData } from "../data/testData";
+import { testData } from "../DB/testData";
 
 export const getTestAttemptsCount = (
   progressData: Progress | undefined,

@@ -15,11 +15,11 @@ import {
   filterFlashbackQuestions,
   flashbackModules,
   FlashbackQuestion,
-} from "../../dataFlashback/flashbackData";
+} from "../../lib/getFlashbackData";
 import { FlashbackDrawer } from "./FlashbackDrawer";
 import { Stepper, Step, StepLabel } from "@mui/material";
 import { FlashbackTest } from "./FlashbackTest";
-import { exampleQuestions } from "../../dataFlashback/flashbackQuestion";
+import { exampleQuestions } from "../../DB/flashbackQuestion";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import styles from "./Flashback.module.scss";

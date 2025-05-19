@@ -4,7 +4,7 @@ import {
   useGetUserProgressQuery,
 } from "../../api/progressApi";
 import { useLocation, useNavigate } from "react-router-dom";
-import { practiceMock } from "../../data/taskData";
+import { practiceMock } from "../../DB/taskData";
 import clsx from "clsx";
 import {
   Accordion,
@@ -23,11 +23,6 @@ import {
 } from "../../lib/getTestAttemptsCount";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-import {
-  CourseChapter,
-  CourseSection,
-  PracticeTask,
-} from "../../dataCourse/CourseTopic";
 import SectionDrawer from "../SectionDrawer/SectionDrawer";
 import PracticeDrawer from "../PracticeDrawer/PracticeDrawer";
 import PracticeChipProgress from "./PracticeChipProgress";
@@ -35,6 +30,11 @@ import ChapterIcon from "./ChapterIcon";
 import TaskStatusChip from "./TaskStatusChip";
 import TestChip from "./TestChip";
 import styles from "./TopicChaptersAccordion.module.scss";
+import {
+  CourseChapter,
+  CourseSection,
+  PracticeTask,
+} from "../../DB/index_type";
 
 interface TopicChaptersAccordionProps {
   chapters: CourseChapter[];

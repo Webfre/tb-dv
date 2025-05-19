@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./FrontariumFeatures.module.scss";
-import { featuresdata } from "../../DB/featuresdata";
+import { featuresdata } from "../../DB/INFO/featuresdata";
 import { Box, Typography } from "@mui/material";
 
 export const FrontariumFeatures: React.FC = () => {

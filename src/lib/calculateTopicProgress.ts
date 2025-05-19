@@ -1,5 +1,5 @@
 import { Progress } from "../api/progressApi";
-import { CourseTopic } from "../dataCourse/CourseTopic";
+import { CourseTopic } from "../DB/index_type";
 import { getPrWorksProgress } from "./getPrWorksProgress";
 
 export const calculateTopicProgress = (

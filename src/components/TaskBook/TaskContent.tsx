@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Box, Typography, Chip } from "@mui/material";
-import { PracticeTask } from "../../dataCourse/CourseTopic";
 import TaskSolutions from "./TaskSolutions";
 import TaskResources from "./TaskResources";
 import TaskAttachments from "./TaskAttachments";
 import styles from "./TaskDrawer.module.scss";
 import TaskCompletionToggle from "./TaskCompletionToggle";
+import { PracticeTask } from "../../DB/index_type";
 
 interface TaskContentProps {
   task: PracticeTask;

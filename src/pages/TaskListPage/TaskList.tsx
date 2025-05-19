@@ -1,7 +1,7 @@
 import React from "react";
 import { Stack, Card, CardContent, Typography, Chip, Box } from "@mui/material";
+import { PracticeTask } from "../../DB/index_type";
 import { useGetSolvedTasksQuery } from "../../api/progressApi";
-import { PracticeTask } from "../../dataCourse/CourseTopic";
 import { renderDifficultyStars } from "./renderDifficultyStars";
 import EditAttributesIcon from "@mui/icons-material/EditAttributes";
 import styles from "./TaskList.module.scss";

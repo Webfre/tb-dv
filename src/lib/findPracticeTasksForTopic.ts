@@ -1,5 +1,5 @@
-import { practiceMock } from "../data/taskData";
-import { mockTopics } from "../dataCourse/CourseTopic";
+import { mockTopics } from "../DB";
+import { practiceMock } from "../DB/taskData";
 
 /**
  * Найти все задачи из practiceMock, которые совпадают с practiceIds в mockTopics.

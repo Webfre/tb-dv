@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FlashbackQuestion } from "../../dataFlashback/flashbackData";
+import { FlashbackQuestion } from "../../lib/getFlashbackData";
 
 export interface Stats {
   byModules: Record<string, { correct: number; incorrect: number }>;

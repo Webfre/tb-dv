@@ -10,7 +10,7 @@ import {
   AlertTitle,
 } from "@mui/material";
 import { FC, useRef, useState } from "react";
-import { FlashbackQuestion } from "../../dataFlashback/flashbackData";
+import { FlashbackQuestion } from "../../lib/getFlashbackData";
 import { useTestStatistics } from "./useTestStatistics";
 import BtnCustom from "../../ui/BtnCustom";
 import FlashbackTestResult from "./FlashbackTestResult";

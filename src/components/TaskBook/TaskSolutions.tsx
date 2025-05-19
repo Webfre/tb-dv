@@ -1,9 +1,9 @@
 import React from "react";
 import { Grid, Typography } from "@mui/material";
 import { CopyBlock, dracula } from "react-code-blocks";
-import { PracticeTask } from "../../dataCourse/CourseTopic";
 import { styleCodeBlock } from "../Сourse/CopyBlockStyle";
 import styles from "./TaskDrawer.module.scss";
+import { PracticeTask } from "../../DB/index_type";
 
 interface TaskSolutionsProps {
   task: PracticeTask;

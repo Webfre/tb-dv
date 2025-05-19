@@ -1,5 +1,5 @@
 import React from "react";
-import { testData } from "../../data/testData";
+import { testData } from "../../DB/testData";
 import {
   Dialog,
   DialogTitle,

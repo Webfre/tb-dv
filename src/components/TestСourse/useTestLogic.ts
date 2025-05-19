@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { testData } from "../../data/testData";
+import { testData } from "../../DB/testData";
 import {
   useGetUserProgressQuery,
   useUpdateProgressMutation,

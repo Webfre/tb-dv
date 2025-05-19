@@ -1,7 +1,7 @@
 import React from "react";
 import { Chip } from "@mui/material";
-import { PracticeTask } from "../../dataCourse/CourseTopic";
 import CodeIcon from "@mui/icons-material/Code";
+import { PracticeTask } from "../../DB/index_type";
 
 interface PracticeChipProgressProps {
   sectionId: string;

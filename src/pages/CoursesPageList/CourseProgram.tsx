@@ -9,7 +9,7 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
-import { chaptersMap } from "../../dataCourse/CourseTopic";
+import { chaptersMap } from "../../DB";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import styles from "./CoursesPageList.module.scss";

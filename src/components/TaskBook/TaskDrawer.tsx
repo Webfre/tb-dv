@@ -9,10 +9,10 @@ import {
 } from "@mui/material";
 import HtmlDrawer from "../Сourse/HtmlDrawer";
 import CloseIcon from "@mui/icons-material/Close";
-import { PracticeTask } from "../../dataCourse/CourseTopic";
 import { renderDifficulty } from "./renderDifficulty";
 import TaskContent from "./TaskContent";
 import styles from "./TaskDrawer.module.scss";
+import { PracticeTask } from "../../DB/index_type";
 
 interface TaskDrawerProps {
   open: boolean;

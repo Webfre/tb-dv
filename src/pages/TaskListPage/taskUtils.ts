@@ -1,4 +1,4 @@
-import { PracticeTask } from "../../dataCourse/CourseTopic";
+import { PracticeTask } from "../../DB/index_type";
 
 export const getAllTopics = (
   tasks: PracticeTask[],

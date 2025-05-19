@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, CircularProgress, Typography } from "@mui/material";
-import { prDataList } from "../../dataCourse/A_PR_WORK/prDataList";
+import { prDataList } from "../../DB/prDataList";
 import { Progress } from "../../api/progressApi";
 import { getPrWorksProgress } from "../../lib/getPrWorksProgress";
 
