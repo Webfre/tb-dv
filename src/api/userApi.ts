@@ -1,16 +1,43 @@
 import { baseApi } from "./baseApi";
 
+export interface TestAttempt {
+  attempts: number;
+  correctAnswers: number;
+  percentage: number;
+  grade: number;
+  selectedAnswers: Record<string, number[]>;
+}
+
+export interface TaskTopic {
+  id: string;
+  resolved: boolean;
+  moduleId: string;
+  title: string;
+}
+
+export interface CourseProgress {
+  attempts: Record<string, number>;
+  history: Record<string, TestAttempt[]>;
+}
+
+export interface PracticalProgress {
+  taskTopics: TaskTopic[];
+}
+
 export interface Progress {
   id: number;
-  attempts: Record<string, number>;
-  history: Record<string, any[]>;
-  solvedTasks: { id: string; module: string }[];
-  taskTopics: Array<{
+  courses: Record<string, CourseProgress>;
+  practical: Record<string, PracticalProgress>;
+  solvedTasks: {
     id: string;
-    resolved: boolean;
-    moduleId: string;
-    title: string;
-  }>;
+    module: string;
+    solved: boolean;
+  }[];
+}
+
+export interface AccessCourseUser {
+  id: number; // id курса
+  isAccess: boolean; // доступ к курсу
 }
 
 export interface User {
@@ -21,9 +48,8 @@ export interface User {
   email: string;
   phone: string;
   telegram?: string;
-  accessKey?: string;
-  isAccessKey: boolean;
   isAdmin: boolean;
+  accessCourse: AccessCourseUser[];
 }
 
 export interface UserAdmin {
@@ -34,15 +60,9 @@ export interface UserAdmin {
   email: string;
   phone: string;
   telegram?: string;
-  accessKey?: string;
-  isAccessKey: boolean;
+  accessCourse: AccessCourseUser[]; // какие курсы куплены и доступны
   isAdmin: boolean;
   progress?: Progress;
-}
-
-export interface TaskTopic {
-  id: string;
-  resolved: boolean;
 }
 
 export const userApi = baseApi.injectEndpoints({
@@ -51,7 +71,12 @@ export const userApi = baseApi.injectEndpoints({
       query: () => "/users",
     }),
 
-    checkCourseAccess: builder.query<{ hasAccess: boolean }, void>({
+    checkCourseAccess: builder.query<
+      {
+        accessCourse: AccessCourseUser[];
+      },
+      void
+    >({
       query: () => "/users/check-access",
     }),
 
@@ -60,19 +85,24 @@ export const userApi = baseApi.injectEndpoints({
     }),
 
     assignAccessKey: builder.mutation<
-      { message: string; userId: number; accessKey: string },
-      number
+      any,
+      { userId: number; idCourse: number }
     >({
-      query: (id) => ({
-        url: `/users/${id}/assign-access-key`,
+      query: ({ userId, idCourse }) => ({
+        url: `/users/${userId}/assign-access-key`,
         method: "PATCH",
+        body: { idCourse },
       }),
     }),
 
-    revokeAccessKey: builder.mutation<any, number>({
-      query: (id) => ({
-        url: `/users/${id}/revoke-access-key`,
+    revokeAccessKey: builder.mutation<
+      any,
+      { userId: number; idCourse: number }
+    >({
+      query: ({ userId, idCourse }) => ({
+        url: `/users/${userId}/revoke-access-key`,
         method: "PATCH",
+        body: { idCourse },
       }),
     }),
 
@@ -83,8 +113,12 @@ export const userApi = baseApi.injectEndpoints({
       }),
     }),
 
-    getUserTaskTopics: builder.query<TaskTopic[], number>({
-      query: (userId) => `/progress/admin/task-topics/${userId}`,
+    getUserTaskTopics: builder.query<
+      TaskTopic[],
+      { userId: number; courseId: string }
+    >({
+      query: ({ userId, courseId }) =>
+        `/progress/admin/task-topics/${userId}/${courseId}`,
     }),
 
     updateUserTaskTopic: builder.mutation<
@@ -98,7 +132,7 @@ export const userApi = baseApi.injectEndpoints({
       }),
     }),
 
-    checkToken: builder.query<{ valid: boolean; exists: boolean }, void>({
+    checkToken: builder.query<{ valid: boolean }, void>({
       query: () => "/users/check-token",
     }),
 

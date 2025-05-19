@@ -1,14 +1,18 @@
 import React from "react";
 import { List, ListItem, Chip, Stack, Box, Typography } from "@mui/material";
-import { useGetUserProgressQuery } from "../../api/progressApi";
+import { Progress } from "../../api/progressApi";
 import { prDataList } from "../../dataCourse/A_PR_WORK/prDataList";
 import { isTaskCompleted } from "../../lib/getPrWorksProgress";
 import { mentors } from "../MentorProfilePage/mentorsData";
 import styles from "./PracticalWorksList.module.scss";
 
-const PracticalWorksList: React.FC = () => {
-  const { data: progressData } = useGetUserProgressQuery();
+interface PracticalWorksListProps {
+  progressData: Progress;
+}
 
+const PracticalWorksList: React.FC<PracticalWorksListProps> = ({
+  progressData,
+}) => {
   const findMentor = (mentorId: number) => {
     return mentors.find((mentor) => mentor.id === mentorId);
   };

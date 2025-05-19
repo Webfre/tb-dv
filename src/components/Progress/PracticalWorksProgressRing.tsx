@@ -1,11 +1,16 @@
 import React from "react";
 import { Box, CircularProgress, Typography } from "@mui/material";
 import { prDataList } from "../../dataCourse/A_PR_WORK/prDataList";
-import { useGetUserProgressQuery } from "../../api/progressApi";
+import { Progress } from "../../api/progressApi";
 import { getPrWorksProgress } from "../../lib/getPrWorksProgress";
 
-const PracticalWorksProgressRing: React.FC = () => {
-  const { data: progressData } = useGetUserProgressQuery();
+interface ProgressRingProps {
+  progressData: Progress;
+}
+
+const PracticalWorksProgressRing: React.FC<ProgressRingProps> = ({
+  progressData,
+}) => {
   const totalPracticalWorks = prDataList.length;
 
   const completedPracticalWorks = prDataList.reduce((acc, pr) => {

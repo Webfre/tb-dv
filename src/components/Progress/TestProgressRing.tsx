@@ -1,11 +1,14 @@
 import React from "react";
 import { Box, CircularProgress, Typography } from "@mui/material";
 import { testData } from "../../data/testData";
-import { useGetUserProgressQuery } from "../../api/progressApi";
+import { Progress } from "../../api/progressApi";
 
-const TestProgressRing: React.FC = () => {
+interface ProgressRingProps {
+  progressData: Progress;
+}
+
+const TestProgressRing: React.FC<ProgressRingProps> = ({ progressData }) => {
   const totalTests = Object.keys(testData).length;
-  const { data: progressData } = useGetUserProgressQuery();
 
   const successfulTests = Object.entries(progressData?.history || {}).filter(
     ([_, history]) => {

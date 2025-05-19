@@ -9,8 +9,8 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
+import { useIsUserAdmin } from "../../lib/useIsUserAdmin";
 import { useAuthTokenCheck } from "../../lib/useAuthTokenCheck";
-import { isUserAdmin } from "../../api/auth";
 import { DesktopMenu } from "./DesktopMenu";
 import { MobileMenu } from "./MobileMenu";
 import { UserMenu } from "./UserMenu";
@@ -19,16 +19,16 @@ import styles from "./Header.module.scss";
 import BtnCustom from "../../ui/BtnCustom";
 
 const Header: React.FC = () => {
+  const { isAdmin } = useIsUserAdmin();
   const theme = useTheme();
   const navigate = useNavigate();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [menuAnchorEl, setMenuAnchorEl] = useState<null | HTMLElement>(null);
   const openMenu = Boolean(menuAnchorEl);
-  const isAdmin = isUserAdmin();
 
-  const { token, valid, exists, isLoading } = useAuthTokenCheck();
-  const isAuthenticated = token && valid && exists;
+  const { token, valid, isLoading } = useAuthTokenCheck();
+  const isAuthenticated = token && valid;
 
   const handleOpenUserMenu = (e: React.MouseEvent<HTMLElement>) => {
     setMenuAnchorEl(e.currentTarget);

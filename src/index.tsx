@@ -29,13 +29,14 @@ import CourseInfoPage from "./pages/CourseInfoPage/CourseInfoPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage/ResetPasswordPage";
 import Profile from "./components/Profile/Profile";
 import Progress from "./components/Progress/Progress";
-import CourseProtectedRoute from "./ui/CourseProtectedRoute";
-import UserDetails from "./components/AdminDashboard/UserDetails";
+import UserDetails from "./components/AdminDashboard/UserDetails/UserDetails";
 import TestСourse from "./components/TestСourse/TestСourse";
 import MentorProfilePage from "./components/MentorProfilePage/MentorProfilePage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
+import CoursesPageList from "./pages/CoursesPageList/CoursesPageList";
 import "react-toastify/dist/ReactToastify.css";
 import "./index.scss";
+import CourseList from "./components/Сourse/CourseList";
 
 const AppRoutes = () => {
   const location = useLocation();
@@ -51,6 +52,7 @@ const AppRoutes = () => {
       <Container maxWidth="lg">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/listcourse" element={<CoursesPageList />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/course-info" element={<CourseInfoPage open={true} />} />
@@ -66,9 +68,9 @@ const AppRoutes = () => {
           <Route
             path="/flashback"
             element={
-              <CourseProtectedRoute>
+              <ProtectedRoute>
                 <Flashback />
-              </CourseProtectedRoute>
+              </ProtectedRoute>
             }
           />
 
@@ -100,10 +102,19 @@ const AppRoutes = () => {
           />
 
           <Route
-            path="/progress"
+            path="/course-access/:id"
             element={
               <ProtectedRoute>
-                <Progress />
+                <Сourse />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/course/:id"
+            element={
+              <ProtectedRoute>
+                <CourseTopicDetails />
               </ProtectedRoute>
             }
           />
@@ -111,9 +122,9 @@ const AppRoutes = () => {
           <Route
             path="/course"
             element={
-              <CourseProtectedRoute>
-                <Сourse />
-              </CourseProtectedRoute>
+              <ProtectedRoute>
+                <CourseList />
+              </ProtectedRoute>
             }
           />
 
@@ -131,15 +142,6 @@ const AppRoutes = () => {
             element={
               <ProtectedRoute>
                 <MentorProfilePage />
-              </ProtectedRoute>
-            }
-          />
-
-          <Route
-            path="/course/:id"
-            element={
-              <ProtectedRoute>
-                <CourseTopicDetails />
               </ProtectedRoute>
             }
           />

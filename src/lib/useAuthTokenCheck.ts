@@ -7,8 +7,7 @@ export const useAuthTokenCheck = () => {
     skip: !token,
   });
 
-  const valid = data?.valid ?? false;
-  const exists = data?.exists ?? false;
+  const valid = data?.valid;
 
   return {
     token,
@@ -16,6 +15,5 @@ export const useAuthTokenCheck = () => {
     isError,
     error,
     valid,
-    exists,
   };
 };

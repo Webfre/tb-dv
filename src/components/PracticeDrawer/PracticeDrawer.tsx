@@ -11,6 +11,7 @@ import {
 import { renderDifficulty } from "../TaskBook/renderDifficulty";
 import { useCheckCourseAccessQuery } from "../../api/userApi";
 import { ToggleSolvedTaskDto } from "../../api/progressApi";
+import { hasAccessToCourses } from "../../lib/hasAccessToCourses";
 import { CopyBlock, dracula } from "react-code-blocks";
 import { PracticeTask } from "../../dataCourse/CourseTopic";
 import { styleCodeBlock } from "../Сourse/CopyBlockStyle";
@@ -37,7 +38,7 @@ const PracticeDrawer: React.FC<PracticeDrawerProps> = ({
   const [htmlDrawerOpen, setHtmlDrawerOpen] = useState(false);
   const [showSolution, setShowSolution] = useState(false);
   const { data } = useCheckCourseAccessQuery();
-  const hasAccess = data?.hasAccess;
+  const hasAccess = hasAccessToCourses(data?.accessCourse || []);
 
   useEffect(() => {
     setShowSolution(false);

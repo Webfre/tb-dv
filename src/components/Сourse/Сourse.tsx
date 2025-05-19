@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Card,
@@ -10,10 +10,11 @@ import {
   Link,
   Tooltip,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { mockTopics } from "../../dataCourse/CourseTopic";
 import { useGetUserProgressQuery } from "../../api/progressApi";
 import { calculateTopicProgress } from "../../lib/calculateTopicProgress";
+import { courseList, InfoCourse } from "../../DB";
 import QuizIcon from "@mui/icons-material/Quiz";
 import WorkIcon from "@mui/icons-material/Work";
 import CodeIcon from "@mui/icons-material/Code";
@@ -24,7 +25,12 @@ import styles from "./Course.module.scss";
 
 const CoursePage: React.FC = () => {
   const navigate = useNavigate();
-  const { data: progressData } = useGetUserProgressQuery();
+  const { id: courseId } = useParams<{ id: string }>();
+  const { data: progressData } = useGetUserProgressQuery({
+    courseId: courseId ?? "",
+  });
+  const [filteredTopics, setFilteredTopics] = useState<typeof mockTopics>([]);
+  const [course, setCourse] = useState<InfoCourse | undefined>(undefined);
 
   const isTestPassed = (key: string): boolean => {
     if (!progressData?.history?.[key]) return false;
@@ -33,11 +39,38 @@ const CoursePage: React.FC = () => {
     return best >= 60;
   };
 
+  useEffect(() => {
+    if (courseId) {
+      const foundCourse = courseList.find(
+        (course) => course.id === Number(courseId)
+      );
+
+      if (foundCourse) {
+        setCourse(foundCourse);
+      }
+
+      if (foundCourse?.courseId) {
+        const topics = mockTopics.filter((topic) =>
+          foundCourse.courseId.includes(topic.id)
+        );
+        setFilteredTopics(topics);
+      }
+    }
+  }, [courseId]);
+
+  if (!course) {
+    return (
+      <Typography>
+        Произошла ошибка, обратитесь к администратору курса
+      </Typography>
+    );
+  }
+
   return (
-    <Box p={4}>
+    <Box p={2}>
       <Box className={styles.roadmap}>
         <Typography variant="h4" gutterBottom>
-          Курс: Frontend-разработчик React (базовый)
+          Курс: {course.title}
         </Typography>
 
         <Typography variant="body1" mb={3}>
@@ -66,7 +99,7 @@ const CoursePage: React.FC = () => {
         <Typography textAlign="left" variant="body2" color="textSecondary">
           Не знаете, с чего начать? Напишите вашему наставнику или загляните в
           <Link href="/roadmap" underline="hover" sx={{ mx: 0.5 }}>
-            Roadmap (Junior)
+            Roadmap
           </Link>
           — это пошаговое руководство, которое подскажет, в каком порядке
           изучать темы и выполнять задания. Следуйте по пунктам от начала и до
@@ -75,7 +108,7 @@ const CoursePage: React.FC = () => {
       </Box>
 
       <Grid container spacing={3}>
-        {mockTopics.map((topic, index) => {
+        {filteredTopics.map((topic, index) => {
           const {
             totalSections,
             totalTests,
@@ -102,7 +135,11 @@ const CoursePage: React.FC = () => {
                   height: "100%",
                   width: "100%",
                 }}
-                onClick={() => navigate(`/course/${topic.id}`)}
+                onClick={() =>
+                  navigate(`/course/${topic.id}`, {
+                    state: { courseId },
+                  })
+                }
               >
                 <CardContent
                   sx={{

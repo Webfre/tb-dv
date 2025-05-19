@@ -20,17 +20,35 @@ import TestItemCard from "./ProgressItemCard";
 import styles from "./Progress.module.scss";
 import PracticalWorksList from "./PracticalWorksList";
 
-const Progress: React.FC = () => {
-  const { data: progressData } = useGetUserProgressQuery();
+interface ProgressProps {
+  courseId: string;
+}
+
+const Progress: React.FC<ProgressProps> = ({ courseId }) => {
+  const { data: progressData, isLoading } = useGetUserProgressQuery(
+    { courseId },
+    {
+      skip: !courseId,
+    }
+  );
+
   const groupedTests = useMemo(() => groupTestsByCategory(testData), []);
 
+  if (!courseId) {
+    return <Typography>Выберите курс, чтобы увидеть прогресс.</Typography>;
+  }
+
+  if (isLoading) {
+    return <Typography>Загрузка...</Typography>;
+  }
+
   if (!progressData) {
-    return <Typography>Загрузка прогресса...</Typography>;
+    return <Typography>Прогресс не найден.</Typography>;
   }
 
   return (
     <Box p={4}>
-      <ProgressRing />
+      <ProgressRing progressData={progressData} />
 
       <Typography variant="h4" gutterBottom sx={{ mt: 4 }}>
         Доступные тесты
@@ -93,7 +111,7 @@ const Progress: React.FC = () => {
         );
       })}
 
-      <PracticalWorksList />
+      <PracticalWorksList progressData={progressData} />
     </Box>
   );
 };

@@ -1,10 +1,15 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
+import { Progress } from "../../api/progressApi";
 import TestProgressRing from "./TestProgressRing";
 import TaskProgressRing from "./TaskProgressRing";
 import PracticalWorksProgressRing from "./PracticalWorksProgressRing";
 
-const ProgressRing: React.FC = () => {
+interface ProgressRingProps {
+  progressData: Progress;
+}
+
+const ProgressRing: React.FC<ProgressRingProps> = ({ progressData }) => {
   return (
     <>
       <Typography variant="h4" gutterBottom>
@@ -18,8 +23,8 @@ const ProgressRing: React.FC = () => {
         flexWrap="wrap"
         mb={4}
       >
-        <PracticalWorksProgressRing />
-        <TestProgressRing />
+        <PracticalWorksProgressRing progressData={progressData} />
+        <TestProgressRing progressData={progressData} />
         <TaskProgressRing />
       </Box>
     </>

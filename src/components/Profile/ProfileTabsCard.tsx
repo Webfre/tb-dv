@@ -1,20 +1,29 @@
 import React, { useState } from "react";
 import { Box, Paper, Tabs, Tab, Typography } from "@mui/material";
-import { useCheckCourseAccessQuery } from "../../api/userApi";
 import Progress from "../Progress/Progress";
 import UserInfo from "./UserInfo";
 
-const ProfileTabsCard: React.FC = () => {
+interface ProfileTabsCardProps {
+  selectedCourseId: string;
+  hasAccess: boolean;
+}
+
+const ProfileTabsCard: React.FC<ProfileTabsCardProps> = ({
+  selectedCourseId,
+  hasAccess,
+}) => {
   const [activeTab, setActiveTab] = useState(0);
-  const { data } = useCheckCourseAccessQuery();
-  const hasAccess = data?.hasAccess;
 
   const tabLabels = hasAccess
     ? ["Прогресс", "Избранное", "Инфо"]
     : ["Избранное", "Инфо"];
 
   const tabContent = hasAccess
-    ? [<Progress />, <Typography>Здесь избранное</Typography>, <UserInfo />]
+    ? [
+        <Progress courseId={selectedCourseId} />,
+        <Typography>Здесь избранное</Typography>,
+        <UserInfo />,
+      ]
     : [<Typography>Здесь избранное</Typography>, <UserInfo />];
 
   const handleChange = (_: React.SyntheticEvent, newValue: number) => {

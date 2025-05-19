@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import {
   useGetUserProgressQuery,
   useGetSolvedTasksQuery,
@@ -12,8 +12,8 @@ import {
 } from "../../lib/topicMetrics";
 import { getIsTopicCompleted } from "../../lib/getIsTopicCompleted";
 import { getPassedTestsCount } from "../../lib/getPassedTestsCount";
-import { practiceMock } from "../../data/taskData";
 import { getPrWorksProgress } from "../../lib/getPrWorksProgress";
+import { findPracticeTasksForTopic } from "../../lib/findPracticeTasksForTopic";
 import { mockTopics } from "../../dataCourse/CourseTopic";
 import BtnCustom from "../../ui/BtnCustom";
 import BookIcon from "@mui/icons-material/Book";
@@ -30,10 +30,11 @@ import styles from "./Course.module.scss";
 const CourseTopicDetails: React.FC = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const { data: progressData } = useGetUserProgressQuery();
+  const { courseId } = location.state || {};
+  const { data: progressData } = useGetUserProgressQuery({ courseId });
   const { data: solvedTasks = [] } = useGetSolvedTasksQuery();
-
   const topic = mockTopics.find((t) => t.id === id);
 
   if (!topic) {
@@ -45,10 +46,7 @@ const CourseTopicDetails: React.FC = () => {
   const isTopicCompleted = getIsTopicCompleted(topic, progressData);
   const passedTestsCount = getPassedTestsCount(topic, progressData);
   const totalSections = getTotalSections(topic);
-
-  const moduleTasks = practiceMock.filter(
-    (task) => task.module === topic.title
-  );
+  const moduleTasks = findPracticeTasksForTopic(topic.title);
 
   const solvedPracticeCount = moduleTasks.filter((task) =>
     solvedTasks.some((solved) => solved.id === task.id)

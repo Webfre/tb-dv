@@ -11,13 +11,14 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useCheckCourseAccessQuery } from "../../api/userApi";
 import { useGetSolvedTasksQuery } from "../../api/progressApi";
+import { hasAccessToCourses } from "../../lib/hasAccessToCourses";
 import { modules } from "./modules";
 
 const TaskBook: React.FC = () => {
   const navigate = useNavigate();
   const { data } = useCheckCourseAccessQuery();
   const { data: solvedTasks = [] } = useGetSolvedTasksQuery();
-  const hasAccess = data?.hasAccess;
+  const hasAccess = hasAccessToCourses(data?.accessCourse || []);
 
   const handleClick = (id: string) => {
     navigate(`/tasks/${id}`);
@@ -35,7 +36,7 @@ const TaskBook: React.FC = () => {
   };
 
   return (
-    <Box p={4}>
+    <Box p={2}>
       <Typography variant="h4" gutterBottom>
         Электронный задачник
       </Typography>

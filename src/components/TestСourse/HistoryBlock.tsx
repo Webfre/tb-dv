@@ -11,6 +11,8 @@ import {
 import BtnCustom from "../../ui/BtnCustom";
 import styles from "./HistoryBlock.module.scss";
 import { useGetUserProgressQuery } from "../../api/progressApi";
+import { LocationState } from "./useTestLogic";
+import { useLocation } from "react-router-dom";
 
 interface HistoryBlockProps {
   selectedTest: string;
@@ -24,7 +26,9 @@ const HistoryBlock: React.FC<HistoryBlockProps> = ({
   MAX_ATTEMPTS,
 }) => {
   const [isVisible, setIsVisible] = useState(true);
-  const { data: progressData } = useGetUserProgressQuery();
+  const location = useLocation();
+  const { courseId } = (location.state as LocationState) || {};
+  const { data: progressData } = useGetUserProgressQuery({ courseId });
 
   const history = progressData?.history?.[selectedTest] || [];
 

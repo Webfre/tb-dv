@@ -6,6 +6,8 @@ import {
   FormGroup,
   FormControlLabel,
   Checkbox,
+  Alert,
+  AlertTitle,
 } from "@mui/material";
 import { FC, useRef, useState } from "react";
 import { FlashbackQuestion } from "../../dataFlashback/flashbackData";
@@ -33,9 +35,12 @@ export const FlashbackTest: FC<FlashbackTestProps> = ({
 
   if (!questions.length) {
     return (
-      <Typography variant="body1" color="error" mt={4}>
+      <Alert severity="warning" sx={{ mt: 4 }}>
         Нет подходящих вопросов для выбранных настроек.
-      </Typography>
+        <AlertTitle>
+          Вы пока еще не выбрали темы для прохождения теста!
+        </AlertTitle>
+      </Alert>
     );
   }
 
