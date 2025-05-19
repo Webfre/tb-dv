@@ -1,5 +1,18 @@
 import { baseApi } from "./baseApi";
 
+export interface Progress {
+  id: number;
+  attempts: Record<string, number>;
+  history: Record<string, any[]>;
+  solvedTasks: { id: string; module: string }[];
+  taskTopics: Array<{
+    id: string;
+    resolved: boolean;
+    moduleId: string;
+    title: string;
+  }>;
+}
+
 export interface User {
   id: number;
   lastName: string;
@@ -11,6 +24,20 @@ export interface User {
   accessKey?: string;
   isAccessKey: boolean;
   isAdmin: boolean;
+}
+
+export interface UserAdmin {
+  id: number;
+  lastName: string;
+  firstName: string;
+  middleName: string;
+  email: string;
+  phone: string;
+  telegram?: string;
+  accessKey?: string;
+  isAccessKey: boolean;
+  isAdmin: boolean;
+  progress?: Progress;
 }
 
 export interface TaskTopic {
@@ -75,6 +102,10 @@ export const userApi = baseApi.injectEndpoints({
       query: () => "/users/check-token",
     }),
 
+    getUserInfoForAdmin: builder.query<UserAdmin, number>({
+      query: (userId) => `/users/admin/${userId}`,
+    }),
+
     revokeAdmin: builder.mutation<void, number>({
       query: (id) => ({
         url: `/users/${id}/revoke-admin`,
@@ -96,4 +127,5 @@ export const {
   useGetUserTaskTopicsQuery,
   useUpdateUserTaskTopicMutation,
   useCheckTokenQuery,
+  useGetUserInfoForAdminQuery,
 } = userApi;

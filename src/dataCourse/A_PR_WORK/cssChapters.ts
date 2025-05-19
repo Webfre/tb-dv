@@ -1,4 +1,4 @@
-import { cssSections } from "./cssSections";
+import { cssSections } from "../css/cssSections";
 
 export const cssChapters = [
   {
@@ -61,7 +61,7 @@ export const cssChapters = [
     testKeys: ["css_pseudo_test"],
     practiceIds: [
       "css_pseudo_task_1",
-      "css_pseudo_task_2",
+      "css_pseudoElement_task_3",
       "css_pseudo_task_3",
       "css_pseudo_task_4",
       "css_pseudo_task_5",
@@ -74,9 +74,20 @@ export const cssChapters = [
     title: "Методологии (BEM)",
     sections: cssSections.css_methodologies,
     testKeys: ["css_methodologies_test"],
-    practiceIds: ["css_methodologies_task"],
+    practiceIds: ["css_methodologies_task_1", "css_methodologies_task_2"],
   },
-
+  {
+    id: "css_layout",
+    title: "Макеты и позиционирование",
+    sections: cssSections.css_layout,
+    testKeys: ["css_layout_test"],
+    practiceIds: [
+      "css_layout_task_1",
+      "css_layout_task_2",
+      "css_layout_task_3",
+      "css_layout_task_4",
+    ],
+  },
   {
     id: "css_flexbox",
     title: "Flexbox",
@@ -86,6 +97,16 @@ export const cssChapters = [
       "css_flexbox_task_1",
       "css_flexbox_task_2",
       "css_flexbox_task_3",
+      "css_flexbox_task_4",
+      "css_flexbox_task_5",
+      "css_flexbox_task_6",
+      "css_flexbox_task_7",
+      "css_flexbox_task_8",
+      "css_flexbox_task_9",
+      "css_flexbox_task_10",
+      "css_flexbox_task_11",
+      "css_flexbox_task_12",
+      "flex_task_6",
     ],
   },
   {
@@ -93,35 +114,56 @@ export const cssChapters = [
     title: "Grid Layout",
     sections: cssSections.css_grid,
     testKeys: ["css_grid_test"],
-    practiceIds: ["css_grid_task_1", "css_grid_task_2"],
+    practiceIds: [
+      "css_grid_task_1",
+      "css_grid_task_2",
+      "css_grid_task_3",
+      "css_grid_task_4",
+      "css_grid_task_5",
+      "css_grid_task_6",
+      "css_grid_task_7",
+      "css_grid_task_8",
+      "css_grid_task_9",
+      "css_grid_task_10",
+      "css_grid_task_11",
+    ],
   },
-  {
-    id: "css_layout",
-    title: "Макеты и позиционирование",
-    sections: cssSections.css_layout,
-    testKeys: ["css_layout_test"],
-    practiceIds: ["css_layout_task_1", "css_layout_task_2"],
-  },
+
   {
     id: "css_images",
     title: "Работа с изображениями и фоном",
     sections: cssSections.css_images,
     testKeys: ["css_images_test"],
-    practiceIds: ["css_images_task_1", "css_images_task_2"],
+    practiceIds: [
+      "css_images_task_1",
+      "css_images_task_2",
+      "css_images_task_3",
+      "css_images_task_4",
+    ],
   },
   {
     id: "css_responsive",
     title: "Адаптивный дизайн",
     sections: cssSections.css_responsive,
     testKeys: ["css_responsive_test"],
-    practiceIds: ["css_responsive_task"],
+    practiceIds: [
+      "css_responsive_task_1",
+      "css_responsive_task_2",
+      "css_responsive_task_3",
+      "css_responsive_task_4",
+    ],
   },
   {
     id: "css_animations",
     title: "Анимации и переходы",
     sections: cssSections.css_animations,
     testKeys: ["css_animations_test"],
-    practiceIds: ["css_animations_task_1", "css_animations_task_2"],
+    practiceIds: [
+      "css_animations_task_1",
+      "css_animations_task_2",
+      "css_animations_task_3",
+      "css_animations_task_4",
+    ],
   },
   {
     id: "css_preprocessors",
@@ -135,8 +177,6 @@ export const cssChapters = [
     id: "css_final",
     title: "Финальный проект",
     sections: cssSections.css_final,
-    testKeys: ["css_final_test"],
-    practiceIds: ["css_final_project"],
     final: true,
   },
 ];

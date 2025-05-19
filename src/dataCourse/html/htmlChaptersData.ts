@@ -124,7 +124,6 @@ export const htmlChapters = [
     title: "Заключение и практическая работа",
     sections: htmlSections.html_final,
     testKeys: ["html_final_test"],
-    practiceIds: ["task_html_final_project"],
     final: true,
   },
 ];

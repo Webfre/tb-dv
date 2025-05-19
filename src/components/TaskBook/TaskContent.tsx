@@ -17,13 +17,14 @@ const TaskContent: React.FC<TaskContentProps> = ({ task, hasAccess }) => {
 
   return (
     <Box className={styles.topTask} mt={2}>
-      {hasAccess && (
-        <TaskCompletionToggle taskId={task.id} module={task.module} />
-      )}
-
-      <Typography mt={2} variant="subtitle1" fontWeight={500}>
-        Описание
-      </Typography>
+      <Box className={styles.togleBox}>
+        <Typography mt={2} variant="subtitle1" fontWeight={500}>
+          Описание
+        </Typography>
+        {hasAccess && (
+          <TaskCompletionToggle taskId={task.id} module={task.module} />
+        )}
+      </Box>
       <Typography color="text.secondary">{task.description}</Typography>
 
       <Typography mt={2} variant="subtitle1" fontWeight={500}>
@@ -39,7 +40,7 @@ const TaskContent: React.FC<TaskContentProps> = ({ task, hasAccess }) => {
       </ol>
 
       {(task.solution || task.codeExampleCSS || task.codeExampleJS) && (
-        <Box mt={3}>
+        <Box className={styles.solutionContainer}>
           <Chip
             label={showSolution ? "Скрыть решение" : "Показать решение"}
             onClick={() => setShowSolution((prev) => !prev)}

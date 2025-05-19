@@ -10,7 +10,6 @@ import {
 import HtmlDrawer from "../Сourse/HtmlDrawer";
 import CloseIcon from "@mui/icons-material/Close";
 import { PracticeTask } from "../../dataCourse/CourseTopic";
-import { useNavigate } from "react-router-dom";
 import { renderDifficulty } from "./renderDifficulty";
 import TaskContent from "./TaskContent";
 import styles from "./TaskDrawer.module.scss";
@@ -29,17 +28,6 @@ const TaskDrawer: React.FC<TaskDrawerProps> = ({
   hasAccess,
 }) => {
   const [htmlDrawerOpen, setHtmlDrawerOpen] = useState(false);
-  const navigate = useNavigate();
-
-  const handleTopicClick = () => {
-    if (task?.topicId) {
-      navigate(`/course/${task.module?.toLocaleLowerCase()}`, {
-        state: {
-          scrollToChapterId: task.topicId,
-        },
-      });
-    }
-  };
 
   if (!task) return null;
 
@@ -56,14 +44,6 @@ const TaskDrawer: React.FC<TaskDrawerProps> = ({
           <Box mt={1}>{renderDifficulty(task.difficulty)}</Box>
           <Box display="flex" gap={2} alignItems="center">
             <Typography variant="h6">{task.title}</Typography>
-
-            {hasAccess && task.topic && (
-              <Chip
-                label={task.topic}
-                onClick={handleTopicClick}
-                variant="outlined"
-              />
-            )}
 
             {task?.show && (
               <Box display="flex" gap={2}>

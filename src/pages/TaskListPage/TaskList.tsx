@@ -63,15 +63,6 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, onSelect, hasAccess }) => {
                   alignItems="center"
                 >
                   <Box>{renderDifficultyStars(task.difficulty)}</Box>
-
-                  {hasAccess && task.topic && (
-                    <Chip
-                      label={task.topic}
-                      variant="outlined"
-                      size="small"
-                      sx={{ fontSize: "0.75rem" }}
-                    />
-                  )}
                 </Stack>
               </Stack>
             </CardContent>

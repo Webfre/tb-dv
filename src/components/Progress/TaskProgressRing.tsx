@@ -46,7 +46,7 @@ const TaskProgressRing: React.FC = () => {
         </Box>
       </Box>
       <Typography variant="body1" mt={2}>
-        Решено задач из задачника: {solvedCount} из {totalTasks}
+        Решено задач: {solvedCount} из {totalTasks}
       </Typography>
     </Box>
   );

@@ -91,7 +91,7 @@ const SectionDrawer: React.FC<SectionDrawerProps> = ({ section, onClose }) => {
           {section?.codeExample && (
             <Box mb={3}>
               {section.codeExampleCSS ? (
-                <Grid container spacing={2}>
+                <Grid container spacing={2} className={styles.gridContainer}>
                   <Grid item xs={12} md={6}>
                     <Typography variant="body2" gutterBottom>
                       Пример кода: HTML
@@ -106,7 +106,7 @@ const SectionDrawer: React.FC<SectionDrawerProps> = ({ section, onClose }) => {
                     />
                   </Grid>
 
-                  <Grid item xs={12} md={6}>
+                  <Grid item className={styles.gridItem} xs={12} md={6}>
                     <Typography variant="body2" gutterBottom>
                       Пример кода: CSS
                     </Typography>

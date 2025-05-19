@@ -45,9 +45,10 @@ import {
 import { css_animations_1, css_animations_2 } from "./css_animations";
 import { css_methodologies_1, css_methodologies_2 } from "./css_methodologies";
 import { css_preprocessors_1, css_preprocessors_2 } from "./css_preprocessors";
-import { css_final_1, css_final_2 } from "./css_final";
+import { css_final_1 } from "./css_final";
 import { css_block_model1, css_block_model2 } from "./css_block_model";
 import { css_pseudo1, css_pseudo2, css_pseudo3 } from "./css_pseudo";
+import { css_pr_1, css_pr_2 } from "../A_PR_WORK/css_pr_1";
 
 export const cssSections = {
   css_intro: [
@@ -89,5 +90,5 @@ export const cssSections = {
   css_animations: [css_animations_1, css_animations_2],
 
   css_preprocessors: [css_preprocessors_1, css_preprocessors_2],
-  css_final: [css_final_1, css_final_2],
+  css_final: [css_final_1, css_pr_1, css_pr_2],
 };

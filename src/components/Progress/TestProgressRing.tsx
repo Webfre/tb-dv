@@ -52,7 +52,7 @@ const TestProgressRing: React.FC = () => {
         </Box>
       </Box>
       <Typography variant="body1" mt={2}>
-        Пройдено тестов по курсу: {successfulTests} из {totalTests}
+        Пройдено тестов: {successfulTests} из {totalTests}
       </Typography>
     </Box>
   );

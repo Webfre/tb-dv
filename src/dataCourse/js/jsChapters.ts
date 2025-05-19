@@ -29,6 +29,10 @@ export const jsChapters = [
       "js_basics_task_13",
       "js_basics_task_14",
       "js_basics_task_15",
+      "js_basics_task_18",
+      "js_basics_task_19",
+      "js_basics_task_20",
+      "js_basics_task_21",
     ],
   },
   // {
@@ -100,12 +104,5 @@ export const jsChapters = [
   //   sections: jsSections.js_modules,
   //   testKeys: ["js_modules_test"],
   //   practiceIds: ["js_modules_task_1", "js_modules_task_2"],
-  // },
-  // {
-  //   id: "js_testing",
-  //   title: "Тестирование JavaScript",
-  //   sections: jsSections.js_testing,
-  //   testKeys: ["js_testing_test"],
-  //   practiceIds: ["js_testing_task_1", "js_testing_task_2"],
   // },
 ];

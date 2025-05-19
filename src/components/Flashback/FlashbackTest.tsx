@@ -6,15 +6,12 @@ import {
   FormGroup,
   FormControlLabel,
   Checkbox,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
 } from "@mui/material";
-import { FC, useState } from "react";
+import { FC, useRef, useState } from "react";
 import { FlashbackQuestion } from "../../dataFlashback/flashbackData";
+import { useTestStatistics } from "./useTestStatistics";
 import BtnCustom from "../../ui/BtnCustom";
-import { useNavigate } from "react-router-dom";
+import FlashbackTestResult from "./FlashbackTestResult";
 
 interface FlashbackTestProps {
   questions: FlashbackQuestion[];
@@ -30,7 +27,9 @@ export const FlashbackTest: FC<FlashbackTestProps> = ({
   const [checked, setChecked] = useState(false);
   const [results, setResults] = useState<boolean[]>([]);
   const [showResult, setShowResult] = useState(false);
-  const navigate = useNavigate();
+  const descriptionsRef = useRef<HTMLDivElement | null>(null);
+
+  const { stats, updateStats } = useTestStatistics();
 
   if (!questions.length) {
     return (
@@ -48,6 +47,7 @@ export const FlashbackTest: FC<FlashbackTestProps> = ({
       selected.every((idx) => current.correctAnswers.includes(idx));
 
     setResults((prev) => [...prev, isCorrect]);
+    updateStats(current, isCorrect);
 
     if (index < questions.length - 1) {
       setIndex((prev) => prev + 1);
@@ -66,6 +66,13 @@ export const FlashbackTest: FC<FlashbackTestProps> = ({
 
   const handleCheck = () => {
     setChecked(true);
+
+    setTimeout(() => {
+      descriptionsRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }, 100);
   };
 
   const isCorrect =
@@ -78,16 +85,6 @@ export const FlashbackTest: FC<FlashbackTestProps> = ({
   const topics = Array.from(new Set(questions.map((q) => q.sectionTitle))).join(
     ", "
   );
-
-  const handleTopicClick = () => {
-    if (current?.topic) {
-      navigate(`/course/${current.moduleId?.toLocaleLowerCase()}`, {
-        state: {
-          scrollToChapterId: current?.topic,
-        },
-      });
-    }
-  };
 
   return (
     <>
@@ -106,7 +103,7 @@ export const FlashbackTest: FC<FlashbackTestProps> = ({
           />
         </Box>
 
-        <Typography variant="h6" mb={2}>
+        <Typography variant="h6" mb={2} sx={{ maxWidth: "850px" }}>
           {current.title}
         </Typography>
 
@@ -153,7 +150,7 @@ export const FlashbackTest: FC<FlashbackTestProps> = ({
         </FormGroup>
 
         {checked && (
-          <Box mt={3}>
+          <Box mt={3} ref={descriptionsRef}>
             <Typography
               variant="subtitle1"
               color={isCorrect ? "success.main" : "error.main"}
@@ -186,17 +183,6 @@ export const FlashbackTest: FC<FlashbackTestProps> = ({
                   <Typography variant="body2" color="text.secondary">
                     {desc}
                   </Typography>
-
-                  {current.correctAnswers.includes(idx) &&
-                    idx === current.correctAnswers[0] && (
-                      <Chip
-                        label={current.sectionTitle}
-                        onClick={handleTopicClick}
-                        variant="outlined"
-                        size="small"
-                        sx={{ ml: 2 }}
-                      />
-                    )}
                 </Box>
               ))}
             </Box>
@@ -221,44 +207,18 @@ export const FlashbackTest: FC<FlashbackTestProps> = ({
         </Box>
       </Card>
 
-      {/* Результат теста */}
-      <Dialog
-        PaperProps={{
-          sx: {
-            borderRadius: "20px",
-            p: 1,
-          },
-        }}
+      <FlashbackTestResult
         open={showResult}
+        percent={percent}
+        correctCount={correctCount}
+        totalQuestions={results.length}
+        topics={topics}
+        stats={stats}
         onClose={() => {
           setShowResult(false);
           onFinish();
         }}
-      >
-        <DialogTitle>Результат теста</DialogTitle>
-        <DialogContent>
-          <Typography mb={2}>
-            Вы завершили тест. Ваш результат: <strong>{percent}%</strong>
-          </Typography>
-          <Typography>
-            Правильных ответов: <strong>{correctCount}</strong> из{" "}
-            <strong>{results.length}</strong>
-          </Typography>
-          <Typography mt={2}>
-            Пройденные темы: <strong>{topics}</strong>
-          </Typography>
-        </DialogContent>
-        <DialogActions>
-          <BtnCustom
-            text="Завершить"
-            variant="contained"
-            onClick={() => {
-              setShowResult(false);
-              onFinish();
-            }}
-          />
-        </DialogActions>
-      </Dialog>
+      />
     </>
   );
 };

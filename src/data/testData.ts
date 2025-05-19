@@ -17,14 +17,12 @@ import { html_elements_test } from "../dataCourse/html/test/html_elements_test";
 import { html_final_test } from "../dataCourse/html/test/html_final_test";
 import { html_forms_test } from "../dataCourse/html/test/html_forms_test";
 import { html_intro_test } from "../dataCourse/html/test/html_intro_test";
-import { html_legacy_test } from "../dataCourse/html/test/html_legacy_test";
 import { html_links_images_test } from "../dataCourse/html/test/html_links_images";
 import { html_meta_head_test } from "../dataCourse/html/test/html_meta_head_test";
 import { html_multimedia_test } from "../dataCourse/html/test/html_multimedia_test";
 import { html_semantics_test } from "../dataCourse/html/test/html_semantics_test";
 import { html_structure_test } from "../dataCourse/html/test/html_structure_test";
 import { html_tables_test } from "../dataCourse/html/test/html_tables_test";
-import { html_text_formatting_test } from "../dataCourse/html/test/html_text_formatting_test";
 import { js_basics_test } from "../dataCourse/js/test/js_basics_test";
 import { js_intro_test } from "../dataCourse/js/test/js_intro_test";
 import { ide_intro_test } from "../dataCourse/vscode/ide_intro_test";
@@ -44,14 +42,12 @@ export const testData: TestDataCollection = {
   html_elements_test,
   html_attributes_test,
   html_semantics_test,
-  html_text_formatting_test,
   html_links_images_test,
   html_forms_test,
   html_tables_test,
   html_multimedia_test,
   html_meta_head_test,
   html_best_practices_test,
-  html_legacy_test,
   html_final_test,
 
   // CSS

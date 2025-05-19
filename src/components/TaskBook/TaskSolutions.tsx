@@ -3,6 +3,7 @@ import { Grid, Typography } from "@mui/material";
 import { CopyBlock, dracula } from "react-code-blocks";
 import { PracticeTask } from "../../dataCourse/CourseTopic";
 import { styleCodeBlock } from "../Сourse/CopyBlockStyle";
+import styles from "./TaskDrawer.module.scss";
 
 interface TaskSolutionsProps {
   task: PracticeTask;
@@ -12,9 +13,18 @@ const TaskSolutions: React.FC<TaskSolutionsProps> = ({ task }) => {
   const { solution, codeExampleCSS, codeExampleJS } = task;
 
   return (
-    <Grid sx={{ marginBottom: "40px" }} container spacing={2}>
+    <Grid
+      sx={{ marginBottom: "40px" }}
+      className={styles.gridContainer}
+      container
+      spacing={2}
+    >
       {solution && (
-        <Grid item xs={codeExampleCSS || codeExampleJS ? 6 : 12}>
+        <Grid
+          item
+          className={styles.gridItem}
+          xs={codeExampleCSS || codeExampleJS ? 6 : 12}
+        >
           <Typography variant="subtitle2" gutterBottom>
             HTML решение:
           </Typography>
@@ -30,7 +40,7 @@ const TaskSolutions: React.FC<TaskSolutionsProps> = ({ task }) => {
       )}
 
       {codeExampleJS && (
-        <Grid item xs={solution ? 6 : 12}>
+        <Grid item className={styles.gridItem} xs={solution ? 6 : 12}>
           <Typography variant="subtitle2" gutterBottom>
             JavaScript решение:
           </Typography>
@@ -46,7 +56,7 @@ const TaskSolutions: React.FC<TaskSolutionsProps> = ({ task }) => {
       )}
 
       {codeExampleCSS && (
-        <Grid item xs={solution ? 6 : 12}>
+        <Grid item className={styles.gridItem} xs={solution ? 6 : 12}>
           <Typography variant="subtitle2" gutterBottom>
             CSS решение:
           </Typography>

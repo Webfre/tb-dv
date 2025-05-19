@@ -1,218 +1,193 @@
-import { css_pr1 } from "./css_pr1";
-import { css_pr2 } from "./css_pr2";
+// import { css_pr1 } from "../A_PR_WORK/css_pr1";
+// import { css_pr2 } from "../A_PR_WORK/css_pr2";
 
 export const css_final_1 = {
   id: "css_final_1",
-  title: "Практика 1: CSS-оформление сайта компании",
+  title: "Повторение ключевых тем",
   content: `
-## Практика: Стилизация сайта компании с нуля
+## Итоговое повторение: Основы CSS
 
-### Цель:
-Научиться применять базовые и промежуточные CSS-свойства на практике: стилизация текста, блоков, отступов, фонов, Flexbox и позиционирование.
-
----
-
-### Что нужно сделать
-
-На основе готового HTML (одностраничный сайт компании):
-
-####  Стилизуй следующие блоки:
-- Шапка сайта (\`<header>\`)
-- Навигация (\`<nav>\`)
-- Секции "О компании", "Услуги", "Портфолио", "Контакты"
-- Форма обратной связи
-- Подвал (\`<footer>\`)
-
-####  Добавь стили в \`<style>\` внутри тега \`<head>\`
+В этом разделе собраны все ключевые темы курса по CSS. Используй гайд для систематизации знаний, подготовки к собеседованию или быстрой самопроверки перед практикой.
 
 ---
 
-### Обязательные CSS-темы, которые нужно применить
+### Подключение CSS
 
-**1. Цвета и шрифты**
-- Цвет фона и текста: \`background-color\`, \`color\`
-- Шрифт: \`font-family\`, \`font-size\`, \`line-height\`
+- \`<link rel="stylesheet" href="style.css">\` — внешний файл
+- \`<style> ... </style>\` — внутри head
+- \`style="..." \` — инлайн-стили (лучше не использовать в реальных проектах)
 
-**2. Отступы и размеры**
-- \`margin\`, \`padding\`
-- \`width\`, \`max-width\`, \`height\`
-- \`box-sizing: border-box\` (глобально)
+---
 
-**3. Границы и фон**
-- \`border\`, \`border-radius\`
+### Селекторы CSS
+
+- По тегу: \`body\`, \`h1\`
+- По классу: \`.className\`
+- По id: \`#idName\`
+- Вложенные: \`.card p\`
+- Групповые: \`h1, h2, h3\`
+- Псевдоклассы: \`:hover\`, \`:focus\`, \`:nth-child\`
+- Псевдоэлементы: \`::before\`, \`::after\`
+
+---
+
+### Цвета, фон и текст
+
+- Цвета: HEX (\`#fff\`), RGB(\`rgb(0,0,0)\`), HSL(\`hsl(210, 50%, 40%)\`)
+- Фон: \`background\`, \`background-color\`, \`background-image\`
+- Границы: \`border\`, \`border-radius\`
+- Тени: \`box-shadow\`, \`text-shadow\`
+- Текст: \`font-family\`, \`font-size\`, \`font-weight\`, \`line-height\`, \`letter-spacing\`, \`text-align\`, \`text-transform\`
+
+---
+
+### Размеры и отступы
+
+- Ширина/высота: \`width\`, \`height\`, \`min-width\`, \`max-width\`
+- Отступы: \`margin\`, \`padding\`
+- \`box-sizing: border-box\` — всегда используем для предсказуемости верстки
+
+---
+
+### Блочная модель
+
+- \`display: block\`, \`inline\`, \`inline-block\`, \`none\`
+- \`overflow: hidden|auto|scroll|visible\`
+- \`visibility: hidden|visible\`
+
+---
+
+### Позиционирование
+
+- \`position: static|relative|absolute|fixed|sticky\`
+- Смещения: \`top\`, \`right\`, \`bottom\`, \`left\`
+- Слои: \`z-index\`
+
+---
+
+### Flexbox
+
+- \`display: flex\`
+- Основные свойства: \`flex-direction\`, \`justify-content\`, \`align-items\`, \`flex-wrap\`, \`gap\`
+- Для дочерних: \`flex\`, \`order\`, \`align-self\`
+
+---
+
+### Grid Layout
+
+- \`display: grid\`
+- \`grid-template-columns\`, \`grid-template-rows\`
+- \`gap\`, \`grid-area\`, \`grid-column\`, \`grid-row\`
+- Автоматическое размещение: \`auto-fit\`, \`auto-fill\`
+
+---
+
+### Работа с изображениями и фоном
+
 - \`background-image\`, \`background-size\`, \`background-position\`
-
-**4. Выравнивание**
-- \`text-align\`, \`justify-content\`, \`align-items\`
-
-**5. Flexbox**
-- \`display: flex\`, \`flex-wrap\`, \`gap\`
-- Используй Flexbox для навигации, карточек и футера
-
-**6. Псевдоклассы**
-- Эффект наведения на ссылку: \`:hover\`
+- Для \`<img>\`: \`width\`, \`height\`, \`object-fit\`, \`object-position\`
+- Адаптивные картинки: \`max-width: 100%\`, \`height: auto\`
 
 ---
 
-### Дополнительно по желанию:
-- Добавь адаптивность через \`max-width\` и \`width: 100%\`
-- Используй Google Fonts или системные шрифты
-- Добавь простые переходы \`transition: all 0.3s ease\`
+### Адаптивность и медиазапросы
+
+- Медиазапросы:  
+  \`@media (max-width: 768px) { ... }\`
+- Единицы: %, vw, vh, rem, em, clamp()
+- Responsive images: \`srcset\`, \`sizes\`, \`picture\`
 
 ---
 
-### Пример классов, которые можно использовать:
-- \`.container\`, \`.section\`, \`.nav__list\`, \`.service__item\`, \`.portfolio__card\`, \`.footer\`
+### Анимации, переходы и трансформации
+
+- Переходы: \`transition: property duration\`
+- Трансформации: \`transform: scale() rotate() translate()\`
+- Анимации: \`@keyframes\`, \`animation\`
 
 ---
 
-### Итог:
-Полноценная HTML-страница с CSS-оформлением, охватывающая все ключевые темы блока "Стилизация текста и блоков" + "Блочная модель" + "Flexbox".
+### Переменные и современные возможности
 
-**Формат сдачи**: один HTML-файл с внутренними стилями.
+- CSS-переменные: \`--main-color: #fff\`; использование: \`color: var(--main-color)\`
+- Каскадность и наследование
+- Специфичность селекторов
 
-`.trim(),
+---
+
+### Валидность и инструменты
+
+- Проверка CSS: [W3C CSS Validator](https://jigsaw.w3.org/css-validator/)
+- Форматирование: Prettier
+- Линтер: Stylelint
+- Live Server, DevTools
+
+---
+
+### Не использовать!
+
+- Устаревшие свойства (\`float\` — только по необходимости, \`clearfix\`)
+- Инлайн-стили (только для быстрых тестов)
+- !important (только если нет другого выхода)
+
+---
+
+## Вывод
+
+Этот гайд охватывает все базовые темы CSS, необходимые для старта и уверенного собеседования. Тренируйся, используй чек-лист для самопроверки и не забывай про чистоту и структуру кода!
+  `.trim(),
 
   codeExample: `
-<!-- Пример CSS внутри <head> -->
-<style>
-  body {
-    font-family: "Segoe UI", sans-serif;
-    color: #333;
-    background-color: #f9f9f9;
-    margin: 0;
-  }
+/* Минимальный пример стилей */
+:root {
+  --main-color: #2f80ed;
+  --bg-color: #f6f8fa;
+  --text-color: #232323;
+  --radius: 16px;
+}
 
+/* Сброс стилей */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: var(--bg-color);
+  color: var(--text-color);
+  min-height: 100vh;
+}
+
+/* Пример flex-контейнера */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  background: var(--main-color);
+  color: #fff;
+}
+
+/* Пример Grid */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 32px;
+  margin: 32px 0;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
   header {
-    background: #4caf50;
-    color: white;
-    padding: 10px 20px;
+    flex-direction: column;
+    padding: 12px;
   }
-
-  nav ul {
-    display: flex;
-    gap: 15px;
-    list-style: none;
-    padding: 0;
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
-
-  nav a {
-    color: white;
-    text-decoration: none;
-  }
-
-  nav a:hover {
-    text-decoration: underline;
-  }
-
-  section {
-    padding: 40px 20px;
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-</style>
+}
   `.trim(),
-
-  show: css_pr1,
-  // showCode: css_pr1,
-};
-export const css_final_2 = {
-  id: "css_final_2",
-  title: "Практика 2: Личный кабинет — карточки и формы",
-  content: `
-## Практика: Личный кабинет с карточками, формой и секцией "О нас"
-
-### Цель:
-Закрепить навыки продвинутой верстки на CSS: работа с карточками, формами, псевдоклассами, позиционированием и адаптивностью.
-
----
-
-### Что нужно сделать
-
-Используя готовый HTML-шаблон:
-
-#### 1. Сверстай и оформи:
-- Шапку сайта (\`<header>\`), прибитую сверху
-- Блок "О нас" с фоновым изображением, текстом и кнопкой
-- Карточки товаров с изображениями, ценой, кнопками и бейджами
-- Форму редактирования профиля: текстовые поля, селекты, радио и чекбоксы
-- Блок FAQ с раскрывающимися вопросами
-- Футер
-
-#### 2. Добавь стили в \`<style>\` внутри тега \`<head>\`
-
----
-
-### Обязательные CSS-темы
-
-**1. Цвета и текст**
-- \`color\`, \`background-color\`, \`font-family\`, \`font-size\`, \`line-height\`
-
-**2. Карточки**
-- \`border\`, \`border-radius\`, \`box-shadow\`
-- Переходы и анимация: \`transition\`, \`transform\`
-- Ховер-эффекты и акценты
-
-**3. Формы**
-- Оформление \`input\`, \`textarea\`, \`select\`, \`radio\`, \`checkbox\`
-- Стилизация состояний: \`:focus\`, \`:checked\`, \`:disabled\`
-
-**4. Layout**
-- \`display: flex\`, \`flex-wrap\`, \`gap\`
-- Выравнивание контента в карточках и форме
-- \`position: fixed\` для header
-
-**5. Псевдоклассы**
-- Наведение: \`:hover\`
-- Фокус: \`:focus\`
-- Отключено: \`:disabled\`
-- Активные опции: \`:checked\`
-
-**6. Адаптивность**
-- Медиа-запросы для изменения карточек и формы при ширине < 768px
-- Сделай карточки на всю ширину на мобильных устройствах
-
----
-
-### Дополнительно (по желанию):
-- Используй фоновые изображения или градиенты
-- Добавь простую анимацию появления карточек
-- Используй кастомные цвета и иконки
-
----
-
-### Итог:
-Готовая страница "Личный кабинет", включающая карточки, форму и дополнительный контент. Продемонстрированы все ключевые навыки CSS: оформление, взаимодействие, layout, адаптивность и доступность.
-
-**Формат сдачи**: один HTML-файл с CSS в \`<style>\`.
-
-`.trim(),
-
-  codeExample: `
-<!-- Пример: стили для карточки и формы -->
-<style>
-  .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-  }
-
-  input:focus {
-    border-color: #4caf50;
-    outline: none;
-  }
-
-  input:disabled {
-    background-color: #eee;
-    cursor: not-allowed;
-  }
-
-  @media (max-width: 768px) {
-    .card {
-      width: 100%;
-    }
-  }
-</style>
-  `.trim(),
-
-  show: css_pr2,
 };

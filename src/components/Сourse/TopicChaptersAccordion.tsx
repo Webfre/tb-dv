@@ -24,7 +24,6 @@ import {
   getTestTitle,
 } from "../../lib/getTestAttemptsCount";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import QuizIcon from "@mui/icons-material/Quiz";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import {
   CourseChapter,
@@ -33,10 +32,11 @@ import {
 } from "../../dataCourse/CourseTopic";
 import SectionDrawer from "../SectionDrawer/SectionDrawer";
 import PracticeDrawer from "../PracticeDrawer/PracticeDrawer";
-import jwtDecode from "jwt-decode";
-import styles from "./TopicChaptersAccordion.module.scss";
 import PracticeChipProgress from "./PracticeChipProgress";
 import ChapterIcon from "./ChapterIcon";
+import TaskStatusChip from "./TaskStatusChip";
+import TestChip from "./TestChip";
+import styles from "./TopicChaptersAccordion.module.scss";
 
 interface TopicChaptersAccordionProps {
   chapters: CourseChapter[];
@@ -59,22 +59,7 @@ const TopicChaptersAccordion: React.FC<TopicChaptersAccordionProps> = ({
   const [highlightedId, setHighlightedId] = useState<string | null>(null);
 
   const { data: solvedTasks = [] } = useGetSolvedTasksQuery();
-
-  const token = localStorage.getItem("token");
-  const decoded: any = token ? jwtDecode(token) : null;
-  const userId = decoded?.sub;
-
-  const { data: progressData } = useGetUserProgressQuery(userId!, {
-    skip: !userId,
-  });
-
-  const practiceCountBySectionId = practiceMock.reduce((acc, task) => {
-    if (task.sectionId) {
-      acc[task.sectionId] = (acc[task.sectionId] || 0) + 1;
-    }
-
-    return acc;
-  }, {} as Record<string, number>);
+  const { data: progressData } = useGetUserProgressQuery();
 
   const isChapterTestPassed = (testKey?: string): boolean | null => {
     if (!testKey || !progressData?.history?.[testKey]) return null;
@@ -108,13 +93,14 @@ const TopicChaptersAccordion: React.FC<TopicChaptersAccordionProps> = ({
   };
 
   useEffect(() => {
-    const targetId = location.state?.scrollToChapterId;
+    const searchParams = new URLSearchParams(location.search);
+    const chapterId = searchParams.get("chapterId");
 
-    if (targetId) {
-      setExpandedChapterId(targetId);
-      setHighlightedId(targetId);
+    if (chapterId) {
+      setExpandedChapterId(chapterId);
+      setHighlightedId(chapterId);
 
-      const element = chapterRefs.current[targetId];
+      const element = chapterRefs.current[chapterId];
 
       if (element) {
         element.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -123,7 +109,7 @@ const TopicChaptersAccordion: React.FC<TopicChaptersAccordionProps> = ({
       const timeout = setTimeout(() => setHighlightedId(null), 2000);
       return () => clearTimeout(timeout);
     }
-  }, [location.state]);
+  }, [location.search]);
 
   return (
     <Box mt={4}>
@@ -175,35 +161,23 @@ const TopicChaptersAccordion: React.FC<TopicChaptersAccordionProps> = ({
 
                   <Stack direction="row" spacing={1} mr={1}>
                     {testCount > 0 && (
-                      <>
-                        <Chip
-                          label={`Тест: ${getTestTitle(
-                            chapter.testKeys?.[0] || topicTestKeys?.[0]
-                          )}`}
-                          icon={<QuizIcon fontSize="small" />}
-                          size="small"
-                          color="primary"
-                          onClick={(e) =>
-                            handleTestClick(
-                              e,
-                              chapter.testKeys?.[0] || topicTestKeys?.[0],
-                              chapter.title
-                            )
-                          }
-                        />
-
-                        <Tooltip title="Количество попыток пройденного теста">
-                          <Chip
-                            label={`${getTestAttemptsCount(
-                              progressData,
-                              chapter.testKeys?.[0] || topicTestKeys?.[0]
-                            )} / 2`}
-                            size="small"
-                            color="secondary"
-                            variant="outlined"
-                          />
-                        </Tooltip>
-                      </>
+                      <TestChip
+                        testTitle={getTestTitle(
+                          chapter.testKeys?.[0] || topicTestKeys?.[0]
+                        )}
+                        attempts={getTestAttemptsCount(
+                          progressData,
+                          chapter.testKeys?.[0] || topicTestKeys?.[0]
+                        )}
+                        maxAttempts={2}
+                        onClick={(e) =>
+                          handleTestClick(
+                            e,
+                            chapter.testKeys?.[0] || topicTestKeys?.[0],
+                            chapter.title
+                          )
+                        }
+                      />
                     )}
                   </Stack>
                 </Box>
@@ -234,6 +208,13 @@ const TopicChaptersAccordion: React.FC<TopicChaptersAccordionProps> = ({
                           solvedTasksIds={solvedTasks.map((task) => task.id)}
                         />
 
+                        {section.postMentor && (
+                          <TaskStatusChip
+                            sectionId={section.id}
+                            taskTopics={progressData?.taskTopics}
+                          />
+                        )}
+
                         <KeyboardArrowRightIcon color="action" />
                       </Stack>
                     </ListItem>
@@ -251,6 +232,7 @@ const TopicChaptersAccordion: React.FC<TopicChaptersAccordionProps> = ({
         open={practiceOpen}
         onClose={() => setPracticeOpen(false)}
         tasks={chapterTasks}
+        solvedTasks={solvedTasks}
       />
     </Box>
   );

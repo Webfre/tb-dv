@@ -1,6 +1,13 @@
 import { useEffect, useState } from "react";
 import SettingsIcon from "@mui/icons-material/Settings";
-import { Box, IconButton, Typography, Collapse } from "@mui/material";
+import {
+  Box,
+  IconButton,
+  Typography,
+  Collapse,
+  Chip,
+  Tooltip,
+} from "@mui/material";
 import { FLASHBACK_SETTINGS_KEY, schema, steps } from "./schema";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -12,30 +19,20 @@ import {
 import { FlashbackDrawer } from "./FlashbackDrawer";
 import { Stepper, Step, StepLabel } from "@mui/material";
 import { FlashbackTest } from "./FlashbackTest";
+import { exampleQuestions } from "../../dataFlashback/flashbackQuestion";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import jwtDecode from "jwt-decode";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import styles from "./Flashback.module.scss";
 import BtnCustom from "../../ui/BtnCustom";
-import { exampleQuestions } from "../../dataFlashback/flashbackQuestion";
-import { getModulesAndSectionsFromProgress } from "./getModulesAndSectionsFromProgress";
-import { useGetUserProgressQuery } from "../../api/progressApi";
 
 export const Flashback = () => {
   const [open, setOpen] = useState(false);
   const [showTips, setShowTips] = useState(false);
   const [startTest, setStartTest] = useState(false);
+  const [restartKey, setRestartKey] = useState(0);
   const [filteredQuestions, setFilteredQuestions] = useState<
     FlashbackQuestion[]
   >([]);
-
-  const token = localStorage.getItem("token");
-  const decoded: any = token ? jwtDecode(token) : null;
-  const userId = decoded?.sub;
-
-  const { data: progressData } = useGetUserProgressQuery(userId!, {
-    skip: !userId,
-  });
 
   const {
     handleSubmit,
@@ -61,38 +58,34 @@ export const Flashback = () => {
     .flatMap((mod) =>
       mod.chapters.map((chapter) => ({
         title: chapter.title,
-        group: mod.title,
+        group: mod.id,
       }))
     );
 
   const onSubmit = (data: any) => {
     localStorage.setItem(FLASHBACK_SETTINGS_KEY, JSON.stringify(data));
+    reset(data);
     setOpen(false);
   };
 
   const handleStartTest = () => {
-    const stored = localStorage.getItem(FLASHBACK_SETTINGS_KEY);
-    let settings;
-
-    if (stored) {
-      const rawSettings = getValues();
-      settings = {
-        modules: rawSettings.modules ?? [],
-        sections: rawSettings.sections ?? [],
-        count: rawSettings.count,
-      };
-    } else {
-      const generated = getModulesAndSectionsFromProgress(progressData);
-
-      settings = {
-        ...generated,
-        count: 10,
-      };
-    }
+    const rawSettings = getValues();
+    const settings = {
+      modules: rawSettings.modules ?? [],
+      sections: rawSettings.sections ?? [],
+      count: rawSettings.count,
+    };
 
     const selected = filterFlashbackQuestions(settings, exampleQuestions);
-    setFilteredQuestions(selected);
-    setStartTest(true);
+
+    setStartTest(false);
+    setFilteredQuestions([]);
+
+    setTimeout(() => {
+      setFilteredQuestions(selected);
+      setRestartKey((prev) => prev + 1);
+      setStartTest(true);
+    }, 50);
   };
 
   useEffect(() => {
@@ -148,6 +141,25 @@ export const Flashback = () => {
           </Collapse>
         </Box>
 
+        <Box className={styles.sectionsBlock} mt={2}>
+          <Typography mb={1} variant="subtitle1" gutterBottom>
+            Перечень тем, по которым будет составлен тест (вы всегда можете их
+            изменить в настройках):
+          </Typography>
+
+          <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}>
+            {watch("sections").length > 0 ? (
+              watch("sections").map((section: any, index: number) => (
+                <Chip key={index} label={section.title} variant="outlined" />
+              ))
+            ) : (
+              <Typography variant="body2" color="text.secondary">
+                Вы пока еще не выбрали темы для прохождения теста
+              </Typography>
+            )}
+          </Box>
+        </Box>
+
         <Box className={styles.startTest}>
           <BtnCustom
             text="Повторить материал"
@@ -157,17 +169,20 @@ export const Flashback = () => {
             onClick={handleStartTest}
           />
 
-          <IconButton
-            className={styles.startTestBtn}
-            onClick={() => setOpen(true)}
-          >
-            <SettingsIcon />
-          </IconButton>
+          <Tooltip title="Настройки теста" arrow>
+            <IconButton
+              className={styles.startTestBtn}
+              onClick={() => setOpen(true)}
+            >
+              <SettingsIcon />
+            </IconButton>
+          </Tooltip>
         </Box>
       </Box>
 
       {startTest && (
         <FlashbackTest
+          key={restartKey}
           questions={filteredQuestions}
           onFinish={() => setStartTest(false)}
         />

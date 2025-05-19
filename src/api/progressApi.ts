@@ -3,6 +3,12 @@ import { baseApi } from "./baseApi";
 export interface Progress {
   attempts: Record<string, number>;
   history: Record<string, any[]>;
+  taskTopics: Array<{
+    id: string;
+    resolved: boolean;
+    moduleId: string;
+    title: string;
+  }>;
 }
 
 export interface UpdateProgressDto {
@@ -24,6 +30,13 @@ export interface ToggleSolvedTaskDto {
   solved: boolean;
 }
 
+export interface UpdateTaskTopicDto {
+  taskId: string;
+  resolved: boolean;
+  moduleId: string;
+  title: string;
+}
+
 export const progressApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getUserProgress: builder.query<Progress, void>({
@@ -34,6 +47,24 @@ export const progressApi = baseApi.injectEndpoints({
     getSolvedTasks: builder.query<ToggleSolvedTaskDto[], void>({
       query: () => `/progress/solved`,
       providesTags: ["SolvedTasks"],
+    }),
+
+    updateTaskTopic: builder.mutation<
+      {
+        taskTopics: Array<{
+          id: string;
+          resolved: boolean;
+          moduleId: string;
+          title: string;
+        }>;
+      },
+      { userId: number; data: UpdateTaskTopicDto }
+    >({
+      query: ({ userId, data }) => ({
+        url: `/progress/admin/task-topics/${userId}`,
+        method: "POST",
+        body: data,
+      }),
     }),
 
     toggleSolvedTask: builder.mutation<
@@ -72,4 +103,5 @@ export const {
   useUpdateProgressMutation,
   useToggleSolvedTaskMutation,
   useGetSolvedTasksQuery,
+  useUpdateTaskTopicMutation,
 } = progressApi;

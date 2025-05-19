@@ -119,7 +119,7 @@ export const css_images_1 = {
 };
 export const css_images_2 = {
   id: "css_images_2",
-  title: "<img> и background-image: в чём разница, как управлять размерами",
+  title: "<img> и background-image: в чём разница.",
   content: `
   ## Что лучше: <img> или background?
 
