@@ -148,13 +148,10 @@ const CoursePage: React.FC = () => {
                     flexDirection: "column",
                   }}
                 >
-                  <Typography
-                    className={styles.titleNameTopic}
-                    variant="h4"
-                    gutterBottom
-                  >
-                    {`${index + 1}. ${topic.title}`}
-                  </Typography>
+                  <Box className={styles.topicIndexWrapper}>
+                    <Box className={styles.topicIndexCircle}>{index + 1}</Box>
+                    <Box className={styles.titleNameTopic}>{topic.title}</Box>
+                  </Box>
 
                   <Grid container spacing={1} my={1}>
                     {totalTests > 0 && (
@@ -201,7 +198,7 @@ const CoursePage: React.FC = () => {
                         <Chip
                           icon={<WorkIcon />}
                           label={`Практических работ: ${totalPrWorks}`}
-                          color="warning"
+                          color="default"
                           size="small"
                           sx={{ width: "100%", marginTop: "10px" }}
                         />

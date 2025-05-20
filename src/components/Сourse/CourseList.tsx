@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Box, Paper, Typography } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { CourseCard } from "./CourseCard";
 import { useCheckCourseAccessQuery } from "../../api/userApi";
 import { getAccessibleCourses } from "../../lib/hasAccessToCourses";
 import { courseList } from "../../DB";
@@ -11,8 +11,6 @@ const CourseList: React.FC = () => {
   const { data } = useCheckCourseAccessQuery();
   const accessCourses = data?.accessCourse || [];
   const filteredCourses = getAccessibleCourses(courseList, accessCourses);
-  const navigate = useNavigate();
-
   const [showConfetti, setShowConfetti] = useState(false);
 
   useEffect(() => {
@@ -27,10 +25,6 @@ const CourseList: React.FC = () => {
       }, 5000);
     }
   }, []);
-
-  const handleNavigate = (id: number) => {
-    navigate(`/course-access/${id}`);
-  };
 
   return (
     <Box p={2}>
@@ -50,23 +44,12 @@ const CourseList: React.FC = () => {
       </Paper>
 
       {filteredCourses.map((course) => (
-        <Paper
-          onClick={() => handleNavigate(course.id)}
+        <CourseCard
           key={course.id}
-          elevation={3}
-          className={styles.courseCard}
-        >
-          <Box>
-            <Typography variant="h5" sx={{ fontWeight: "bold", mb: 1 }}>
-              {course.title}
-            </Typography>
-            <Typography variant="body1" color="textSecondary">
-              {course.description}
-            </Typography>
-          </Box>
-
-          <Box className={styles.progressCircle}>40%</Box>
-        </Paper>
+          id={course.id}
+          title={course.title}
+          description={course.description}
+        />
       ))}
     </Box>
   );

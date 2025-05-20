@@ -74,7 +74,7 @@ export const authApi = baseApi.injectEndpoints({
 
     enrollCourse: builder.mutation<EnrollCourseResponse, EnrollCourseDto>({
       query: (body) => ({
-        url: "/auth/enroll-course",
+        url: "/telegram/enroll-course",
         method: "POST",
         body,
       }),
