@@ -14,7 +14,6 @@
 
 .titleNameTopic {
   font-size: 26px !important;
-  font-weight: 500;
 }
 
 .btnActions {
@@ -72,4 +71,26 @@
   h4 {
     margin-bottom: 8px !important;
   }
+}
+
+.topicIndexWrapper {
+  display: flex !important;
+  align-items: center !important;
+  margin-bottom: 10px !important;
+}
+
+.topicIndexCircle {
+  width: 34px;
+  height: 34px;
+  min-width: 34px;
+  min-height: 34px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.08) !important;
+  color: #5e5e5e !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  margin-right: 10px;
+  margin-left: 1px;
 }

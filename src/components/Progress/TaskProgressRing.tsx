@@ -34,7 +34,7 @@ const TaskProgressRing: React.FC = () => {
           value={taskProgress}
           size={120}
           thickness={5}
-          sx={{ color: "#3f51b5" }}
+          sx={{ color: "#3498db" }}
         />
         <Box className={styles.progressValue}>
           <Typography

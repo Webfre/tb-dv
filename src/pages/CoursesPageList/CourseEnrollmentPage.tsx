@@ -26,6 +26,7 @@ interface EnrollmentForm {
 
 interface CourseEnrollmentPageProps {
   courseId: number;
+  onClose: () => void;
 }
 
 const schema = yup.object().shape({
@@ -50,6 +51,7 @@ const schema = yup.object().shape({
 
 const CourseEnrollmentPage: React.FC<CourseEnrollmentPageProps> = ({
   courseId,
+  onClose,
 }) => {
   const {
     control,
@@ -76,6 +78,7 @@ const CourseEnrollmentPage: React.FC<CourseEnrollmentPageProps> = ({
 
       if (!courseTitle) {
         toast.error("Курс не найден");
+        onClose();
         return;
       }
 
@@ -95,14 +98,15 @@ const CourseEnrollmentPage: React.FC<CourseEnrollmentPageProps> = ({
           >
             Frontarium
           </div>
-          В ближайшее время с вами свяжется наш ментор по обучению или
-          консультант.
+          В ближайшее время с вами свяжется наш консультант по обучению.
         </div>,
         {
           autoClose: false,
           closeOnClick: true,
         }
       );
+
+      onClose();
     } catch (error) {
       toast.error("Произошла ошибка при записи на курс");
     }

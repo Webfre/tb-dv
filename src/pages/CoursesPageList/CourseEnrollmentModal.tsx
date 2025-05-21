@@ -105,7 +105,7 @@ const CourseEnrollmentModal: React.FC<CourseEnrollmentModalProps> = ({
         </Box>
 
         <Box sx={{ width: "50%", padding: 4 }}>
-          <CourseEnrollmentPage courseId={courseId} />
+          <CourseEnrollmentPage onClose={onClose} courseId={courseId} />
         </Box>
       </Box>
     </Modal>
