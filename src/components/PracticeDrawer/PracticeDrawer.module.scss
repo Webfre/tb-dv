@@ -29,6 +29,7 @@
 }
 
 .gridContainer {
+  margin-bottom: 30px;
   @media (max-width: 1100px) {
     display: flex !important;
     flex-direction: column !important;
@@ -39,4 +40,8 @@
     width: 100% !important;
     max-width: 100% !important;
   }
+}
+.boxToggle {
+  display: flex;
+  justify-content: space-between;
 }

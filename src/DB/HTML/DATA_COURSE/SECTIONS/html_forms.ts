@@ -1,103 +1,83 @@
 export const html_form_1 = {
   id: "html_form_1",
-  title: "Форма <form> и атрибуты action, method",
+  title: "Форма — разнообразие полей и типов",
   content: `
-  ## Тег \`<form>\` — работа с пользовательским вводом
-  
-  Тег \`<form>\` используется для создания **форм на странице**, через которые пользователь может **ввести и отправить данные** на сервер.
-  
-  Это основа таких действий, как авторизация, регистрация, поиск, отправка комментариев, загрузка файлов и других форм взаимодействия с пользователем.
-  
-  ---
-  
-  ## Основные атрибуты формы
-  
-  ### \`action\`
-  
-  - Указывает **URL-адрес**, на который будут отправлены данные формы после нажатия кнопки "Отправить"
-  - Может быть:
-    - относительным путём (на текущем сайте): \`/submit\`
-    - абсолютным URL: \`https://api.example.com/data\`
-    - пустым: отправка на ту же страницу
-  
-  ### \`method\`
-  
-  Определяет **метод HTTP-запроса** для отправки данных:
-  
-  - \`GET\` — данные добавляются к URL как параметры запроса (видны в адресной строке)
-    - Используется для поиска, фильтрации, неопасных запросов
-  - \`POST\` — данные передаются **в теле запроса** (не видны в URL)
-    - Используется для отправки конфиденциальной информации: регистрация, вход, комментарии
-  
-  **Пример:**
-  
-  \`\`\`html
-  <form action="/submit-form" method="post">
-    <input type="text" name="username" />
-    <input type="password" name="password" />
-    <button type="submit">Войти</button>
-  </form>
-  \`\`\`
-  
-  ---
-  
-  ## Элементы внутри формы
-  
-  Форма может включать следующие поля:
-  
-  - \`<input>\` — одиночное поле (текст, пароль, email, checkbox и т.д.)
-  - \`<textarea>\` — многострочное текстовое поле
-  - \`<select>\` и \`<option>\` — выпадающие списки
-  - \`<button>\` — кнопки отправки или сброса
-  
-  **Пример:**
-  
-  \`\`\`html
-  <form action="/search" method="get">
-    <label for="query">Поиск:</label>
-    <input type="text" name="query" id="query" />
-    <button type="submit">Найти</button>
-  </form>
-  \`\`\`
-  
-  ---
-  
-  ## Дополнительные возможности
-  
-  - Форма может иметь встроенную валидацию: \`required\`, \`pattern\`, \`minlength\`, \`type="email"\` и т.д.
-  - Формы можно обрабатывать через JavaScript (без перезагрузки) — через обработчики событий и отправку fetch-запросов
-  - Поддерживаются методы \`PUT\`, \`DELETE\` и т.д. при работе с API (через JS или скрытые поля)
-  
-  ---
-  
-  ## Когда использовать \`GET\` или \`POST\`
-  
-  | Метод | Где используется               | Особенности                          |
-  |-------|--------------------------------|--------------------------------------|
-  | GET   | Поиск, фильтры, переключатели  | Видно в адресной строке, кэшируется |
-  | POST  | Регистрация, логин, формы данных | Безопаснее, не кэшируется           |
-  
-  ---
-  
-  ## Вывод
-  
-  - \`<form>\` — это основа взаимодействия пользователя с сайтом
-  - Атрибуты \`action\` и \`method\` задают направление и способ отправки данных
-  - Содержимое формы может включать разные типы полей: от текстовых до выпадающих списков
-  - Грамотное использование форм — важный навык при разработке интерфейсов и взаимодействии с сервером
-  `.trim(),
+## Тег <form> и многообразие элементов
 
+Тег \`<form>\` создаёт область для взаимодействия с пользователем: ввода и отправки данных. Внутрь формы можно поместить множество различных полей:
+
+- **\<input> с type**:
+  - text, password, email, tel, url, search — базовые текстовые поля.
+  - number, range — числовые и ползунковые (ползунок).
+  - date, datetime-local, month, week, time — выбор даты и/или времени.
+  - color — выбор цвета.
+  - file — загрузка файлов.
+  - checkbox — флажок (можно выбрать несколько).
+  - radio — переключатели (группа из одного варианта).
+  - hidden — скрытое поле для передачи данных.
+  - submit, reset, button — управляющие кнопки.
+- **\<textarea>** — многострочное текстовое поле.
+- **\<select> + \<option>** — выпадающий список (с поддержкой \<optgroup>).
+- **\<fieldset> + \<legend>** — логическая группировка полей.
+- **\<button>** — кнопки всех типов.
+
+Каждый элемент ввода должен иметь атрибут **name**, чтобы данные попали на сервер. Поддерживается встроенная проверка:
+- **required**, **minlength/maxlength**, **pattern**, **min/max**, **step**, **type** (email, url, tel и др.)
+
+**Пример формы с разными типами полей:**`,
   codeExample: `
-<form action="/submit" method="POST">
-  <label>Имя: <input type="text" name="username" /></label>
-  <button type="submit">Отправить</button>
-</form>
-  `,
-  resources: ["https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form"],
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Пример формы</title>
+</head>
+<body>
+  <form>
+    <label>Имя: <input type="text"     name="username"    placeholder="Иван Иванов" required></label><br>
+    <label>Email: <input type="email"   name="email"       placeholder="user@example.com"></label><br>
+    <label>Пароль: <input type="password" name="password" minlength="6" required></label><br>
+    <label>Возраст: <input type="number" name="age" min="0" max="120"></label><br>
+    <label>Дата рождения: <input type="date"   name="birthdate"></label><br>
+    <label>Цвет:             <input type="color"  name="favcolor"></label><br>
+    <label>Файл:             <input type="file"   name="avatar"></label><br>
+    <label><input type="checkbox" name="agree"> Согласен с условиями</label><br>
+    <fieldset>
+      <legend>Пол</legend>
+      <label><input type="radio" name="gender" value="m"> Мужчина</label>
+      <label><input type="radio" name="gender" value="f"> Женщина</label>
+    </fieldset>
+    <label>Комментарий:<br>
+      <textarea name="comment" rows="4" cols="40" placeholder="Ваш отзыв"></textarea>
+    </label><br>
+    <label>Страна:
+      <select name="country">
+        <optgroup label="Европа">
+          <option value="ru">Россия</option>
+          <option value="de">Германия</option>
+        </optgroup>
+        <optgroup label="Америка">
+          <option value="us">США</option>
+          <option value="br">Бразилия</option>
+        </optgroup>
+      </select>
+    </label><br><br>
+    <button type="submit">Отправить</button>
+    <button type="reset">Сбросить</button>
+  </form>
+</body>
+</html>
+`,
+  resources: [
+    "https://developer.mozilla.org/ru/docs/Web/HTML/Element/form",
+    "https://developer.mozilla.org/ru/docs/Web/HTML/Element/input",
+    "https://developer.mozilla.org/ru/docs/Web/HTML/Element/select",
+  ],
 };
+
 export const html_form_2 = {
   id: "html_form_2",
-  title: "Input: text, email, password, checkbox, radio",
+  title: "Элементы ввода",
   content: `
   ## Тег \`<input>\` — поля ввода данных
   
@@ -204,16 +184,35 @@ export const html_form_2 = {
   `.trim(),
 
   codeExample: `
-<form>
-  <input type="text" placeholder="Имя" />
-  <input type="email" placeholder="Email" />
-  <input type="password" placeholder="Пароль" />
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Пример формы</title>
+</head>
+<body>
+  <form>
+    <input type="text" placeholder="Имя" />
+    <input type="email" placeholder="Email" />
+    <input type="password" placeholder="Пароль" />
 
-  <label><input type="checkbox" name="terms" /> Я согласен</label>
+    <label>
+      <input type="checkbox" name="terms" />
+      Я согласен
+    </label>
 
-  <label><input type="radio" name="gender" value="m" /> Мужчина</label>
-  <label><input type="radio" name="gender" value="f" /> Женщина</label>
-</form>
+    <label>
+      <input type="radio" name="gender" value="m" />
+      Мужчина
+    </label>
+    <label>
+      <input type="radio" name="gender" value="f" />
+      Женщина
+    </label>
+  </form>
+</body>
+</html>
+
   `,
   resources: [
     "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input",
@@ -221,7 +220,7 @@ export const html_form_2 = {
 };
 export const html_form_3 = {
   id: "html_form_3",
-  title: "Select, textarea, button",
+  title: "Выпадающие списки, кнопки",
   content: `
   ## Дополнительные элементы формы в HTML
   
@@ -293,18 +292,32 @@ export const html_form_3 = {
   `.trim(),
 
   codeExample: `
-<form>
-  <label>Город:
-    <select name="city">
-      <option value="msk">Москва</option>
-      <option value="spb" selected>Санкт-Петербург</option>
-    </select>
-  </label>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Форма с выбором города и комментарием</title>
+</head>
+<body>
+  <form>
+    <label>Город:
+      <select name="city">
+        <option value="msk">Москва</option>
+        <option value="spb" selected>Санкт-Петербург</option>
+      </select>
+    </label>
+    <br /><br />
 
-  <textarea name="comment" rows="4" cols="30">Ваш комментарий</textarea>
+    <label>Комментарий:<br />
+      <textarea name="comment" rows="4" cols="30">Ваш комментарий</textarea>
+    </label>
+    <br /><br />
 
-  <button type="submit">Отправить</button>
-</form>
+    <button type="submit">Отправить</button>
+  </form>
+</body>
+</html>
+
   `,
   resources: [
     "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select",
@@ -368,8 +381,8 @@ export const html_form_4 = {
   
   | Атрибут   | Изменение | Отправляется | Визуально | Применение                       |
   |-----------|------------|---------------|------------|----------------------------------|
-  | \`disabled\` | ❌ Нельзя | ❌ Нет         | Серое, неактивное | Временно заблокировать поле     |
-  | \`readonly\` | ❌ Нельзя | ✅ Да          | Выглядит как обычное | Показывать, но не редактировать |
+  | \`disabled\` |  Нельзя |  Нет         | Серое, неактивное | Временно заблокировать поле     |
+  | \`readonly\` |  Нельзя |  Да          | Выглядит как обычное | Показывать, но не редактировать |
   
   ---
   
@@ -391,11 +404,41 @@ export const html_form_4 = {
   `.trim(),
 
   codeExample: `
-<form>
-  <input type="text" placeholder="Имя" required />
-  <input type="text" value="Нельзя редактировать" readonly />
-  <input type="text" value="Отключено" disabled />
-</form>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Пример input: required, readonly, disabled</title>
+</head>
+<body>
+  <h1>Пример работы атрибутов input</h1>
+  <form>
+    <!-- Поле обязательно для заполнения -->
+    <label>
+      Имя:<br />
+      <input type="text" placeholder="Имя" required />
+    </label>
+    <br /><br />
+
+    <!-- Поле только для чтения -->
+    <label>
+      Только для чтения:<br />
+      <input type="text" value="Нельзя редактировать" readonly />
+    </label>
+    <br /><br />
+
+    <!-- Отключённое поле -->
+    <label>
+      Отключено:<br />
+      <input type="text" value="Отключено" disabled />
+    </label>
+    <br /><br />
+
+    <button type="submit">Отправить</button>
+  </form>
+</body>
+</html>
+
   `,
   resources: [
     "https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/required",
@@ -405,7 +448,7 @@ export const html_form_4 = {
 };
 export const html_form_5 = {
   id: "html_form_5",
-  title: "Валидация HTML5",
+  title: "Валидация форм",
   content: `
   ## Встроенная валидация форм в HTML5
   
@@ -500,7 +543,7 @@ export const html_form_5 = {
   
   ## Вывод
   
-  HTML5 валидация:
+  Валидация форм:
   
   - Позволяет быстро проверять данные на клиенте
   - Поддерживает основные правила: обязательность, формат, длина, диапазоны

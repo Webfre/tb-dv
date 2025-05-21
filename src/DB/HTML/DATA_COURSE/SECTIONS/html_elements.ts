@@ -101,23 +101,33 @@ export const html_el_1 = {
   `.trim(),
 
   codeExample: `
-<!-- Блочные элементы -->
-<div>
-  <h1>Заголовок</h1>
-  <p>Первый абзац</p>
-  <p>Второй абзац</p>
-</div>
-
-<!-- Строчные элементы -->
-<p>
-  Это <strong>важный</strong> текст, а это <em>курсив</em>.
-  Перейти на <a href="https://example.com">сайт</a>.
-</p>
-
-<!-- Смешанное использование -->
-<div>
-  <p>Текст с <span style="color: red;">выделенным словом</span>.</p>
-</div>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Демонстрация блочных и строчных элементов</title>
+</head>
+<body>
+  <!-- Блочные элементы внутри контейнера -->
+  <div>
+    <h1>Заголовок</h1>
+    <p>Первый абзац</p>
+    <p>Второй абзац</p>
+  </div>
+  <!-- Строчные элементы -->
+  <p>
+    Это <strong>важный</strong> текст, а это <em>курсив</em>.
+    Перейти на <a href="https://example.com">сайт</a>.
+  </p>
+  <!-- Смешанное использование блочных и строчных -->
+  <div>
+    <p>
+      Текст с 
+      <span style="color: red;">выделенным словом</span>.
+    </p>
+  </div>
+</body>
+</html>
   `.trim(),
 
   resources: ["https://puzzleweb.ru/html/types_el.php"],
@@ -309,25 +319,31 @@ HTML предоставляет набор **тегов форматирован
   `.trim(),
 
   codeExample: `
-<p>
-  <strong>Важно:</strong> сохраните изменения перед выходом.
-</p>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Пример строчных элементов</title>
+</head>
+<body>
+  <p>
+    <strong>Важно:</strong> сохраните изменения перед выходом.
+  </p>
+  <p>
+    Я <em>уверен</em>, что это работает.
+  </p>
+  <p>
+    Название переменной: <i>userName</i>
+  </p>
+  <p>
+    <b>Визуально жирный</b>, но <strong>семантически жирный</strong>.
+  </p>
+  <p>
+    <u>Подчеркнутое</u> слово.
+  </p>
+</body>
+</html>
 
-<p>
-  Я <em>уверен</em>, что это работает.
-</p>
-
-<p>
-  Название переменной: <i>userName</i>
-</p>
-
-<p>
-  <b>Визуально жирный</b>, но <strong>семантически жирный</strong>.
-</p>
-
-<p>
-  <u>Подчеркнутое</u> слово.
-</p>
   `.trim(),
 };
 export const html_el_4 = {
@@ -448,12 +464,22 @@ export const html_el_4 = {
   `.trim(),
 
   codeExample: `
-<p><strong>Внимание:</strong> это важное сообщение.</p>
-<p>Он <em>очень</em> старается.</p>
-<p>Найдено: <mark>42 совпадения</mark></p>
-<p><small>Мелкий примечательный текст</small></p>
-<p>H<sub>2</sub>O — вода</p>
-<p>10<sup>6</sup> = миллион</p>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Пример строчных элементов</title>
+</head>
+<body>
+  <p><strong>Внимание:</strong> это важное сообщение.</p>
+  <p>Он <em>очень</em> старается.</p>
+  <p>Найдено: <mark>42 совпадения</mark></p>
+  <p><small>Мелкий примечательный текст</small></p>
+  <p>H<sub>2</sub>O — вода</p>
+  <p>10<sup>6</sup> = миллион</p>
+</body>
+</html>
+
   `,
   resources: [
     "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/strong",
@@ -554,13 +580,22 @@ export const html_el_5 = {
   `.trim(),
 
   codeExample: `
-<blockquote cite="https://example.com/quote">
-  <p>Инвестируй в знания — это приносит наибольший доход.</p>
-</blockquote>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Пример цитирования</title>
+</head>
+<body>
+  <blockquote cite="https://example.com/quote">
+    <p>Инвестируй в знания — это приносит наибольший доход.</p>
+  </blockquote>
 
-<p>Как говорил Стив Джобс: <q>Будь голодным. Будь безрассудным.</q></p>
+  <p>Как говорил Стив Джобс: <q>Будь голодным. Будь безрассудным.</q></p>
 
-<p><cite>— Бенджамин Франклин</cite></p>
+  <p><cite>— Бенджамин Франклин</cite></p>
+</body>
+</html>
   `,
   resources: [
     "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/blockquote",
@@ -643,11 +678,22 @@ export const html_el_6 = {
   `.trim(),
 
   codeExample: `
-<p>Добро пожаловать на сайт!</p>
-<hr />
-<p>Следующая секция — полезные ссылки.</p>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Пример разделителей и переноса строк</title>
+</head>
+<body>
+  <p>Добро пожаловать на сайт!</p>
+  <hr />
+  <p>Следующая секция — полезные ссылки.</p>
 
-<p>Адрес:<br />г. Москва, ул. Примерная, д.1</p>
+  <p>Адрес:<br />
+     г. Москва, ул. Примерная, д.1
+  </p>
+</body>
+</html>
   `,
   resources: [
     "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/hr",

@@ -11,18 +11,33 @@ export const html_meta_basic_1 = {
     "Создайте новый HTML-файл, например `meta.html`.",
     "Добавьте базовую структуру HTML-документа.",
     "Внутри тега `<head>` добавьте следующие мета-теги:",
-    '- `<meta charset="UTF-8">` — установка кодировки документа.',
-    '- `<meta name="viewport" content="width=device-width, initial-scale=1.0">` — для адаптивности на мобильных устройствах.',
-    '- `<meta name="description" content="Краткое описание содержимого страницы">` — для SEO и превью в поиске.',
-    '- (необязательно) `<meta name="author">`, `<meta name="keywords">` — по желанию.',
+    '`<meta charset="UTF-8">` — установка кодировки документа.',
+    '`<meta name="viewport" content="width=device-width, initial-scale=1.0">` — для адаптивности на мобильных устройствах.',
+    '`<meta name="description" content="Краткое описание содержимого страницы">` — для SEO и превью в поиске.',
+    '(необязательно) `<meta name="author">`, `<meta name="keywords">` — по желанию.',
     "Проверьте структуру документа и изучите, где и как используются эти метатеги.",
   ],
-  difficulty: 1,
+  difficulty: 2,
   resources: [
     "https://developer.mozilla.org/ru/docs/Web/HTML/Element/meta",
     "https://html.spec.whatwg.org/multipage/semantics.html#the-meta-element",
   ],
   solution: `<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Учебная страница с мета-тегами в HTML" />
+    <meta name="author" content="Иван Иванов" />
+    <meta name="keywords" content="HTML, мета, head, meta tags" />
+    <title>Мета-теги в HTML</title>
+  </head>
+  <body>
+    <h1>Проверка мета-тегов</h1>
+    <p>Откройте DevTools → Elements → &lt;head&gt;, чтобы увидеть мета-информацию.</p>
+  </body>
+</html>`,
+  show: `<!DOCTYPE html>
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
@@ -53,13 +68,13 @@ export const html_meta_basic_2 = {
     "Создайте новый HTML-файл, например `head-links.html`.",
     "Добавьте базовую структуру HTML-документа.",
     "Внутри `<head>` выполните следующее:",
-    '- Подключите favicon с помощью `<link rel="icon" href="URL">`.',
-    '- Подключите внешний шрифт с Google Fonts (например, Roboto или Open Sans) с помощью `<link href="..." rel="stylesheet">`.',
-    '- Подключите внешний файл стилей, например `styles.css`, с помощью `<link rel="stylesheet" href="styles.css">`.',
-    "- Добавьте небольшой блок `<style>` прямо в HTML для проверки — например, чтобы задать цвет фона.",
+    'Подключите favicon с помощью `<link rel="icon" href="URL">`.',
+    'Подключите внешний шрифт с Google Fonts (например, Roboto или Open Sans) с помощью `<link href="..." rel="stylesheet">`.',
+    'Подключите внешний файл стилей, например `styles.css`, с помощью `<link rel="stylesheet" href="styles.css">`.',
+    "Добавьте небольшой блок `<style>` прямо в HTML для проверки — например, чтобы задать цвет фона.",
     "Проверьте favicon, отображение шрифта и применяемые стили на странице.",
   ],
-  difficulty: 2,
+  difficulty: 3,
   resources: [
     "https://developer.mozilla.org/ru/docs/Web/HTML/Element/link",
     "https://fonts.google.com",
@@ -70,16 +85,16 @@ export const html_meta_basic_2 = {
     <meta charset="UTF-8" />
     <title>Подключение ресурсов</title>
 
-    <!-- Иконка сайта -->
+    <!-Иконка сайта -->
     <link rel="icon" href="https://www.w3schools.com/favicon.ico" />
 
-    <!-- Google Fonts -->
+    <!-Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
 
-    <!-- Внешний CSS -->
+    <!-Внешний CSS -->
     <link rel="stylesheet" href="styles.css" />
 
-    <!-- Встроенный стиль -->
+    <!-Встроенный стиль -->
     <style>
       body {
         font-family: 'Roboto', sans-serif;
@@ -98,16 +113,16 @@ export const html_meta_basic_2 = {
     <meta charset="UTF-8" />
     <title>Подключение ресурсов</title>
 
-    <!-- Иконка сайта -->
+    <!-Иконка сайта -->
     <link rel="icon" href="https://www.w3schools.com/favicon.ico" />
 
-    <!-- Google Fonts -->
+    <!-Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
 
-    <!-- Внешний CSS -->
+    <!-Внешний CSS -->
     <link rel="stylesheet" href="styles.css" />
 
-    <!-- Встроенный стиль -->
+    <!-Встроенный стиль -->
     <style>
       body {
         font-family: 'Roboto', sans-serif;

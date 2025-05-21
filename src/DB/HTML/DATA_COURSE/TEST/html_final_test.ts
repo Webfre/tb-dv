@@ -51,7 +51,7 @@ export const html_final_test = {
     },
     {
       id: 8,
-      name: "Какой атрибут указывает на то, что поле формы обязательно для заполнения?",
+      name: "Какой атрибут указывает, что поле формы обязательно для заполнения?",
       variants: ["required", "mandatory", "validate"],
       correct: [0],
     },
@@ -63,7 +63,7 @@ export const html_final_test = {
     },
     {
       id: 10,
-      name: "Какой элемент используется для группировки данных в таблице?",
+      name: "Какой элемент используется для группировки строк в таблице?",
       variants: ["<group>", "<tbody>", "<collection>"],
       correct: [1],
     },
@@ -159,8 +159,8 @@ export const html_final_test = {
     },
     {
       id: 26,
-      name: "Какой атрибут указывает на действие при отправке формы?",
-      variants: ["method", "action", "submit"],
+      name: "Какой тег используется для группировки связанных полей внутри формы?",
+      variants: ["<group>", "<fieldset>", "<section>"],
       correct: [1],
     },
     {
@@ -189,9 +189,9 @@ export const html_final_test = {
     },
     {
       id: 31,
-      name: "Какой тег используется для создания прогресс-бара?",
-      variants: ["<progress>", "<meter>", "<bar>"],
-      correct: [0],
+      name: "Какой тег внутри <video> добавляет субтитры?",
+      variants: ["<subtitle>", "<track>", "<caption>"],
+      correct: [1],
     },
     {
       id: 32,
@@ -219,9 +219,9 @@ export const html_final_test = {
     },
     {
       id: 36,
-      name: "Какой тег используется для создания фрейма?",
-      variants: ["<frame>", "<iframe>", "<embed>"],
-      correct: [1],
+      name: "Какой тег используется для вставки внешнего ресурса, например PDF?",
+      variants: ["<embed>", "<object>", "<iframe>"],
+      correct: [0],
     },
     {
       id: 37,
@@ -237,14 +237,14 @@ export const html_final_test = {
     },
     {
       id: 39,
-      name: "Какой тег используется для создания модального окна?",
-      variants: ["<modal>", "<dialog>", "<popup>"],
+      name: "Какой тег определяет основное содержимое документа?",
+      variants: ["<div>", "<main>", "<section>"],
       correct: [1],
     },
     {
       id: 40,
-      name: "Какой элемент HTML5 используется для интерактивных виджетов?",
-      variants: ["<widget>", "<canvas>", "<interactive>"],
+      name: "Какой тег сохраняет пробелы и переводы строк в тексте?",
+      variants: ["<code>", "<pre>", "<samp>"],
       correct: [1],
     },
   ],

@@ -1,6 +1,6 @@
 export const html_meta_1 = {
   id: "html_meta_1",
-  title: "Мета-теги: charset, viewport, description и другие",
+  title: "Мета-теги.",
   content: `
   ## Мета-теги в HTML
   
@@ -83,27 +83,37 @@ export const html_meta_1 = {
 
   codeExample: `
   <!-- Минимальный блок <head> с ключевыми мета-тегами -->
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Описание страницы для SEO" />
-    <meta name="robots" content="index, follow" />
-    <meta name="author" content="Roman Muhametshin" />
-    <meta http-equiv="cache-control" content="no-cache" />
-    <meta http-equiv="Content-Language" content="ru" />
-  
-    <!-- Open Graph -->
-    <meta property="og:title" content="DevCourse" />
-    <meta property="og:description" content="Курс по фронтенду" />
-    <meta property="og:image" content="/preview.jpg" />
-    <meta property="og:url" content="https://devcourse.ru" />
-  
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="DevCourse" />
-    <meta name="twitter:description" content="Курс по фронтенду" />
-    <meta name="twitter:image" content="/twitter-preview.png" />
-  </head>
+ <!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Описание страницы для SEO" />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Roman Muhametshin" />
+  <meta http-equiv="cache-control" content="no-cache" />
+  <meta http-equiv="Content-Language" content="ru" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="DevCourse" />
+  <meta property="og:description" content="Курс по фронтенду" />
+  <meta property="og:image" content="/preview.jpg" />
+  <meta property="og:url" content="https://devcourse.ru" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="DevCourse" />
+  <meta name="twitter:description" content="Курс по фронтенду" />
+  <meta name="twitter:image" content="/twitter-preview.png" />
+
+  <title>DevCourse — Курс по фронтенду</title>
+</head>
+<body>
+  <h1>Добро пожаловать на DevCourse</h1>
+  <p>Изучайте современные технологии фронтенда вместе с нами!</p>
+</body>
+</html>
+
   `,
   resources: [
     "https://developer.mozilla.org/ru/docs/Web/HTML/Reference/Elements/meta",
@@ -112,7 +122,7 @@ export const html_meta_1 = {
 
 export const html_meta_2 = {
   id: "html_meta_2",
-  title: "Заголовок документа: <title>",
+  title: "Заголовок документа.",
   content: `
   ## Тег \`<title>\` — заголовок страницы
   
@@ -161,9 +171,35 @@ export const html_meta_2 = {
   `.trim(),
 
   codeExample: `
+<!DOCTYPE html>
+<html lang="ru">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Главная | DevCourse</title>
 </head>
+<body>
+  <header>
+    <h1>DevCourse</h1>
+    <nav>
+      <a href="index.html">Главная</a> |
+      <a href="courses.html">Курсы</a> |
+      <a href="about.html">О нас</a> |
+      <a href="contact.html">Контакты</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Добро пожаловать на DevCourse</h2>
+    <p>Изучайте современные технологии фронтенда вместе с нами!</p>
+  </main>
+
+  <footer>
+    <p>© 2025 DevCourse. Все права защищены.</p>
+  </footer>
+</body>
+</html>
+
   `,
   resources: [
     "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title",

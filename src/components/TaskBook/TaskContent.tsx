@@ -18,8 +18,8 @@ const TaskContent: React.FC<TaskContentProps> = ({ task, hasAccess }) => {
   return (
     <Box className={styles.topTask} mt={2}>
       <Box className={styles.togleBox}>
-        <Typography mt={2} variant="subtitle1" fontWeight={500}>
-          Описание
+        <Typography variant="subtitle1" fontWeight={500}>
+          Описание:
         </Typography>
         {hasAccess && (
           <TaskCompletionToggle taskId={task.id} module={task.module} />

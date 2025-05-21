@@ -66,7 +66,7 @@ export const html_intro_test = {
       id: 7,
       name: "Кто является создателем HTML?",
       variants: [
-        "Брендан Айк (создатель JavaScript)",
+        "Брендан Айк",
         "Тим Бернерс-Ли",
         "Марк Цукерберг",
         "Билл Гейтс",
@@ -89,23 +89,29 @@ export const html_intro_test = {
     },
     {
       id: 9,
-      name: "Какой из этих тегов был добавлен в HTML5?",
-      variants: ["<div>", "<table>", "<article>", "<font>"],
-      correct: [2],
-      explanation: "<article> — один из новых семантических тегов HTML5.",
+      name: "Для чего нужен HTML?",
+      variants: [
+        "Для программирования серверов",
+        "Для создания структуры и разметки веб-страниц",
+        "Для рисования графики в браузере",
+        "Для написания стилей",
+      ],
+      correct: [1],
+      explanation:
+        "HTML нужен для создания структуры и разметки содержимого веб-страниц.",
     },
     {
       id: 10,
-      name: "Как правильно подключить CSS к HTML-документу?",
+      name: "Из чего состоит HTML-документ?",
       variants: [
-        "<script src='style.css'></script>",
-        "<style src='style.css'></style>",
-        "<link rel='stylesheet' href='style.css'>",
-        "<css>style.css</css>",
+        "Только из видимого содержимого",
+        "Из служебной информации в <head> и содержимого в <body>",
+        "Из JavaScript-кода",
+        "Из CSS-стилей",
       ],
-      correct: [2],
+      correct: [1],
       explanation:
-        "Для подключения CSS используется тег <link> с атрибутами rel='stylesheet' и href='путь_к_файлу'.",
+        "HTML-документ состоит из раздела <head> (метаданные) и <body> (основное содержимое).",
     },
   ],
 };

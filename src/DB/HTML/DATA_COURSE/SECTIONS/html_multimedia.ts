@@ -1,6 +1,6 @@
 export const html_media_1 = {
   id: "html_media_1",
-  title: "Тег <video> и его атрибуты",
+  title: "Видео",
   content: `
   ## Тег \`<video>\` — вставка видео на страницу
   
@@ -55,13 +55,37 @@ export const html_media_1 = {
   
   ---
   
+  ## Тег \`<track>\` — субтитры и метки
+  
+  Внутри \`<video>\` можно использовать \<track\> для добавления субтитров, описаний для слабослышащих или меток:
+  
+  - Атрибуты:
+    - \`kind\` — тип дорожки: \`subtitles\`, \`captions\`, \`descriptions\`, \`chapters\`, \`metadata\`.  
+    - \`srclang\` — язык дорожки (ISO код, например \`ru\`, \`en\`).  
+    - \`label\` — читаемое название дорожки для пользователя.  
+    - \`src\` — путь к файлу дорожки в формате WebVTT (\`.vtt\`).  
+  - Пользователь может включить субтитры через стандартные контролы браузера.
+  
+  **Пример:**
+  
+  \`\`\`html
+  <video controls width="640">
+    <source src="video.mp4" type="video/mp4" />
+    <track kind="subtitles" srclang="ru" label="Русские субтитры" src="subs_ru.vtt" default />
+    Ваш браузер не поддерживает видео.
+  </video>
+  \`\`\`
+  
+  ---
+  
   ## Поддерживаемые форматы
   
-  | Формат | MIME-тип        | Поддержка       |
-  |--------|------------------|------------------|
-  | .mp4   | video/mp4        | Все современные браузеры |
-  | .webm  | video/webm       | Chromium-браузеры |
-  | .ogg   | video/ogg        | Firefox, Opera и др. |
+  | Формат | MIME-тип        | Поддержка                   |
+  |--------|-----------------|-----------------------------|
+  | .mp4   | video/mp4       | Все современные браузеры    |
+  | .webm  | video/webm      | Chromium-браузеры           |
+  | .ogg   | video/ogg       | Firefox, Opera и др.        |
+  | .vtt   | text/vtt        | Все браузеры (\`<track>\`)  |
   
   Наиболее универсальный — **MP4 (H.264)**. Его желательно использовать всегда.
   
@@ -69,29 +93,41 @@ export const html_media_1 = {
   
   ## Вывод
   
-  - Тег \`<video>\` позволяет встроить видео на сайт без сторонних плагинов
-  - Используй \`controls\`, \`poster\`, и несколько \`<source>\` для лучшего UX и кроссбраузерности
-  - Обязательно добавляй альтернативный текст или сообщение для неподдерживаемых браузеров
-  
-  Грамотное использование \`<video>\` повышает мультимедийную выразительность сайта и делает его современным.
+  - Тег \`<video>\` позволяет встроить видео на сайт без сторонних плагинов  
+  - Используй \`controls\`, \`poster\`, и несколько \`<source>\` для лучшего UX и кроссбраузерности  
+  - \<track\> даёт возможность добавить субтитры и описания, повышая доступность  
+  - Обязательно добавляй альтернативное сообщение для неподдерживаемых браузеров  
   `.trim(),
 
   codeExample: `
-<video width="640" height="360" controls poster="preview.jpg">
-  <source src="video.mp4" type="video/mp4" />
-  <source src="video.webm" type="video/webm" />
-  Ваш браузер не поддерживает видео.
-</video>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Пример встроенного видео с субтитрами</title>
+</head>
+<body>
+  <h1>Встроенное видео с несколькими источниками и субтитрами</h1>
+
+  <video width="640" height="360" controls poster="preview.jpg">
+    <source src="video.mp4" type="video/mp4" />
+    <source src="video.webm" type="video/webm" />
+    <track kind="subtitles" srclang="ru" label="Русский" src="subs_ru.vtt" default />
+    Ваш браузер не поддерживает видео.
+  </video>
+</body>
+</html>
   `,
+
   resources: [
     "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video",
-    "https://www.w3schools.com/tags/tag_video.asp",
+    "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/track",
   ],
 };
 
 export const html_media_2 = {
   id: "html_media_2",
-  title: "Тег <audio> и его атрибуты",
+  title: "Аудио",
   content: `
   ## Тег \`<audio>\` — встроенное воспроизведение звука
   
@@ -168,11 +204,23 @@ export const html_media_2 = {
   `.trim(),
 
   codeExample: `
-<audio controls>
-  <source src="audio.mp3" type="audio/mpeg" />
-  <source src="audio.ogg" type="audio/ogg" />
-  Ваш браузер не поддерживает аудио.
-</audio>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Пример встроенного аудио</title>
+</head>
+<body>
+  <h1>Встроенный аудиоплеер</h1>
+
+  <audio controls>
+    <source src="audio.mp3" type="audio/mpeg" />
+    <source src="audio.ogg" type="audio/ogg" />
+    Ваш браузер не поддерживает аудио.
+  </audio>
+</body>
+</html>
+
   `,
   resources: [
     "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio",

@@ -5,10 +5,12 @@ export const html_attr_1 = {
   ## Глобальные атрибуты в HTML
   
   **Глобальные атрибуты** — это атрибуты, которые можно применять к **любому HTML-элементу**, независимо от его типа. Они используются для задания идентификаторов, классов, встроенных стилей, доступности и других метаданных.
+    
+  ---
   
   ### Ключевые глобальные атрибуты
   
-  ### \`id\` — уникальный идентификатор
+  - \`id\` — уникальный идентификатор
   
   - Присваивается одному конкретному элементу на странице
   - Должен быть **уникальным** — нельзя использовать один и тот же \`id\` для нескольких элементов
@@ -26,7 +28,7 @@ export const html_attr_1 = {
   
   ---
   
-  ### \`class\` — группировка элементов
+  ## \`class\` — группировка элементов
   
   - Позволяет назначать один или несколько **классов** элементу
   - Один класс можно использовать на многих элементах
@@ -56,7 +58,7 @@ export const html_attr_1 = {
   
   ---
   
-  ### \`style\` — встроенные стили (inline)
+  ## \`style\` — встроенные стили (inline)
   
   - Позволяет задать стили **прямо в HTML-элементе**
   - Не рекомендуется для постоянного использования (трудно поддерживать и переопределять)
@@ -102,26 +104,34 @@ export const html_attr_1 = {
   `.trim(),
 
   codeExample: `
-<!-- Пример с использованием всех трёх атрибутов -->
-<div id="header" class="section" style="border: 1px solid gray; padding: 10px;">
-  <h1 class="title">Заголовок страницы</h1>
-</div>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Пример использования атрибутов</title>
+  <style>
+    .section {
+      background-color: #f0f0f0;
+    }
 
-<style>
-  .section {
-    background-color: #f0f0f0;
-  }
+    .title {
+      color: #2c3e50;
+      font-size: 24px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Пример с использованием всех трёх атрибутов -->
+  <div id="header" class="section" style="border: 1px solid gray; padding: 10px;">
+    <h1 class="title">Заголовок страницы</h1>
+  </div>
 
-  .title {
-    color: #2c3e50;
-    font-size: 24px;
-  }
-</style>
-
-<script>
-  const el = document.getElementById("header");
-  console.log(el.className); // "section"
-</script>
+  <script>
+    const el = document.getElementById("header");
+    console.log(el.className); // "section"
+  </script>
+</body>
+</html>
   `,
 };
 
@@ -135,7 +145,7 @@ export const html_attr_2 = {
   
   ---
   
-  ### \`href\` — атрибут тега \`<a>\` (ссылки)
+  ## \`href\` — атрибут тега \`<a>\` (ссылки)
   
   - Определяет адрес, по которому произойдёт переход при клике на ссылку.
   - Может содержать:
@@ -160,7 +170,7 @@ export const html_attr_2 = {
   
   ---
   
-  ### \`src\` — атрибут тега \`<img>\`, \`<audio>\`, \`<video>\`, \`<iframe>\`
+  ## \`src\` — атрибут тега \`<img>\`, \`<audio>\`, \`<video>\`, \`<iframe>\`
   
   - Указывает путь к **внешнему ресурсу**, который должен быть загружен в элемент.
   - Применяется, например, для вставки изображений, видео, аудио и внешних страниц.
@@ -179,7 +189,7 @@ export const html_attr_2 = {
   
   ---
   
-  ### \`alt\` — атрибут тега \`<img>\` (альтернативный текст)
+  ## \`alt\` — атрибут тега \`<img>\` (альтернативный текст)
   
   - Показывается, если изображение не загрузилось.
   - Используется **технологиями доступности** (например, экранными дикторами).
@@ -221,10 +231,21 @@ export const html_attr_2 = {
   `.trim(),
 
   codeExample: `
-<!-- Пример использования href, src, alt -->
-<a href="https://example.com" target="_blank">Перейти на сайт</a>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Пример ссылок и изображений</title>
+</head>
+<body>
+  <!-- Пример использования href, src, alt -->
+  <a href="https://example.com" target="_blank">Перейти на сайт</a>
 
-<img src="logo.png" alt="Логотип компании" />
+  <br><br>
+
+  <img src="logo.png" alt="Логотип компании" />
+</body>
+</html>
   `,
   resources: [
     "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#attr-href",
@@ -314,13 +335,23 @@ export const html_attr_3 = {
 
   codeExample: `
 <!-- Пример с data-атрибутами -->
-<button data-user-id="42" data-role="admin">Подробнее</button>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Пример data-атрибутов</title>
+</head>
+<body>
+  <!-- Пример с data-атрибутами -->
+  <button data-user-id="42" data-role="admin">Подробнее</button>
 
-<script>
-  const btn = document.querySelector("button");
-  console.log(btn.dataset.userId); // "42"
-  console.log(btn.dataset.role);   // "admin"
-</script>
+  <script>
+    const btn = document.querySelector("button");
+    console.log(btn.dataset.userId); // "42"
+    console.log(btn.dataset.role);   // "admin"
+  </script>
+</body>
+</html>
   `,
   resources: [
     "https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/data-*",
@@ -414,14 +445,24 @@ export const html_attr_4 = {
   `.trim(),
 
   codeExample: `
-<!-- Пример булевых и ARIA-атрибутов -->
-<input type="checkbox" checked disabled />
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Пример булевых и ARIA-атрибутов</title>
+</head>
+<body>
+  <!-- Пример булевых и ARIA-атрибутов -->
+  <input type="checkbox" checked disabled />
 
-<button aria-label="Закрыть модальное окно">✖</button>
+  <button aria-label="Закрыть модальное окно">✖</button>
 
-<div role="alert" aria-live="assertive">
-  Произошла ошибка!
-</div>
+  <div role="alert" aria-live="assertive">
+    Произошла ошибка!
+  </div>
+</body>
+</html>
+
   `,
   resources: [
     "https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes#boolean_attributes",

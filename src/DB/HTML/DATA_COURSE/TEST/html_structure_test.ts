@@ -59,13 +59,11 @@ export const html_structure_test = {
     },
     {
       id: 8,
-      name: "Что делает тег <link>?",
-      variants: [
-        "Подключает внешние ресурсы (например, стили)",
-        "Создаёт ссылку на другую страницу",
-        "Добавляет скрипты JavaScript",
-      ],
+      name: "Какой атрибут тега <html> указывает язык документа?",
+      variants: ["lang", "language", "charset", "translate"],
       correct: [0],
+      explanation:
+        "Атрибут lang (например, lang='ru') указывает язык содержимого страницы.",
     },
     {
       id: 9,

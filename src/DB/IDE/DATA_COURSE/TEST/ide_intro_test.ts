@@ -1,6 +1,6 @@
 export const ide_intro_test = {
-  id: 300,
-  name: "Основы Node.js, npm и IDE",
+  id: 101,
+  name: "Настройка среды разработки",
   category: "Настройка IDE",
   ques: [
     {
@@ -25,8 +25,8 @@ export const ide_intro_test = {
     },
     {
       id: 3,
-      name: "Что из этого позволяет устанавливать React, Express, lodash и другие пакеты?",
-      variants: ["npm", "VS Code", "HTML"],
+      name: "Как проверить версию Node.js?",
+      variants: ["node -v", "npm --version", "check node"],
       correct: [0],
     },
     {
@@ -57,13 +57,13 @@ export const ide_intro_test = {
     },
     {
       id: 7,
-      name: "Можно ли использовать VS Code как IDE?",
+      name: "Как быстро открыть файл в VS Code?",
       variants: [
-        "Нет, только как блокнот",
-        "Да, при установке расширений",
-        "Только для Python",
+        "Через меню 'Файл → Открыть'",
+        "Перетащить файл в окно VS Code",
+        "Оба варианта работают",
       ],
-      correct: [1],
+      correct: [2],
     },
     {
       id: 8,
