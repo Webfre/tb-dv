@@ -103,7 +103,7 @@ const PracticeDrawer: React.FC<PracticeDrawerProps> = ({
           <Box className={styles.selectedTask}>
             <Box mt={1}>{renderDifficulty(selectedTask.difficulty)}</Box>
 
-            <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+            <Box className={styles.boxToggle}>
               <Typography variant="h6">{selectedTask.title}</Typography>
               {hasAccess && (
                 <TaskCompletionToggle

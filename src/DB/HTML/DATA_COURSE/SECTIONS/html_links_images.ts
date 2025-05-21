@@ -104,16 +104,36 @@ export const html_link_1 = {
   `.trim(),
 
   codeExample: `
-<!-- Ссылка на внешний сайт -->
-<a href="https://example.com" target="_blank" rel="noopener noreferrer">
-  Открыть сайт в новой вкладке
-</a>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Пример ссылок</title>
+</head>
+<body>
+  <!-- Ссылка на внешний сайт -->
+  <p>
+    <a href="https://example.com" target="_blank" rel="noopener noreferrer">
+      Открыть сайт в новой вкладке
+    </a>
+  </p>
 
-<!-- Внутренний якорь -->
-<a href="#section-2">Перейти к разделу 2</a>
+  <!-- Внутренний якорь -->
+  <p>
+    <a href="#section-2">Перейти к разделу 2</a>
+  </p>
 
-<!-- Почтовая ссылка -->
-<a href="mailto:info@example.com">Написать нам</a>
+  <!-- Раздел для якоря -->
+  <h2 id="section-2">Раздел 2</h2>
+  <p>Здесь находится содержимое раздела 2.</p>
+
+  <!-- Почтовая ссылка -->
+  <p>
+    <a href="mailto:info@example.com">Написать нам</a>
+  </p>
+</body>
+</html>
+
   `,
   resources: [
     "https://developer.mozilla.org/ru/docs/Web/HTML/Reference/Elements/a",
@@ -181,11 +201,7 @@ export const html_link_2 = {
   <img src="https://via.placeholder.com/150" alt="Пример изображения" />
   \`\`\`
   
-  ### Декоративное изображение (не для восприятия):
-  
-  \`\`\`html
-  <img src="decor-line.png" alt="" />
-  \`\`\`
+
   
   ---
   
@@ -208,11 +224,21 @@ export const html_link_2 = {
   `.trim(),
 
   codeExample: `
-<!-- Простое изображение -->
-<img src="/images/logo.png" alt="Логотип компании" />
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Пример изображений</title>
+</head>
+<body>
+  <!-- Простое изображение -->
+  <img src="/images/logo.png" alt="Логотип компании" />
 
-<!-- Изображение с абсолютной ссылкой -->
-<img src="https://example.com/banner.jpg" alt="Рекламный баннер" />
+  <!-- Изображение с абсолютной ссылкой -->
+  <img src="https://example.com/banner.jpg" alt="Рекламный баннер" />
+</body>
+</html>
+
   `,
   resources: ["https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img"],
 };
@@ -325,14 +351,23 @@ export const html_link_3 = {
   `.trim(),
 
   codeExample: `
-<!-- Пример с WebP и lazy loading -->
-<img
-  src="images/photo.webp"
-  alt="Горы на закате"
-  loading="lazy"
-  width="600"
-  height="400"
-/>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Пример WebP и lazy loading</title>
+</head>
+<body>
+  <!-- Пример с WebP и lazy loading -->
+  <img
+    src="images/photo.webp"
+    alt="Горы на закате"
+    loading="lazy"
+    width="600"
+    height="400"
+  />
+</body>
+</html>
   `,
   resources: [
     "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types",

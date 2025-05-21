@@ -81,45 +81,20 @@ export const html_final_1 = {
   
   ---
   
-  ### SEO и микроразметка
+  ### Мета-теги
   
   - Мета-теги: \`<title>\`, \`<meta name="description">\`, \`<link rel="canonical">\`
-  - Open Graph: \`og:title\`, \`og:description\`, \`og:image\`
-  - Schema.org:
-    - Через атрибуты: \`itemscope\`, \`itemtype\`, \`itemprop\`
-    - Или через JSON-LD
+  - <title>Пример страницы</title>
+  - <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  - <meta name="description" content="Краткое описание страницы для SEO">
+  - <meta name="keywords" content="HTML, meta, SEO">
+  - <meta name="author" content="Roman Muhametshin">
+  - <meta name="robots" content="index, follow">
+  - <meta name="theme-color" content="#317EFB">
+  - <link rel="canonical" href="https://example.com/page">
+  - <meta http-equiv="cache-control" content="no-cache">
   
-  ---
-  
-  ### Валидность и линтинг
-  
-  - Проверка HTML: [W3C Validator](https://validator.w3.org/)
-  - Линтер: HTMLHint
-  - Форматирование: Prettier
-  
-  ---
-  
-  ### Устаревшие теги (не использовать)
-  
-  - \`<center>\`, \`<font>\`, \`<bgsound>\`, \`<u>\`, \`<marquee>\`
-  - Используйте CSS и семантику HTML5
-  
-  ---
-  
-  ### Инструменты
-  
-  **VS Code плагины:**
-  
-  - Prettier — автоформатер
-  - HTMLHint — линтер HTML
-  - ESLint — JS/TS, включая HTML в React
-  - Live Server — локальный просмотр
-  
-  **Онлайн-сервисы:**
-  
-  - [W3C Validator](https://validator.w3.org/)
-  - [HTML5 Outliner](https://gsnedders.html5.org/outliner/)
-  
+
   ---
   
   ## Вывод

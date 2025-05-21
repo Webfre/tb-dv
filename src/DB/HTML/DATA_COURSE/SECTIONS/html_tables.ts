@@ -1,6 +1,6 @@
 export const html_table_1 = {
   id: "html_table_1",
-  title: "Базовая таблица: <table>, <tr>, <td>, <th>",
+  title: "Таблицы",
   content: `
   ## HTML-таблицы: структура и элементы
   
@@ -82,20 +82,30 @@ export const html_table_1 = {
   `.trim(),
 
   codeExample: `
-<table>
-  <tr>
-    <th>Имя</th>
-    <th>Возраст</th>
-  </tr>
-  <tr>
-    <td>Анна</td>
-    <td>28</td>
-  </tr>
-  <tr>
-    <td>Иван</td>
-    <td>32</td>
-  </tr>
-</table>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Таблица пользователей</title>
+</head>
+<body>
+  <table border="1" cellpadding="8" cellspacing="0">
+    <tr>
+      <th>Имя</th>
+      <th>Возраст</th>
+    </tr>
+    <tr>
+      <td>Анна</td>
+      <td>28</td>
+    </tr>
+    <tr>
+      <td>Иван</td>
+      <td>32</td>
+    </tr>
+  </table>
+</body>
+</html>
+
   `,
   resources: [
     "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table",
@@ -107,7 +117,7 @@ export const html_table_1 = {
 
 export const html_table_2 = {
   id: "html_table_2",
-  title: "thead, tbody, tfoot",
+  title: "Семантическая структура таблицы.",
   content: `
   ## Логическая структура HTML-таблицы
   
@@ -239,30 +249,40 @@ export const html_table_2 = {
   делает таблицу **структурированной, доступной и удобной в работе**, особенно в реальных интерфейсах, где таблицы содержат десятки и сотни строк.
   `.trim(),
   codeExample: `
-<table>
-  <thead>
-    <tr>
-      <th>Товар</th>
-      <th>Цена</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Яблоки</td>
-      <td>100₽</td>
-    </tr>
-    <tr>
-      <td>Бананы</td>
-      <td>120₽</td>
-    </tr>
-  </tbody>
-  <tfoot>
-    <tr>
-      <td>Итого</td>
-      <td>220₽</td>
-    </tr>
-  </tfoot>
-</table>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Семантическая структура таблицы: thead, tbody и tfoot</title>
+</head>
+<body>
+  <table border="1" cellpadding="8" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Товар</th>
+        <th>Цена</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Яблоки</td>
+        <td>100₽</td>
+      </tr>
+      <tr>
+        <td>Бананы</td>
+        <td>120₽</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td>Итого</td>
+        <td>220₽</td>
+      </tr>
+    </tfoot>
+  </table>
+</body>
+</html>
+
   `,
   resources: [
     "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/thead",
@@ -365,25 +385,36 @@ export const html_table_3 = {
   `.trim(),
 
   codeExample: `
-<table>
-  <tr>
-    <th>Имя</th>
-    <th colspan="2">Контакты</th>
-  </tr>
-  <tr>
-    <td>Ольга</td>
-    <td>Email</td>
-    <td>Телефон</td>
-  </tr>
-  <tr>
-    <td rowspan="2">Алексей</td>
-    <td>alex@example.com</td>
-    <td>+7 999 000 00 00</td>
-  </tr>
-  <tr>
-    <td colspan="2">Нет дополнительных данных</td>
-  </tr>
-</table>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Таблица с объединением ячеек</title>
+</head>
+<body>
+  <h1>Контакты пользователей</h1>
+  <table border="1" cellpadding="8" cellspacing="0">
+    <tr>
+      <th>Имя</th>
+      <th colspan="2">Контакты</th>
+    </tr>
+    <tr>
+      <td>Ольга</td>
+      <td>Email</td>
+      <td>Телефон</td>
+    </tr>
+    <tr>
+      <td rowspan="2">Алексей</td>
+      <td>alex@example.com</td>
+      <td>+7 999 000 00 00</td>
+    </tr>
+    <tr>
+      <td colspan="2">Нет дополнительных данных</td>
+    </tr>
+  </table>
+</body>
+</html>
+
   `,
   resources: [
     "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/td#attr-colspan",

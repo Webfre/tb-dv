@@ -49,7 +49,11 @@ export const htmlChapters = [
     title: "Атрибуты элементов",
     sections: htmlSections.html_attributes,
     testKeys: ["html_attributes_test"],
-    practiceIds: ["html_attributes_usage_1", "html_attributes_usage_2"],
+    practiceIds: [
+      "html_attributes_usage_1",
+      "html_attributes_usage_2",
+      "html_attributes_usage_3",
+    ],
   },
   {
     id: "html_semantics",
@@ -61,6 +65,7 @@ export const htmlChapters = [
       "html_semantic_landing_2",
       "html_semantic_landing_3",
       "html_semantic_landing_4",
+      "html_semantic_landing_5",
     ],
   },
   {
@@ -73,6 +78,7 @@ export const htmlChapters = [
       "html_links_creation_2",
       "html_links_creation_3",
       "html_links_creation_4",
+      "html_links_creation_5",
     ],
   },
   {
@@ -86,6 +92,11 @@ export const htmlChapters = [
       "html_form_login_3",
       "html_form_login_4",
       "html_form_login_5",
+      "html_form_login_6",
+      "html_form_login_7",
+      "html_form_login_8",
+      "html_form_login_9",
+      "html_form_login_10",
     ],
   },
   {
@@ -97,6 +108,10 @@ export const htmlChapters = [
       "html_table_simple_1",
       "html_table_simple_2",
       "html_table_simple_3",
+      "html_table_simple_4",
+      "html_table_simple_5",
+      "html_table_simple_6",
+      "html_table_simple_7",
     ],
   },
   {

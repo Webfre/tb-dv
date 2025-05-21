@@ -16,9 +16,9 @@ export const html_sem_1 = {
   
   - Размещается в верхней части страницы или раздела
   - Обычно содержит:
-    - логотип
-    - заголовки
-    - навигационное меню
+      - логотип
+      - заголовки
+      - навигационное меню
   
   **Пример:**
   
@@ -31,7 +31,7 @@ export const html_sem_1 = {
   
   ---
   
-  ### \`<nav>\` — навигация
+  ## \`<nav>\` — навигация
   
   - Оборачивает **основные навигационные ссылки** по сайту или разделу
   - Может находиться внутри \`<header>\`, \`<aside>\` или отдельно
@@ -51,7 +51,7 @@ export const html_sem_1 = {
   
   ---
   
-  ### \`<main>\` — основной контент
+  ## \`<main>\` — основной контент
   
   - Включает **уникальное содержимое страницы**
   - Должен быть **только один \`<main>\` на страницу**
@@ -98,20 +98,30 @@ export const html_sem_1 = {
   `.trim(),
 
   codeExample: `
-<header>
-  <h1>Мой блог</h1>
-  <nav>
-    <a href="/">Главная</a>
-    <a href="/about">О сайте</a>
-  </nav>
-</header>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Мой блог</title>
+</head>
+<body>
+  <header>
+    <h1>Мой блог</h1>
+    <nav>
+      <a href="/">Главная</a>
+      <a href="/about">О сайте</a>
+    </nav>
+  </header>
 
-<main>
-  <article>
-    <h2>Статья</h2>
-    <p>Текст статьи...</p>
-  </article>
-</main>
+  <main>
+    <article>
+      <h2>Статья</h2>
+      <p>Текст статьи...</p>
+    </article>
+  </main>
+</body>
+</html>
+
   `,
   resources: ["https://html5css.ru/html/html5_semantic_elements.php"],
 };
@@ -222,24 +232,34 @@ export const html_sem_2 = {
   `.trim(),
 
   codeExample: `
-<article>
-  <h2>Новость</h2>
-  <p>Контент новости...</p>
-</article>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Пример семантической разметки</title>
+</head>
+<body>
+  <article>
+    <h2>Новость</h2>
+    <p>Контент новости...</p>
+  </article>
 
-<section>
-  <h3>О компании</h3>
-  <p>Информация о нас.</p>
-</section>
+  <section>
+    <h3>О компании</h3>
+    <p>Информация о нас.</p>
+  </section>
 
-<aside>
-  <h4>Реклама</h4>
-  <p>Сторонний контент</p>
-</aside>
+  <aside>
+    <h4>Реклама</h4>
+    <p>Сторонний контент</p>
+  </aside>
 
-<footer>
-  <p>© 2025 Все права защищены</p>
-</footer>
+  <footer>
+    <p>© 2025 Все права защищены</p>
+  </footer>
+</body>
+</html>
+
   `,
   resources: ["https://html5css.ru/html/html5_semantic_elements.php"],
 };
@@ -322,13 +342,39 @@ export const html_sem_3 = {
   `.trim(),
 
   codeExample: `
-<!-- Семантичный макет страницы -->
-<header>...</header>
-<main>
-  <article>...</article>
-  <aside>...</aside>
-</main>
-<footer>...</footer>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Семантический макет страницы</title>
+</head>
+<body>
+  <!-- Заголовок страницы -->
+  <header>
+    <h1>Мой Семантический Сайт</h1>
+    <nav>
+      <a href="/">Главная</a> |
+      <a href="/articles">Статьи</a> |
+      <a href="/about">О сайте</a> |
+      <a href="/contact">Контакты</a>
+    </nav>
+  </header>
+
+  <!-- Основной контент страницы -->
+  <main>
+    <!-- Основная статья -->
+    <article>
+      <h2>Заголовок статьи</h2>
+      <p>Это пример содержимого статьи. Здесь можно разместить текст, изображения и другие элементы, которые относятся к основной теме страницы.</p>
+      <p>Использование тега <code>&lt;article&gt;</code> помогает обозначить самостоятельный блок контента.</p>
+    </article>
+
+    <!-- Боковая панель -->
+    <aside>
+      <h3>Полезные ссылки</h3>
+      <ul>
+        <li><a href="https://
+
   `,
   resources: [
     "https://developer.mozilla.org/en-US/docs/Glossary/Semantics",
