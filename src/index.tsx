@@ -51,20 +51,6 @@ const AppRoutes = () => {
     <Routes>
       {/* LOCAL PAGE */}
       <Route path="/" element={<Home />} />
-      <Route path="/roadmap" element={<RoadmapPage />} />
-      <Route path="/live" element={<LiveCodingPage />} />
-      <Route path="/cheatsheet" element={<CheatsheetPage />} />
-      <Route path="/interview" element={<InterviewPage />} />
-      <Route path="/projects" element={<ProjectsPage />} />
-
-      <Route
-        path="/flashback"
-        element={
-          <ProtectedRoute>
-            <Flashback />
-          </ProtectedRoute>
-        }
-      />
 
       <Route
         path="/mentorprofilepage/:id"
@@ -112,7 +98,14 @@ const AppRoutes = () => {
           </ProtectedRoute>
         }
       >
+        <Route path="course" element={<CourseList />} />
         <Route path="taskbook" element={<TaskBook />} />
+        <Route path="roadmap" element={<RoadmapPage />} />
+        <Route path="livecode" element={<LiveCodingPage />} />
+        <Route path="cheatsheet" element={<CheatsheetPage />} />
+        <Route path="interview" element={<InterviewPage />} />
+        <Route path="projects" element={<ProjectsPage />} />
+        <Route path="flashback" element={<Flashback />} />
       </Route>
 
       {/* LOGIN */}
@@ -151,15 +144,6 @@ const AppRoutes = () => {
         }
       />
 
-      <Route
-        path="/course"
-        element={
-          <ProtectedRoute>
-            <CourseList />
-          </ProtectedRoute>
-        }
-      />
-
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
@@ -177,7 +161,18 @@ const AppRoutes = () => {
 const App = () => (
   <Router>
     <AppRoutes />
-    <ToastContainer position="top-right" autoClose={3000} />
+    <ToastContainer
+      position="top-center"
+      autoClose={3000}
+      hideProgressBar
+      toastStyle={{
+        backgroundColor: "#846ee6",
+        color: "#fff",
+        borderRadius: "12px",
+        fontWeight: 500,
+        fontSize: "14px",
+      }}
+    />
   </Router>
 );
 

@@ -1,11 +1,14 @@
 import React from "react";
-import { Box, Switch } from "@mui/material";
+import { Chip } from "@mui/material";
 import { toast } from "react-toastify";
+import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
+import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
+import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import {
   useToggleSolvedTaskMutation,
   useGetSolvedTasksQuery,
 } from "../../api/progressApi";
-import styles from "./TaskDrawer.module.scss";
+import CustomToast from "../../ui/CustomToast";
 
 interface TaskCompletionToggleProps {
   taskId: string;
@@ -31,10 +34,21 @@ const TaskCompletionToggle: React.FC<TaskCompletionToggleProps> = ({
         solved: !isCompleted,
       }).unwrap();
 
-      toast.success(
-        !isCompleted
-          ? "Задача добавлена в решённые"
-          : "Задача удалена из решённых"
+      toast(
+        <CustomToast
+          message={
+            !isCompleted
+              ? "Задача добавлена в решённые"
+              : "Задача удалена из решённых"
+          }
+          icon={
+            !isCompleted ? (
+              <ThumbUpAltIcon sx={{ color: "white" }} />
+            ) : (
+              <EmojiEmotionsIcon sx={{ color: "white" }} />
+            )
+          }
+        />
       );
       refetch();
     } catch (error) {
@@ -43,24 +57,26 @@ const TaskCompletionToggle: React.FC<TaskCompletionToggleProps> = ({
   };
 
   return (
-    <Box
-      className={styles.isCompleted}
-      sx={{
-        borderColor: isCompleted ? "green" : "rgb(164, 164, 164)",
-        cursor: "pointer",
-      }}
+    <Chip
+      label={isCompleted ? "Решено" : "Не решено"}
+      icon={
+        isCompleted ? (
+          <ThumbUpAltIcon sx={{ color: "rgb(149, 180, 103) !important" }} />
+        ) : (
+          <ThumbDownAltIcon sx={{ color: "rgb(210, 210, 210) !important" }} />
+        )
+      }
       onClick={handleToggle}
-    >
-      <Box>
-        {isCompleted ? "Отметить как нерешённое" : "Пометить как решённое"}
-      </Box>
-      <Switch
-        color="success"
-        checked={isCompleted}
-        readOnly
-        sx={{ pointerEvents: "none" }}
-      />
-    </Box>
+      clickable
+      sx={{
+        border: `1px solid ${isCompleted ? "#4caf50" : "#9e9e9e"}`,
+        color: isCompleted ? "#4caf50" : "#9e9e9e",
+        backgroundColor: "transparent",
+        "&:hover": {
+          backgroundColor: "#f5f5f5",
+        },
+      }}
+    />
   );
 };
 

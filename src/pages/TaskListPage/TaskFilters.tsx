@@ -6,7 +6,6 @@ import {
   IconButton,
   FormControl,
   InputLabel,
-  Select,
   MenuItem,
   SelectChangeEvent,
   FormControlLabel,
@@ -17,7 +16,8 @@ import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import BtnCustom from "../../ui/BtnCustom";
 import styles from "./TaskList.module.scss";
-import { label_sx, menu_item_sx, PurpleSelect } from "../../ui/PurpleSelect";
+import { PurpleSelect } from "../../ui/PurpleSelect";
+import { label_sx, menu_item_sx } from "../../styles/global";
 
 interface TaskFiltersProps {
   difficulty: number | null;

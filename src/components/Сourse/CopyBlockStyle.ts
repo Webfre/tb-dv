@@ -3,5 +3,5 @@ export const styleCodeBlock = {
   minHeight: "300px",
   display: "flex",
   flexDirection: "column",
-  borderRadius: "20px",
+  borderRadius: "14px",
 };

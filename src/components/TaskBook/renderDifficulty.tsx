@@ -11,14 +11,14 @@ export const renderDifficulty = (level: number) => (
           className={styles.icon}
           key={i}
           fontSize="small"
-          sx={{ color: "#000" }}
+          sx={{ color: "#846ee6" }}
         />
       ) : (
         <StarBorderIcon
           className={styles.icon}
           key={i}
           fontSize="small"
-          sx={{ color: "#000" }}
+          sx={{ color: "#846ee6" }}
         />
       )
     )}

@@ -16,8 +16,21 @@ const TaskBook: React.FC = () => {
   const [selectedModuleId, setSelectedModuleId] = useState<string | null>(null);
   const hasAccess = hasAccessToCourses(data?.accessCourse || []);
 
+  const [difficultyLevel, setDifficultyLevel] = useState<number | null>(null);
+  const [topicFilter, setTopicFilter] = useState<string | null>(null);
+  const [showUnsolved, setShowUnsolved] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const resetFilters = () => {
+    setDifficultyLevel(null);
+    setTopicFilter(null);
+    setShowUnsolved(false);
+  };
+
   const handleClick = (id: string) => {
     setSelectedModuleId(id);
+    resetFilters();
+    setCurrentPage(1);
   };
 
   const getModuleProgress = (moduleId: string, taskCount: number) => {
@@ -89,7 +102,21 @@ const TaskBook: React.FC = () => {
         })}
       </Grid>
 
-      {selectedModuleId && <TaskListPage moduleId={selectedModuleId} />}
+      {selectedModuleId && (
+        <TaskListPage
+          moduleId={selectedModuleId}
+          filters={{
+            difficultyLevel,
+            setDifficultyLevel,
+            topicFilter,
+            setTopicFilter,
+            showUnsolved,
+            setShowUnsolved,
+            currentPage,
+            setCurrentPage,
+          }}
+        />
+      )}
     </Box>
   );
 };
