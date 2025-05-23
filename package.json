@@ -1,8 +1,8 @@
 {
-  "name": "online-test-dev",
+  "name": "frontarium",
   "version": "1.2",
   "private": true,
-  "homepage": "https://Webfre.github.io/tb-dv",
+  "homepage": "https://frontarium.ru",
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
@@ -28,7 +28,7 @@
     "react-input-mask": "^2.0.4",
     "react-markdown": "^10.1.0",
     "react-redux": "^9.2.0",
-    "react-router-dom": "^7.2.0",
+    "react-router-dom": "^6.30.1",
     "react-scripts": "5.0.1",
     "react-toastify": "^11.0.5",
     "reactflow": "^11.11.4",
