@@ -1,33 +1,29 @@
 import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
 import { filterTasks, getAllTopics } from "./taskUtils";
 import { useCheckCourseAccessQuery } from "../../api/userApi";
 import { practiceMock } from "../../DB/taskData";
 import { useGetSolvedTasksQuery } from "../../api/progressApi";
 import { Box } from "@mui/material";
 import { hasAccessToCourses } from "../../lib/hasAccessToCourses";
-import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
+import { PracticeTask } from "../../DB/index_type";
 import TaskDrawer from "../../components/TaskBook/TaskDrawer";
-import BtnCustom from "../../ui/BtnCustom";
 import TaskList from "./TaskList";
 import TaskFilters from "./TaskFilters";
 import TaskListHeader from "./TaskListHeader";
-import { PracticeTask } from "../../DB/index_type";
+import styles from "./TaskList.module.scss";
 
-const TaskListPage: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
+interface TaskListPageProps {
+  moduleId: string;
+}
+
+const TaskListPage: React.FC<TaskListPageProps> = ({ moduleId }) => {
   const { data } = useCheckCourseAccessQuery();
   const { data: solvedTasks = [] } = useGetSolvedTasksQuery();
   const hasAccess = hasAccessToCourses(data?.accessCourse || []);
-
   const [selectedTask, setSelectedTask] = useState<PracticeTask | null>(null);
   const [difficultyLevel, setDifficultyLevel] = useState<number | null>(null);
   const [topicFilter, setTopicFilter] = useState<string | null>(null);
   const [showUnsolved, setShowUnsolved] = useState(false);
-
-  const moduleId = id?.toLowerCase() || "";
-  const navigate = useNavigate();
-
   const allTopics = getAllTopics(practiceMock, moduleId);
 
   const filteredTasks = filterTasks(
@@ -50,15 +46,8 @@ const TaskListPage: React.FC = () => {
   };
 
   return (
-    <Box p={4}>
-      <BtnCustom
-        sx={{ mb: 2 }}
-        text="Назад"
-        icon={<NavigateBeforeIcon />}
-        onClick={() => navigate(-1)}
-      />
-
-      <TaskListHeader moduleId={id} />
+    <Box className={styles.taskListPage}>
+      <TaskListHeader moduleId={moduleId} />
 
       <TaskFilters
         difficulty={difficultyLevel}

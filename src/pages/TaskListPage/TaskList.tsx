@@ -1,5 +1,7 @@
 import React from "react";
-import { Stack, Card, CardContent, Typography, Chip, Box } from "@mui/material";
+import { NotFoundMessage } from "../../ui/NotFoundMessage";
+import { FaRegSadTear } from "react-icons/fa";
+import { Stack, Card, CardContent, Typography, Box } from "@mui/material";
 import { PracticeTask } from "../../DB/index_type";
 import { useGetSolvedTasksQuery } from "../../api/progressApi";
 import { renderDifficultyStars } from "./renderDifficultyStars";
@@ -17,14 +19,10 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, onSelect, hasAccess }) => {
 
   if (tasks.length === 0) {
     return (
-      <Typography
-        variant="body1"
-        color="text.secondary"
-        textAlign="center"
-        py={4}
-      >
-        Задачи с выбранными фильтрами не найдены
-      </Typography>
+      <NotFoundMessage
+        icon={<FaRegSadTear size={32} color="#999" />}
+        text="Задачи с выбранными фильтрами не найдены"
+      />
     );
   }
 

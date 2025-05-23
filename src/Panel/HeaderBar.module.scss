@@ -1,0 +1,51 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f9f9f9;
+  padding: 10px 25px;
+  border-bottom: 1px solid #e3e2e2;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+}
+
+.userMenu {
+  display: flex;
+  align-items: center;
+}
+
+.avatarButton {
+  padding: 0;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+
+  svg {
+    width: 40px !important;
+    height: 40px !important;
+  }
+}
+
+.popover {
+  background-color: #ffffff !important;
+  color: #333 !important;
+  min-width: 200px !important;
+  padding: 8px !important;
+  border-radius: 8px !important;
+}
+
+.icon {
+  color: #333 !important;
+}
+
+.divider {
+  color: #bbbbbb !important;
+  margin: 4px 0;
+}

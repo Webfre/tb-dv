@@ -1,0 +1,26 @@
+.content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+  background-color: #fff;
+  position: relative;
+}
+
+.scrollTop {
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  background-color: #846ee6;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 15px;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: opacity 0.3s;
+
+  &:hover {
+    background-color: #6d5acc;
+  }
+}

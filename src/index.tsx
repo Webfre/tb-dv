@@ -1,7 +1,6 @@
 import ReactDOM from "react-dom/client";
 import { CssBaseline, Container, ThemeProvider } from "@mui/material";
 import { Routes, Route, useLocation } from "react-router-dom";
-// import { HashRouter as Router } from "react-router-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
@@ -28,128 +27,148 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import CourseInfoPage from "./pages/CourseInfoPage/CourseInfoPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage/ResetPasswordPage";
 import Profile from "./components/Profile/Profile";
-import Progress from "./components/Progress/Progress";
 import UserDetails from "./components/AdminDashboard/UserDetails/UserDetails";
+import { UserPanelLayout } from "./Panel/UserPanelLayout";
+import CourseList from "./components/Сourse/CourseList";
 import TestСourse from "./components/TestСourse/TestСourse";
 import MentorProfilePage from "./components/MentorProfilePage/MentorProfilePage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import CoursesPageList from "./pages/CoursesPageList/CoursesPageList";
 import "react-toastify/dist/ReactToastify.css";
 import "./index.scss";
-import CourseList from "./components/Сourse/CourseList";
 
 const AppRoutes = () => {
   const location = useLocation();
-  const hideHeader = ["/register", "/login", "/reset-password"].includes(
-    location.pathname
+  const hideHeader = [
+    "/register",
+    "/login",
+    "/reset-password",
+    "/panel",
+    "/panel/taskbook",
+  ].includes(location.pathname);
+
+  const content = (
+    <Routes>
+      {/* LOCAL PAGE */}
+      <Route path="/" element={<Home />} />
+      <Route path="/roadmap" element={<RoadmapPage />} />
+      <Route path="/live" element={<LiveCodingPage />} />
+      <Route path="/cheatsheet" element={<CheatsheetPage />} />
+      <Route path="/interview" element={<InterviewPage />} />
+      <Route path="/projects" element={<ProjectsPage />} />
+
+      <Route
+        path="/flashback"
+        element={
+          <ProtectedRoute>
+            <Flashback />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/mentorprofilepage/:id"
+        element={
+          <ProtectedRoute>
+            <MentorProfilePage />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* PANEL ADMIN */}
+      <Route
+        path="/admin-dashboard"
+        element={
+          <AdminProtectedRoute>
+            <AdminDashboard />
+          </AdminProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/admin/user/:id"
+        element={
+          <AdminProtectedRoute>
+            <UserDetails />
+          </AdminProtectedRoute>
+        }
+      />
+
+      {/* PANEL USER */}
+      <Route
+        path="/profile"
+        element={
+          <ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/panel"
+        element={
+          <ProtectedRoute>
+            <UserPanelLayout />
+          </ProtectedRoute>
+        }
+      >
+        <Route path="taskbook" element={<TaskBook />} />
+      </Route>
+
+      {/* LOGIN */}
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/register" element={<RegisterPage />} />
+      <Route path="/course-info" element={<CourseInfoPage open={true} />} />
+      <Route path="/reset-password" element={<ResetPasswordPage />} />
+
+      {/* COURSE PAGE */}
+      <Route path="/listcourse" element={<CoursesPageList />} />
+
+      <Route
+        path="/test"
+        element={
+          <ProtectedRoute>
+            <TestСourse />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/course-access/:id"
+        element={
+          <ProtectedRoute>
+            <Сourse />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/course/:id"
+        element={
+          <ProtectedRoute>
+            <CourseTopicDetails />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/course"
+        element={
+          <ProtectedRoute>
+            <CourseList />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
   );
 
   return (
     <>
       <CssBaseline />
-      {!hideHeader && <Header />}
-
-      <Container maxWidth="lg">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/listcourse" element={<CoursesPageList />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/course-info" element={<CourseInfoPage open={true} />} />
-          <Route path="/reset-password" element={<ResetPasswordPage />} />
-          <Route path="/live" element={<LiveCodingPage />} />
-          <Route path="/cheatsheet" element={<CheatsheetPage />} />
-          <Route path="/interview" element={<InterviewPage />} />
-          <Route path="/projects" element={<ProjectsPage />} />
-          <Route path="/taskbook" element={<TaskBook />} />
-          <Route path="/roadmap" element={<RoadmapPage />} />
-          <Route path="/tasks/:id" element={<TaskListPage />} />
-
-          <Route
-            path="/flashback"
-            element={
-              <ProtectedRoute>
-                <Flashback />
-              </ProtectedRoute>
-            }
-          />
-
-          <Route
-            path="/admin-dashboard"
-            element={
-              <AdminProtectedRoute>
-                <AdminDashboard />
-              </AdminProtectedRoute>
-            }
-          />
-
-          <Route
-            path="/admin/user/:id"
-            element={
-              <AdminProtectedRoute>
-                <UserDetails />
-              </AdminProtectedRoute>
-            }
-          />
-
-          <Route
-            path="/profile"
-            element={
-              <ProtectedRoute>
-                <Profile />
-              </ProtectedRoute>
-            }
-          />
-
-          <Route
-            path="/course-access/:id"
-            element={
-              <ProtectedRoute>
-                <Сourse />
-              </ProtectedRoute>
-            }
-          />
-
-          <Route
-            path="/course/:id"
-            element={
-              <ProtectedRoute>
-                <CourseTopicDetails />
-              </ProtectedRoute>
-            }
-          />
-
-          <Route
-            path="/course"
-            element={
-              <ProtectedRoute>
-                <CourseList />
-              </ProtectedRoute>
-            }
-          />
-
-          <Route
-            path="/test"
-            element={
-              <ProtectedRoute>
-                <TestСourse />
-              </ProtectedRoute>
-            }
-          />
-
-          <Route
-            path="/mentorprofilepage/:id"
-            element={
-              <ProtectedRoute>
-                <MentorProfilePage />
-              </ProtectedRoute>
-            }
-          />
-
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </Container>
-
+      {/* {!hideHeader && <Header />} */}
+      {content}
       <GlobalHelpDrawer />
     </>
   );

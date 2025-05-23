@@ -1,27 +1,23 @@
-import React from "react";
-import {
-  Card,
-  CardContent,
-  Typography,
-  Grid,
-  Box,
-  Stack,
-  LinearProgress,
-} from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Card, CardContent, Typography, Grid, Box, Stack } from "@mui/material";
 import { useCheckCourseAccessQuery } from "../../api/userApi";
 import { useGetSolvedTasksQuery } from "../../api/progressApi";
 import { hasAccessToCourses } from "../../lib/hasAccessToCourses";
+import { CustomLinearProgress } from "../../ui/CustomLinearProgress";
+import { HintBlock } from "../../ui/HintBlock";
 import { modules } from "./modules";
+import TaskListPage from "../../pages/TaskListPage/TaskListPage";
+import styles from "./TaskBook.module.scss";
+import classNames from "classnames";
 
 const TaskBook: React.FC = () => {
-  const navigate = useNavigate();
   const { data } = useCheckCourseAccessQuery();
   const { data: solvedTasks = [] } = useGetSolvedTasksQuery();
+  const [selectedModuleId, setSelectedModuleId] = useState<string | null>(null);
   const hasAccess = hasAccessToCourses(data?.accessCourse || []);
 
   const handleClick = (id: string) => {
-    navigate(`/tasks/${id}`);
+    setSelectedModuleId(id);
   };
 
   const getModuleProgress = (moduleId: string, taskCount: number) => {
@@ -37,15 +33,11 @@ const TaskBook: React.FC = () => {
 
   return (
     <Box p={2}>
-      <Typography variant="h4" gutterBottom>
-        Электронный задачник
-      </Typography>
-
-      <Typography variant="body1" color="text.secondary" mb={4}>
-        Практикуй навыки frontend-разработки с помощью интерактивных задач по
-        HTML, CSS, JavaScript и др. Выбирай модуль, решай задания и повышай свой
-        уровень!
-      </Typography>
+      <HintBlock
+        text="Электронный задачник — это интерактивный инструмент для практики веб-разработки. 
+        Выберите модуль (HTML, CSS, JavaScript и др.), определите тему и уровень сложности, 
+        решайте задачи с чёткими условиями и при необходимости — изучайте готовые решения для закрепления материала."
+      />
 
       <Grid container spacing={3}>
         {modules.map((item) => {
@@ -58,12 +50,9 @@ const TaskBook: React.FC = () => {
             <Grid item xs={12} sm={6} md={4} key={item.id}>
               <Card
                 onClick={() => handleClick(item.id)}
-                sx={{
-                  cursor: "pointer",
-                  borderRadius: "20px",
-                  transition: "0.2s",
-                  "&:hover": { transform: "scale(1.02)", boxShadow: 6 },
-                }}
+                className={classNames(styles.card, {
+                  [styles.selected]: item.id === selectedModuleId,
+                })}
               >
                 <CardContent>
                   <Stack direction="row" alignItems="center" spacing={2}>
@@ -85,10 +74,11 @@ const TaskBook: React.FC = () => {
                       >
                         Пройдено: {solvedCount} из {totalCount}
                       </Typography>
-                      <LinearProgress
-                        variant="determinate"
+
+                      <CustomLinearProgress
                         value={percent}
-                        sx={{ height: 8, borderRadius: 5 }}
+                        backgroundColor="#f0f0f0"
+                        backgroundColorPercent="#846ee6"
                       />
                     </Box>
                   )}
@@ -98,6 +88,8 @@ const TaskBook: React.FC = () => {
           );
         })}
       </Grid>
+
+      {selectedModuleId && <TaskListPage moduleId={selectedModuleId} />}
     </Box>
   );
 };

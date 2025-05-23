@@ -17,6 +17,7 @@ import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import BtnCustom from "../../ui/BtnCustom";
 import styles from "./TaskList.module.scss";
+import { label_sx, menu_item_sx, PurpleSelect } from "../../ui/PurpleSelect";
 
 interface TaskFiltersProps {
   difficulty: number | null;
@@ -77,6 +78,14 @@ const TaskFilters: React.FC<TaskFiltersProps> = ({
               <Switch
                 checked={showUnsolved}
                 onChange={(e) => onShowUnsolvedChange(e.target.checked)}
+                sx={{
+                  "& .MuiSwitch-switchBase.Mui-checked": {
+                    color: "#846ee6",
+                  },
+                  "& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track": {
+                    backgroundColor: "#846ee6",
+                  },
+                }}
               />
             }
           />
@@ -100,7 +109,7 @@ const TaskFilters: React.FC<TaskFiltersProps> = ({
                   sx={{ p: 0.5 }}
                 >
                   {value <= (difficulty ?? 0) ? (
-                    <StarIcon sx={{ color: "#000" }} />
+                    <StarIcon sx={{ color: "#846ee6" }} />
                   ) : (
                     <StarBorderIcon sx={{ color: "#ccc" }} />
                   )}
@@ -113,24 +122,30 @@ const TaskFilters: React.FC<TaskFiltersProps> = ({
         <Box display="flex" gap={2}>
           <Box sx={{ minWidth: 200 }}>
             <FormControl fullWidth size="small">
-              <InputLabel>Тема</InputLabel>
-              <Select
-                value={topic || ""}
-                onChange={handleTopicChange}
+              <InputLabel sx={label_sx}>Тема</InputLabel>
+              <PurpleSelect
+                value={topic}
+                onChange={(e) =>
+                  handleTopicChange(e as SelectChangeEvent<string>)
+                }
                 label="Тема"
-                sx={{ borderRadius: "20px" }}
               >
                 <MenuItem value="">Все темы</MenuItem>
                 {allTopics.map((topic) => (
-                  <MenuItem key={topic} value={topic}>
+                  <MenuItem key={topic} value={topic} sx={menu_item_sx}>
                     {topic}
                   </MenuItem>
                 ))}
-              </Select>
+              </PurpleSelect>
             </FormControl>
           </Box>
 
-          <BtnCustom variant="outlined" onClick={onReset} text="Сбросить" />
+          <BtnCustom
+            customColor="#846ee6"
+            variant="outlined"
+            onClick={onReset}
+            text="Сбросить"
+          />
         </Box>
       </Box>
     </Box>
