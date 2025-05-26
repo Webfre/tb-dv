@@ -1,19 +1,10 @@
-import React, { useState } from "react";
-import {
-  Drawer,
-  Box,
-  Typography,
-  Chip,
-  Stack,
-  IconButton,
-} from "@mui/material";
-import HtmlDrawer from "../Сourse/HtmlDrawer";
-import CloseIcon from "@mui/icons-material/Close";
+import React from "react";
+import { Drawer, Box, Typography, IconButton } from "@mui/material";
 import { renderDifficulty } from "./renderDifficulty";
 import { PracticeTask } from "../../DB/index_type";
 import TaskContent from "./TaskContent";
+import CloseIcon from "@mui/icons-material/Close";
 import styles from "./TaskDrawer.module.scss";
-import { chip_sx } from "../../styles/global";
 
 interface TaskDrawerProps {
   open: boolean;

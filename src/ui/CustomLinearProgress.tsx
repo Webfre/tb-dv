@@ -1,16 +1,19 @@
 import React from "react";
 import LinearProgress from "@mui/material/LinearProgress";
+import { SxProps, Theme } from "@mui/material";
 
 interface CustomLinearProgressProps {
   value: number;
   backgroundColorPercent?: string;
   backgroundColor?: string;
+  sx?: SxProps<Theme>;
 }
 
 export const CustomLinearProgress: React.FC<CustomLinearProgressProps> = ({
   value,
   backgroundColorPercent = "#1976d2",
   backgroundColor = "#eee",
+  sx = {},
 }) => {
   return (
     <LinearProgress
@@ -23,6 +26,7 @@ export const CustomLinearProgress: React.FC<CustomLinearProgressProps> = ({
         "& .MuiLinearProgress-bar": {
           backgroundColor: backgroundColorPercent,
         },
+        ...sx,
       }}
     />
   );

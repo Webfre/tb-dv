@@ -9,7 +9,9 @@ import {
   Divider,
   IconButton,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { courseList } from "../DB";
+import { Breadcrumbs } from "./Breadcrumbs";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import PersonIcon from "@mui/icons-material/Person";
 import LogoutIcon from "@mui/icons-material/Logout";
@@ -19,8 +21,12 @@ interface HeaderBarProps {
 }
 
 export const HeaderBar: React.FC<HeaderBarProps> = ({ title }) => {
+  const { id } = useParams<{ id: string }>();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const navigate = useNavigate();
+
+  const courseTitle =
+    courseList.find((course) => course.id === Number(id))?.title ?? "";
 
   const handleOpen = (event: React.MouseEvent<HTMLElement>) =>
     setAnchorEl(event.currentTarget);
@@ -41,7 +47,10 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({ title }) => {
 
   return (
     <header className={styles.header}>
-      <h1 className={styles.title}>{title}</h1>
+      <div>
+        <h1 className={styles.title}>{title || courseTitle}</h1>
+        <Breadcrumbs />
+      </div>
 
       <div className={styles.userMenu}>
         <IconButton onClick={handleOpen} className={styles.avatarButton}>

@@ -1,15 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Box,
-  Card,
-  CardContent,
-  Typography,
-  Grid,
-  LinearProgress,
-  Chip,
-  Link,
-  Tooltip,
-} from "@mui/material";
+import { Box, Card, CardContent, Typography, Grid, Chip } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
 import { useGetUserProgressQuery } from "../../api/progressApi";
 import { calculateTopicProgress } from "../../lib/calculateTopicProgress";
@@ -17,11 +7,14 @@ import QuizIcon from "@mui/icons-material/Quiz";
 import WorkIcon from "@mui/icons-material/Work";
 import CodeIcon from "@mui/icons-material/Code";
 import BookIcon from "@mui/icons-material/MenuBook";
-import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
-import AddReactionIcon from "@mui/icons-material/AddReaction";
-import styles from "./Course.module.scss";
+import { FaRegSadTear } from "react-icons/fa";
 import { InfoCourse } from "../../DB/index_type";
 import { courseList, mockTopics } from "../../DB";
+import { NotFoundMessage } from "../../ui/NotFoundMessage";
+import { HintBlock } from "../../ui/HintBlock";
+import { chip_sx, chip_sx_light_border } from "../../styles/global";
+import { CustomLinearProgress } from "../../ui/CustomLinearProgress";
+import styles from "./Course.module.scss";
 
 const CoursePage: React.FC = () => {
   const navigate = useNavigate();
@@ -60,51 +53,21 @@ const CoursePage: React.FC = () => {
 
   if (!course) {
     return (
-      <Typography>
-        Произошла ошибка, обратитесь к администратору курса
-      </Typography>
+      <NotFoundMessage
+        icon={<FaRegSadTear size={32} color="#999" />}
+        text="Произошла ошибка, обратитесь к администратору курса"
+      />
     );
   }
 
   return (
     <Box p={2}>
-      <Box className={styles.roadmap}>
-        <Typography variant="h4" gutterBottom>
-          Курс: {course.title}
-        </Typography>
-
-        <Typography variant="body1" mb={3}>
-          В курсе представлены практические задачи, тесты, примеры решений,
+      <Box>
+        <HintBlock
+          text="В курсе представлены практические задачи, тесты, примеры решений,
           ссылки на полезные ресурсы, видеоуроки и конференции, а также
-          поддержка в процессе обучения. Сам курс охватывает основные темы от
-          базового уровня до уровня Trainee/Junior Frontend Developer.
-        </Typography>
-
-        <Box className={styles.roadmapType}>
-          <Tooltip title="Trainee — начинающий разработчик, только осваивает основы frontend, часто без коммерческого опыта.">
-            <Chip
-              icon={<EmojiEmotionsIcon />}
-              label="Trainee"
-              color="primary"
-            />
-          </Tooltip>
-
-          <Tooltip title="Junior — разработчик, владеющий базовыми технологиями, способен выполнять простые задачи под руководством.">
-            <Chip icon={<AddReactionIcon />} label="Junior" color="primary" />
-          </Tooltip>
-        </Box>
-      </Box>
-
-      <Box className={styles.roadmap}>
-        <Typography textAlign="left" variant="body2" color="textSecondary">
-          Не знаете, с чего начать? Напишите вашему наставнику или загляните в
-          <Link href="/roadmap" underline="hover" sx={{ mx: 0.5 }}>
-            Roadmap
-          </Link>
-          — это пошаговое руководство, которое подскажет, в каком порядке
-          изучать темы и выполнять задания. Следуйте по пунктам от начала и до
-          конца. Удачи в обучении!
-        </Typography>
+          поддержка в процессе обучения."
+        />
       </Box>
 
       <Grid container spacing={3}>
@@ -127,18 +90,9 @@ const CoursePage: React.FC = () => {
               sx={{ display: "flex" }}
             >
               <Card
-                sx={{
-                  borderRadius: "20px",
-                  cursor: "pointer",
-                  display: "flex",
-                  flexDirection: "column",
-                  height: "100%",
-                  width: "100%",
-                }}
+                className={styles.card}
                 onClick={() =>
-                  navigate(`/course/${topic.id}`, {
-                    state: { courseId },
-                  })
+                  navigate(`/panel/course/${courseId}?topicId=${topic.id}`)
                 }
               >
                 <CardContent
@@ -161,7 +115,7 @@ const CoursePage: React.FC = () => {
                           label={`Тестов: ${totalTests}`}
                           color="primary"
                           size="small"
-                          sx={{ width: "100%" }}
+                          sx={{ width: "100%", ...chip_sx }}
                         />
                       </Grid>
                     )}
@@ -172,7 +126,7 @@ const CoursePage: React.FC = () => {
                           label={`Практик: ${totalPractice}`}
                           color="secondary"
                           size="small"
-                          sx={{ width: "100%" }}
+                          sx={{ width: "100%", ...chip_sx_light_border }}
                         />
                       </Grid>
                     )}
@@ -215,10 +169,11 @@ const CoursePage: React.FC = () => {
                       >
                         Прогресс: {progress}%
                       </Typography>
-                      <LinearProgress
-                        variant="determinate"
+
+                      <CustomLinearProgress
                         value={progress}
-                        sx={{ height: 10, borderRadius: 5 }}
+                        backgroundColor="#f0f0f0"
+                        backgroundColorPercent="#846ee6"
                       />
                     </Box>
                   )}

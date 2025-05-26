@@ -82,7 +82,7 @@ const TopicChaptersAccordion: React.FC<TopicChaptersAccordionProps> = ({
   ) => {
     e.stopPropagation();
     if (testKey && chapterTitle) {
-      navigate("/test", {
+      navigate("/panel/test", {
         state: {
           name: chapterTitle,
           selectedTest: testKey,

@@ -14,6 +14,23 @@ export const chip_sx_light = {
   },
 };
 
+export const chip_sx_success = {
+  backgroundColor: "rgba(76, 175, 80, 0.1)",
+  color: "#4caf50",
+  "&:hover": {
+    backgroundColor: "rgba(76, 175, 80, 0.2)",
+  },
+};
+
+export const chip_sx_light_border = {
+  backgroundColor: "rgba(132, 110, 230, 0.1)",
+  border: "1px solid rgba(132, 110, 230, 0.3)",
+  color: "#846ee6",
+  "&:hover": {
+    backgroundColor: "rgba(132, 110, 230, 0.2)",
+  },
+};
+
 export const label_sx = {
   color: "#846ee6",
   "&.Mui-focused": {
@@ -48,5 +65,27 @@ export const select_sx = {
   },
   "& .MuiSvgIcon-root": {
     color: "#846ee6",
+  },
+};
+
+export const checkbox_sx = {
+  color: "#c3b5fa", // начальный (не выбранный) цвет
+  "&.Mui-checked": {
+    color: "#947ef6", // выбранный цвет
+  },
+  "&.MuiCheckbox-root:hover": {
+    backgroundColor: "rgba(148, 126, 246, 0.08)",
+    borderRadius: "4px",
+  },
+  "&.Mui-disabled": {
+    color: "#d3ccf5", // цвет в состоянии disabled
+  },
+  "&.Mui-focusVisible": {
+    outline: "2px solid #b7a7fb",
+    outlineOffset: 2,
+    borderRadius: "4px",
+  },
+  "& .MuiSvgIcon-root": {
+    fontSize: 24,
   },
 };

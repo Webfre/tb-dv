@@ -9,7 +9,7 @@ const Spinner: React.FC = () => {
       alignItems="center"
       minHeight="200px"
     >
-      <CircularProgress size={40} thickness={4} />
+      <CircularProgress sx={{ color: "#947ef6" }} size={60} thickness={4} />
     </Box>
   );
 };

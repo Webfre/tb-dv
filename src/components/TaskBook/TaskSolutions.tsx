@@ -3,23 +3,20 @@ import { PracticeTask } from "../../DB/index_type";
 import {
   Dialog,
   DialogContent,
-  Grid,
   IconButton,
   Typography,
+  Box,
 } from "@mui/material";
-import { CopyBlock, dracula } from "react-code-blocks";
 import CloseIcon from "@mui/icons-material/Close";
+import { CopyBlock, dracula } from "react-code-blocks";
 import { styleCodeBlock } from "../Сourse/CopyBlockStyle";
-import FullscreenIcon from "@mui/icons-material/Fullscreen";
-import styles from "./TaskDrawer.module.scss";
+import { renderCodeBlocks } from "../PracticeDrawer/renderCodeBlocks";
 
 interface TaskSolutionsProps {
   task: PracticeTask;
 }
 
 const TaskSolutions: React.FC<TaskSolutionsProps> = ({ task }) => {
-  const { solution, codeExampleCSS, codeExampleJS } = task;
-
   const [fullCode, setFullCode] = useState<null | {
     title: string;
     code: string;
@@ -34,80 +31,7 @@ const TaskSolutions: React.FC<TaskSolutionsProps> = ({ task }) => {
 
   return (
     <>
-      <Grid
-        sx={{ marginBottom: "40px" }}
-        className={styles.gridContainer}
-        container
-        spacing={2}
-      >
-        {solution && (
-          <Grid
-            item
-            className={styles.gridItem}
-            xs={codeExampleCSS || codeExampleJS ? 6 : 12}
-          >
-            <Typography
-              onClick={() => handleOpen("HTML", solution, "html")}
-              className={styles.gridTitle}
-            >
-              HTML решение:
-              <FullscreenIcon fontSize="small" />
-            </Typography>
-
-            <CopyBlock
-              text={solution}
-              language="html"
-              showLineNumbers
-              theme={dracula}
-              customStyle={styleCodeBlock}
-              codeBlock
-            />
-          </Grid>
-        )}
-
-        {codeExampleJS && (
-          <Grid item className={styles.gridItem} xs={solution ? 6 : 12}>
-            <Typography
-              onClick={() =>
-                handleOpen("JavaScript", codeExampleJS, "javascript")
-              }
-              className={styles.gridTitle}
-            >
-              JavaScript решение:
-              <FullscreenIcon fontSize="small" />
-            </Typography>
-            <CopyBlock
-              text={codeExampleJS}
-              language="js"
-              showLineNumbers
-              theme={dracula}
-              customStyle={styleCodeBlock}
-              codeBlock
-            />
-          </Grid>
-        )}
-
-        {codeExampleCSS && (
-          <Grid item className={styles.gridItem} xs={solution ? 6 : 12}>
-            <Typography
-              onClick={() => handleOpen("CSS", codeExampleCSS, "css")}
-              className={styles.gridTitle}
-            >
-              CSS решение:
-              <FullscreenIcon fontSize="small" />
-            </Typography>
-
-            <CopyBlock
-              text={codeExampleCSS}
-              language="css"
-              showLineNumbers
-              theme={dracula}
-              customStyle={styleCodeBlock}
-              codeBlock
-            />
-          </Grid>
-        )}
-      </Grid>
+      <Box mb={5}>{renderCodeBlocks(task, handleOpen)}</Box>
 
       <Dialog open={!!fullCode} onClose={handleClose} fullScreen>
         <DialogContent
@@ -130,12 +54,10 @@ const TaskSolutions: React.FC<TaskSolutionsProps> = ({ task }) => {
             <CloseIcon />
           </IconButton>
 
-          {/* Заголовок */}
           <Typography variant="h6" color="white" gutterBottom>
             {fullCode?.title}
           </Typography>
 
-          {/* Блок с кодом */}
           {fullCode && (
             <CopyBlock
               text={fullCode.code}
@@ -146,12 +68,9 @@ const TaskSolutions: React.FC<TaskSolutionsProps> = ({ task }) => {
                 ...styleCodeBlock,
                 maxHeight: "85vh",
                 overflow: "auto",
-
-                scrollbarWidth: "thin", // Firefox
-                scrollbarColor: "#444 transparent", // Firefox
-
-                /* WebKit (Chrome, Edge, Safari) */
-                WebkitScrollbarWidth: "thin", // не обязателен, но для совместимости
+                scrollbarWidth: "thin",
+                scrollbarColor: "#444 transparent",
+                WebkitScrollbarWidth: "thin",
                 WebkitOverflowScrolling: "touch",
               }}
               codeBlock

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+import FullscreenIcon from "@mui/icons-material/Fullscreen";
 import {
   Drawer,
   Box,
@@ -9,6 +8,8 @@ import {
   Stack,
   Chip,
   Grid,
+  Dialog,
+  DialogContent,
 } from "@mui/material";
 import { styleCodeBlock } from "../Сourse/CopyBlockStyle";
 import { CopyBlock, dracula } from "react-code-blocks";
@@ -19,6 +20,8 @@ import LinkIcon from "@mui/icons-material/Link";
 import HtmlDrawer from "../Сourse/HtmlDrawer";
 import styles from "./SectionDrawer.module.scss";
 import { CourseSection } from "../../DB/index_type";
+import MarkdownRenderer from "./MarkdownRenderer";
+import { chip_sx, chip_sx_light } from "../../styles/global";
 
 interface SectionDrawerProps {
   section: CourseSection | null;
@@ -29,6 +32,43 @@ const SectionDrawer: React.FC<SectionDrawerProps> = ({ section, onClose }) => {
   const [htmlDrawerOpen, setHtmlDrawerOpen] = useState(false);
   const navigate = useNavigate();
 
+  const [fullCode, setFullCode] = useState<null | {
+    title: string;
+    code: string;
+    language: string;
+  }>(null);
+
+  const handleOpen = (title: string, code: string, language: string) => {
+    setFullCode({ title, code, language });
+  };
+
+  const handleClose = () => setFullCode(null);
+
+  const visibleCodeBlocks = [
+    section?.codeExample && {
+      title: "HTML",
+      code: section.codeExample,
+      language: "html",
+    },
+    section?.codeExampleCSS && {
+      title: "CSS",
+      code: section.codeExampleCSS,
+      language: "css",
+    },
+    section?.codeExampleJS && {
+      title: "JavaScript",
+      code: section.codeExampleJS,
+      language: "javascript",
+    },
+  ].filter(Boolean) as { title: string; code: string; language: string }[];
+
+  const getGridSize = (index: number, count: number): 12 | 6 => {
+    if (count === 1) return 12;
+    if (count === 2) return 6;
+    if (count === 3) return index < 2 ? 6 : 12;
+    return 12;
+  };
+
   return (
     <>
       <Drawer
@@ -37,153 +77,205 @@ const SectionDrawer: React.FC<SectionDrawerProps> = ({ section, onClose }) => {
         onClose={onClose}
         PaperProps={{ sx: { height: "100vh" } }}
       >
-        <Box px={4} py={2} sx={{ height: "100%", overflowY: "auto" }}>
-          <Box className={styles.titleName}>
-            <Box className={styles.titleNameShow}>
-              <Typography variant="h6" color="primary">
-                {section?.title}
-              </Typography>
+        {section && (
+          <Box px={4} py={2} sx={{ height: "100%", overflowY: "auto" }}>
+            <Box className={styles.titleName}>
+              <Box className={styles.titleNameShow}>
+                <Typography variant="h6">{section?.title}</Typography>
 
-              <Box display="flex" gap={2}>
-                {section?.show && (
-                  <Box display="flex" gap={2}>
-                    <Stack direction="row">
-                      <Chip
-                        label="Показать пример"
-                        color="primary"
-                        onClick={() => setHtmlDrawerOpen(true)}
-                        clickable
-                      />
-                    </Stack>
-                  </Box>
-                )}
+                <Box display="flex" gap={2}>
+                  {section?.show && (
+                    <Box display="flex" gap={2}>
+                      <Stack direction="row">
+                        <Chip
+                          label="Показать пример"
+                          color="primary"
+                          sx={chip_sx}
+                          onClick={() => setHtmlDrawerOpen(true)}
+                          clickable
+                        />
+                      </Stack>
+                    </Box>
+                  )}
+                </Box>
+
+                <Box display="flex" gap={2}>
+                  {section?.postMentor && (
+                    <Box display="flex" gap={2}>
+                      <Stack direction="row">
+                        <Chip
+                          label="Отправить на проверку"
+                          color="success"
+                          sx={chip_sx_light}
+                          onClick={() =>
+                            navigate(
+                              `/mentorprofilepage/${section?.postMentor}`
+                            )
+                          }
+                          clickable
+                        />
+                      </Stack>
+                    </Box>
+                  )}
+                </Box>
               </Box>
 
-              <Box display="flex" gap={2}>
-                {section?.postMentor && (
-                  <Box display="flex" gap={2}>
-                    <Stack direction="row">
-                      <Chip
-                        label="Отправить на проверку"
-                        color="success"
-                        onClick={() =>
-                          navigate(`/mentorprofilepage/${section?.postMentor}`)
-                        }
-                        clickable
-                      />
-                    </Stack>
-                  </Box>
-                )}
-              </Box>
+              <IconButton onClick={onClose}>
+                <CloseIcon />
+              </IconButton>
             </Box>
 
-            <IconButton onClick={onClose}>
-              <CloseIcon />
-            </IconButton>
-          </Box>
+            <Box className={styles.content}>
+              <MarkdownRenderer
+                content={
+                  section?.content || "Раздел пока не содержит описания."
+                }
+              />
+            </Box>
 
-          <Box className={styles.content}>
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>
-              {section?.content || "Раздел пока не содержит описания."}
-            </ReactMarkdown>
-          </Box>
-
-          {section?.codeExample && (
-            <Box mb={3}>
-              {section.codeExampleCSS ? (
+            {visibleCodeBlocks.length > 0 && (
+              <Box mb={6}>
                 <Grid container spacing={2} className={styles.gridContainer}>
-                  <Grid item xs={12} md={6}>
-                    <Typography variant="body2" gutterBottom>
-                      Пример кода: HTML
-                    </Typography>
-                    <CopyBlock
-                      text={section.codeExample}
-                      language="html"
-                      showLineNumbers
-                      theme={dracula}
-                      customStyle={styleCodeBlock}
-                      codeBlock
-                    />
-                  </Grid>
-
-                  <Grid item className={styles.gridItem} xs={12} md={6}>
-                    <Typography variant="body2" gutterBottom>
-                      Пример кода: CSS
-                    </Typography>
-                    <CopyBlock
-                      text={section.codeExampleCSS}
-                      language="css"
-                      showLineNumbers
-                      theme={dracula}
-                      customStyle={styleCodeBlock}
-                      codeBlock
-                    />
-                  </Grid>
+                  {visibleCodeBlocks.map((block, index) => (
+                    <Grid
+                      key={block.title}
+                      item
+                      xs={12}
+                      md={getGridSize(index, visibleCodeBlocks.length)}
+                      className={styles.gridItem}
+                      sx={{
+                        mt:
+                          visibleCodeBlocks.length === 3 && index === 2
+                            ? 2.5
+                            : 0,
+                      }}
+                    >
+                      <Typography
+                        onClick={() =>
+                          handleOpen(block.title, block.code, block.language)
+                        }
+                        className={styles.gridTitle}
+                      >
+                        {block.title} решение:{" "}
+                        <FullscreenIcon fontSize="small" />
+                      </Typography>
+                      <CopyBlock
+                        text={block.code}
+                        language={block.language}
+                        showLineNumbers
+                        theme={dracula}
+                        customStyle={styleCodeBlock}
+                        codeBlock
+                      />
+                    </Grid>
+                  ))}
                 </Grid>
-              ) : (
-                <CopyBlock
-                  text={section.codeExample}
-                  language={section.type ? "js" : "html"}
-                  showLineNumbers
-                  theme={dracula}
-                  customStyle={styleCodeBlock}
-                  codeBlock
-                />
-              )}
-            </Box>
-          )}
+              </Box>
+            )}
 
-          {section?.resources?.length ? (
-            <Box className={styles.listResources}>
-              <Typography variant="subtitle1" gutterBottom>
-                Полезные ссылки
-              </Typography>
-              <Stack direction="row" spacing={1} flexWrap="wrap">
-                {section.resources.map((url, index) => (
-                  <Chip
-                    key={index}
-                    icon={<LinkIcon />}
-                    label={new URL(url).hostname}
-                    component="a"
-                    href={url}
-                    target="_blank"
-                    rel="noopener"
-                    clickable
-                    color="info"
-                  />
-                ))}
-              </Stack>
-            </Box>
-          ) : null}
+            {section?.resources?.length ? (
+              <Box className={styles.listResources}>
+                <Typography variant="subtitle1" gutterBottom>
+                  Полезные ссылки
+                </Typography>
+                <Stack direction="row" spacing={1} flexWrap="wrap">
+                  {section.resources.map((url, index) => (
+                    <Chip
+                      key={index}
+                      icon={<LinkIcon />}
+                      label={new URL(url).hostname}
+                      component="a"
+                      href={url}
+                      sx={chip_sx}
+                      target="_blank"
+                      rel="noopener"
+                      clickable
+                      color="info"
+                    />
+                  ))}
+                </Stack>
+              </Box>
+            ) : null}
 
-          {section?.attachments?.length ? (
-            <Box className={styles.listAttachments}>
-              <Typography variant="subtitle1" gutterBottom>
-                Прикреплённые файлы
-              </Typography>
-              <Stack direction="row" spacing={1} flexWrap="wrap">
-                {section.attachments.map((file, index) => (
-                  <Chip
-                    key={index}
-                    icon={<InsertDriveFileIcon />}
-                    label={file.split("/").pop()}
-                    component="a"
-                    href={file}
-                    download
-                    clickable
-                    color="default"
-                  />
-                ))}
-              </Stack>
-            </Box>
-          ) : null}
-        </Box>
+            {section?.attachments?.length ? (
+              <Box className={styles.listAttachments}>
+                <Typography variant="subtitle1" gutterBottom>
+                  Прикреплённые файлы
+                </Typography>
+                <Stack direction="row" spacing={1} flexWrap="wrap">
+                  {section.attachments.map((file, index) => (
+                    <Chip
+                      key={index}
+                      icon={<InsertDriveFileIcon />}
+                      label={file.split("/").pop()}
+                      component="a"
+                      href={file}
+                      sx={chip_sx}
+                      download
+                      clickable
+                      color="default"
+                    />
+                  ))}
+                </Stack>
+              </Box>
+            ) : null}
+          </Box>
+        )}
       </Drawer>
 
       <HtmlDrawer
         html={htmlDrawerOpen ? section?.show || null : null}
         onClose={() => setHtmlDrawerOpen(false)}
       />
+
+      <Dialog open={!!fullCode} onClose={handleClose} fullScreen>
+        <DialogContent
+          sx={{
+            backgroundColor: "#282c34",
+            padding: 4,
+            position: "relative",
+          }}
+        >
+          <IconButton
+            onClick={handleClose}
+            sx={{
+              position: "absolute",
+              top: 16,
+              right: 16,
+              color: "#fff",
+              zIndex: 1,
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
+
+          <Typography variant="h6" color="white" gutterBottom>
+            {fullCode?.title}
+          </Typography>
+
+          {fullCode && (
+            <CopyBlock
+              text={fullCode.code}
+              language={fullCode.language}
+              showLineNumbers
+              theme={dracula}
+              customStyle={{
+                ...styleCodeBlock,
+                maxHeight: "85vh",
+                overflow: "auto",
+
+                scrollbarWidth: "thin", // Firefox
+                scrollbarColor: "#444 transparent", // Firefox
+
+                /* WebKit (Chrome, Edge, Safari) */
+                WebkitScrollbarWidth: "thin", // не обязателен, но для совместимости
+                WebkitOverflowScrolling: "touch",
+              }}
+              codeBlock
+            />
+          )}
+        </DialogContent>
+      </Dialog>
     </>
   );
 };

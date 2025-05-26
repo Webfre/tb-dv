@@ -7,6 +7,8 @@ import {
   Stack,
   Chip,
   Grid,
+  Dialog,
+  DialogContent,
 } from "@mui/material";
 import { renderDifficulty } from "../TaskBook/renderDifficulty";
 import { useCheckCourseAccessQuery } from "../../api/userApi";
@@ -20,6 +22,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import TaskCompletionToggle from "../TaskBook/TaskCompletionToggle";
 import styles from "./PracticeDrawer.module.scss";
 import { PracticeTask } from "../../DB/index_type";
+import { renderCodeBlocks } from "./renderCodeBlocks";
+import { chip_sx, chip_sx_light, chip_sx_success } from "../../styles/global";
 
 interface PracticeDrawerProps {
   open: boolean;
@@ -52,6 +56,18 @@ const PracticeDrawer: React.FC<PracticeDrawerProps> = ({
     }
   }, [open]);
 
+  const [fullCode, setFullCode] = useState<null | {
+    title: string;
+    code: string;
+    language: string;
+  }>(null);
+
+  const handleOpen = (title: string, code: string, language: string) => {
+    setFullCode({ title, code, language });
+  };
+
+  const handleClose = () => setFullCode(null);
+
   return (
     <Drawer
       anchor="top"
@@ -62,7 +78,7 @@ const PracticeDrawer: React.FC<PracticeDrawerProps> = ({
       <Box px={4} py={3} sx={{ height: "100%", overflowY: "auto" }}>
         <Box className={styles.titlePR}>
           <Box className={styles.titleTask}>
-            <Typography variant="h6" color="primary">
+            <Typography variant="h5" mb={2}>
               Практические задачи
             </Typography>
             <IconButton onClick={onClose}>
@@ -82,15 +98,12 @@ const PracticeDrawer: React.FC<PracticeDrawerProps> = ({
                     label={task.title}
                     onClick={() => setSelectedTask(task)}
                     clickable
-                    variant={
-                      selectedTask?.id === task.id ? "filled" : "outlined"
-                    }
-                    color={
+                    sx={
                       isSolved
-                        ? "success"
+                        ? chip_sx_success
                         : selectedTask?.id === task.id
-                        ? "primary"
-                        : "default"
+                        ? chip_sx
+                        : chip_sx_light
                     }
                   />
                 </Grid>
@@ -101,10 +114,27 @@ const PracticeDrawer: React.FC<PracticeDrawerProps> = ({
 
         {selectedTask ? (
           <Box className={styles.selectedTask}>
-            <Box mt={1}>{renderDifficulty(selectedTask.difficulty)}</Box>
+            <Box className={styles.selectedTaskTop}>
+              {selectedTask?.show && (
+                <Box display="flex" gap={2}>
+                  <Stack direction="row">
+                    <Chip
+                      label="Показать пример"
+                      sx={chip_sx}
+                      onClick={() => setHtmlDrawerOpen(true)}
+                      clickable
+                    />
+                  </Stack>
+                </Box>
+              )}
 
-            <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-              <Typography variant="h6">{selectedTask.title}</Typography>
+              <Chip
+                label={showSolution ? "Скрыть решение" : "Показать решение"}
+                onClick={() => setShowSolution((prev) => !prev)}
+                clickable
+                sx={chip_sx_light}
+              />
+
               {hasAccess && (
                 <TaskCompletionToggle
                   taskId={selectedTask.id}
@@ -113,19 +143,10 @@ const PracticeDrawer: React.FC<PracticeDrawerProps> = ({
               )}
             </Box>
 
-            <Box display="flex" gap={2} alignItems="center">
-              {selectedTask?.show && (
-                <Box display="flex" gap={2}>
-                  <Stack direction="row">
-                    <Chip
-                      label="Показать пример"
-                      color="primary"
-                      onClick={() => setHtmlDrawerOpen(true)}
-                      clickable
-                    />
-                  </Stack>
-                </Box>
-              )}
+            <Box mt={1}>{renderDifficulty(selectedTask.difficulty)}</Box>
+
+            <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+              <Typography variant="h6">{selectedTask.title}</Typography>
             </Box>
 
             <Typography mt={2} variant="subtitle1" fontWeight={500}>
@@ -148,84 +169,12 @@ const PracticeDrawer: React.FC<PracticeDrawerProps> = ({
               ))}
             </ol>
 
-            {(selectedTask.solution || selectedTask.codeExampleCSS) && (
-              <Box mt={3}>
-                <Chip
-                  label={showSolution ? "Скрыть решение" : "Показать решение"}
-                  onClick={() => setShowSolution((prev) => !prev)}
-                  clickable
-                  color="primary"
-                  variant="outlined"
-                  sx={{ mb: 2 }}
-                />
-
+            {(selectedTask.solution ||
+              selectedTask.codeExampleCSS ||
+              selectedTask.codeExampleJS) && (
+              <Box mt={3} mb={6}>
                 {showSolution && (
-                  <Grid container spacing={2} className={styles.gridContainer}>
-                    {selectedTask.solution && (
-                      <Grid
-                        item
-                        className={styles.gridItem}
-                        xs={
-                          selectedTask.codeExampleCSS ||
-                          selectedTask.codeExampleJS
-                            ? 6
-                            : 12
-                        }
-                      >
-                        <Typography variant="subtitle2" gutterBottom>
-                          HTML решение:
-                        </Typography>
-                        <CopyBlock
-                          text={selectedTask.solution}
-                          language="html"
-                          showLineNumbers
-                          theme={dracula}
-                          customStyle={styleCodeBlock}
-                          codeBlock
-                        />
-                      </Grid>
-                    )}
-
-                    {selectedTask.codeExampleJS && (
-                      <Grid
-                        item
-                        className={styles.gridItem}
-                        xs={selectedTask.solution ? 6 : 12}
-                      >
-                        <Typography variant="subtitle2" gutterBottom>
-                          JavaScript решение:
-                        </Typography>
-                        <CopyBlock
-                          text={selectedTask.codeExampleJS}
-                          language="js"
-                          showLineNumbers
-                          theme={dracula}
-                          customStyle={styleCodeBlock}
-                          codeBlock
-                        />
-                      </Grid>
-                    )}
-
-                    {selectedTask.codeExampleCSS && (
-                      <Grid
-                        item
-                        className={styles.gridItem}
-                        xs={selectedTask.solution ? 6 : 12}
-                      >
-                        <Typography variant="subtitle2" gutterBottom>
-                          CSS решение:
-                        </Typography>
-                        <CopyBlock
-                          text={selectedTask.codeExampleCSS}
-                          language="css"
-                          showLineNumbers
-                          theme={dracula}
-                          customStyle={styleCodeBlock}
-                          codeBlock
-                        />
-                      </Grid>
-                    )}
-                  </Grid>
+                  <Box>{renderCodeBlocks(selectedTask, handleOpen)}</Box>
                 )}
               </Box>
             )}
@@ -234,7 +183,7 @@ const PracticeDrawer: React.FC<PracticeDrawerProps> = ({
               selectedTask.resources.length > 0 && (
                 <Box mb={2}>
                   <Typography variant="subtitle1" gutterBottom>
-                    Полезные ссылки
+                    Полезные ссылки:
                   </Typography>
                   <Stack direction="row" spacing={1} flexWrap="wrap">
                     {selectedTask.resources.map((url, index) => (
@@ -244,6 +193,7 @@ const PracticeDrawer: React.FC<PracticeDrawerProps> = ({
                         label={new URL(url).hostname}
                         component="a"
                         href={url}
+                        sx={chip_sx}
                         target="_blank"
                         rel="noopener"
                         clickable
@@ -258,7 +208,7 @@ const PracticeDrawer: React.FC<PracticeDrawerProps> = ({
               selectedTask.attachments.length > 0 && (
                 <Box>
                   <Typography mt={2} variant="subtitle1" fontWeight={500}>
-                    Файлы для скачивания
+                    Файлы для скачивания:
                   </Typography>
                   <Stack direction="row" flexWrap="wrap" gap={1} mt={1}>
                     {selectedTask.attachments.map((file, index) => (
@@ -266,6 +216,7 @@ const PracticeDrawer: React.FC<PracticeDrawerProps> = ({
                         key={index}
                         label={`Файл ${index + 1}`}
                         component="a"
+                        sx={chip_sx}
                         href={file}
                         download
                         clickable
@@ -289,6 +240,57 @@ const PracticeDrawer: React.FC<PracticeDrawerProps> = ({
         html={htmlDrawerOpen ? selectedTask?.show || null : null}
         onClose={() => setHtmlDrawerOpen(false)}
       />
+
+      <Dialog open={!!fullCode} onClose={handleClose} fullScreen>
+        <DialogContent
+          sx={{
+            backgroundColor: "#282c34",
+            padding: 4,
+            position: "relative",
+          }}
+        >
+          <IconButton
+            onClick={handleClose}
+            sx={{
+              position: "absolute",
+              top: 16,
+              right: 16,
+              color: "#fff",
+              zIndex: 1,
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
+
+          {/* Заголовок */}
+          <Typography variant="h6" color="white" gutterBottom>
+            {fullCode?.title}
+          </Typography>
+
+          {/* Блок с кодом */}
+          {fullCode && (
+            <CopyBlock
+              text={fullCode.code}
+              language={fullCode.language}
+              showLineNumbers
+              theme={dracula}
+              customStyle={{
+                ...styleCodeBlock,
+                maxHeight: "85vh",
+                overflow: "auto",
+
+                scrollbarWidth: "thin", // Firefox
+                scrollbarColor: "#444 transparent", // Firefox
+
+                /* WebKit (Chrome, Edge, Safari) */
+                WebkitScrollbarWidth: "thin", // не обязателен, но для совместимости
+                WebkitOverflowScrolling: "touch",
+              }}
+              codeBlock
+            />
+          )}
+        </DialogContent>
+      </Dialog>
     </Drawer>
   );
 };
