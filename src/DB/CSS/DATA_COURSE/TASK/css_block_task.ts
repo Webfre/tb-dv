@@ -21,26 +21,13 @@ export const css_block_model_task_1 = {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Отступы в CSS</title>
-
-  <style>
-    /* Блок с отступами */
-    .box {
-      width: 200px;
-      height: 100px;
-      margin: 20px;
-      padding: 10px;
-      background-color: #d1ecf1;
-      border: 2px solid #3498db;
-    }
-  </style>
 </head>
 <body>
-
   <div class="box">
     Это блок с внешними и внутренними отступами.
   </div>
-
 </body>
 </html>
   `.trim(),
@@ -72,15 +59,15 @@ export const css_block_model_task_1 = {
 </html>
   `.trim(),
   codeExampleCSS: `
-/* Блок с отступами */
-.box {
-  width: 200px;
-  height: 100px;
-  margin: 20px;
-  padding: 10px;
-  background-color: #d1ecf1;
-  border: 2px solid #3498db;
-}
+ /* Блок с отступами */
+    .box {
+      width: 200px;
+      height: 100px;
+      margin: 20px;
+      padding: 10px;
+      background-color: #d1ecf1;
+      border: 2px solid #3498db;
+    }
   `.trim(),
   resources: [
     "https://developer.mozilla.org/ru/docs/Web/CSS/margin",
@@ -105,46 +92,23 @@ export const css_block_model_task_2 = {
     "Добавьте padding в 20px и границу в 2px для обоих элементов.",
     "Проверьте, как разница в `box-sizing` влияет на итоговый размер.",
   ],
-  difficulty: 2,
+  difficulty: 1,
   solution: `
 <!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Box-sizing в CSS</title>
-
-  <style>
-    /* Элемент по умолчанию (content-box) */
-    .content-box {
-      width: 300px;
-      padding: 20px;
-      border: 2px solid #3498db;
-      margin-bottom: 10px;
-      background-color: #d1ecf1;
-      box-sizing: content-box; /* значение по умолчанию */
-    }
-
-    /* Элемент с border-box */
-    .border-box {
-      width: 300px;
-      padding: 20px;
-      border: 2px solid #f8d7da;
-      background-color: #f8d7da;
-      box-sizing: border-box; /* включает отступы и границы в общую ширину */
-    }
-  </style>
 </head>
 <body>
-
   <div class="content-box">
     <p>box-sizing: content-box (по умолчанию). Итоговая ширина больше 300px.</p>
   </div>
-
   <div class="border-box">
     <p>box-sizing: border-box. Итоговая ширина ровно 300px.</p>
   </div>
-
 </body>
 </html>
   `.trim(),
@@ -237,38 +201,16 @@ export const css_block_model_task_3 = {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Центрирование и комбинированные отступы</title>
-
-  <style>
-    /* Центрирование по горизонтали */
-    .centered-box {
-      width: 300px;
-      height: 100px;
-      background-color: #d1ecf1;
-      margin: 0 auto;
-      border: 2px solid #3498db;
-    }
-
-    /* Комбинированные отступы */
-    .spaced-box {
-      width: 200px;
-      height: 100px;
-      background-color: #f8d7da;
-      margin: 20px 40px 30px 10px;
-      border: 2px solid #f5c6cb;
-    }
-  </style>
 </head>
 <body>
-
   <div class="centered-box">
     Блок, центрированный по горизонтали
   </div>
-
   <div class="spaced-box">
     Блок с разными отступами
   </div>
-
 </body>
 </html>
   `.trim(),
@@ -280,21 +222,22 @@ export const css_block_model_task_3 = {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Центрирование и комбинированные отступы</title>
   <style>
-    .centered-box {
-      width: 300px;
-      height: 100px;
-      background-color: #d1ecf1;
-      margin: 0 auto;
-      border: 2px solid #3498db;
-    }
+   .centered-box {
+  width: 300px;
+  height: 100px;
+  background-color: #d1ecf1;
+  margin: 0 auto;
+  border: 2px solid #3498db;
+}
 
-    .spaced-box {
-      width: 200px;
-      height: 100px;
-      background-color: #f8d7da;
-      margin: 20px 40px 30px 10px;
-      border: 2px solid #f5c6cb;
-    }
+/* Комбинированные отступы */
+.spaced-box {
+  width: 200px;
+  height: 100px;
+  background-color: #f8d7da;
+  margin: 20px 40px 30px 10px;
+  border: 2px solid #f5c6cb;
+}
   </style>
 </head>
 <body>
@@ -357,25 +300,13 @@ export const css_block_model_task_4 = {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Границы и фон у блока</title>
-
-  <style>
-    /* Блок с границей, фоном и скруглёнными углами */
-    .styled-box {
-      width: 250px;
-      height: 150px;
-      background-color: #d1ecf1;
-      border: 2px dotted #3498db;
-      border-radius: 10px;
-    }
-  </style>
 </head>
 <body>
-
   <div class="styled-box">
     Это блок с границей, фоном и скруглёнными углами.
   </div>
-
 </body>
 </html>
   `.trim(),
@@ -397,23 +328,21 @@ export const css_block_model_task_4 = {
   </style>
 </head>
 <body>
-
   <div class="styled-box">
     Это блок с границей, фоном и скруглёнными углами.
   </div>
-
 </body>
 </html>
   `.trim(),
   codeExampleCSS: `
 /* Блок с границей, фоном и скруглёнными углами */
-.styled-box {
-  width: 250px;
-  height: 150px;
-  background-color: #d1ecf1;
-  border: 2px dotted #3498db;
-  border-radius: 10px;
-}
+    .styled-box {
+      width: 250px;
+      height: 150px;
+      background-color: #d1ecf1;
+      border: 2px dotted #3498db;
+      border-radius: 10px;
+    }
   `.trim(),
   resources: [
     "https://developer.mozilla.org/ru/docs/Web/CSS/border",
@@ -446,22 +375,8 @@ export const css_block_model_task_5 = {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Карточка с фоном, границей и скруглениями</title>
-
-  <style>
-    /* Карточка с границей, фоном и скруглёнными углами */
-    .card {
-      width: 300px;
-      height: 180px;
-      background-color: #f0f8ff;
-      border-top: 2px solid #3498db;
-      border-right: 2px dotted #f39c12;
-      border-bottom: 2px dashed #e74c3c;
-      border-left: 2px double #2ecc71;
-      border-top-left-radius: 15px;
-      border-top-right-radius: 15px;
-    }
-  </style>
 </head>
 <body>
 

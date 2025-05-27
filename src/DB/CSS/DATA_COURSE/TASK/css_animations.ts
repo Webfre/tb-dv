@@ -21,33 +21,10 @@ export const css_animations_task_1 = {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Плавный переход цвета и размера кнопки</title>
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f2f2f2;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-
-    .animated-button {
-      background-color: #4CAF50;
-      color: white;
-      padding: 15px 30px;
-      border: none;
-      border-radius: 8px;
-      font-size: 18px;
-      cursor: pointer;
-      transition: background-color 0.3s ease, transform 0.3s ease;
-    }
-
-    .animated-button:hover {
-      background-color: #45a049;
-      transform: scale(1.05);
-    }
+ 
   </style>
 </head>
 <body>
@@ -100,31 +77,31 @@ export const css_animations_task_1 = {
 </html>
   `.trim(),
   codeExampleCSS: `
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #f2f2f2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
+   body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
 
-.animated-button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 15px 30px;
-  border: none;
-  border-radius: 8px;
-  font-size: 18px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
+    .animated-button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
 
-.animated-button:hover {
-  background-color: #45a049;
-  transform: scale(1.05);
-}
+    .animated-button:hover {
+      background-color: #45a049;
+      transform: scale(1.05);
+    }
   `.trim(),
   resources: [
     "https://developer.mozilla.org/ru/docs/Web/CSS/transition",
@@ -155,60 +132,8 @@ export const css_animations_task_2 = {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Плавное раскрытие информации при наведении</title>
-  <style>
-    body {
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background-color: #f5f5f5;
-      font-family: Arial, sans-serif;
-    }
-
-    .card {
-      width: 300px;
-      height: 200px;
-      background-color: #eeeeee;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      cursor: pointer;
-      overflow: hidden;
-      position: relative;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      transition: all 0.3s ease;
-    }
-
-    .card:hover {
-      background-color: #42a5f5;
-      transform: scale(1.05);
-    }
-
-    .card:hover .info {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .title {
-      font-size: 18px;
-      font-weight: bold;
-      color: #333;
-    }
-
-    .info {
-      position: absolute;
-      bottom: 15px;
-      opacity: 0;
-      font-size: 14px;
-      color: white;
-      transform: translateY(20px);
-      transition: all 0.3s ease;
-    }
-  </style>
 </head>
 <body>
   <div class="card">
@@ -290,47 +215,57 @@ export const css_animations_task_2 = {
 </html>
   `.trim(),
   codeExampleCSS: `
-.card {
-  width: 300px;
-  height: 200px;
-  background-color: #eeeeee;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  cursor: pointer;
-  overflow: hidden;
-  position: relative;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
-}
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f5f5f5;
+      font-family: Arial, sans-serif;
+    }
 
-.card:hover {
-  background-color: #42a5f5;
-  transform: scale(1.05);
-}
+    .card {
+      width: 300px;
+      height: 200px;
+      background-color: #eeeeee;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      cursor: pointer;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
 
-.card:hover .info {
-  opacity: 1;
-  transform: translateY(0);
-}
+    .card:hover {
+      background-color: #42a5f5;
+      transform: scale(1.05);
+    }
 
-.title {
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
-}
+    .card:hover .info {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-.info {
-  position: absolute;
-  bottom: 15px;
-  opacity: 0;
-  font-size: 14px;
-  color: white;
-  transform: translateY(20px);
-  transition: all 0.3s ease;
-}
+    .title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .info {
+      position: absolute;
+      bottom: 15px;
+      opacity: 0;
+      font-size: 14px;
+      color: white;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+    }
   `.trim(),
   resources: [
     "https://developer.mozilla.org/ru/docs/Web/CSS/transition",
@@ -354,44 +289,15 @@ export const css_animations_task_3 = {
     "Используйте `transform` для увеличения и поворота при наведении.",
     "Примените `transition` для плавного эффекта.",
   ],
-  difficulty: 1,
+  difficulty: 3,
   solution: `
 <!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Простая анимация увеличения и поворота</title>
-  <style>
-    body {
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background-color: #f5f5f5;
-      font-family: Arial, sans-serif;
-    }
-
-    .card {
-      width: 200px;
-      height: 150px;
-      background-color: #4caf50;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    .card:hover {
-      transform: scale(1.1) rotate(5deg);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-    }
-  </style>
 </head>
 <body>
 
@@ -450,24 +356,34 @@ export const css_animations_task_3 = {
 </html>
   `.trim(),
   codeExampleCSS: `
-.card {
-  width: 200px;
-  height: 150px;
-  background-color: #4caf50;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f5f5f5;
+      font-family: Arial, sans-serif;
+    }
 
-.card:hover {
-  transform: scale(1.1) rotate(5deg);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-}
+    .card {
+      width: 200px;
+      height: 150px;
+      background-color: #4caf50;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .card:hover {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    }
   `.trim(),
   resources: [
     "https://developer.mozilla.org/ru/docs/Web/CSS/transform",
@@ -499,58 +415,8 @@ export const css_animations_task_4 = {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>3D Карточка с разворотом</title>
-  <style>
-    body {
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background-color: #f5f5f5;
-      font-family: Arial, sans-serif;
-    }
-
-    .card-container {
-      perspective: 1000px;
-    }
-
-    .card {
-      width: 300px;
-      height: 200px;
-      position: relative;
-      transform-style: preserve-3d;
-      transition: transform 0.6s;
-      cursor: pointer;
-    }
-
-    .card:hover {
-      transform: rotateY(180deg);
-    }
-
-    .card-face {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    }
-
-    .card-front {
-      background-color: #2196f3;
-      color: white;
-    }
-
-    .card-back {
-      background-color: #4caf50;
-      color: white;
-      transform: rotateY(180deg);
-    }
-  </style>
 </head>
 <body>
 
@@ -643,45 +509,55 @@ export const css_animations_task_4 = {
 </html>
   `.trim(),
   codeExampleCSS: `
-.card-container {
-  perspective: 1000px;
-}
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f5f5f5;
+      font-family: Arial, sans-serif;
+    }
 
-.card {
-  width: 300px;
-  height: 200px;
-  position: relative;
-  transform-style: preserve-3d;
-  transition: transform 0.6s;
-  cursor: pointer;
-}
+    .card-container {
+      perspective: 1000px;
+    }
 
-.card:hover {
-  transform: rotateY(180deg);
-}
+    .card {
+      width: 300px;
+      height: 200px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.6s;
+      cursor: pointer;
+    }
 
-.card-face {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
+    .card:hover {
+      transform: rotateY(180deg);
+    }
 
-.card-front {
-  background-color: #2196f3;
-  color: white;
-}
+    .card-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
 
-.card-back {
-  background-color: #4caf50;
-  color: white;
-  transform: rotateY(180deg);
-}
+    .card-front {
+      background-color: #2196f3;
+      color: white;
+    }
+
+    .card-back {
+      background-color: #4caf50;
+      color: white;
+      transform: rotateY(180deg);
+    }
   `.trim(),
   resources: [
     "https://developer.mozilla.org/ru/docs/Web/CSS/transform",

@@ -35,6 +35,7 @@ export const cssChapters = [
       "css_box_model_task_4",
       "css_box_model_task_5",
       "css_box_model_task_6",
+      "css_position_task_2",
       "css_box_model_task_7",
       "css_box_model_task_8",
       "css_box_model_task_9",
@@ -56,13 +57,13 @@ export const cssChapters = [
   },
   {
     id: "css_pseudo",
-    title: "Псевдоклассы и псеводо элемены ",
+    title: "Псевдоклассы и псевдоэлемены ",
     sections: cssSections.css_pseudo,
     testKeys: ["css_pseudo_test"],
     practiceIds: [
       "css_pseudo_task_1",
       "css_pseudoElement_task_3",
-      "css_pseudo_task_3",
+      "css_pseudo_task_8",
       "css_pseudo_task_4",
       "css_pseudo_task_5",
       "css_pseudo_task_6",
@@ -169,7 +170,7 @@ export const cssChapters = [
     id: "css_preprocessors",
     title: "Препроцессоры (Sass/Less)",
     sections: cssSections.css_preprocessors,
-    testKeys: ["css_preprocessors_test"],
+    testKeys: [],
     practiceIds: ["css_preprocessors_task"],
   },
 

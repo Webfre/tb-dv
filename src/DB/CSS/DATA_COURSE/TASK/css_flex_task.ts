@@ -1068,27 +1068,8 @@ export const flex_task_6 = {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Основы flex-wrap</title>
-  <style>
-    .flex-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      background-color: #f9f9f9;
-      border: 1px solid #ccc;
-      padding: 10px;
-      width: 100%;
-      box-sizing: border-box;
-    }
-
-    .flex-item {
-      background-color: lightblue;
-      padding: 10px;
-      border: 1px solid #007acc;
-      width: 250px;
-      text-align: center;
-    }
-  </style>
 </head>
 <body>
 

@@ -1,5 +1,5 @@
 export const css_layout_test = {
-  id: 508,
+  id: 408,
   name: "Макеты и позиционирование",
   category: "CSS",
   ques: [
@@ -77,8 +77,8 @@ export const css_layout_test = {
     },
     {
       id: 13,
-      name: "Какое значение свойства display лучше всего подходит для карточек, стоящих в ряд?",
-      variants: ["block", "flex", "inline-block"],
+      name: "Какой тег по умолчанию располагает текст и элементы в одну строку?",
+      variants: ["div", "span", "section"],
       correct: [1],
     },
     {

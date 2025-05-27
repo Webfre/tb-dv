@@ -22,31 +22,8 @@ export const css_box_model_task_1 = {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Типы отображения</title>
-
-  <style>
-    .block {
-      display: block;
-      width: 200px;
-      background-color: #d1ecf1;
-    }
-
-    .inline {
-      display: inline;
-      background-color: #f8d7da;
-    }
-
-    .inline-block {
-      display: inline-block;
-      width: 150px;
-      height: 50px;
-      background-color: #d4edda;
-    }
-
-    .hidden {
-      display: none;
-    }
-  </style>
 </head>
 <body>
   <div class="block">Блочный элемент (block)</div>
@@ -64,7 +41,7 @@ export const css_box_model_task_1 = {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Типы отображения</title>
   <style>
-    .block {
+     .block {
       display: block;
       width: 200px;
       background-color: #d1ecf1;
@@ -96,30 +73,27 @@ export const css_box_model_task_1 = {
 </html>
   `.trim(),
   codeExampleCSS: `
-.block {
-  display: block;
-  width: 200px;
-  background-color: #d1ecf1;
-  margin-bottom: 10px;
-}
+    .block {
+      display: block;
+      width: 200px;
+      background-color: #d1ecf1;
+    }
 
-.inline {
-  display: inline;
-  background-color: #f8d7da;
-  padding: 5px;
-}
+    .inline {
+      display: inline;
+      background-color: #f8d7da;
+    }
 
-.inline-block {
-  display: inline-block;
-  width: 150px;
-  height: 50px;
-  background-color: #d4edda;
-  margin: 5px;
-}
+    .inline-block {
+      display: inline-block;
+      width: 150px;
+      height: 50px;
+      background-color: #d4edda;
+    }
 
-.hidden {
-  display: none;
-}
+    .hidden {
+      display: none;
+    }
   `.trim(),
   resources: [
     "https://developer.mozilla.org/ru/docs/Web/CSS/display",
@@ -151,34 +125,8 @@ export const css_box_model_task_2 = {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Типы отображения элементов</title>
-
-  <style>
-    /* Блочный элемент занимает всю ширину */
-    .block {
-      display: block;
-      background-color: #d1ecf1;
-    }
-
-    /* Инлайновый элемент — находится в одной строке с текстом */
-    .inline {
-      display: inline;
-      background-color: #f8d7da;
-    }
-
-    /* Инлайн-блочный элемент — в строке, но можно задавать ширину и высоту */
-    .inline-block {
-      display: inline-block;
-      background-color: #d4edda;
-      width: 100px;
-      height: 30px;
-    }
-
-    /* Этот элемент не виден */
-    .hidden {
-      display: none;
-    }
-  </style>
 </head>
 <body>
 
@@ -245,28 +193,30 @@ export const css_box_model_task_2 = {
 </html>
   `.trim(),
   codeExampleCSS: `
-/* Примеры отображения разных типов элементов */
+    /* Блочный элемент занимает всю ширину */
+    .block {
+      display: block;
+      background-color: #d1ecf1;
+    }
 
-.block {
-  display: block;
-  background-color: #d1ecf1;
-}
+    /* Инлайновый элемент — находится в одной строке с текстом */
+    .inline {
+      display: inline;
+      background-color: #f8d7da;
+    }
 
-.inline {
-  display: inline;
-  background-color: #f8d7da;
-}
+    /* Инлайн-блочный элемент — в строке, но можно задавать ширину и высоту */
+    .inline-block {
+      display: inline-block;
+      background-color: #d4edda;
+      width: 100px;
+      height: 30px;
+    }
 
-.inline-block {
-  display: inline-block;
-  background-color: #d4edda;
-  width: 100px;
-  height: 30px;
-}
-
-.hidden {
-  display: none;
-}
+    /* Этот элемент не виден */
+    .hidden {
+      display: none;
+    }
   `.trim(),
   resources: [
     "https://developer.mozilla.org/ru/docs/Web/CSS/display",
@@ -298,40 +248,9 @@ export const css_box_model_task_3 = {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Список товаров</title>
 
-  <style>
-    /* Стили для товара */
-    .product {
-      background-color: #f1f1f1;
-      margin-bottom: 10px;
-    }
-
-    /* Заголовок товара */
-    .product-title {
-      display: block;
-      font-weight: bold;
-      font-size: 18px;
-    }
-
-    /* Описание товара */
-    .product-description {
-      display: inline;
-      color: #555;
-    }
-
-    /* Цена товара */
-    .product-price {
-      display: inline-block;
-      font-size: 16px;
-      color: green;
-    }
-
-    /* Скрытый товар */
-    .hidden {
-      display: none;
-    }
-  </style>
 </head>
 <body>
 
@@ -427,32 +346,36 @@ export const css_box_model_task_3 = {
 </html>
   `.trim(),
   codeExampleCSS: `
-/* Примеры отображения разных типов элементов */
+   /* Стили для товара */
+    .product {
+      background-color: #f1f1f1;
+      margin-bottom: 10px;
+    }
 
-.product {
-  background-color: #f1f1f1;
-}
+    /* Заголовок товара */
+    .product-title {
+      display: block;
+      font-weight: bold;
+      font-size: 18px;
+    }
 
-.product-title {
-  display: block;
-  font-weight: bold;
-  font-size: 18px;
-}
+    /* Описание товара */
+    .product-description {
+      display: inline;
+      color: #555;
+    }
 
-.product-description {
-  display: inline;
-  color: #555;
-}
+    /* Цена товара */
+    .product-price {
+      display: inline-block;
+      font-size: 16px;
+      color: green;
+    }
 
-.product-price {
-  display: inline-block;
-  font-size: 16px;
-  color: green;
-}
-
-.hidden {
-  display: none;
-}
+    /* Скрытый товар */
+    .hidden {
+      display: none;
+    }
   `.trim(),
   resources: [
     "https://developer.mozilla.org/ru/docs/Web/CSS/display",
@@ -483,39 +406,12 @@ export const css_box_model_task_4 = {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Смещение элементов</title>
-
-  <style>
-    /* Первый элемент смещён вправо и вниз */
-    .box-1 {
-      position: relative;
-      top: 20px;
-      right: 30px;
-      background-color: #d1ecf1;
-      width: 150px;
-      height: 50px;
-      text-align: center;
-      line-height: 50px;
-    }
-
-    /* Второй элемент смещён влево и вверх */
-    .box-2 {
-      position: relative;
-      bottom: 15px;
-      left: 25px;
-      background-color: #f8d7da;
-      width: 150px;
-      height: 50px;
-      text-align: center;
-      line-height: 50px;
-    }
-  </style>
 </head>
 <body>
-
   <div class="box-1">Вниз и вправо</div>
   <div class="box-2">Вверх и влево</div>
-
 </body>
 </html>
   `.trim(),
@@ -561,27 +457,29 @@ export const css_box_model_task_4 = {
   codeExampleCSS: `
 /* Примеры смещения элементов с помощью top, right, bottom, left */
 
-.box-1 {
-  position: relative;
-  top: 20px;
-  right: 30px;
-  background-color: #d1ecf1;
-  width: 150px;
-  height: 50px;
-  text-align: center;
-  line-height: 50px;
-}
+    /* Первый элемент смещён вправо и вниз */
+    .box-1 {
+      position: relative;
+      top: 20px;
+      right: 30px;
+      background-color: #d1ecf1;
+      width: 150px;
+      height: 50px;
+      text-align: center;
+      line-height: 50px;
+    }
 
-.box-2 {
-  position: relative;
-  bottom: 15px;
-  left: 25px;
-  background-color: #f8d7da;
-  width: 150px;
-  height: 50px;
-  text-align: center;
-  line-height: 50px;
-}
+    /* Второй элемент смещён влево и вверх */
+    .box-2 {
+      position: relative;
+      bottom: 15px;
+      left: 25px;
+      background-color: #f8d7da;
+      width: 150px;
+      height: 50px;
+      text-align: center;
+      line-height: 50px;
+    }
   `.trim(),
   resources: [
     "https://developer.mozilla.org/ru/docs/Web/CSS/position",
@@ -615,48 +513,10 @@ export const css_box_model_task_5 = {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Смещение блоков</title>
-
-  <style>
-    /* Смещение вниз */
-    .move-down {
-      position: relative;
-      top: 20px;
-      width: 150px;
-      height: 50px;
-      background-color: #d1ecf1;
-    }
-
-    /* Смещение вверх */
-    .move-up {
-      position: relative;
-      bottom: 20px;
-      width: 150px;
-      height: 50px;
-      background-color: #f8d7da;
-    }
-
-    /* Смещение вправо */
-    .move-right {
-      position: relative;
-      left: 20px;
-      width: 150px;
-      height: 50px;
-      background-color: #d4edda;
-    }
-
-    /* Смещение влево */
-    .move-left {
-      position: relative;
-      right: 20px;
-      width: 150px;
-      height: 50px;
-      background-color: #fce9d1;
-    }
-  </style>
 </head>
 <body>
-
   <div class="move-down">Вниз (top: 20px)</div>
   <div class="move-up">Вверх (bottom: 20px)</div>
   <div class="move-right">Вправо (left: 20px)</div>
@@ -717,41 +577,41 @@ export const css_box_model_task_5 = {
 </html>
   `.trim(),
   codeExampleCSS: `
-/* Смещение вниз */
-.move-down {
-  position: relative;
-  top: 20px;
-  width: 150px;
-  height: 50px;
-  background-color: #d1ecf1;
-}
+    /* Смещение вниз */
+    .move-down {
+      position: relative;
+      top: 20px;
+      width: 150px;
+      height: 50px;
+      background-color: #d1ecf1;
+    }
 
-/* Смещение вверх */
-.move-up {
-  position: relative;
-  bottom: 20px;
-  width: 150px;
-  height: 50px;
-  background-color: #f8d7da;
-}
+    /* Смещение вверх */
+    .move-up {
+      position: relative;
+      bottom: 20px;
+      width: 150px;
+      height: 50px;
+      background-color: #f8d7da;
+    }
 
-/* Смещение вправо */
-.move-right {
-  position: relative;
-  left: 20px;
-  width: 150px;
-  height: 50px;
-  background-color: #d4edda;
-}
+    /* Смещение вправо */
+    .move-right {
+      position: relative;
+      left: 20px;
+      width: 150px;
+      height: 50px;
+      background-color: #d4edda;
+    }
 
-/* Смещение влево */
-.move-left {
-  position: relative;
-  right: 20px;
-  width: 150px;
-  height: 50px;
-  background-color: #fce9d1;
-}
+    /* Смещение влево */
+    .move-left {
+      position: relative;
+      right: 20px;
+      width: 150px;
+      height: 50px;
+      background-color: #fce9d1;
+    }
   `.trim(),
   resources: [
     "https://developer.mozilla.org/ru/docs/Web/CSS/position",
@@ -784,10 +644,85 @@ export const css_box_model_task_6 = {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Карточки с абсолютным смещением</title>
-
+</head>
+<body>
+  <div class="container">
+    <div class="top-left">Сверху слева</div>
+    <div class="top-right">Сверху справа</div>
+    <div class="bottom-left">Снизу слева</div>
+    <div class="bottom-right">Снизу справа</div>
+  </div>
+</body>
+</html>
+  `.trim(),
+  show: `
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Карточки с абсолютным смещением</title>
   <style>
-    /* Контейнер, относительно которого располагаются элементы */
+    .container {
+      position: relative;
+      width: 400px;
+      height: 200px;
+      background-color: #f1f1f1;
+    }
+
+    .top-left {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100px;
+      height: 50px;
+      background-color: #d1ecf1;
+    }
+
+    .top-right {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100px;
+      height: 50px;
+      background-color: #f8d7da;
+    }
+
+    .bottom-left {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100px;
+      height: 50px;
+      background-color: #d4edda;
+    }
+
+    .bottom-right {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 100px;
+      height: 50px;
+      background-color: #fce9d1;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="top-left">Сверху слева</div>
+    <div class="top-right">Сверху справа</div>
+    <div class="bottom-left">Снизу слева</div>
+    <div class="bottom-right">Снизу справа</div>
+  </div>
+
+</body>
+</html>
+  `.trim(),
+  codeExampleCSS: `
+ /* Контейнер, относительно которого располагаются элементы */
     .container {
       position: relative;
       width: 400px;
@@ -834,129 +769,6 @@ export const css_box_model_task_6 = {
       height: 50px;
       background-color: #fce9d1;
     }
-  </style>
-</head>
-<body>
-
-  <div class="container">
-    <div class="top-left">Сверху слева</div>
-    <div class="top-right">Сверху справа</div>
-    <div class="bottom-left">Снизу слева</div>
-    <div class="bottom-right">Снизу справа</div>
-  </div>
-
-</body>
-</html>
-  `.trim(),
-  show: `
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Карточки с абсолютным смещением</title>
-  <style>
-    .container {
-      position: relative;
-      width: 400px;
-      height: 200px;
-      background-color: #f1f1f1;
-    }
-
-    .top-left {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100px;
-      height: 50px;
-      background-color: #d1ecf1;
-    }
-
-    .top-right {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 100px;
-      height: 50px;
-      background-color: #f8d7da;
-    }
-
-    .bottom-left {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100px;
-      height: 50px;
-      background-color: #d4edda;
-    }
-
-    .bottom-right {
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      width: 100px;
-      height: 50px;
-      background-color: #fce9d1;
-    }
-  </style>
-</head>
-<body>
-
-  <div class="container">
-    <div class="top-left">Сверху слева</div>
-    <div class="top-right">Сверху справа</div>
-    <div class="bottom-left">Снизу слева</div>
-    <div class="bottom-right">Снизу справа</div>
-  </div>
-
-</body>
-</html>
-  `.trim(),
-  codeExampleCSS: `
-/* Контейнер для абсолютного позиционирования */
-.container {
-  position: relative;
-  width: 400px;
-  height: 200px;
-  background-color: #f1f1f1;
-}
-
-/* Карточки в углах */
-.top-left {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100px;
-  height: 50px;
-  background-color: #d1ecf1;
-}
-
-.top-right {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100px;
-  height: 50px;
-  background-color: #f8d7da;
-}
-
-.bottom-left {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100px;
-  height: 50px;
-  background-color: #d4edda;
-}
-
-.bottom-right {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 100px;
-  height: 50px;
-  background-color: #fce9d1;
-}
   `.trim(),
   resources: [
     "https://developer.mozilla.org/ru/docs/Web/CSS/position",
@@ -984,68 +796,15 @@ export const css_box_model_task_7 = {
     "Для пятого элемента примените `position: sticky` с закреплением в верхней части страницы.",
     "Добавьте большой текст, чтобы можно было прокручивать страницу и проверить работу sticky и fixed.",
   ],
-  difficulty: 1,
+  difficulty: 3,
   solution: `
 <!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Типы позиционирования</title>
-
-  <style>
-    .static {
-      background-color: #d1ecf1;
-      height: 50px;
-      width: 150px;
-    }
-
-    .relative {
-      position: relative;
-      top: 10px;
-      background-color: #f8d7da;
-      height: 50px;
-      width: 150px;
-    }
-
-    .container {
-      position: relative;
-      height: 100px;
-      background-color: #f1f1f1;
-      margin-bottom: 20px;
-    }
-
-    .absolute {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      background-color: #d4edda;
-      height: 50px;
-      width: 150px;
-    }
-
-    .fixed {
-      position: fixed;
-      bottom: 10px;
-      right: 10px;
-      background-color: #fce9d1;
-      height: 50px;
-      width: 150px;
-    }
-
-    .sticky {
-      position: sticky;
-      top: 0;
-      background-color: #cce5ff;
-      height: 50px;
-      width: 100%;
-    }
-
-    .content {
-      margin-top: 20px;
-      line-height: 1.5;
-    }
-  </style>
 </head>
 <body>
 
@@ -1202,6 +961,58 @@ export const css_box_model_task_7 = {
 
 </body>
 </html>
+  `.trim(),
+  codeExampleCSS: `
+    .static {
+      background-color: #d1ecf1;
+      height: 50px;
+      width: 150px;
+    }
+
+    .relative {
+      position: relative;
+      top: 10px;
+      background-color: #f8d7da;
+      height: 50px;
+      width: 150px;
+    }
+
+    .container {
+      position: relative;
+      height: 100px;
+      background-color: #f1f1f1;
+    }
+
+    .absolute {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background-color: #d4edda;
+      height: 50px;
+      width: 150px;
+    }
+
+    .fixed {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      background-color: #fce9d1;
+      height: 50px;
+      width: 150px;
+    }
+
+    .sticky {
+      position: sticky;
+      top: 0;
+      background-color: #cce5ff;
+      height: 50px;
+      width: 100%;
+    }
+
+    .content {
+      margin-top: 20px;
+      line-height: 1.5;
+    }
   `.trim(),
 };
 export const css_box_model_task_8 = {
@@ -1228,69 +1039,14 @@ export const css_box_model_task_8 = {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Позиционирование карточек</title>
-
-  <style>
-    /* Родительский контейнер */
-    .parent {
-      position: relative;
-      width: 100%;
-      height: 300px;
-      background-color: #f1f1f1;
-      margin-bottom: 20px;
-    }
-
-    /* Абсолютное позиционирование */
-    .absolute-left {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      width: 150px;
-      height: 50px;
-      background-color: #d1ecf1;
-    }
-
-    .absolute-right {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      width: 150px;
-      height: 50px;
-      background-color: #f8d7da;
-    }
-
-    /* Фиксированное позиционирование */
-    .fixed-left {
-      position: fixed;
-      bottom: 10px;
-      left: 10px;
-      width: 150px;
-      height: 50px;
-      background-color: #d4edda;
-    }
-
-    .fixed-right {
-      position: fixed;
-      bottom: 10px;
-      right: 10px;
-      width: 150px;
-      height: 50px;
-      background-color: #fce9d1;
-    }
-
-    /* Длинный текст для проверки скролла */
-    .content {
-      line-height: 1.5;
-    }
-  </style>
 </head>
 <body>
-
   <div class="parent">
     <div class="absolute-left">Absolute Left</div>
     <div class="absolute-right">Absolute Right</div>
   </div>
-
   <div class="content">
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.
@@ -1423,6 +1179,51 @@ export const css_box_model_task_8 = {
 </body>
 </html>
   `.trim(),
+  codeExampleCSS: `
+    .parent {
+      position: relative;
+      width: 100%;
+      height: 300px;
+      background-color: #f1f1f1;
+      margin-bottom: 20px;
+    }
+
+    .absolute-left {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 150px;
+      height: 50px;
+      background-color: #d1ecf1;
+    }
+
+    .absolute-right {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 150px;
+      height: 50px;
+      background-color: #f8d7da;
+    }
+
+    .fixed-left {
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      width: 150px;
+      height: 50px;
+      background-color: #d4edda;
+    }
+
+    .fixed-right {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      width: 150px;
+      height: 50px;
+      background-color: #fce9d1;
+    }
+  `.trim(),
   resources: [
     "https://developer.mozilla.org/ru/docs/Web/CSS/position",
     "https://html5book.ru/css-position/",
@@ -1445,17 +1246,87 @@ export const css_box_model_task_9 = {
     "Используйте `opacity` для изменения прозрачности элементов.",
     "Проверьте, как перекрываются блоки и меняется их видимость.",
   ],
-  difficulty: 1,
+  difficulty: 2,
   solution: `
 <!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Слои и прозрачность</title>
-
+</head>
+<body>
+  <div class="container">
+    <div class="layer1">Слой 1 (z-index: 1)</div>
+    <div class="layer2">Слой 2 (z-index: 2, opacity: 0.8)</div>
+    <div class="layer3">Слой 3 (z-index: 3, opacity: 0.5)</div>
+  </div>
+</body>
+</html>
+  `.trim(),
+  show: `
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Слои и прозрачность</title>
   <style>
-    /* Контейнер для абсолютного позиционирования */
+    .container {
+      position: relative;
+      width: 400px;
+      height: 250px;
+      background-color: #f9f9f9;
+    }
+
+    .layer1 {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 150px;
+      height: 150px;
+      background-color: #d1ecf1;
+      z-index: 1;
+      opacity: 1;
+    }
+
+    .layer2 {
+      position: absolute;
+      top: 40px;
+      left: 40px;
+      width: 150px;
+      height: 150px;
+      background-color: #f8d7da;
+      z-index: 2;
+      opacity: 0.8;
+    }
+
+    .layer3 {
+      position: absolute;
+      top: 60px;
+      left: 60px;
+      width: 150px;
+      height: 150px;
+      background-color: #d4edda;
+      z-index: 3;
+      opacity: 0.5;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="layer1">Слой 1 (z-index: 1)</div>
+    <div class="layer2">Слой 2 (z-index: 2, opacity: 0.8)</div>
+    <div class="layer3">Слой 3 (z-index: 3, opacity: 0.5)</div>
+  </div>
+
+</body>
+</html>
+  `.trim(),
+  codeExampleCSS: `
+ /* Контейнер для абсолютного позиционирования */
     .container {
       position: relative;
       width: 400px;
@@ -1498,124 +1369,8 @@ export const css_box_model_task_9 = {
       z-index: 3;
       opacity: 0.5;
     }
-  </style>
-</head>
-<body>
-
-  <div class="container">
-    <div class="layer1">Слой 1 (z-index: 1)</div>
-    <div class="layer2">Слой 2 (z-index: 2, opacity: 0.8)</div>
-    <div class="layer3">Слой 3 (z-index: 3, opacity: 0.5)</div>
-  </div>
-
-</body>
-</html>
   `.trim(),
-  show: `
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Слои и прозрачность</title>
-  <style>
-    .container {
-      position: relative;
-      width: 400px;
-      height: 250px;
-      background-color: #f9f9f9;
-    }
 
-    .layer1 {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      width: 150px;
-      height: 150px;
-      background-color: #d1ecf1;
-      z-index: 1;
-      opacity: 1;
-    }
-
-    .layer2 {
-      position: absolute;
-      top: 40px;
-      left: 40px;
-      width: 150px;
-      height: 150px;
-      background-color: #f8d7da;
-      z-index: 2;
-      opacity: 0.8;
-    }
-
-    .layer3 {
-      position: absolute;
-      top: 60px;
-      left: 60px;
-      width: 150px;
-      height: 150px;
-      background-color: #d4edda;
-      z-index: 3;
-      opacity: 0.5;
-    }
-  </style>
-</head>
-<body>
-
-  <div class="container">
-    <div class="layer1">Слой 1 (z-index: 1)</div>
-    <div class="layer2">Слой 2 (z-index: 2, opacity: 0.8)</div>
-    <div class="layer3">Слой 3 (z-index: 3, opacity: 0.5)</div>
-  </div>
-
-</body>
-</html>
-  `.trim(),
-  codeExampleCSS: `
-/* Контейнер */
-.container {
-  position: relative;
-  width: 400px;
-  height: 250px;
-  background-color: #f9f9f9;
-}
-
-/* Первый слой */
-.layer1 {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  width: 150px;
-  height: 150px;
-  background-color: #d1ecf1;
-  z-index: 1;
-  opacity: 1;
-}
-
-/* Второй слой */
-.layer2 {
-  position: absolute;
-  top: 40px;
-  left: 40px;
-  width: 150px;
-  height: 150px;
-  background-color: #f8d7da;
-  z-index: 2;
-  opacity: 0.8;
-}
-
-/* Третий слой */
-.layer3 {
-  position: absolute;
-  top: 60px;
-  left: 60px;
-  width: 150px;
-  height: 150px;
-  background-color: #d4edda;
-  z-index: 3;
-  opacity: 0.5;
-}
-  `.trim(),
   resources: [
     "https://developer.mozilla.org/ru/docs/Web/CSS/z-index",
     "https://developer.mozilla.org/ru/docs/Web/CSS/opacity",
@@ -1646,40 +1401,8 @@ export const css_box_model_task_10 = {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Прокручиваемый контейнер</title>
-
-  <style>
-    /* Контейнер с overflow */
-    .scroll-container {
-      width: 300px;
-      height: 200px;
-      overflow: auto;
-      border: 2px solid #3498db;
-      background-color: #f9f9f9;
-    }
-
-    /* Элементы внутри контейнера */
-    .block1 {
-      width: 350px;
-      height: 100px;
-      background-color: #d1ecf1;
-      color: #333;
-    }
-
-    .block2 {
-      width: 350px;
-      height: 100px;
-      background-color: #f8d7da;
-      color: #333;
-    }
-
-    .block3 {
-      width: 350px;
-      height: 100px;
-      background-color: #d4edda;
-      color: #333;
-    }
-  </style>
 </head>
 <body>
 

@@ -68,7 +68,19 @@ export const css_layout_1 = {
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="wrapper">
+    <div class="container">
+      <p>Это центрированный контейнер внутри обёртки с фоном.</p>
+    </div>
+  </div>
+</body>
+</html>
+  `.trim(),
+
+  codeExampleCSS: `
     body {
       margin: 0;
       font-family: sans-serif;
@@ -90,30 +102,6 @@ export const css_layout_1 = {
       margin: 0;
       padding: 20px 0;
     }
-  </style>
-</head>
-<body>
-  <div class="wrapper">
-    <div class="container">
-      <p>Это центрированный контейнер внутри обёртки с фоном.</p>
-    </div>
-  </div>
-</body>
-</html>
-  `.trim(),
-
-  codeExampleCSS: `
-.wrapper {
-  background: #e0e0e0;
-  padding: 40px 0;
-}
-
-.container {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 0 20px;
-  background: white;
-}
   `.trim(),
 
   resources: [
@@ -134,7 +122,7 @@ export const css_layout_2 = {
 
   ---
 
-  ## 1. position: sticky — прилипает при прокрутке
+  ##  position: sticky — прилипает при прокрутке
 
   Элемент как обычно находится в потоке, **но когда ты доскроллишь до него — он "прилипает"** к нужной позиции (например, к верху экрана).
 
@@ -152,7 +140,7 @@ export const css_layout_2 = {
 
   ---
 
-  ## 2. position: fixed — всегда на экране
+  ##  position: fixed — всегда на экране
 
   Элемент **всегда виден**, он как будто "приклеен" к краю окна.
 
@@ -191,7 +179,20 @@ export const css_layout_2 = {
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>Закреплённый header (sticky)</header>
+  <main>
+    <p>Контент страницы</p>
+    <p style="height: 1200px;">Много текста для скролла...</p>
+  </main>
+  <footer>Фиксированный footer (fixed)</footer>
+</body>
+</html>
+  `.trim(),
+
+  codeExampleCSS: `
     body {
       margin: 0;
       font-family: sans-serif;
@@ -221,44 +222,6 @@ export const css_layout_2 = {
       text-align: center;
       padding: 15px;
     }
-  </style>
-</head>
-<body>
-  <header>Закреплённый header (sticky)</header>
-  <main>
-    <p>Контент страницы</p>
-    <p style="height: 1200px;">Много текста для скролла...</p>
-  </main>
-  <footer>Фиксированный footer (fixed)</footer>
-</body>
-</html>
-  `.trim(),
-
-  codeExampleCSS: `
-header {
-  position: sticky;
-  top: 0;
-  background: #1976d2;
-  color: white;
-  padding: 20px;
-}
-
-main {
-  padding: 20px;
-  padding-bottom: 60px;
-  min-height: 100vh;
-}
-
-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: #333;
-  color: white;
-  text-align: center;
-  padding: 15px;
-}
   `.trim(),
 
   resources: [
@@ -270,120 +233,121 @@ export const css_layout_3 = {
   id: "css_layout_3",
   title: "Паттерны секций: карточки, блоки и отступы",
   content: `
-  ## Что такое "секции"?
+## Что такое "секции"?
 
-  Секции — это **отдельные смысловые части страницы**: баннер, блок с товарами, отзывы, футер и т.д.  
-  Каждая секция обычно:
-  - идёт одна за другой,
-  - имеет отступ сверху и снизу,
-  - оформлена своим фоном.
+Секции — это **отдельные смысловые блоки** на веб-странице. Каждый такой блок выполняет свою задачу и визуально отделяется от других:
 
-  ---
+- заголовок сайта (hero),
+- блок с товарами или услугами,
+- отзывы клиентов,
+- форма подписки,
+- футер и т.д.
 
-  ## Пример типичных секций
+Обычно каждая секция:
+- имеет **внутренние отступы** (чтобы контент не прилипал к краям),
+- имеет **фон**, отличающий её от других блоков,
+- идёт **одна за другой по вертикали**.
 
-  \`\`\`html
+---
+
+## Что такое CSS-паттерны?
+
+**CSS-паттерны** — это **повторяющиеся, удобные решения** для типичных задач верстки. Например:
+- как устроены карточки товаров,
+- как выравнивать блоки внутри секции,
+- какие отступы и стили применяются ко всем секциям.
+
+Использование паттернов:
+- делает код **предсказуемым** и **однородным**,
+- помогает быстрее собирать страницы,
+- упрощает работу в команде и масштабирование проекта.
+
+---
+
+## Пример структуры страницы
+
+\`\`\`html
+<body>
   <section class="hero">Баннер</section>
   <section class="features">Преимущества</section>
   <section class="products">Карточки товаров</section>
-  \`\`\`
+  <section class="footer">Футер</section>
+</body>
+\`\`\`
 
-  ---
+Каждая \`section\` — это **паттерн секции**. Мы задаём общие стили для всех секций, а также стили для каждой конкретной.
 
-  ## Отступы между секциями
+---
 
-  Чтобы секции не "сливались", задают внешние отступы:
+## Отступы между секциями
 
-  \`\`\`css
-  section {
-    padding: 60px 20px;
-  }
+Чтобы секции не сливались, им задают:
+- **внутренние отступы**: \`padding\`,
+- **внешние отступы между собой**: \`margin-top\`.
 
-  section + section {
-    margin-top: 40px;
-  }
-  \`\`\`
+\`\`\`css
+section {
+  padding: 60px 20px;
+}
 
-  ---
+section + section {
+  margin-top: 40px;
+}
+\`\`\`
 
-  ## Карточки внутри секций
+---
 
-  Внутри секции часто размещают **карточки** с помощью Flex или Grid:
+## Паттерн: карточки в секции
 
-  \`\`\`html
-  <section class="products">
-    <div class="card">Товар 1</div>
-    <div class="card">Товар 2</div>
-    <div class="card">Товар 3</div>
-  </section>
-  \`\`\`
+Внутри секции часто размещают **карточки** с помощью Flex или Grid.
 
-  \`\`\`css
-  .products {
-    display: flex;
-    gap: 20px;
-    justify-content: space-between;
-  }
+Пример: блок с тремя карточками товаров
 
-  .card {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    flex: 1;
-  }
-  \`\`\`
+\`\`\`html
+<section class="products">
+  <div class="card">Товар 1</div>
+  <div class="card">Товар 2</div>
+  <div class="card">Товар 3</div>
+</section>
+\`\`\`
 
-  ---
+\`\`\`css
+.products {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
 
-  ## Почему использовать паттерны?
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  flex: 1;
+}
+\`\`\`
 
-   Упрощает дизайн  
-   Легче масштабировать  
-   Выглядит аккуратно  
-  `.trim(),
+---
+
+## Почему важно использовать паттерны?
+
+ Делает макет **согласованным и профессиональным**  
+ Позволяет переиспользовать блоки и стили  
+ Упрощает поддержку и масштабирование  
+ Облегчает работу в команде
+
+`.trim(),
 
   codeExample: `
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
-    body {
-      margin: 0;
-      font-family: sans-serif;
-      background: #f9f9f9;
-    }
-
-    section {
-      padding: 60px 20px;
-    }
-
-    .hero {
-      background: #1976d2;
-      color: white;
-      text-align: center;
-    }
-
-    .products {
-      display: flex;
-      gap: 20px;
-    }
-
-    .card {
-      flex: 1;
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
-      text-align: center;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <section class="hero">
     <h1>Добро пожаловать</h1>
     <p>Это баннер</p>
   </section>
-
   <section class="products">
     <div class="card">Карточка 1</div>
     <div class="card">Карточка 2</div>
@@ -394,8 +358,18 @@ export const css_layout_3 = {
   `.trim(),
 
   codeExampleCSS: `
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: #f9f9f9;
+}
+
 section {
   padding: 60px 20px;
+}
+
+section + section {
+  margin-top: 40px;
 }
 
 .hero {
@@ -414,7 +388,7 @@ section {
   background: white;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
   text-align: center;
 }
   `.trim(),

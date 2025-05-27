@@ -14,60 +14,15 @@ export const css_responsive_task_1 = {
     "Добавьте стили для улучшения читаемости на мобильных устройствах.",
     "Сделайте меню адаптивным и удобным для всех типов экранов.",
   ],
-  difficulty: 1,
+  difficulty: 2,
   solution: `
 <!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Адаптивное меню с медиазапросами</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-    }
-
-    nav {
-      background-color: #333;
-      color: white;
-    }
-
-    ul {
-      display: flex;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    li {
-      flex: 1;
-      text-align: center;
-      padding: 15px;
-      border-right: 1px solid #555;
-    }
-
-    li:last-child {
-      border-right: none;
-    }
-
-    li a {
-      color: white;
-      text-decoration: none;
-      display: block;
-    }
-
-    @media (max-width: 768px) {
-      ul {
-        flex-direction: column;
-      }
-
-      li {
-        border-bottom: 1px solid #555;
-        border-right: none;
-      }
-    }
-  </style>
 </head>
 <body>
 
@@ -152,45 +107,50 @@ export const css_responsive_task_1 = {
 </html>
   `.trim(),
   codeExampleCSS: `
-nav {
-  background-color: #333;
-  color: white;
-}
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
 
-ul {
-  display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
+    nav {
+      background-color: #333;
+      color: white;
+    }
 
-li {
-  flex: 1;
-  text-align: center;
-  padding: 15px;
-  border-right: 1px solid #555;
-}
+    ul {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
 
-li:last-child {
-  border-right: none;
-}
+    li {
+      flex: 1;
+      text-align: center;
+      padding: 15px;
+      border-right: 1px solid #555;
+    }
 
-li a {
-  color: white;
-  text-decoration: none;
-  display: block;
-}
+    li:last-child {
+      border-right: none;
+    }
 
-@media (max-width: 768px) {
-  ul {
-    flex-direction: column;
-  }
+    li a {
+      color: white;
+      text-decoration: none;
+      display: block;
+    }
 
-  li {
-    border-bottom: 1px solid #555;
-    border-right: none;
-  }
-}
+    @media (max-width: 768px) {
+      ul {
+        flex-direction: column;
+      }
+
+      li {
+        border-bottom: 1px solid #555;
+        border-right: none;
+      }
+    }
   `.trim(),
   resources: [
     "https://developer.mozilla.org/ru/docs/Web/CSS/Media_Queries",
@@ -214,73 +174,15 @@ export const css_responsive_task_2 = {
     "На мобильных экранах сделайте карточки в одну колонку.",
     "Добавьте стили для улучшенной читаемости и навигации.",
   ],
-  difficulty: 2,
+  difficulty: 3,
   solution: `
 <!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Адаптивная сетка карточек</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f9f9f9;
-    }
-
-    .container {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      padding: 20px;
-    }
-
-    .card {
-      background-color: white;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-
-    .card img {
-      width: 100%;
-      height: 150px;
-      object-fit: cover;
-    }
-
-    .card-content {
-      padding: 15px;
-    }
-
-    .card-content h3 {
-      margin-bottom: 10px;
-      font-size: 18px;
-    }
-
-    .card-content p {
-      margin-bottom: 5px;
-      color: #555;
-    }
-
-    .card-content .price {
-      font-weight: bold;
-      color: #1976d2;
-    }
-
-    @media (max-width: 1024px) {
-      .container {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 600px) {
-      .container {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
 </head>
 <body>
 
@@ -436,57 +338,63 @@ export const css_responsive_task_2 = {
 </html>
   `.trim(),
   codeExampleCSS: `
-.container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  padding: 20px;
-}
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+    }
 
-.card {
-  background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
+    .container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      padding: 20px;
+    }
 
-.card img {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-}
+    .card {
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
 
-.card-content {
-  padding: 15px;
-}
+    .card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
 
-.card-content h3 {
-  margin-bottom: 10px;
-  font-size: 18px;
-}
+    .card-content {
+      padding: 15px;
+    }
 
-.card-content p {
-  margin-bottom: 5px;
-  color: #555;
-}
+    .card-content h3 {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
 
-.card-content .price {
-  font-weight: bold;
-  color: #1976d2;
-}
+    .card-content p {
+      margin-bottom: 5px;
+      color: #555;
+    }
 
-@media (max-width: 1024px) {
-  .container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
+    .card-content .price {
+      font-weight: bold;
+      color: #1976d2;
+    }
 
-@media (max-width: 600px) {
-  .container {
-    grid-template-columns: 1fr;
-  }
-}
+    @media (max-width: 1024px) {
+      .container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+    }
   `.trim(),
   resources: [
     "https://developer.mozilla.org/ru/docs/Web/CSS/Media_Queries",
@@ -517,43 +425,8 @@ export const css_responsive_task_3 = {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Отзывчивый блок с vw, vh и clamp()</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f0f8ff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-
-    .responsive-card {
-      width: 50vw; /* Занимает половину ширины экрана */
-      height: 30vh; /* Занимает 30% от высоты экрана */
-      background-color: #4CAF50;
-      color: white;
-      border-radius: 10px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 20px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .responsive-card h2 {
-      font-size: clamp(18px, 2.5vw, 36px); /* Размер шрифта изменяется от 18px до 36px в зависимости от ширины экрана */
-      margin-bottom: 10px;
-    }
-
-    .responsive-card p {
-      font-size: clamp(14px, 1.5vw, 24px); /* Размер текста тоже адаптивный */
-      margin: 0;
-    }
-  </style>
 </head>
 <body>
 
@@ -620,40 +493,40 @@ export const css_responsive_task_3 = {
 </html>
   `.trim(),
   codeExampleCSS: `
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #f0f8ff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
 
-.responsive-card {
-  width: 50vw;
-  height: 30vh;
-  background-color: #4CAF50;
-  color: white;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
+    .responsive-card {
+      width: 50vw; /* Занимает половину ширины экрана */
+      height: 30vh; /* Занимает 30% от высоты экрана */
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
 
-.responsive-card h2 {
-  font-size: clamp(18px, 2.5vw, 36px);
-  margin-bottom: 10px;
-}
+    .responsive-card h2 {
+      font-size: clamp(18px, 2.5vw, 36px); /* Размер шрифта изменяется от 18px до 36px в зависимости от ширины экрана */
+      margin-bottom: 10px;
+    }
 
-.responsive-card p {
-  font-size: clamp(14px, 1.5vw, 24px);
-  margin: 0;
-}
+    .responsive-card p {
+      font-size: clamp(14px, 1.5vw, 24px); /* Размер текста тоже адаптивный */
+      margin: 0;
+    }
   `.trim(),
   resources: [
     "https://developer.mozilla.org/ru/docs/Web/CSS/clamp",
@@ -684,62 +557,8 @@ export const css_responsive_task_4 = {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Адаптивная карточка профиля</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f2f2f2;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-
-    .profile-card {
-      width: clamp(300px, 40vw, 500px);
-      background-color: #ffffff;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-
-    .profile-header {
-      background-color: #4CAF50;
-      width: 100%;
-      padding: clamp(20px, 5vw, 40px);
-      color: white;
-      font-size: clamp(20px, 2.5vw, 32px);
-    }
-
-    .profile-content {
-      padding: clamp(15px, 3vw, 25px);
-    }
-
-    .profile-content p {
-      font-size: clamp(14px, 1.8vw, 20px);
-      margin-bottom: 20px;
-    }
-
-    .profile-button {
-      background-color: #4CAF50;
-      color: white;
-      padding: clamp(10px, 2vw, 15px) clamp(15px, 3vw, 20px);
-      border: none;
-      border-radius: 5px;
-      font-size: clamp(14px, 1.5vw, 18px);
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .profile-button:hover {
-      background-color: #45a049;
-    }
-  </style>
 </head>
 <body>
 
@@ -831,59 +650,59 @@ export const css_responsive_task_4 = {
 </html>
   `.trim(),
   codeExampleCSS: `
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #f2f2f2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
 
-.profile-card {
-  width: clamp(300px, 40vw, 500px);
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
+    .profile-card {
+      width: clamp(300px, 40vw, 500px);
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
 
-.profile-header {
-  background-color: #4CAF50;
-  width: 100%;
-  padding: clamp(20px, 5vw, 40px);
-  color: white;
-  font-size: clamp(20px, 2.5vw, 32px);
-}
+    .profile-header {
+      background-color: #4CAF50;
+      width: 100%;
+      padding: clamp(20px, 5vw, 40px);
+      color: white;
+      font-size: clamp(20px, 2.5vw, 32px);
+    }
 
-.profile-content {
-  padding: clamp(15px, 3vw, 25px);
-}
+    .profile-content {
+      padding: clamp(15px, 3vw, 25px);
+    }
 
-.profile-content p {
-  font-size: clamp(14px, 1.8vw, 20px);
-  margin-bottom: 20px;
-}
+    .profile-content p {
+      font-size: clamp(14px, 1.8vw, 20px);
+      margin-bottom: 20px;
+    }
 
-.profile-button {
-  background-color: #4CAF50;
-  color: white;
-  padding: clamp(10px, 2vw, 15px) clamp(15px, 3vw, 20px);
-  border: none;
-  border-radius: 5px;
-  font-size: clamp(14px, 1.5vw, 18px);
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
+    .profile-button {
+      background-color: #4CAF50;
+      color: white;
+      padding: clamp(10px, 2vw, 15px) clamp(15px, 3vw, 20px);
+      border: none;
+      border-radius: 5px;
+      font-size: clamp(14px, 1.5vw, 18px);
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
 
-.profile-button:hover {
-  background-color: #45a049;
-}
+    .profile-button:hover {
+      background-color: #45a049;
+    }
   `.trim(),
   resources: [
     "https://developer.mozilla.org/ru/docs/Web/CSS/clamp",

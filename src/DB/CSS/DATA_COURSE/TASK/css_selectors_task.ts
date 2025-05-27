@@ -22,21 +22,8 @@ export const css_selectors_task_1 = {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Цвета в CSS</title>
-
-  <style>
-    h1 {
-      color: #3498db; /* HEX формат */
-    }
-
-    h2 {
-      color: rgb(46, 204, 113); /* RGB формат */
-    }
-
-    p {
-      color: hsl(120, 60%, 70%); /* HSL формат */
-    }
-  </style>
 </head>
 <body>
   <h1>Заголовок HEX цвета</h1>
@@ -117,29 +104,8 @@ export const css_selectors_task_2 = {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Прозрачные цвета в CSS</title>
-
-  <style>
-    body {
-      gap: 20px;
-      padding: 20px;
-    }
-
-    .rgba-block {
-      width: 200px;
-      height: 150px;
-      background-color: rgba(255, 0, 0, 0.5); /* Прозрачный красный */
- 
-      color: white;
-    }
-
-    .hsla-block {
-      width: 200px;
-      height: 150px;
-      background-color: hsla(200, 100%, 50%, 0.3); /* Прозрачный голубой */
-      color: #333;
-    }
-  </style>
 </head>
 <body>
   <div class="rgba-block">RGBA Color</div>
@@ -183,13 +149,24 @@ export const css_selectors_task_2 = {
   `.trim(),
   codeExampleCSS: `
 /* Примеры использования RGBA и HSLA */
-.rgba-block {
-  background-color: rgba(255, 0, 0, 0.5); /* Полупрозрачный красный */
-}
+    body {
+      gap: 20px;
+      padding: 20px;
+    }
 
-.hsla-block {
-  background-color: hsla(200, 100%, 50%, 0.3); /* Полупрозрачный голубой */
-}
+    .rgba-block {
+      width: 200px;
+      height: 150px;
+      background-color: rgba(255, 0, 0, 0.5);
+      color: white;
+    }
+
+    .hsla-block {
+      width: 200px;
+      height: 150px;
+      background-color: hsla(200, 100%, 50%, 0.3);
+      color: #333;
+    }
   `.trim(),
   resources: [
     "https://developer.mozilla.org/ru/docs/Web/CSS/color_value/rgba",
@@ -220,26 +197,8 @@ export const css_selectors_task_3 = {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Стилизация текста в CSS</title>
-
-  <style>
-    h1 {
-      font-family: Arial, sans-serif;
-      font-size: 28px;
-    }
-
-    h2 {
-      font-family: Georgia, serif;
-      font-size: 22px;
-      line-height: 1.5;
-    }
-
-    p {
-      font-family: "Segoe UI", Tahoma, sans-serif;
-      letter-spacing: 0.2em;
-      text-align: justify;
-    }
-  </style>
 </head>
 <body>
   <h1>Заголовок уровня 1</h1>
@@ -272,6 +231,7 @@ export const css_selectors_task_3 = {
     p {
       font-family: "Segoe UI", Tahoma, sans-serif;
       letter-spacing: 0.2em;
+      text-align: justify;
     }
   </style>
 </head>
@@ -337,10 +297,94 @@ export const css_selectors_task_4 = {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Работа с шрифтами и текстом</title>
+</head>
+<body>
+  <h1>Заголовок с Arial</h1>
+  <h2>Заголовок с Georgia</h2>
+  <h3>Заголовок с Courier New</h3>
 
+  <p class="tahoma">
+    Это пример текста с шрифтом Tahoma, увеличенным межстрочным интервалом (1.8) и отступами между символами.
+  </p>
+
+  <p class="verdana">
+    Этот абзац оформлен шрифтом Verdana. Выравнивание выполнено по ширине, что позволяет тексту ровно располагаться в блоке.
+  </p>
+
+  <p class="times">
+    Это пример текста с шрифтом Times New Roman, увеличенным размером (18px) и жирным выделением.
+  </p>
+</body>
+</html>
+  `.trim(),
+  show: `
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Работа с шрифтами и текстом</title>
   <style>
-    /* Стили для заголовков */
+    h1 {
+      font-family: Arial, sans-serif;
+      font-size: 28px;
+      text-align: center;
+    }
+
+    h2 {
+      font-family: Georgia, serif;
+      font-size: 24px;
+      text-align: left;
+    }
+
+    h3 {
+      font-family: "Courier New", monospace;
+      font-size: 20px;
+      text-align: right;
+    }
+
+    p.tahoma {
+      font-family: Tahoma, sans-serif;
+      line-height: 1.8;
+      letter-spacing: 0.1em;
+    }
+
+    p.verdana {
+      font-family: Verdana, sans-serif;
+      line-height: 1.5;
+      text-align: justify;
+    }
+
+    p.times {
+      font-family: "Times New Roman", serif;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Заголовок с Arial</h1>
+  <h2>Заголовок с Georgia</h2>
+  <h3>Заголовок с Courier New</h3>
+
+  <p class="tahoma">
+    Это пример текста с шрифтом Tahoma, увеличенным межстрочным интервалом (1.8) и отступами между символами.
+  </p>
+
+  <p class="verdana">
+    Этот абзац оформлен шрифтом Verdana. Выравнивание выполнено по ширине, что позволяет тексту ровно располагаться в блоке.
+  </p>
+
+  <p class="times">
+    Это пример текста с шрифтом Times New Roman, увеличенным размером (18px) и жирным выделением.
+  </p>
+</body>
+</html>
+  `.trim(),
+  codeExampleCSS: `
+  /* Стили для заголовков */
     h1 {
       font-family: Arial, sans-serif;
       font-size: 28px;
@@ -377,129 +421,6 @@ export const css_selectors_task_4 = {
       font-size: 18px;
       font-weight: bold;
     }
-  </style>
-</head>
-<body>
-  <h1>Заголовок с Arial</h1>
-  <h2>Заголовок с Georgia</h2>
-  <h3>Заголовок с Courier New</h3>
-
-  <p class="tahoma">
-    Это пример текста с шрифтом Tahoma, увеличенным межстрочным интервалом (1.8) и отступами между символами.
-  </p>
-
-  <p class="verdana">
-    Этот абзац оформлен шрифтом Verdana. Выравнивание выполнено по ширине, что позволяет тексту ровно располагаться в блоке.
-  </p>
-
-  <p class="times">
-    Это пример текста с шрифтом Times New Roman, увеличенным размером (18px) и жирным выделением.
-  </p>
-</body>
-</html>
-  `.trim(),
-  show: `
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Работа с шрифтами и текстом</title>
-  <style>
-    h1 {
-      font-family: Arial, sans-serif;
-      font-size: 28px;
-      text-align: center;
-    }
-
-    h2 {
-      font-family: Georgia, serif;
-      font-size: 24px;
-      text-align: left;
-    }
-
-    h3 {
-      font-family: "Courier New", monospace;
-      font-size: 20px;
-      text-align: right;
-    }
-
-    p.tahoma {
-      font-family: Tahoma, sans-serif;
-      line-height: 1.8;
-      letter-spacing: 0.1em;
-    }
-
-    p.verdana {
-      font-family: Verdana, sans-serif;
-      line-height: 1.5;
-      text-align: justify;
-    }
-
-    p.times {
-      font-family: "Times New Roman", serif;
-      font-size: 18px;
-      font-weight: bold;
-    }
-  </style>
-</head>
-<body>
-  <h1>Заголовок с Arial</h1>
-  <h2>Заголовок с Georgia</h2>
-  <h3>Заголовок с Courier New</h3>
-
-  <p class="tahoma">
-    Это пример текста с шрифтом Tahoma, увеличенным межстрочным интервалом (1.8) и отступами между символами.
-  </p>
-
-  <p class="verdana">
-    Этот абзац оформлен шрифтом Verdana. Выравнивание выполнено по ширине, что позволяет тексту ровно располагаться в блоке.
-  </p>
-
-  <p class="times">
-    Это пример текста с шрифтом Times New Roman, увеличенным размером (18px) и жирным выделением.
-  </p>
-</body>
-</html>
-  `.trim(),
-  codeExampleCSS: `
-/* Примеры стилей для текста */
-
-h1 {
-  font-family: Arial, sans-serif;
-  font-size: 28px;
-  text-align: center;
-}
-
-h2 {
-  font-family: Georgia, serif;
-  font-size: 24px;
-  text-align: left;
-}
-
-h3 {
-  font-family: "Courier New", monospace;
-  font-size: 20px;
-  text-align: right;
-}
-
-p.tahoma {
-  font-family: Tahoma, sans-serif;
-  line-height: 1.8;
-  letter-spacing: 0.1em;
-}
-
-p.verdana {
-  font-family: Verdana, sans-serif;
-  line-height: 1.5;
-  text-align: justify;
-}
-
-p.times {
-  font-family: "Times New Roman", serif;
-  font-size: 18px;
-  font-weight: bold;
-}
   `.trim(),
   resources: [
     "https://developer.mozilla.org/ru/docs/Web/CSS/font-family",
@@ -533,31 +454,8 @@ export const css_selectors_task_5 = {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Управление размерами в CSS</title>
-
-  <style>
-    /* Стили для первого блока (фиксированного размера) */
-    .fixed-size {
-      width: 300px;
-      height: 150px;
-      background-color: #3498db;
-      color: white;
-      text-align: center;
-      line-height: 150px;
-    }
-
-    /* Стили для второго блока (адаптивного размера) */
-    .adaptive-size {
-      width: 50%;
-      max-width: 600px;
-      min-width: 150px;
-      height: 150px;
-      background-color: #2ecc71;
-      color: white;
-      text-align: center;
-      line-height: 150px;
-    }
-  </style>
 </head>
 <body>
   <div class="fixed-size">Фиксированный размер</div>
@@ -601,27 +499,27 @@ export const css_selectors_task_5 = {
 </html>
   `.trim(),
   codeExampleCSS: `
-/* Примеры управления размерами элементов */
+ /* Стили для первого блока (фиксированного размера) */
+    .fixed-size {
+      width: 300px;
+      height: 150px;
+      background-color: #3498db;
+      color: white;
+      text-align: center;
+      line-height: 150px;
+    }
 
-.fixed-size {
-  width: 300px;
-  height: 150px;
-  background-color: #3498db;
-  color: white;
-  text-align: center;
-  line-height: 150px;
-}
-
-.adaptive-size {
-  width: 50%;
-  max-width: 600px;
-  min-width: 150px;
-  height: 150px;
-  background-color: #2ecc71;
-  color: white;
-  text-align: center;
-  line-height: 150px;
-}
+    /* Стили для второго блока (адаптивного размера) */
+    .adaptive-size {
+      width: 50%;
+      max-width: 600px;
+      min-width: 150px;
+      height: 150px;
+      background-color: #2ecc71;
+      color: white;
+      text-align: center;
+      line-height: 150px;
+    }
   `.trim(),
   resources: [
     "https://developer.mozilla.org/ru/docs/Web/CSS/width",
@@ -652,34 +550,12 @@ export const css_selectors_task_6 = {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Адаптивный контейнер с изображением</title>
-
-  <style>
-    /* Стили для контейнера */
-    .container {
-      width: 80%;
-      max-width: 600px;
-      border: 1px solid #ccc;
-      background-color: #f9f9f9;
-    }
-
-    /* Стили для изображения */
-    .container img {
-      width: 100%;
-      height: auto;
-    }
-
-    /* Стили для текста */
-    .container p {
-      text-align: center;
-      color: #333;
-      font-size: 16px;
-    }
-  </style>
 </head>
 <body>
   <div class="container">
-    <img src="https://via.placeholder.com/600x200" alt="Пример изображения">
+    <img src="https://kochevnik.digital/wp-content/uploads/2024/02/plyazh-melasti-bali-819x1024.jpg" alt="Пример изображения">
     <p>Это пример адаптивного контейнера. Изображение подстраивается под ширину контейнера, а текст выровнен по центру.</p>
   </div>
 </body>
@@ -714,32 +590,33 @@ export const css_selectors_task_6 = {
 </head>
 <body>
   <div class="container">
-    <img src="https://via.placeholder.com/600x200" alt="Пример изображения">
+    <img src="https://kochevnik.digital/wp-content/uploads/2024/02/plyazh-melasti-bali-819x1024.jpg" alt="Пример изображения">
     <p>Это пример адаптивного контейнера. Изображение подстраивается под ширину контейнера, а текст выровнен по центру.</p>
   </div>
 </body>
 </html>
   `.trim(),
   codeExampleCSS: `
-/* Примеры адаптивных стилей */
+ /* Стили для контейнера */
+    .container {
+      width: 80%;
+      max-width: 600px;
+      border: 1px solid #ccc;
+      background-color: #f9f9f9;
+    }
 
-.container {
-  width: 80%;
-  max-width: 600px;
-  border: 1px solid #ccc;
-  background-color: #f9f9f9;
-}
+    /* Стили для изображения */
+    .container img {
+      width: 100%;
+      height: auto;
+    }
 
-.container img {
-  width: 100%;
-  height: auto;
-}
-
-.container p {
-  text-align: center;
-  color: #333;
-  font-size: 16px;
-}
+    /* Стили для текста */
+    .container p {
+      text-align: center;
+      color: #333;
+      font-size: 16px;
+    }
   `.trim(),
   resources: [
     "https://developer.mozilla.org/ru/docs/Web/CSS/width",
@@ -773,27 +650,8 @@ export const css_selectors_task_7 = {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Декорации текста в CSS</title>
-
-  <style>
-    p.underline {
-      text-decoration: underline;
-    }
-
-    p.line-through {
-      text-decoration: line-through;
-    }
-
-    p.overline {
-      text-decoration: overline;
-    }
-
-    p.double-underline {
-      text-decoration: underline;
-      text-decoration-style: double;
-      text-decoration-color: red;
-    }
-  </style>
 </head>
 <body>
   <p class="underline">Этот текст с подчёркиванием (underline).</p>

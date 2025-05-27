@@ -1,5 +1,5 @@
 export const css_responsive_test = {
-  id: 510,
+  id: 410,
   name: "CSS: Адаптивность и медиазапросы",
   category: "CSS",
   ques: [

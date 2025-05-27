@@ -22,43 +22,8 @@ export const css_flexbox_task_1 = {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Горизонтальное меню с Flexbox</title>
-
-  <style>
-    /* Основной блок меню */
-    .nav {
-      background-color: #f8f9fa;
-      padding: 15px;
-      border-radius: 5px;
-    }
-
-    /* Список меню в Flexbox */
-    .nav__list {
-      display: flex;
-      justify-content: space-around;
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    /* Пункт меню */
-    .nav__item {
-      list-style: none;
-    }
-
-    /* Ссылка в меню */
-    .nav__link {
-      text-decoration: none;
-      color: #007bff;
-      font-size: 16px;
-    }
-
-    /* Ховер эффект */
-    .nav__link:hover {
-      color: #0056b3;
-      border-bottom: 2px solid #0056b3;
-    }
-  </style>
 </head>
 <body>
 
@@ -127,38 +92,39 @@ export const css_flexbox_task_1 = {
 </html>
   `.trim(),
   codeExampleCSS: `
-/* Основной блок меню */
-.nav {
-  background-color: #f8f9fa;
-  padding: 15px;
-  border-radius: 5px;
-}
+ /* Основной блок меню */
+    .nav {
+      background-color: #f8f9fa;
+      padding: 15px;
+      border-radius: 5px;
+    }
 
-/* Список меню в Flexbox */
-.nav__list {
-  display: flex;
-  justify-content: space-around;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
+    /* Список меню в Flexbox */
+    .nav__list {
+      display: flex;
+      justify-content: space-around;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
 
-/* Пункт меню */
-.nav__item {
-  list-style: none;
-}
+    /* Пункт меню */
+    .nav__item {
+      list-style: none;
+    }
 
-/* Ссылка в меню */
-.nav__link {
-  text-decoration: none;
-  color: #007bff;
-  font-size: 16px;
-}
+    /* Ссылка в меню */
+    .nav__link {
+      text-decoration: none;
+      color: #007bff;
+      font-size: 16px;
+    }
 
-.nav__link:hover {
-  color: #0056b3;
-  border-bottom: 2px solid #0056b3;
-}
+    /* Ховер эффект */
+    .nav__link:hover {
+      color: #0056b3;
+      border-bottom: 2px solid #0056b3;
+    }
   `.trim(),
   resources: [
     "https://developer.mozilla.org/ru/docs/Web/CSS/flex-direction",
@@ -191,40 +157,8 @@ export const css_flexbox_task_2 = {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Список товаров с Flexbox</title>
-
-  <style>
-    /* Основной контейнер с товарами */
-    .product-list {
-      display: flex;
-      justify-content: space-between;
-      padding: 20px;
-      background-color: #f9f9f9;
-      border-radius: 5px;
-    }
-
-    /* Карточка товара */
-    .product-item {
-      background-color: #ffffff;
-      border: 1px solid #ddd;
-      padding: 15px;
-      width: 22%;
-      text-align: center;
-      border-radius: 5px;
-    }
-
-    /* Название и цена товара */
-    .product-item__title {
-      font-size: 18px;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-
-    .product-item__price {
-      font-size: 16px;
-      color: #28a745;
-    }
-  </style>
 </head>
 <body>
 
@@ -313,35 +247,35 @@ export const css_flexbox_task_2 = {
   `.trim(),
   codeExampleCSS: `
 /* Основной контейнер с товарами */
-.product-list {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 5px;
-}
+    .product-list {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-radius: 5px;
+    }
 
-/* Карточка товара */
-.product-item {
-  background-color: #ffffff;
-  border: 1px solid #ddd;
-  padding: 15px;
-  width: 22%;
-  text-align: center;
-  border-radius: 5px;
-}
+    /* Карточка товара */
+    .product-item {
+      background-color: #ffffff;
+      border: 1px solid #ddd;
+      padding: 15px;
+      width: 22%;
+      text-align: center;
+      border-radius: 5px;
+    }
 
-/* Название и цена товара */
-.product-item__title {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
+    /* Название и цена товара */
+    .product-item__title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
 
-.product-item__price {
-  font-size: 16px;
-  color: #28a745;
-}
+    .product-item__price {
+      font-size: 16px;
+      color: #28a745;
+    }
   `.trim(),
   resources: [
     "https://developer.mozilla.org/ru/docs/Web/CSS/flex-direction",
@@ -374,33 +308,8 @@ export const css_flexbox_task_3 = {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Колонки с Flexbox</title>
-
-  <style>
-    /* Контейнер с колонками */
-    .layout {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      padding: 20px;
-    }
-
-    /* Основной контент */
-    .main-content {
-      width: 70%;
-      background-color: #f5f5f5;
-      padding: 15px;
-      border-radius: 5px;
-    }
-
-    /* Сайдбар */
-    .sidebar {
-      width: 30%;
-      background-color: #e9ecef;
-      padding: 15px;
-      border-radius: 5px;
-    }
-  </style>
 </head>
 <body>
 
@@ -465,29 +374,29 @@ export const css_flexbox_task_3 = {
 </html>
   `.trim(),
   codeExampleCSS: `
-/* Основной контейнер с колонками */
-.layout {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 20px;
-}
+  /* Контейнер с колонками */
+    .layout {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 20px;
+    }
 
-/* Колонка с основным контентом */
-.main-content {
-  width: 70%;
-  background-color: #f5f5f5;
-  padding: 15px;
-  border-radius: 5px;
-}
+    /* Основной контент */
+    .main-content {
+      width: 70%;
+      background-color: #f5f5f5;
+      padding: 15px;
+      border-radius: 5px;
+    }
 
-/* Колонка сайдбара */
-.sidebar {
-  width: 30%;
-  background-color: #e9ecef;
-  padding: 15px;
-  border-radius: 5px;
-}
+    /* Сайдбар */
+    .sidebar {
+      width: 30%;
+      background-color: #e9ecef;
+      padding: 15px;
+      border-radius: 5px;
+    }
   `.trim(),
   resources: [
     "https://developer.mozilla.org/ru/docs/Web/CSS/flex",
@@ -518,28 +427,8 @@ export const css_flexbox_task_4 = {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Обёртка Flexbox</title>
-
-  <style>
-    /* Контейнер с Flexbox */
-    .container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    /* Элементы внутри контейнера */
-    .box {
-      width: 150px;
-      height: 100px;
-      background-color: #4CAF50;
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 5px;
-    }
-  </style>
 </head>
 <body>
 
@@ -570,7 +459,7 @@ export const css_flexbox_task_4 = {
     }
 
     .box {
-      width: 150px;
+      width: 300px;
       height: 100px;
       background-color: #4CAF50;
       color: white;
@@ -596,24 +485,24 @@ export const css_flexbox_task_4 = {
 </html>
   `.trim(),
   codeExampleCSS: `
-/* Контейнер Flexbox с обёрткой */
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
+  /* Контейнер с Flexbox */
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
 
-/* Элементы внутри контейнера */
-.box {
-  width: 150px;
-  height: 100px;
-  background-color: #4CAF50;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 5px;
-}
+    /* Элементы внутри контейнера */
+    .box {
+      width: 300px;
+      height: 100px;
+      background-color: #4CAF50;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 5px;
+    }
   `.trim(),
   resources: [
     "https://developer.mozilla.org/ru/docs/Web/CSS/flex-wrap",
@@ -643,40 +532,8 @@ export const css_flexbox_task_5 = {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Порядок Flexbox</title>
-
-  <style>
-    /* Контейнер с Flexbox */
-    .container {
-      display: flex;
-      gap: 10px;
-    }
-
-    /* Элементы внутри контейнера */
-    .box {
-      width: 100px;
-      height: 100px;
-      background-color: #4CAF50;
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 5px;
-    }
-
-    /* Порядок отображения */
-    .second {
-      order: 3;
-    }
-
-    .third {
-      order: 1;
-    }
-
-    .fourth {
-      order: 2;
-    }
-  </style>
 </head>
 <body>
 
@@ -704,7 +561,7 @@ export const css_flexbox_task_5 = {
     }
 
     .box {
-      width: 100px;
+      width: 300px;
       height: 100px;
       background-color: #4CAF50;
       color: white;
@@ -740,36 +597,36 @@ export const css_flexbox_task_5 = {
 </html>
   `.trim(),
   codeExampleCSS: `
-/* Контейнер Flexbox */
-.container {
-  display: flex;
-  gap: 10px;
-}
+  /* Контейнер с Flexbox */
+    .container {
+      display: flex;
+      gap: 10px;
+    }
 
-/* Базовые стили для элементов */
-.box {
-  width: 100px;
-  height: 100px;
-  background-color: #4CAF50;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 5px;
-}
+    /* Элементы внутри контейнера */
+    .box {
+      width: 300px;
+      height: 100px;
+      background-color: #4CAF50;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 5px;
+    }
 
-/* Управление порядком элементов */
-.second {
-  order: 3;
-}
+    /* Порядок отображения */
+    .second {
+      order: 3;
+    }
 
-.third {
-  order: 1;
-}
+    .third {
+      order: 1;
+    }
 
-.fourth {
-  order: 2;
-}
+    .fourth {
+      order: 2;
+    }
   `.trim(),
   resources: [
     "https://developer.mozilla.org/ru/docs/Web/CSS/order",
@@ -799,10 +656,102 @@ export const css_flexbox_task_6 = {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Обёртка и порядок Flexbox</title>
+</head>
+<body>
 
+  <div class="container">
+    <div class="box">1</div>
+    <div class="box">2</div>
+    <div class="box">3</div>
+    <div class="box">4</div>
+    <div class="box">5</div>
+    <div class="box">6</div>
+    <div class="box">7</div>
+    <div class="box">8</div>
+  </div>
+
+</body>
+</html>
+  `.trim(),
+  show: `
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Обёртка и порядок Flexbox</title>
   <style>
-    /* Контейнер с Flexbox */
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .box {
+      width: 300px;
+      height: 300px;
+      background-color: #4CAF50;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 18px;
+      border-radius: 5px;
+    }
+
+    .box:nth-child(1) {
+      order: 3;
+    }
+
+    .box:nth-child(2) {
+      order: 6;
+    }
+
+    .box:nth-child(3) {
+      order: 1;
+    }
+
+    .box:nth-child(4) {
+      order: 7;
+    }
+
+    .box:nth-child(5) {
+      order: 2;
+    }
+
+    .box:nth-child(6) {
+      order: 8;
+    }
+
+    .box:nth-child(7) {
+      order: 4;
+    }
+
+    .box:nth-child(8) {
+      order: 5;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="box">1</div>
+    <div class="box">2</div>
+    <div class="box">3</div>
+    <div class="box">4</div>
+    <div class="box">5</div>
+    <div class="box">6</div>
+    <div class="box">7</div>
+    <div class="box">8</div>
+  </div>
+
+</body>
+</html>
+  `.trim(),
+  codeExampleCSS: `
+ /* Контейнер с Flexbox */
     .container {
       display: flex;
       flex-wrap: wrap;
@@ -854,152 +803,6 @@ export const css_flexbox_task_6 = {
     .box:nth-child(8) {
       order: 5;
     }
-  </style>
-</head>
-<body>
-
-  <div class="container">
-    <div class="box">1</div>
-    <div class="box">2</div>
-    <div class="box">3</div>
-    <div class="box">4</div>
-    <div class="box">5</div>
-    <div class="box">6</div>
-    <div class="box">7</div>
-    <div class="box">8</div>
-  </div>
-
-</body>
-</html>
-  `.trim(),
-  show: `
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Обёртка и порядок Flexbox</title>
-  <style>
-    .container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .box {
-      width: 300px;
-      height: 300px;
-      background-color: #4CAF50;
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 18px;
-      border-radius: 5px;
-    }
-
-    .box:nth-child(1) {
-      order: 3;
-    }
-
-    .box:nth-child(2) {
-      order: 6;
-    }
-
-    .box:nth-child(3) {
-      order: 1;
-    }
-
-    .box:nth-child(4) {
-      order: 7;
-    }
-
-    .box:nth-child(5) {
-      order: 2;
-    }
-
-    .box:nth-child(6) {
-      order: 8;
-    }
-
-    .box:nth-child(7) {
-      order: 4;
-    }
-
-    .box:nth-child(8) {
-      order: 5;
-    }
-  </style>
-</head>
-<body>
-
-  <div class="container">
-    <div class="box">1</div>
-    <div class="box">2</div>
-    <div class="box">3</div>
-    <div class="box">4</div>
-    <div class="box">5</div>
-    <div class="box">6</div>
-    <div class="box">7</div>
-    <div class="box">8</div>
-  </div>
-
-</body>
-</html>
-  `.trim(),
-  codeExampleCSS: `
-/* Контейнер Flexbox с обёрткой */
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-/* Стили для элементов */
-.box {
-  width: 300px;
-  height: 300px;
-  background-color: #4CAF50;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 18px;
-  border-radius: 5px;
-}
-
-/* Порядок отображения элементов */
-.box:nth-child(1) {
-  order: 3;
-}
-
-.box:nth-child(2) {
-  order: 6;
-}
-
-.box:nth-child(3) {
-  order: 1;
-}
-
-.box:nth-child(4) {
-  order: 7;
-}
-
-.box:nth-child(5) {
-  order: 2;
-}
-
-.box:nth-child(6) {
-  order: 8;
-}
-
-.box:nth-child(7) {
-  order: 4;
-}
-
-.box:nth-child(8) {
-  order: 5;
-}
   `.trim(),
   resources: [
     "https://developer.mozilla.org/ru/docs/Web/CSS/order",
@@ -1030,9 +833,70 @@ export const css_flexbox_task_7 = {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Основы размеров в Flexbox</title>
+</head>
+<body>
 
+  <div class="container">
+    <div class="box">1</div>
+    <div class="box">2</div>
+    <div class="box">3</div>
+  </div>
+
+</body>
+</html>
+  `.trim(),
+  show: `
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Основы размеров в Flexbox</title>
   <style>
+    .container {
+      display: flex;
+      width: 100%;
+      gap: 10px;
+    }
+
+    .box {
+      background-color: #4CAF50;
+      color: white;
+      height: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 18px;
+      border-radius: 5px;
+    }
+
+    .box:nth-child(1) {
+      flex-grow: 1;
+    }
+
+    .box:nth-child(2) {
+      flex-grow: 2;
+    }
+
+    .box:nth-child(3) {
+      flex-grow: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="box">1</div>
+    <div class="box">2</div>
+    <div class="box">3</div>
+  </div>
+
+</body>
+</html>
+  `.trim(),
+  codeExampleCSS: `
     /* Контейнер с Flexbox */
     .container {
       display: flex;
@@ -1064,100 +928,6 @@ export const css_flexbox_task_7 = {
     .box:nth-child(3) {
       flex-grow: 1;
     }
-  </style>
-</head>
-<body>
-
-  <div class="container">
-    <div class="box">1</div>
-    <div class="box">2</div>
-    <div class="box">3</div>
-  </div>
-
-</body>
-</html>
-  `.trim(),
-  show: `
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Основы размеров в Flexbox</title>
-  <style>
-    .container {
-      display: flex;
-      width: 100%;
-      gap: 10px;
-    }
-
-    .box {
-      background-color: #4CAF50;
-      color: white;
-      height: 100px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 18px;
-      border-radius: 5px;
-    }
-
-    .box:nth-child(1) {
-      flex-grow: 1;
-    }
-
-    .box:nth-child(2) {
-      flex-grow: 2;
-    }
-
-    .box:nth-child(3) {
-      flex-grow: 1;
-    }
-  </style>
-</head>
-<body>
-
-  <div class="container">
-    <div class="box">1</div>
-    <div class="box">2</div>
-    <div class="box">3</div>
-  </div>
-
-</body>
-</html>
-  `.trim(),
-  codeExampleCSS: `
-/* Контейнер Flexbox с изменяемыми размерами */
-.container {
-  display: flex;
-  width: 100%;
-  gap: 10px;
-}
-
-/* Элементы Flexbox */
-.box {
-  background-color: #4CAF50;
-  color: white;
-  height: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 18px;
-  border-radius: 5px;
-}
-
-/* Задаём разные значения flex-grow */
-.box:nth-child(1) {
-  flex-grow: 1;
-}
-
-.box:nth-child(2) {
-  flex-grow: 2;
-}
-
-.box:nth-child(3) {
-  flex-grow: 1;
-}
   `.trim(),
   resources: [
     "https://developer.mozilla.org/ru/docs/Web/CSS/flex-grow",
@@ -1188,46 +958,8 @@ export const css_flexbox_task_8 = {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Flexbox: flex-basis и flex-shrink</title>
-
-  <style>
-    /* Контейнер Flexbox */
-    .container {
-      display: flex;
-      width: 100%;
-      gap: 10px;
-    }
-
-    /* Элементы внутри контейнера */
-    .box {
-      background-color: #4CAF50;
-      color: white;
-      height: 100px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 18px;
-      border-radius: 5px;
-      flex-shrink: 1; /* Позволяем сжиматься */
-    }
-
-    /* Задаём размеры через flex-basis */
-    .box:nth-child(1) {
-      flex-basis: 200px;
-    }
-
-    .box:nth-child(2) {
-      flex-basis: 150px;
-    }
-
-    .box:nth-child(3) {
-      flex-basis: 250px;
-    }
-
-    .box:nth-child(4) {
-      flex-basis: 100px;
-    }
-  </style>
 </head>
 <body>
 
@@ -1363,41 +1095,8 @@ export const css_flexbox_task_9 = {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Гибкая сетка с фиксированными и гибкими колонками</title>
-
-  <style>
-    /* Контейнер Flexbox */
-    .container {
-      display: flex;
-      width: 100%;
-      gap: 10px;
-    }
-
-    /* Левая и правая фиксированные колонки */
-    .column.left,
-    .column.right {
-      background-color: #d1ecf1;
-      color: #333;
-      height: 150px;
-      width: 150px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    /* Центральные колонки, которые растут */
-    .column.center-left,
-    .column.center-right {
-      background-color: #b8daff;
-      color: #333;
-      height: 150px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-grow: 1;
-      flex-basis: 200px;
-    }
-  </style>
 </head>
 <body>
 
@@ -1462,37 +1161,37 @@ export const css_flexbox_task_9 = {
 </html>
   `.trim(),
   codeExampleCSS: `
-/* Контейнер Flexbox */
-.container {
-  display: flex;
-  width: 100%;
-  gap: 10px;
-}
+   /* Контейнер Flexbox */
+    .container {
+      display: flex;
+      width: 100%;
+      gap: 10px;
+    }
 
-/* Левая и правая колонки */
-.column.left,
-.column.right {
-  background-color: #d1ecf1;
-  color: #333;
-  height: 150px;
-  width: 150px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+    /* Левая и правая фиксированные колонки */
+    .column.left,
+    .column.right {
+      background-color: #d1ecf1;
+      color: #333;
+      height: 150px;
+      width: 150px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-/* Центральные колонки, которые растут */
-.column.center-left,
-.column.center-right {
-  background-color: #b8daff;
-  color: #333;
-  height: 150px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
-  flex-basis: 200px;
-}
+    /* Центральные колонки, которые растут */
+    .column.center-left,
+    .column.center-right {
+      background-color: #b8daff;
+      color: #333;
+      height: 150px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-grow: 1;
+      flex-basis: 200px;
+    }
   `.trim(),
   resources: [
     "https://developer.mozilla.org/ru/docs/Web/CSS/flex-grow",
@@ -1523,10 +1222,90 @@ export const css_flexbox_task_10 = {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Сравнение Flexbox с Float</title>
+</head>
+<body>
 
+  <h2>Реализация через Float</h2>
+  <div class="container-float">
+    <div class="column left">Левая колонка</div>
+    <div class="column right">Правая колонка</div>
+  </div>
+
+  <h2>Реализация через Flexbox</h2>
+  <div class="container-flex">
+    <div class="column">Левая колонка</div>
+    <div class="column">Правая колонка</div>
+  </div>
+
+</body>
+</html>
+  `.trim(),
+  show: `
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Сравнение Flexbox с Float</title>
   <style>
-    /* Реализация через float */
+    .container-float {
+      width: 100%;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .container-float .column {
+      width: 45%;
+      height: 150px;
+      background-color: #d1ecf1;
+      color: #333;
+    }
+
+    .container-float .left {
+      float: left;
+    }
+
+    .container-float .right {
+      float: right;
+    }
+
+    .container-flex {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .container-flex .column {
+      width: 45%;
+      height: 150px;
+      background-color: #b8daff;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Реализация через Float</h2>
+  <div class="container-float">
+    <div class="column left">Левая колонка</div>
+    <div class="column right">Правая колонка</div>
+  </div>
+
+  <h2>Реализация через Flexbox</h2>
+  <div class="container-flex">
+    <div class="column">Левая колонка</div>
+    <div class="column">Правая колонка</div>
+  </div>
+
+</body>
+</html>
+  `.trim(),
+  codeExampleCSS: `
+   /* Реализация через float */
     .container-float {
       width: 100%;
       overflow: hidden;
@@ -1563,125 +1342,6 @@ export const css_flexbox_task_10 = {
       justify-content: center;
       align-items: center;
     }
-  </style>
-</head>
-<body>
-
-  <h2>Реализация через Float</h2>
-  <div class="container-float">
-    <div class="column left">Левая колонка</div>
-    <div class="column right">Правая колонка</div>
-  </div>
-
-  <h2>Реализация через Flexbox</h2>
-  <div class="container-flex">
-    <div class="column">Левая колонка</div>
-    <div class="column">Правая колонка</div>
-  </div>
-
-</body>
-</html>
-  `.trim(),
-  show: `
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Сравнение Flexbox с Float</title>
-  <style>
-    .container-float {
-      width: 100%;
-      overflow: hidden;
-      margin-bottom: 20px;
-    }
-
-    .container-float .column {
-      width: 45%;
-      height: 150px;
-      background-color: #d1ecf1;
-      color: #333;
-    }
-
-    .container-float .left {
-      float: left;
-    }
-
-    .container-float .right {
-      float: right;
-    }
-
-    .container-flex {
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .container-flex .column {
-      width: 45%;
-      height: 150px;
-      background-color: #b8daff;
-      color: #333;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  </style>
-</head>
-<body>
-
-  <h2>Реализация через Float</h2>
-  <div class="container-float">
-    <div class="column left">Левая колонка</div>
-    <div class="column right">Правая колонка</div>
-  </div>
-
-  <h2>Реализация через Flexbox</h2>
-  <div class="container-flex">
-    <div class="column">Левая колонка</div>
-    <div class="column">Правая колонка</div>
-  </div>
-
-</body>
-</html>
-  `.trim(),
-  codeExampleCSS: `
-/* Реализация через float */
-.container-float {
-  width: 100%;
-  overflow: hidden;
-  margin-bottom: 20px;
-}
-
-.container-float .column {
-  width: 45%;
-  height: 150px;
-  background-color: #d1ecf1;
-  color: #333;
-}
-
-.container-float .left {
-  float: left;
-}
-
-.container-float .right {
-  float: right;
-}
-
-/* Реализация через Flexbox */
-.container-flex {
-  display: flex;
-  justify-content: space-between;
-}
-
-.container-flex .column {
-  width: 45%;
-  height: 150px;
-  background-color: #b8daff;
-  color: #333;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
   `.trim(),
   resources: [
     "https://developer.mozilla.org/ru/docs/Web/CSS/float",
@@ -1713,9 +1373,91 @@ export const css_flexbox_task_11 = {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Сравнение Flexbox с Inline-block</title>
+</head>
+<body>
 
+  <h2>Реализация через Inline-block</h2>
+  <div class="container-inline-block">
+    <div class="column">Левая колонка</div>
+    <div class="column">Центральная колонка</div>
+    <div class="column">Правая колонка</div>
+  </div>
+
+  <h2>Реализация через Flexbox</h2>
+  <div class="container-flex">
+    <div class="column">Левая колонка</div>
+    <div class="column">Центральная колонка</div>
+    <div class="column">Правая колонка</div>
+  </div>
+
+</body>
+</html>
+  `.trim(),
+  show: `
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Сравнение Flexbox с Inline-block</title>
   <style>
+    .container-inline-block {
+      font-size: 0; /* Убираем пробелы между inline-block */
+    }
+
+    .container-inline-block .column {
+      display: inline-block;
+      width: 32%;
+      background-color: #d1ecf1;
+      color: #333;
+      font-size: 16px;
+      text-align: center;
+      vertical-align: top;
+      margin-right: 1%;
+    }
+
+    .container-inline-block .column:last-child {
+      margin-right: 0;
+    }
+
+    .container-flex {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .container-flex .column {
+      width: 32%;
+      height: 150px;
+      background-color: #b8daff;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Реализация через Inline-block</h2>
+  <div class="container-inline-block">
+    <div class="column">Левая колонка</div>
+    <div class="column">Центральная колонка</div>
+    <div class="column">Правая колонка</div>
+  </div>
+
+  <h2>Реализация через Flexbox</h2>
+  <div class="container-flex">
+    <div class="column">Левая колонка</div>
+    <div class="column">Центральная колонка</div>
+    <div class="column">Правая колонка</div>
+  </div>
+
+</body>
+</html>
+  `.trim(),
+  codeExampleCSS: `
     /* Реализация через inline-block */
     .container-inline-block {
       font-size: 0; /* Убираем пробелы между inline-block */
@@ -1751,125 +1493,6 @@ export const css_flexbox_task_11 = {
       justify-content: center;
       align-items: center;
     }
-  </style>
-</head>
-<body>
-
-  <h2>Реализация через Inline-block</h2>
-  <div class="container-inline-block">
-    <div class="column">Левая колонка</div>
-    <div class="column">Центральная колонка</div>
-    <div class="column">Правая колонка</div>
-  </div>
-
-  <h2>Реализация через Flexbox</h2>
-  <div class="container-flex">
-    <div class="column">Левая колонка</div>
-    <div class="column">Центральная колонка</div>
-    <div class="column">Правая колонка</div>
-  </div>
-
-</body>
-</html>
-  `.trim(),
-  show: `
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Сравнение Flexbox с Inline-block</title>
-  <style>
-    .container-inline-block {
-      font-size: 0; /* Убираем пробелы между inline-block */
-    }
-
-    .container-inline-block .column {
-      display: inline-block;
-      width: 32%;
-      background-color: #d1ecf1;
-      color: #333;
-      font-size: 16px;
-      text-align: center;
-      vertical-align: top;
-      margin-right: 1%;
-    }
-
-    .container-inline-block .column:last-child {
-      margin-right: 0;
-    }
-
-    .container-flex {
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .container-flex .column {
-      width: 32%;
-      height: 150px;
-      background-color: #b8daff;
-      color: #333;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  </style>
-</head>
-<body>
-
-  <h2>Реализация через Inline-block</h2>
-  <div class="container-inline-block">
-    <div class="column">Левая колонка</div>
-    <div class="column">Центральная колонка</div>
-    <div class="column">Правая колонка</div>
-  </div>
-
-  <h2>Реализация через Flexbox</h2>
-  <div class="container-flex">
-    <div class="column">Левая колонка</div>
-    <div class="column">Центральная колонка</div>
-    <div class="column">Правая колонка</div>
-  </div>
-
-</body>
-</html>
-  `.trim(),
-  codeExampleCSS: `
-/* Реализация через inline-block */
-.container-inline-block {
-  font-size: 0; /* Убираем пробелы между inline-block */
-}
-
-.container-inline-block .column {
-  display: inline-block;
-  width: 32%;
-  background-color: #d1ecf1;
-  color: #333;
-  font-size: 16px;
-  text-align: center;
-  vertical-align: top;
-  margin-right: 1%;
-}
-
-.container-inline-block .column:last-child {
-  margin-right: 0;
-}
-
-/* Реализация через Flexbox */
-.container-flex {
-  display: flex;
-  justify-content: space-between;
-}
-
-.container-flex .column {
-  width: 32%;
-  height: 150px;
-  background-color: #b8daff;
-  color: #333;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
   `.trim(),
   resources: [
     "https://developer.mozilla.org/ru/docs/Web/CSS/inline-block",
@@ -1902,75 +1525,8 @@ export const css_flexbox_task_12 = {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Flexbox Полная Страница</title>
-
-  <style>
-    /* Основные стили */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body, html {
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* Шапка */
-    header {
-      background-color: #4CAF50;
-      color: white;
-      text-align: center;
-      padding: 15px;
-      flex-shrink: 0;
-    }
-
-    /* Навигация */
-    nav {
-      display: flex;
-      justify-content: space-around;
-      background-color: #333;
-      color: white;
-      padding: 10px 0;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      padding: 5px 10px;
-    }
-
-    /* Основной контент и сайдбар */
-    .content-wrapper {
-      display: flex;
-      flex: 1;
-      flex-wrap: wrap;
-    }
-
-    main {
-      flex: 1;
-      background-color: #f1f1f1;
-      padding: 15px;
-    }
-
-    aside {
-      flex: 0 0 300px;
-      background-color: #ccc;
-      padding: 15px;
-      order: 1;
-    }
-
-    /* Футер */
-    footer {
-      background-color: #333;
-      color: white;
-      text-align: center;
-      padding: 15px;
-      flex-shrink: 0;
-    }
-  </style>
 </head>
 <body>
 
@@ -2103,7 +1659,7 @@ export const css_flexbox_task_12 = {
 </html>
   `.trim(),
   codeExampleCSS: `
-    /* Основные стили */
+ /* Основные стили */
     * {
       margin: 0;
       padding: 0;
@@ -2116,6 +1672,7 @@ export const css_flexbox_task_12 = {
       flex-direction: column;
     }
 
+    /* Шапка */
     header {
       background-color: #4CAF50;
       color: white;
@@ -2124,6 +1681,7 @@ export const css_flexbox_task_12 = {
       flex-shrink: 0;
     }
 
+    /* Навигация */
     nav {
       display: flex;
       justify-content: space-around;
@@ -2138,6 +1696,7 @@ export const css_flexbox_task_12 = {
       padding: 5px 10px;
     }
 
+    /* Основной контент и сайдбар */
     .content-wrapper {
       display: flex;
       flex: 1;
@@ -2157,6 +1716,7 @@ export const css_flexbox_task_12 = {
       order: 1;
     }
 
+    /* Футер */
     footer {
       background-color: #333;
       color: white;

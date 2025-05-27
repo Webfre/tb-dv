@@ -125,6 +125,7 @@ export const css_position_task_2 = {
   title: "Позиционирование с использованием z-index",
   topic: "Позиционирование элементов",
   topicId: "css_position",
+  sectionId: "css_box_model4",
   description:
     "Создайте HTML-документ, в котором два блока перекрываются. Настройте порядок отображения с использованием z-index.",
   steps: [
@@ -141,31 +142,10 @@ export const css_position_task_2 = {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Позиционирование с использованием z-index</title>
-  <style>
-    .box-1 {
-      position: absolute;
-      top: 50px;
-      left: 50px;
-      width: 150px;
-      height: 150px;
-      background-color: lightblue;
-      z-index: 1;
-    }
-
-    .box-2 {
-      position: absolute;
-      top: 100px;
-      left: 100px;
-      width: 150px;
-      height: 150px;
-      background-color: lightcoral;
-      z-index: 2;
-    }
-  </style>
 </head>
 <body>
-
   <div class="box-1">
     Слой 1
   </div>
@@ -173,7 +153,6 @@ export const css_position_task_2 = {
   <div class="box-2">
     Слой 2 (на переднем плане)
   </div>
-
 </body>
 </html>
   `.trim(),

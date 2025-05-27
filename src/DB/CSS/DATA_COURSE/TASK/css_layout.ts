@@ -21,23 +21,8 @@ export const css_layout_task_1 = {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Центрированный контейнер</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: sans-serif;
-      background-color: #f8f9fa;
-    }
-
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-      background-color: #ffffff;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-  </style>
 </head>
 <body>
   <div class="container">
@@ -124,34 +109,8 @@ export const css_layout_task_2 = {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Контейнер с максимальной шириной</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: sans-serif;
-      background-color: #f8f9fa;
-    }
-
-    .container {
-      width: 90%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 30px;
-      background-color: #ffffff;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    h2 {
-      margin-bottom: 15px;
-      color: #333;
-    }
-
-    p {
-      color: #555;
-      line-height: 1.6;
-    }
-  </style>
 </head>
 <body>
 
@@ -218,30 +177,30 @@ export const css_layout_task_2 = {
   `.trim(),
   codeExampleCSS: `
 body {
-  margin: 0;
-  font-family: sans-serif;
-  background-color: #f8f9fa;
-}
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #f8f9fa;
+    }
 
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 30px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
 
-h2 {
-  margin-bottom: 15px;
-  color: #333;
-}
+    h2 {
+      margin-bottom: 15px;
+      color: #333;
+    }
 
-p {
-  color: #555;
-  line-height: 1.6;
-}
+    p {
+      color: #555;
+      line-height: 1.6;
+    }
   `.trim(),
   resources: [
     "https://developer.mozilla.org/ru/docs/Web/CSS/max-width",
@@ -252,7 +211,7 @@ p {
 export const css_layout_task_3 = {
   id: "css_layout_task_3",
   module: "CSS",
-  title: "Закреплённый header (sticky) и footer (fixed)",
+  title: "Закреплённый header и footer",
   topic: "Закреплённый header и footer (sticky, fixed)",
   topicId: "css_layout",
   sectionId: "css_layout_2",
@@ -265,8 +224,37 @@ export const css_layout_task_3 = {
     "Добавьте стилизацию фона, текста и внутренние отступы.",
     "Заполните `<main>` большим количеством текста, чтобы была возможность скроллить.",
   ],
-  difficulty: 1,
+  difficulty: 2,
   solution: `
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Закреплённый Header и Footer</title>
+</head>
+<body>
+
+  <header>
+    <h1>Закреплённый Header (Sticky)</h1>
+  </header>
+
+  <main>
+    <p>
+      Этот текст находится в основном блоке страницы. Прокручивайте страницу вниз, чтобы увидеть, как заголовок "прилипает" к верхней части окна.
+    </p>
+    <p style="height: 1500px;">Много текста для скролла...</p>
+  </main>
+
+  <footer>
+    Фиксированный Footer (Fixed) — всегда внизу страницы
+  </footer>
+
+</body>
+</html>
+  `.trim(),
+  show: `
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -275,6 +263,60 @@ export const css_layout_task_3 = {
   <title>Закреплённый Header и Footer</title>
   <style>
     body {
+      margin: 0;
+      font-family: sans-serif;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      background: #4CAF50;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      z-index: 1000;
+    }
+
+    main {
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Закреплённый Header (Sticky)</h1>
+  </header>
+
+  <main>
+    <p>
+      Этот текст находится в основном блоке страницы. Прокручивайте страницу вниз, чтобы увидеть, как заголовок "прилипает" к верхней части окна.
+    </p>
+    <p style="height: 1500px;">Много текста для скролла...</p>
+  </main>
+
+  <footer>
+    Фиксированный Footer (Fixed) — всегда внизу страницы
+  </footer>
+
+</body>
+</html>
+  `.trim(),
+  codeExampleCSS: `
+ body {
       margin: 0;
       font-family: sans-serif;
     }
@@ -308,124 +350,6 @@ export const css_layout_task_3 = {
       padding: 10px 0;
       z-index: 1000;
     }
-  </style>
-</head>
-<body>
-
-  <header>
-    <h1>Закреплённый Header (Sticky)</h1>
-  </header>
-
-  <main>
-    <p>
-      Этот текст находится в основном блоке страницы. Прокручивайте страницу вниз, чтобы увидеть, как заголовок "прилипает" к верхней части окна.
-    </p>
-    <p style="height: 1500px;">Много текста для скролла...</p>
-  </main>
-
-  <footer>
-    Фиксированный Footer (Fixed) — всегда внизу страницы
-  </footer>
-
-</body>
-</html>
-  `.trim(),
-  show: `
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Закреплённый Header и Footer</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: sans-serif;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      background: #4CAF50;
-      color: white;
-      padding: 15px;
-      text-align: center;
-      z-index: 1000;
-    }
-
-    main {
-      padding: 20px;
-      min-height: 100vh;
-    }
-
-    footer {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: #333;
-      color: white;
-      text-align: center;
-      padding: 10px 0;
-      z-index: 1000;
-    }
-  </style>
-</head>
-<body>
-
-  <header>
-    <h1>Закреплённый Header (Sticky)</h1>
-  </header>
-
-  <main>
-    <p>
-      Этот текст находится в основном блоке страницы. Прокручивайте страницу вниз, чтобы увидеть, как заголовок "прилипает" к верхней части окна.
-    </p>
-    <p style="height: 1500px;">Много текста для скролла...</p>
-  </main>
-
-  <footer>
-    Фиксированный Footer (Fixed) — всегда внизу страницы
-  </footer>
-
-</body>
-</html>
-  `.trim(),
-  codeExampleCSS: `
-body {
-  margin: 0;
-  font-family: sans-serif;
-}
-
-/* Закреплённый header */
-header {
-  position: sticky;
-  top: 0;
-  background: #4CAF50;
-  color: white;
-  padding: 15px;
-  text-align: center;
-  z-index: 1000;
-}
-
-/* Основной контент */
-main {
-  padding: 20px;
-  min-height: 100vh;
-}
-
-/* Фиксированный footer */
-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: #333;
-  color: white;
-  text-align: center;
-  padding: 10px 0;
-  z-index: 1000;
-}
   `.trim(),
   resources: [
     "https://developer.mozilla.org/ru/docs/Web/CSS/position",
@@ -436,7 +360,7 @@ footer {
 export const css_layout_task_4 = {
   id: "css_layout_task_4",
   module: "CSS",
-  title: "Закреплённый header (sticky) и sidebar (fixed)",
+  title: "Закреплённый header и sidebar.",
   topic: "Закреплённый header и footer (sticky, fixed)",
   topicId: "css_layout",
   sectionId: "css_layout_2",
@@ -449,51 +373,15 @@ export const css_layout_task_4 = {
     "Добавьте стилизацию фона, текста и внутренние отступы.",
     "Заполните `<main>` большим количеством текста, чтобы была возможность скроллить.",
   ],
-  difficulty: 2,
+  difficulty: 3,
   solution: `
 <!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Закреплённый Header и Sidebar</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: sans-serif;
-    }
-
-    /* Закреплённый header */
-    header {
-      position: sticky;
-      top: 0;
-      background: #4CAF50;
-      color: white;
-      padding: 15px;
-      text-align: center;
-      z-index: 1000;
-    }
-
-    /* Фиксированный sidebar */
-    aside {
-      position: fixed;
-      top: 80px;
-      left: 0;
-      width: 200px;
-      height: 100%;
-      background: #333;
-      color: white;
-      padding: 20px;
-    }
-
-    /* Основной контент */
-    main {
-      margin-left: 220px;
-      padding: 20px;
-      min-height: 100vh;
-      background: #f5f5f5;
-    }
-  </style>
 </head>
 <body>
 

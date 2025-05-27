@@ -266,24 +266,8 @@ export const css_pseudoElement_task_3 = {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Стилизация первой буквы (first-letter)</title>
-  <style>
-    /* Стили для абзацев */
-    p {
-      margin-bottom: 15px;
-      line-height: 1.5;
-      font-size: 18px;
-    }
-
-    /* Псевдоэлемент ::first-letter */
-    p::first-letter {
-      font-size: 32px;
-      font-weight: bold;
-      color: #007acc;
-      margin-right: 5px;
-      float: left;
-    }
-  </style>
 </head>
 <body>
 

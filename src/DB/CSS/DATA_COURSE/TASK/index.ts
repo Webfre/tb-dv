@@ -230,6 +230,7 @@ import {
   css_pseudo_task_5,
   css_pseudo_task_6,
   css_pseudo_task_7,
+  css_pseudo_task_8,
 } from "./css_pseudo_task";
 import {
   css_responsive_task_1,
@@ -271,6 +272,7 @@ export const dataTaskCss = [
   css_box_model_task_3,
   css_box_model_task_4,
   css_box_model_task_5,
+  css_position_task_2,
   css_box_model_task_6,
   css_box_model_task_7,
   css_box_model_task_8,
@@ -289,6 +291,7 @@ export const dataTaskCss = [
   css_pseudo_task_5,
   css_pseudo_task_6,
   css_pseudo_task_7,
+  css_pseudo_task_8,
 
   css_methodologies_task_1,
   css_methodologies_task_2,
@@ -372,7 +375,6 @@ export const dataTaskCss = [
   css_offset_task_5,
 
   css_position_task_1,
-  css_position_task_2,
   css_position_task_3,
   css_position_task_4,
   css_position_task_5,

@@ -74,7 +74,15 @@ export const css_animations_1 = {
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <button class="btn">Наведи на меня</button>
+</body>
+</html>
+  `.trim(),
+
+  codeExampleCSS: `
     body {
       font-family: sans-serif;
       padding: 50px;
@@ -94,29 +102,6 @@ export const css_animations_1 = {
     .btn:hover {
       background: #1565c0;
     }
-  </style>
-</head>
-<body>
-  <button class="btn">Наведи на меня</button>
-</body>
-</html>
-  `.trim(),
-
-  codeExampleCSS: `
-.btn {
-  background: #2196f3;
-  color: white;
-  padding: 12px 24px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background 0.3s ease;
-}
-
-.btn:hover {
-  background: #1565c0;
-}
   `.trim(),
 
   resources: [
@@ -198,7 +183,18 @@ export const css_animations_2 = {
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="card">
+    Наведи на меня<br />
+    Я увеличусь и немного повернусь
+  </div>
+</body>
+</html>
+  `.trim(),
+
+  codeExampleCSS: `
     body {
       font-family: sans-serif;
       background: #f5f5f5;
@@ -217,30 +213,6 @@ export const css_animations_2 = {
     .card:hover {
       transform: scale(1.05) rotate(1deg);
     }
-  </style>
-</head>
-<body>
-  <div class="card">
-    Наведи на меня<br />
-    Я увеличусь и немного повернусь
-  </div>
-</body>
-</html>
-  `.trim(),
-
-  codeExampleCSS: `
-.card {
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  padding: 40px;
-  text-align: center;
-  transition: transform 0.3s ease;
-}
-
-.card:hover {
-  transform: scale(1.05) rotate(1deg);
-}
   `.trim(),
 
   resources: [
