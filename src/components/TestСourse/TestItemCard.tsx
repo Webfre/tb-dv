@@ -10,7 +10,6 @@ import {
 import QuizIcon from "@mui/icons-material/Quiz";
 import { useNavigate } from "react-router-dom";
 import DoneAllIcon from "@mui/icons-material/DoneAll";
-import RemoveDoneIcon from "@mui/icons-material/RemoveDone";
 
 interface ProgressHistoryEntry {
   attempts: number;
@@ -75,9 +74,9 @@ const TestItemCard: React.FC<TestItemCardProps> = ({
         <Box display="flex" alignItems="center" gap={1} minWidth={100}>
           {attempts > 0 ? (
             isAnyPassed ? (
-              <DoneAllIcon sx={{ color: "#846ee6" }} />
+              <DoneAllIcon color="success" />
             ) : (
-              <RemoveDoneIcon color="error" />
+              <DoneAllIcon color="error" />
             )
           ) : (
             <Typography variant="body2" color="textSecondary">

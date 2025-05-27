@@ -15,7 +15,6 @@ import { LocationState } from "./useTestLogic";
 import { useLocation } from "react-router-dom";
 import { chip_sx } from "../../styles/global";
 import DoneAllIcon from "@mui/icons-material/DoneAll";
-import RemoveDoneIcon from "@mui/icons-material/RemoveDone";
 import classNames from "classnames";
 
 interface HistoryBlockProps {
@@ -79,7 +78,7 @@ const HistoryBlock: React.FC<HistoryBlockProps> = ({
                     })}
                   >
                     {entry.grade === 2 ? (
-                      <RemoveDoneIcon color="error" sx={{ mr: 2 }} />
+                      <DoneAllIcon color="error" sx={{ mr: 2 }} />
                     ) : (
                       <DoneAllIcon color="success" sx={{ mr: 2 }} />
                     )}

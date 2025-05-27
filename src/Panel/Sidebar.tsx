@@ -4,6 +4,10 @@ import classNames from "classnames";
 import { LiaThumbtackSolid } from "react-icons/lia";
 import { useNavigate, useLocation, matchPath } from "react-router-dom";
 import { menuItemsSideBar } from "./menuItemsSideBar";
+import TelegramIcon from "@mui/icons-material/Telegram";
+import SupportAgentIcon from "@mui/icons-material/SupportAgent";
+import { Tooltip } from "@mui/material";
+import FeatureRequestButton from "../components/GlobalHelpDrawer/FeatureRequestButton";
 
 interface SidebarProps {
   onActiveChange: (title: string) => void;
@@ -13,6 +17,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ onActiveChange }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const [isFeatureDialogOpen, setIsFeatureDialogOpen] = useState(false);
   const [hovered, setHovered] = useState(false);
   const [isPinned, setIsPinned] = useState(false);
 
@@ -61,6 +66,12 @@ export const Sidebar: React.FC<SidebarProps> = ({ onActiveChange }) => {
       onMouseLeave={() => setHovered(false)}
     >
       <div className={styles.toggleWrapper}>
+        {!isCollapsed && (
+          <span onClick={() => navigate("/")} className={styles.logoText}>
+            Frontarium
+          </span>
+        )}
+
         <button
           className={classNames(styles.toggle, { [styles.pinned]: isPinned })}
           onClick={handlePinToggle}
@@ -93,6 +104,35 @@ export const Sidebar: React.FC<SidebarProps> = ({ onActiveChange }) => {
           );
         })}
       </nav>
+
+      <div className={styles.sidebarFooter}>
+        <div className={styles.footerIcons}>
+          <Tooltip title="Телеграмм канал" arrow>
+            <a
+              href="https://t.me/frontarium"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <TelegramIcon className={styles.footerIcon} />
+            </a>
+          </Tooltip>
+
+          <Tooltip title="Техподдержка" arrow>
+            <button
+              type="button"
+              onClick={() => setIsFeatureDialogOpen(true)}
+              className={styles.footerIconButton}
+            >
+              <SupportAgentIcon className={styles.footerIcon} />
+            </button>
+          </Tooltip>
+        </div>
+      </div>
+
+      <FeatureRequestButton
+        open={isFeatureDialogOpen}
+        onClose={() => setIsFeatureDialogOpen(false)}
+      />
     </aside>
   );
 };

@@ -20,7 +20,7 @@ const CustomToast: React.FC<CustomToastProps> = ({ message, icon }) => {
       }}
     >
       {icon && <Box sx={{ display: "flex", alignItems: "center" }}>{icon}</Box>}
-      <Typography>{message}</Typography>
+      <Typography sx={{ whiteSpace: "pre-line" }}>{message}</Typography>
     </Box>
   );
 };

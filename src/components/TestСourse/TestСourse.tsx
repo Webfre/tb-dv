@@ -84,6 +84,7 @@ const TestСourse: React.FC = () => {
 
       {(attemptsUsed >= MAX_ATTEMPTS || !isAllAnswered) && !showResults && (
         <HintBlock
+          title="Уведомление"
           text={
             attemptsUsed >= MAX_ATTEMPTS
               ? "Вы израсходовали все попытки. Результаты сохранены."

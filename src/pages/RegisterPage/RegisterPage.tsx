@@ -11,12 +11,17 @@ import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { IFormData } from "./FormData.types";
 import { schema } from "./schema";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useRegisterUserMutation } from "../../api/authApi";
 import { useNavigate } from "react-router-dom";
+import { IoLogIn } from "react-icons/io5";
 import { toast } from "react-toastify";
 import BtnCustom from "../../ui/BtnCustom";
 import PhoneInput from "../../ui/PhoneInput";
 import PasswordField from "../../ui/PasswordField";
-import { useRegisterUserMutation } from "../../api/authApi";
+import styles from "./RegisterPage.module.scss";
+import { PiSmileyMeltingFill } from "react-icons/pi";
+import { textField_input_sx } from "../../styles/global";
+import CustomToast from "../../ui/CustomToast";
 
 const RegisterPage: React.FC = () => {
   const {
@@ -34,9 +39,7 @@ const RegisterPage: React.FC = () => {
   const onSubmit: SubmitHandler<IFormData> = async (data) => {
     try {
       setIsLoading(true);
-
       const cleanedPhone = data.phone.replace(/\s/g, "");
-
       const result = await registerUser({
         ...data,
         phone: cleanedPhone,
@@ -44,28 +47,28 @@ const RegisterPage: React.FC = () => {
 
       localStorage.setItem("token", result.token);
 
-      toast.success(
-        `Добро пожаловать, ${result.lastName} ${result.firstName} ${result.middleName}, в Frontarium!`
+      toast(
+        <CustomToast
+          message={`Добро пожаловать во Frontarium!\n${result.lastName} ${result.firstName} ${result.middleName}`}
+          icon={<IoLogIn size={30} />}
+        />
       );
 
       navigate("/");
     } catch (error: any) {
-      toast.error(error?.data?.message || "Ошибка регистрации");
+      toast(
+        <CustomToast
+          message={error?.data?.message || "Ошибка регистрации"}
+          icon={<PiSmileyMeltingFill size={30} />}
+        />
+      );
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <Box
-      sx={{
-        minHeight: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        px: 2,
-      }}
-    >
+    <Box className={styles.wrapper}>
       <Container maxWidth="sm">
         <Paper sx={{ p: 4, borderRadius: 4 }}>
           {isLoading && (
@@ -87,7 +90,17 @@ const RegisterPage: React.FC = () => {
             </Box>
           )}
 
-          <Typography variant="h5" gutterBottom align="center">
+          <Typography
+            variant="h5"
+            gutterBottom
+            align="center"
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: 2,
+            }}
+          >
             Регистрация
           </Typography>
 
@@ -111,15 +124,11 @@ const RegisterPage: React.FC = () => {
                     fullWidth
                     margin="normal"
                     label={label}
+                    sx={textField_input_sx}
                     error={!!errors[name as keyof IFormData]}
                     helperText={
                       errors[name as keyof IFormData]?.message as string
                     }
-                    sx={{
-                      "& .MuiOutlinedInput-root": {
-                        borderRadius: "20px",
-                      },
-                    }}
                   />
                 )}
               />
@@ -159,6 +168,7 @@ const RegisterPage: React.FC = () => {
               color="primary"
               fullWidth
               text="Зарегистрироваться"
+              customColor="#846ee6"
               sx={{ mt: 2 }}
             />
           </Box>
@@ -167,6 +177,7 @@ const RegisterPage: React.FC = () => {
             <BtnCustom
               fullWidth
               text="Уже есть аккаунт? Войти"
+              customColor="#846ee6"
               variant="text"
               sx={{ mt: 1 }}
               onClick={() => navigate("/login")}
@@ -175,6 +186,7 @@ const RegisterPage: React.FC = () => {
             <BtnCustom
               fullWidth
               text="Продолжить без регистрации"
+              customColor="#846ee6"
               variant="text"
               sx={{ mt: 1 }}
               onClick={() => navigate("/")}

@@ -2,4 +2,17 @@
   border-radius: 20px !important;
   border: 1px dotted gainsboro !important;
   padding: 20px !important;
+  white-space: pre-line;
+}
+
+.HintBlockWrapper {
+  border-left: 4px solid #bbabfb;
+  padding-left: 12px;
+}
+
+.HintBlockHeader {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 2px;
 }

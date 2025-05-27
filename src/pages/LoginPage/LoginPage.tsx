@@ -8,13 +8,18 @@ import {
   CircularProgress,
 } from "@mui/material";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import { textField_input_sx } from "../../styles/global";
 import { useLoginMutation } from "../../api/authApi";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { PiSmileyMeltingFill } from "react-icons/pi";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { IoLogIn } from "react-icons/io5";
 import { schema } from "./schema";
 import BtnCustom from "../../ui/BtnCustom";
 import PasswordField from "../../ui/PasswordField";
+import styles from "./LoginPage.module.scss";
+import CustomToast from "../../ui/CustomToast";
 
 interface LoginForm {
   email: string;
@@ -36,33 +41,31 @@ const LoginPage: React.FC = () => {
   const onSubmit: SubmitHandler<LoginForm> = async (data) => {
     try {
       setIsLoading(true);
-
       const result = await login(data).unwrap();
       localStorage.setItem("token", result.token);
-      localStorage.setItem("isAccessKey", String(result.isAccessKey));
 
-      toast.success(
-        `Добро пожаловать, ${result.lastName} ${result.firstName} ${result.middleName}, в Frontarium!`
+      toast(
+        <CustomToast
+          message={`Добро пожаловать во Frontarium!\n${result.lastName} ${result.firstName} ${result.middleName}`}
+          icon={<IoLogIn size={30} />}
+        />
       );
 
       navigate("/");
     } catch (error: any) {
-      toast.error("Ошибка входа, неверный пароль или email");
+      toast(
+        <CustomToast
+          message={"Ошибка входа, неверный пароль или email"}
+          icon={<PiSmileyMeltingFill size={30} />}
+        />
+      );
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <Box
-      sx={{
-        minHeight: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        px: 2,
-      }}
-    >
+    <Box className={styles.wrapper}>
       <Container maxWidth="sm">
         <Paper sx={{ p: 4, borderRadius: 4, position: "relative" }}>
           {isLoading && (
@@ -84,8 +87,18 @@ const LoginPage: React.FC = () => {
             </Box>
           )}
 
-          <Typography variant="h5" gutterBottom align="center">
-            Войти в профиль
+          <Typography
+            variant="h5"
+            gutterBottom
+            align="center"
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: 2,
+            }}
+          >
+            Войти в айти <IoLogIn size={34} color="#846ee6" />
           </Typography>
 
           <Box component="form" noValidate onSubmit={handleSubmit(onSubmit)}>
@@ -101,11 +114,7 @@ const LoginPage: React.FC = () => {
                   margin="normal"
                   error={!!errors.email}
                   helperText={errors.email?.message}
-                  sx={{
-                    "& .MuiOutlinedInput-root": {
-                      borderRadius: "20px",
-                    },
-                  }}
+                  sx={textField_input_sx}
                 />
               )}
             />
@@ -129,6 +138,7 @@ const LoginPage: React.FC = () => {
               variant="contained"
               color="primary"
               fullWidth
+              customColor="#846ee6"
               text="Войти"
               sx={{ mt: 2 }}
               disabled={isLoading}
@@ -139,6 +149,7 @@ const LoginPage: React.FC = () => {
               variant="outlined"
               sx={{ mt: 2 }}
               text="Регистрация"
+              customColor="#846ee6"
               onClick={() => navigate("/register")}
               disabled={isLoading}
             />
@@ -147,6 +158,7 @@ const LoginPage: React.FC = () => {
               <BtnCustom
                 fullWidth
                 variant="text"
+                customColor="#846ee6"
                 sx={{ mt: 1 }}
                 text="Сбросить пароль"
                 onClick={() => navigate("/reset-password")}
@@ -156,6 +168,7 @@ const LoginPage: React.FC = () => {
               <BtnCustom
                 fullWidth
                 text="На главную"
+                customColor="#846ee6"
                 variant="text"
                 sx={{ mt: 1 }}
                 onClick={() => navigate("/")}

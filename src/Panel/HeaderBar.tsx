@@ -8,10 +8,12 @@ import {
   ListItemText,
   Divider,
   IconButton,
+  Tooltip,
 } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
 import { courseList } from "../DB";
 import { Breadcrumbs } from "./Breadcrumbs";
+import FullscreenIcon from "@mui/icons-material/Fullscreen";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import PersonIcon from "@mui/icons-material/Person";
 import LogoutIcon from "@mui/icons-material/Logout";
@@ -43,6 +45,15 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({ title }) => {
     navigate("/login");
   };
 
+  const handleFullscreen = () => {
+    const elem = document.documentElement;
+    if (!document.fullscreenElement) {
+      elem.requestFullscreen?.();
+    } else {
+      document.exitFullscreen?.();
+    }
+  };
+
   const open = Boolean(anchorEl);
 
   return (
@@ -53,6 +64,13 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({ title }) => {
       </div>
 
       <div className={styles.userMenu}>
+        <Tooltip title="Полноэкранный режим">
+          <FullscreenIcon
+            onClick={handleFullscreen}
+            className={styles.handleFullscreen}
+          />
+        </Tooltip>
+
         <IconButton onClick={handleOpen} className={styles.avatarButton}>
           <Avatar className={styles.avatar}>
             <AccountCircleIcon />
