@@ -2,7 +2,6 @@ import React from "react";
 import {
   Box,
   Typography,
-  LinearProgress,
   ListItem,
   ListItemButton,
   ListItemIcon,
@@ -10,6 +9,8 @@ import {
 } from "@mui/material";
 import QuizIcon from "@mui/icons-material/Quiz";
 import { useNavigate } from "react-router-dom";
+import DoneAllIcon from "@mui/icons-material/DoneAll";
+import RemoveDoneIcon from "@mui/icons-material/RemoveDone";
 
 interface ProgressHistoryEntry {
   attempts: number;
@@ -19,7 +20,7 @@ interface ProgressHistoryEntry {
   selectedAnswers: Record<string, number[]>;
 }
 
-interface ProgressItemCardProps {
+interface TestItemCardProps {
   testKey: string;
   testId: number;
   testName: string;
@@ -27,7 +28,7 @@ interface ProgressItemCardProps {
   history?: ProgressHistoryEntry[];
 }
 
-const ProgressItemCard: React.FC<ProgressItemCardProps> = ({
+const TestItemCard: React.FC<TestItemCardProps> = ({
   testKey,
   testId,
   testName,
@@ -36,13 +37,7 @@ const ProgressItemCard: React.FC<ProgressItemCardProps> = ({
 }) => {
   const navigate = useNavigate();
   const attempts = history.length;
-  const bestPercentage =
-    attempts > 0 ? Math.max(...history.map((h) => h.percentage)) : 0;
-
-  const isFailedTwice = attempts === 2 && bestPercentage === 0;
-  const progressColor: "primary" | "error" = isFailedTwice
-    ? "error"
-    : "primary";
+  const isAnyPassed = history.some((h) => h.grade > 2);
 
   const handleTestClick = (
     e: React.MouseEvent,
@@ -51,7 +46,7 @@ const ProgressItemCard: React.FC<ProgressItemCardProps> = ({
   ) => {
     e.stopPropagation();
     if (testKey && chapterTitle) {
-      navigate("/test", {
+      navigate("/panel/test", {
         state: {
           name: chapterTitle,
           selectedTest: testKey,
@@ -65,35 +60,29 @@ const ProgressItemCard: React.FC<ProgressItemCardProps> = ({
     <ListItem
       key={testId}
       disablePadding
-      sx={{ mb: 1, border: "1px solid #ccc", borderRadius: 2 }}
+      sx={{ mb: 1, border: "1px solid #ccc", borderRadius: 4 }}
     >
       <ListItemButton
         onClick={(e) => handleTestClick(e, testKey, testName)}
         sx={{ px: 2, py: 1.5 }}
       >
         <ListItemIcon>
-          <QuizIcon color="primary" />
+          <QuizIcon sx={{ color: "#846ee6" }} />
         </ListItemIcon>
 
         <ListItemText primary={testName} secondary={`Попыток: ${attempts}`} />
 
-        <Box
-          display="flex"
-          flexDirection="column"
-          alignItems="flex-end"
-          minWidth={100}
-        >
-          <Typography variant="body2" color="textSecondary" mb={0.5}>
-            {attempts > 0 ? `${Math.round(bestPercentage)}%` : "—"}
-          </Typography>
-
-          {attempts > 0 && (
-            <LinearProgress
-              variant="determinate"
-              value={bestPercentage}
-              sx={{ width: 80, height: 6, borderRadius: 5 }}
-              color={progressColor}
-            />
+        <Box display="flex" alignItems="center" gap={1} minWidth={100}>
+          {attempts > 0 ? (
+            isAnyPassed ? (
+              <DoneAllIcon sx={{ color: "#846ee6" }} />
+            ) : (
+              <RemoveDoneIcon color="error" />
+            )
+          ) : (
+            <Typography variant="body2" color="textSecondary">
+              —
+            </Typography>
           )}
         </Box>
       </ListItemButton>
@@ -101,4 +90,4 @@ const ProgressItemCard: React.FC<ProgressItemCardProps> = ({
   );
 };
 
-export default ProgressItemCard;
+export default TestItemCard;

@@ -41,7 +41,32 @@
     max-width: 100% !important;
   }
 }
-.boxToggle {
-  display: flex;
-  justify-content: space-between;
+
+.gridTitle {
+  display: flex !important;
+  align-items: center !important;
+  border: 1px solid gainsboro !important;
+  color: rgb(77, 77, 77) !important;
+  border-radius: 10px !important;
+  justify-content: center !important;
+  margin-bottom: 5px !important;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: rgb(221, 221, 221) !important;
+  }
+
+  svg {
+    font-size: 24px !important;
+    margin-left: 5px !important;
+    color: rgb(77, 77, 77) !important;
+  }
+}
+
+.selectedTaskTop {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  margin-bottom: 10px !important;
 }

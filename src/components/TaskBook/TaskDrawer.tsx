@@ -1,18 +1,10 @@
-import React, { useState } from "react";
-import {
-  Drawer,
-  Box,
-  Typography,
-  Chip,
-  Stack,
-  IconButton,
-} from "@mui/material";
-import HtmlDrawer from "../Сourse/HtmlDrawer";
-import CloseIcon from "@mui/icons-material/Close";
+import React from "react";
+import { Drawer, Box, Typography, IconButton } from "@mui/material";
 import { renderDifficulty } from "./renderDifficulty";
-import TaskContent from "./TaskContent";
-import styles from "./TaskDrawer.module.scss";
 import { PracticeTask } from "../../DB/index_type";
+import TaskContent from "./TaskContent";
+import CloseIcon from "@mui/icons-material/Close";
+import styles from "./TaskDrawer.module.scss";
 
 interface TaskDrawerProps {
   open: boolean;
@@ -27,8 +19,6 @@ const TaskDrawer: React.FC<TaskDrawerProps> = ({
   task,
   hasAccess,
 }) => {
-  const [htmlDrawerOpen, setHtmlDrawerOpen] = useState(false);
-
   if (!task) return null;
 
   return (
@@ -43,29 +33,13 @@ const TaskDrawer: React.FC<TaskDrawerProps> = ({
 
           <Box mt={1}>{renderDifficulty(task.difficulty)}</Box>
           <Box display="flex" gap={2} alignItems="center">
-            <Typography variant="h6">{task.title}</Typography>
-
-            {task?.show && (
-              <Box display="flex" gap={2}>
-                <Stack direction="row">
-                  <Chip
-                    label="Показать пример"
-                    color="primary"
-                    onClick={() => setHtmlDrawerOpen(true)}
-                    clickable
-                  />
-                </Stack>
-              </Box>
-            )}
+            <Typography sx={{ color: "#333" }} variant="h6">
+              {task.title}
+            </Typography>
           </Box>
         </Box>
 
         <TaskContent hasAccess={hasAccess} task={task} />
-
-        <HtmlDrawer
-          html={htmlDrawerOpen ? task?.show || null : null}
-          onClose={() => setHtmlDrawerOpen(false)}
-        />
       </Box>
     </Drawer>
   );

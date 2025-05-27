@@ -8,7 +8,6 @@ export const getMenuItems = (hasAccess: boolean | undefined) => {
     { label: "Справочник", path: "/cheatsheet" },
     // { label: "Собеседование", path: "/interview" },
     // { label: "Проекты", path: "/projects" },
-    { label: "Задачник", path: "/taskbook" },
     { label: "Roadmap", path: "/roadmap" },
   ];
 };

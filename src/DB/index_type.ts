@@ -28,12 +28,12 @@ export interface CourseSection {
   codeExample?: string; // Пример кода для раздела
   resources?: string[]; // Дополнительные материалы (ссылки)
   attachments?: string[]; // Файлы для скачивания
-  show?: string; // Условное отображение (если есть)
-  showCode?: string; // Условное отображение кода (если есть)
+  show?: string; // Условное отображение - это для Практических (если есть)
   postMentor?: number; // ID ментора для поста (если есть)
   moduleId?: string; // ID модуля (если есть)
   codeExampleCSS?: string; // CSS код для примера (если есть)
-  type?: string; // Тип раздела (если есть)
+  codeExampleJS?: string; // JS код для примера (если есть)
+  type?: string; // Тип раздела (если есть) тип кода JS HTML CSS
 }
 
 export interface MentorCourseTopic {
@@ -50,12 +50,12 @@ export interface PracticeTask {
   difficulty: number; // Сложность (0-5)
   topic?: string; // Тема задания (если есть) нужно указать для фильтра темы в задачнике
   topicId?: string; // Ссылка на раздел курса (если есть) Его можно не указывать он не нужен уже
-  solution?: string; // Пример решения HTML (если есть)
   show?: string; // Условное отображение (если есть)
   resources?: string[]; // Дополнительные материалы
   attachments?: string[]; // Файлы для скачивания
   codeExampleCSS?: string; // CSS код решения
   codeExampleJS?: string; // JS код решения
+  solution?: string; // HTML Пример решения  (если есть)
   sectionId?: string; // ID раздела (если есть) Это нужно указывать чтобы повесить задачи Практики на раздел связать раздел с задачами из задачника
 }
 

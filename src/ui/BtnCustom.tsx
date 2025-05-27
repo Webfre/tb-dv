@@ -12,6 +12,7 @@ interface BtnCustomProps {
   variant?: "text" | "outlined" | "contained";
   type?: "button" | "submit" | "reset";
   color?: "primary" | "secondary" | "error" | "info" | "success" | "warning";
+  customColor?: string;
   fullWidth?: boolean;
   white?: boolean;
 }
@@ -25,6 +26,7 @@ const BtnCustom: React.FC<BtnCustomProps> = ({
   type,
   color,
   fullWidth,
+  customColor,
   variant = "outlined",
   white = false,
 }) => {
@@ -34,6 +36,18 @@ const BtnCustom: React.FC<BtnCustomProps> = ({
         color: "#000",
         "&:hover": {
           backgroundColor: "#f5f5f5",
+        },
+      }
+    : {};
+
+  const customColorStyles: SxProps<Theme> = customColor
+    ? {
+        backgroundColor: variant === "contained" ? customColor : "transparent",
+        color: variant === "contained" ? "#fff" : customColor,
+        borderColor: customColor,
+        "&:hover": {
+          backgroundColor:
+            variant === "contained" ? `${customColor}cc` : `${customColor}1A`,
         },
       }
     : {};
@@ -53,6 +67,7 @@ const BtnCustom: React.FC<BtnCustomProps> = ({
         px: 3,
         fontWeight: 500,
         ...whiteStyles,
+        ...customColorStyles,
         ...sx,
       }}
     >

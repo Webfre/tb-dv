@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Typography, Stack, Chip } from "@mui/material";
 import LinkIcon from "@mui/icons-material/Link";
+import { chip_sx } from "../../styles/global";
 
 interface TaskResourcesProps {
   resources: string[];
@@ -27,6 +28,7 @@ const TaskResources: React.FC<TaskResourcesProps> = ({ resources }) => {
             rel="noopener"
             clickable
             color="info"
+            sx={chip_sx}
           />
         ))}
       </Stack>

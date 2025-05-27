@@ -122,15 +122,6 @@ export const useTestLogic = () => {
     scrollToTop();
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 300);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };

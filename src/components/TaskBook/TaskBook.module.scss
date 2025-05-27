@@ -1,3 +1,23 @@
 .icon {
   font-size: 14px !important;
 }
+
+.card {
+  cursor: pointer !important;
+  border-radius: 20px !important;
+  border: 2px solid transparent !important;
+  transition: 0.2s !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.105) !important;
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.211) !important;
+  }
+}
+
+.iconTop {
+  font-size: 40px !important;
+}
+
+.selected {
+  border: 2px solid #846ee6 !important;
+}

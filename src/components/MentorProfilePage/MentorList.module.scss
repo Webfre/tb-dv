@@ -1,0 +1,26 @@
+.headerCard {
+  padding: 16px 24px !important;
+  margin-bottom: 24px !important;
+  background-color: #947ef6 !important;
+  color: white !important;
+  border-radius: 12px !important;
+
+  h4 {
+    margin-bottom: 8px !important;
+  }
+}
+
+.courseCard {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  border-radius: 20px !important;
+  cursor: pointer !important;
+  transition: 0.2s !important;
+  padding: 20px 20px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.105) !important;
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.211) !important;
+  }
+}

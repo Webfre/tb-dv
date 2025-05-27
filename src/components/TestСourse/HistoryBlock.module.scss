@@ -2,5 +2,21 @@
   border: 1px dotted rgb(162, 162, 162);
   padding: 40px 10px;
   border-radius: 20px;
-  text-align: center;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.card {
+  border: 1px solid #035421 !important;
+  border-radius: 20px !important;
+  margin-bottom: 8px !important;
+
+  &.gradeRed {
+    border-color: #b22222 !important;
+  }
+
+  &.gradeGreen {
+    border-color: #035421 !important;
+  }
 }

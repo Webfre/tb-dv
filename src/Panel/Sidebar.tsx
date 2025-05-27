@@ -1,0 +1,98 @@
+import React, { useState } from "react";
+import styles from "./Sidebar.module.scss";
+import classNames from "classnames";
+import { LiaThumbtackSolid } from "react-icons/lia";
+import { useNavigate, useLocation, matchPath } from "react-router-dom";
+import { menuItemsSideBar } from "./menuItemsSideBar";
+
+interface SidebarProps {
+  onActiveChange: (title: string) => void;
+}
+
+export const Sidebar: React.FC<SidebarProps> = ({ onActiveChange }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const [hovered, setHovered] = useState(false);
+  const [isPinned, setIsPinned] = useState(false);
+
+  const handleNavigate = (url: string) => {
+    navigate(url);
+  };
+
+  const handlePinToggle = () => {
+    setIsPinned((prev) => !prev);
+  };
+
+  React.useEffect(() => {
+    const matchedItem = menuItemsSideBar.find((item) => {
+      if (item.url === location.pathname) return true;
+      if (item.nested && location.pathname.startsWith(item.url + "/"))
+        return true;
+      return false;
+    });
+
+    if (matchedItem) {
+      onActiveChange(matchedItem.title);
+    } else {
+      onActiveChange("");
+    }
+  }, [location.pathname]);
+
+  React.useEffect(() => {
+    const storedPinned = localStorage.getItem("sidebarPinned");
+    if (storedPinned !== null) {
+      setIsPinned(storedPinned === "true");
+    }
+  }, []);
+
+  React.useEffect(() => {
+    localStorage.setItem("sidebarPinned", String(isPinned));
+  }, [isPinned]);
+
+  const isCollapsed = !isPinned && !hovered;
+
+  return (
+    <aside
+      className={classNames(styles.sidebar, {
+        [styles.collapsed]: isCollapsed,
+      })}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <div className={styles.toggleWrapper}>
+        <button
+          className={classNames(styles.toggle, { [styles.pinned]: isPinned })}
+          onClick={handlePinToggle}
+        >
+          <LiaThumbtackSolid />
+        </button>
+      </div>
+
+      <nav className={styles.menu}>
+        {menuItemsSideBar.map((item) => {
+          const Icon = item.icon;
+          const isActive = matchPath(
+            { path: item.url, end: false },
+            location.pathname
+          );
+
+          return (
+            <button
+              key={item.id}
+              onClick={() => handleNavigate(item.url)}
+              className={classNames(styles.menuItem, {
+                [styles.active]: !!isActive,
+              })}
+            >
+              <Icon className={styles.icon} />
+              {!isCollapsed && (
+                <span className={styles.title}>{item.title}</span>
+              )}
+            </button>
+          );
+        })}
+      </nav>
+    </aside>
+  );
+};

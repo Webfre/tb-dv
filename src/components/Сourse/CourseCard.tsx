@@ -24,7 +24,7 @@ export const CourseCard: React.FC<CourseCardProps> = ({
   });
 
   const handleNavigate = () => {
-    navigate(`/course-access/${id}`);
+    navigate(`/panel/course/${id}`);
   };
 
   const isTestPassed = (key: string): boolean => {
