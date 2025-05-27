@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useGetUserProgressQuery } from "../../api/progressApi";
+import { CustomLinearProgress } from "../../ui/CustomLinearProgress";
 import { getTestsByCourseIds } from "../../lib/getTestsByCourseIds";
 import { getCourseIdsByCourseId } from "../../lib/getCourseIdsByCourseId";
 import {
@@ -18,8 +19,6 @@ import {
 import styles from "./TestItemCard.module.scss";
 import TestItemCard from "./TestItemCard";
 import Spinner from "../../ui/Spinner";
-import { HintBlock } from "../../ui/HintBlock";
-import { CustomLinearProgress } from "../../ui/CustomLinearProgress";
 
 interface ProgressProps {
   courseId: string;
@@ -58,17 +57,7 @@ const TestList: React.FC<ProgressProps> = ({ courseId }) => {
   }
 
   return (
-    <Box p={2}>
-      <HintBlock
-        text={`Система тестирования на курсе помогает закрепить материал после изучения лекций и практики.
-  Каждый тест связан с определённой темой, и его прохождение рекомендуется только после ознакомления с теорией.
-  У вас есть 2 попытки на прохождение каждого теста.
-
-  Если результат менее 50% — тест считается не пройденным, от 50% и выше — засчитывается.
-  Обращайте внимание на ошибки и правильные ответы, чтобы понять, где есть пробелы.
-  Рекомендуем повторно изучить материал перед второй попыткой.`}
-      />
-
+    <Box>
       {Object.entries(groupedTests).map(([category, tests]) => {
         const avgProgress = calculateCategoryProgress(tests, progressData);
 

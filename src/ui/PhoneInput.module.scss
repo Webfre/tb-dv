@@ -13,7 +13,7 @@
 
 .phoneInputField {
   padding: 16px 14px;
-  border: 1px solid #ccc;
+  border: 1px solid #7a62e1;
   border-radius: 20px;
   font-size: 16px;
   font-family: inherit;
@@ -21,7 +21,8 @@
   transition: border-color 0.2s ease;
 
   &:focus {
-    border-color: #1976d2;
+    border-color: #947ef6;
+    border: 2px solid #947ef6;
   }
 }
 

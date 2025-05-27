@@ -10,7 +10,7 @@ interface TaskListHeaderProps {
 const TaskListHeader: React.FC<TaskListHeaderProps> = ({ moduleId }) => {
   return (
     <Box display="flex" alignItems="center" gap={1} mb={2}>
-      <Typography sx={{ color: "#333" }} variant="h4">
+      <Typography sx={{ color: "#333" }} variant="h5">
         Задачи по: {moduleId}
       </Typography>
 

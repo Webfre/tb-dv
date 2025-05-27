@@ -2,6 +2,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import TestСourse from "../components/TestСourse/TestСourse";
 import TestList from "../components/TestСourse/TestList";
+import TestCourseAccess from "../components/TestСourse/TestCourseAccess";
 
 const TestWrapper: React.FC = () => {
   const location = useLocation();
@@ -13,8 +14,11 @@ const TestWrapper: React.FC = () => {
     return <TestСourse />;
   }
 
-  // Можно прокинуть courseId по умолчанию или из query, если нужно
-  return <TestList courseId="1" />;
+  return (
+    <TestCourseAccess
+      render={(selectedCourseId) => <TestList courseId={selectedCourseId} />}
+    />
+  );
 };
 
 export default TestWrapper;

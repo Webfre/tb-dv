@@ -24,6 +24,7 @@ const CoursePage: React.FC = () => {
   });
   const [filteredTopics, setFilteredTopics] = useState<typeof mockTopics>([]);
   const [course, setCourse] = useState<InfoCourse | undefined>(undefined);
+  const [isLoading, setIsLoading] = useState(true);
 
   const isTestPassed = (key: string): boolean => {
     if (!progressData?.history?.[key]) return false;
@@ -40,18 +41,20 @@ const CoursePage: React.FC = () => {
 
       if (foundCourse) {
         setCourse(foundCourse);
+
+        if (foundCourse.courseId) {
+          const topics = mockTopics.filter((topic) =>
+            foundCourse.courseId.includes(topic.id)
+          );
+          setFilteredTopics(topics);
+        }
       }
 
-      if (foundCourse?.courseId) {
-        const topics = mockTopics.filter((topic) =>
-          foundCourse.courseId.includes(topic.id)
-        );
-        setFilteredTopics(topics);
-      }
+      setIsLoading(false);
     }
   }, [courseId]);
 
-  if (!course) {
+  if (!course && !isLoading) {
     return (
       <NotFoundMessage
         icon={<FaRegSadTear size={32} color="#999" />}
@@ -64,9 +67,8 @@ const CoursePage: React.FC = () => {
     <Box p={2}>
       <Box>
         <HintBlock
-          text="В курсе представлены практические задачи, тесты, примеры решений,
-          ссылки на полезные ресурсы, видеоуроки и конференции, а также
-          поддержка в процессе обучения."
+          title="О курсе"
+          text="Курс включает теорию, практики для закрепления, тесты по модулям, систему прогресса, примеры решений, ссылки на ресурсы, видеоуроки, конференции и поддержку от менторов."
         />
       </Box>
 

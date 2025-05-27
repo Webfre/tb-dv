@@ -89,3 +89,28 @@ export const checkbox_sx = {
     fontSize: 24,
   },
 };
+
+export const textField_input_sx = {
+  "& .MuiOutlinedInput-root": {
+    borderRadius: "20px",
+    "& fieldset": {
+      borderColor: "#947ef6",
+    },
+    "&:hover fieldset": {
+      borderColor: "#7a62e1",
+    },
+    "&.Mui-focused fieldset": {
+      borderColor: "#947ef6",
+      borderWidth: "2px",
+    },
+  },
+  "& .MuiInputLabel-root": {
+    color: "#947ef6",
+    "&.Mui-focused": {
+      color: "#947ef6",
+    },
+  },
+  "& .MuiSvgIcon-root": {
+    color: "#947ef6",
+  },
+};

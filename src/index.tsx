@@ -1,122 +1,108 @@
 import ReactDOM from "react-dom/client";
 import { CssBaseline, ThemeProvider } from "@mui/material";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, useLocation } from "react-router-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 import { theme } from "./ui/theme";
 import { ToastContainer } from "react-toastify";
+import { Route } from "react-router-dom";
 import { Flashback } from "./components/Flashback/Flashback";
 import { UserPanelLayout } from "./Panel/UserPanelLayout";
-import { GlobalHelpDrawer } from "./components/GlobalHelpDrawer/GlobalHelpDrawer";
+import CourseRouteWrapper from "./ui/CourseRouteWrapper";
+import MentorProfilePage from "./components/MentorProfilePage/MentorProfilePage";
+import TestWrapper from "./ui/TestWrapper";
+import MentorList from "./components/MentorProfilePage/MentorList";
+import CourseList from "./components/Сourse/CourseList";
+import TaskBook from "./components/TaskBook/TaskBook";
+import RoadmapPage from "./pages/RoadmapPage/RoadmapPage";
 import LiveCodingPage from "./components/CodeEditorBlock/LiveCodingPage";
-import Home from "./pages/Home/Home";
-import Header from "./components/Header/Header";
 import CheatsheetPage from "./pages/CheatsheetPage/CheatsheetPage";
 import InterviewPage from "./pages/InterviewPage/InterviewPage";
 import ProjectsPage from "./pages/ProjectsPage/ProjectsPage";
-import RoadmapPage from "./pages/RoadmapPage/RoadmapPage";
-import TaskBook from "./components/TaskBook/TaskBook";
-import RegisterPage from "./pages/RegisterPage/RegisterPage";
-import ProtectedRoute from "./ui/ProtectedRoute";
-import AdminDashboard from "./components/AdminDashboard/AdminDashboard";
 import AdminProtectedRoute from "./ui/AdminProtectedRoute";
-import LoginPage from "./pages/LoginPage/LoginPage";
-import CourseInfoPage from "./pages/CourseInfoPage/CourseInfoPage";
-import ResetPasswordPage from "./pages/ResetPasswordPage/ResetPasswordPage";
-import Profile from "./components/Profile/Profile";
+import AdminDashboard from "./components/AdminDashboard/AdminDashboard";
+import Home from "./pages/Home/Home";
 import UserDetails from "./components/AdminDashboard/UserDetails/UserDetails";
-import CourseList from "./components/Сourse/CourseList";
-import MentorProfilePage from "./components/MentorProfilePage/MentorProfilePage";
-import TestWrapper from "./ui/TestWrapper";
-import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
-import CourseRouteWrapper from "./ui/CourseRouteWrapper";
+import Profile from "./components/Profile/Profile";
+import ProtectedRoute from "./ui/ProtectedRoute";
+import LoginPage from "./pages/LoginPage/LoginPage";
+import RegisterPage from "./pages/RegisterPage/RegisterPage";
+import ResetPasswordPage from "./pages/ResetPasswordPage/ResetPasswordPage";
+import CourseInfoPage from "./pages/CourseInfoPage/CourseInfoPage";
 import CoursesPageList from "./pages/CoursesPageList/CoursesPageList";
-import MentorList from "./components/MentorProfilePage/MentorList";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
+import Header from "./components/Header/Header";
+
 import "./index.scss";
 import "react-toastify/dist/ReactToastify.css";
 
-const AppRoutes = () => {
+export const AppRoutes = () => {
   const location = useLocation();
-  const hideHeader = [
-    "/register",
-    "/login",
-    "/reset-password",
-    "/panel",
-    "/panel/taskbook",
-  ].includes(location.pathname);
-
-  const content = (
-    <Routes>
-      {/* LOCAL PAGE */}
-      <Route path="/" element={<Home />} />
-
-      {/* PANEL ADMIN */}
-      <Route
-        path="/admin-dashboard"
-        element={
-          <AdminProtectedRoute>
-            <AdminDashboard />
-          </AdminProtectedRoute>
-        }
-      />
-
-      <Route
-        path="/admin/user/:id"
-        element={
-          <AdminProtectedRoute>
-            <UserDetails />
-          </AdminProtectedRoute>
-        }
-      />
-
-      {/* PANEL USER */}
-      <Route
-        path="/profile"
-        element={
-          <ProtectedRoute>
-            <Profile />
-          </ProtectedRoute>
-        }
-      />
-
-      <Route
-        path="/panel"
-        element={
-          <ProtectedRoute>
-            <UserPanelLayout />
-          </ProtectedRoute>
-        }
-      >
-        <Route path="course/:id" element={<CourseRouteWrapper />} />
-        <Route path="mentorlist/:id" element={<MentorProfilePage />} />
-        <Route path="test" element={<TestWrapper />} />
-        <Route path="mentorlist" element={<MentorList />} />
-        <Route path="course" element={<CourseList />} />
-        <Route path="taskbook" element={<TaskBook />} />
-        <Route path="roadmap" element={<RoadmapPage />} />
-        <Route path="livecode" element={<LiveCodingPage />} />
-        <Route path="cheatsheet" element={<CheatsheetPage />} />
-        <Route path="interview" element={<InterviewPage />} />
-        <Route path="projects" element={<ProjectsPage />} />
-        <Route path="flashback" element={<Flashback />} />
-      </Route>
-
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/register" element={<RegisterPage />} />
-      <Route path="/course-info" element={<CourseInfoPage open={true} />} />
-      <Route path="/reset-password" element={<ResetPasswordPage />} />
-      <Route path="/listcourse" element={<CoursesPageList />} />
-      <Route path="*" element={<NotFoundPage />} />
-    </Routes>
-  );
+  const hideHeader =
+    location.pathname.startsWith("/panel") ||
+    ["/register", "/login", "/reset-password"].includes(location.pathname);
 
   return (
     <>
       <CssBaseline />
-      {/* {!hideHeader && <Header />} */}
-      {content}
-      <GlobalHelpDrawer />
+      {!hideHeader && <Header />}
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route
+          path="/admin-dashboard"
+          element={
+            <AdminProtectedRoute>
+              <AdminDashboard />
+            </AdminProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/user/:id"
+          element={
+            <AdminProtectedRoute>
+              <UserDetails />
+            </AdminProtectedRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/reset-password" element={<ResetPasswordPage />} />
+        <Route path="/course-info" element={<CourseInfoPage open={true} />} />
+        <Route path="/listcourse" element={<CoursesPageList />} />
+        <Route path="*" element={<NotFoundPage />} />
+
+        <Route
+          path="/panel"
+          element={
+            <ProtectedRoute>
+              <UserPanelLayout />
+            </ProtectedRoute>
+          }
+        >
+          <Route path="course/:id" element={<CourseRouteWrapper />} />
+          <Route path="mentorlist/:id" element={<MentorProfilePage />} />
+          <Route path="test" element={<TestWrapper />} />
+          <Route path="mentorlist" element={<MentorList />} />
+          <Route path="course" element={<CourseList />} />
+          <Route path="taskbook" element={<TaskBook />} />
+          <Route path="roadmap" element={<RoadmapPage />} />
+          <Route path="livecode" element={<LiveCodingPage />} />
+          <Route path="cheatsheet" element={<CheatsheetPage />} />
+          <Route path="interview" element={<InterviewPage />} />
+          <Route path="projects" element={<ProjectsPage />} />
+          <Route path="flashback" element={<Flashback />} />
+        </Route>
+      </Routes>
     </>
   );
 };

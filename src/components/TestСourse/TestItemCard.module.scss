@@ -9,3 +9,21 @@
 .accordion::before {
   display: none;
 }
+
+.coursesProfile {
+  border-radius: 24px !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  padding: 20px !important;
+  background-color: #ebeced !important;
+
+  &:hover {
+    transform: translateY(-2px) !important;
+    background-color: #b5d3f1 !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+  }
+}
+
+.selectedCourse {
+  background-color: #b5d3f1 !important;
+}
