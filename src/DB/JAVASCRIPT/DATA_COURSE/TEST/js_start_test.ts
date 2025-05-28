@@ -1,5 +1,5 @@
 export const js_start_test = {
-  id: 400,
+  id: 500,
   name: "Введение в программирование и JavaScript",
   category: "JavaScript",
   ques: [

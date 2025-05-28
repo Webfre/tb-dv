@@ -1,4 +1,5 @@
 import { web_layout_info_course } from "./СOURSE_DATA/WEB_LAYOUT/web_layout_info_course";
+import { javascript_info_course } from "./СOURSE_DATA/JAVA_SCRIPT/javascript_info_course";
 import { cssTopic } from "./CSS/DATA_COURSE/css";
 import { browserTopic } from "./WWW/DATA_COURSE/www";
 import { htmlTopic } from "./HTML/DATA_COURSE/html";
@@ -9,7 +10,7 @@ import { jsTopic } from "./JAVASCRIPT/DATA_COURSE/js";
 
 export const courseList: InfoCourse[] = [
   web_layout_info_course,
-  // javascript_info_course,
+  javascript_info_course,
   // typescript_info_course,
   // react_basic_info_course,
   // react_advanced_info_course,

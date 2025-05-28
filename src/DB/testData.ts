@@ -23,8 +23,7 @@ import { html_multimedia_test } from "./HTML/DATA_COURSE/TEST/html_multimedia_te
 import { html_semantics_test } from "./HTML/DATA_COURSE/TEST/html_semantics_test";
 import { html_structure_test } from "./HTML/DATA_COURSE/TEST/html_structure_test";
 import { html_tables_test } from "./HTML/DATA_COURSE/TEST/html_tables_test";
-import { js_basics_test } from "./JAVASCRIPT/DATA_COURSE/TEST/js_basics_test";
-import { js_intro_test } from "./JAVASCRIPT/DATA_COURSE/TEST/js_intro_test";
+import { js_start_test } from "./JAVASCRIPT/DATA_COURSE/TEST/js_start_test";
 import { ide_intro_test } from "./IDE/DATA_COURSE/TEST/ide_intro_test";
 import { browser_intro_test } from "./WWW/DATA_COURSE/TEST/browser_intro_test";
 import { TestDataCollection } from "./index_type";
@@ -62,7 +61,7 @@ export const TEST_CATEGORY_MAP: Record<string, string[]> = {
     "css_animations_test",
     "css_preprocessors_test",
   ],
-  js: ["js_intro_test", "js_basics_test"],
+  js: ["js_start_test"],
 };
 
 export const testData: TestDataCollection = {
@@ -101,9 +100,8 @@ export const testData: TestDataCollection = {
   css_animations_test,
   css_preprocessors_test,
 
-  // JS  500 - 600
-  js_intro_test,
-  js_basics_test,
+  // JS будет с 500
+  js_start_test,
 
-  // React // id будет с 500
+  // React 
 };
