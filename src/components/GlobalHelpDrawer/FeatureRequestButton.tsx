@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import {
-  Box,
-  Fab,
   Dialog,
   DialogTitle,
   DialogContent,
@@ -10,10 +8,12 @@ import {
   MenuItem,
   Typography,
 } from "@mui/material";
-import MapsUgcIcon from "@mui/icons-material/MapsUgc";
 import BtnCustom from "../../ui/BtnCustom";
 import { toast } from "react-toastify";
 import { useSendFeatureRequestMutation } from "../../api/featureRequestApi";
+import { menu_item_sx, textField_input_sx } from "../../styles/global";
+import MarkEmailReadIcon from "@mui/icons-material/MarkEmailRead";
+import CustomToast from "../../ui/CustomToast";
 
 const categories = [
   { value: "feature", label: "Новая функция" },
@@ -22,17 +22,31 @@ const categories = [
   { value: "other", label: "Другое" },
 ];
 
-const FeatureRequestButton: React.FC = () => {
-  const [open, setOpen] = useState(false);
+interface FeatureRequestButtonProps {
+  open: boolean;
+  onClose: () => void;
+}
+
+const FeatureRequestButton: React.FC<FeatureRequestButtonProps> = ({
+  open,
+  onClose,
+}) => {
   const [category, setCategory] = useState("");
   const [message, setMessage] = useState("");
-  const [sendFeatureRequest, { isLoading }] = useSendFeatureRequestMutation();
+  const [sendFeatureRequest] = useSendFeatureRequestMutation();
 
   const handleSubmit = async () => {
     try {
       await sendFeatureRequest({ category, message }).unwrap();
-      toast.success("Запрос успешно отправлен!");
-      setOpen(false);
+
+      toast(
+        <CustomToast
+          message={"Запрос успешно отправлен!"}
+          icon={<MarkEmailReadIcon sx={{ color: "white" }} />}
+        />
+      );
+
+      onClose();
       setCategory("");
       setMessage("");
     } catch (error) {
@@ -41,68 +55,50 @@ const FeatureRequestButton: React.FC = () => {
   };
 
   return (
-    <>
-      <Box sx={{ position: "absolute", bottom: 20, right: 20 }}>
-        <Fab color="info" size="medium" onClick={() => setOpen(true)}>
-          <MapsUgcIcon />
-        </Fab>
-      </Box>
-
-      <Dialog
-        open={open}
-        onClose={() => setOpen(false)}
-        maxWidth="sm"
-        fullWidth
-      >
-        <DialogTitle>Оставить запрос или предложение</DialogTitle>
-        <DialogContent>
-          <Typography variant="body2" sx={{ mb: 2 }}>
-            Поделитесь своими идеями, замечаниями или ошибками — это поможет нам
-            сделать сервис лучше!
-          </Typography>
-          <TextField
-            select
-            label="Категория"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            fullWidth
-            margin="normal"
-            sx={{
-              borderRadius: "20px",
-              "& .MuiOutlinedInput-root": { borderRadius: "20px" },
-            }}
-          >
-            {categories.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
-          <TextField
-            label="Описание"
-            multiline
-            rows={4}
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            fullWidth
-            margin="normal"
-            sx={{
-              borderRadius: "20px",
-              "& .MuiOutlinedInput-root": { borderRadius: "20px" },
-            }}
-          />
-        </DialogContent>
-        <DialogActions>
-          <BtnCustom text="Отмена" onClick={() => setOpen(false)}></BtnCustom>
-          <BtnCustom
-            text="Отправить"
-            onClick={handleSubmit}
-            variant="contained"
-            disabled={!category || !message}
-          ></BtnCustom>
-        </DialogActions>
-      </Dialog>
-    </>
+    <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
+      <DialogTitle>Оставить запрос или предложение</DialogTitle>
+      <DialogContent>
+        <Typography variant="body2" sx={{ mb: 2 }}>
+          Поделитесь своими идеями, замечаниями или ошибками — это поможет нам
+          сделать сервис лучше!
+        </Typography>
+        <TextField
+          select
+          label="Категория"
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+          fullWidth
+          margin="normal"
+          sx={textField_input_sx}
+        >
+          {categories.map((option) => (
+            <MenuItem sx={menu_item_sx} key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
+        <TextField
+          label="Описание"
+          multiline
+          rows={4}
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          fullWidth
+          margin="normal"
+          sx={textField_input_sx}
+        />
+      </DialogContent>
+      <DialogActions>
+        <BtnCustom text="Отмена" customColor="#846ee6" onClick={onClose} />
+        <BtnCustom
+          text="Отправить"
+          customColor="#846ee6"
+          onClick={handleSubmit}
+          variant="contained"
+          disabled={!category || !message}
+        />
+      </DialogActions>
+    </Dialog>
   );
 };
 

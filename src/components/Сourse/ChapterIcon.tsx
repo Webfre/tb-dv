@@ -11,9 +11,7 @@ interface ChapterIconProps {
 
 const ChapterIcon: React.FC<ChapterIconProps> = ({ isFinal, testPassed }) => {
   if (isFinal) {
-    return (
-      <StarIcon fontSize="small" sx={{ mr: 1, color: "rgb(97, 97, 255)" }} />
-    );
+    return <StarIcon fontSize="small" sx={{ mr: 1, color: "#947ef6" }} />;
   }
 
   if (testPassed === true) {

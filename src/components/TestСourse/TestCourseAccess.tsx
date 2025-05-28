@@ -1,0 +1,79 @@
+import {
+  Box,
+  MenuItem,
+  FormControl,
+  InputLabel,
+  SelectChangeEvent,
+} from "@mui/material";
+import { useEffect, useState } from "react";
+import { HintBlock } from "../../ui/HintBlock";
+import { useCheckCourseAccessQuery } from "../../api/userApi";
+import { getAccessibleCourses } from "../../lib/hasAccessToCourses";
+import { courseList } from "../../DB";
+import { PurpleSelect } from "../../ui/PurpleSelect";
+import { label_sx, menu_item_sx } from "../../styles/global";
+
+interface TestCourseAccessProps {
+  render: (selectedCourseId: string) => React.ReactNode;
+}
+
+export default function TestCourseAccess({ render }: TestCourseAccessProps) {
+  const { data } = useCheckCourseAccessQuery();
+  const accessCourses = data?.accessCourse || [];
+
+  const [selectedCourseId, setSelectedCourseId] = useState<string>("");
+
+  const filteredCourses = getAccessibleCourses(courseList, accessCourses);
+
+  useEffect(() => {
+    if (filteredCourses.length > 0) {
+      setSelectedCourseId(filteredCourses[0].id.toString());
+    }
+  }, [filteredCourses]);
+
+  const handleSelectCourse = (e: SelectChangeEvent<string>) => {
+    setSelectedCourseId(e.target.value);
+  };
+
+  return (
+    <Box p={2}>
+      <HintBlock
+        title="Система тестирования на курсе"
+        text={`Система тестирования на курсе помогает закрепить материал после изучения лекций и практики.
+Каждый тест связан с определённой темой, и его прохождение рекомендуется только после ознакомления с теорией.
+У вас есть 2 попытки на прохождение каждого теста.
+
+Если результат менее 50% — тест считается не пройденным, от 50% и выше — засчитывается.
+Обращайте внимание на ошибки и правильные ответы, чтобы понять, где есть пробелы.
+Рекомендуем повторно изучить материал перед второй попыткой.`}
+      />
+
+      {filteredCourses.length > 0 && (
+        <Box mt={3} mb={2}>
+          <FormControl fullWidth size="small">
+            <InputLabel sx={label_sx}>Выберите курс:</InputLabel>
+            <PurpleSelect
+              value={selectedCourseId}
+              onChange={(e) =>
+                handleSelectCourse(e as SelectChangeEvent<string>)
+              }
+              label="Выберите курс:"
+            >
+              {filteredCourses.map((course) => (
+                <MenuItem
+                  key={course.id}
+                  value={course.id.toString()}
+                  sx={menu_item_sx}
+                >
+                  {course.title} ({course.courseType})
+                </MenuItem>
+              ))}
+            </PurpleSelect>
+          </FormControl>
+        </Box>
+      )}
+
+      {selectedCourseId && render(selectedCourseId)}
+    </Box>
+  );
+}

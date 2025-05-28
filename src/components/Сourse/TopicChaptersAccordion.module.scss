@@ -27,16 +27,18 @@
 .accordion {
   border-radius: 20px !important;
   overflow: hidden;
-  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
-    0px 1px 1px 0px rgba(0, 0, 0, 0.14),
-    0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.105) !important;
 
   &::before {
     display: none;
   }
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.211) !important;
+  }
 }
 
 .final {
-  border: 1px solid rgb(97, 97, 255);
+  border: 1px solid #b09efe;
   background-color: rgba(223, 223, 252, 0.777);
 }

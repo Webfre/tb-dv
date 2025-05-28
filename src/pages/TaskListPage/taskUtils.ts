@@ -7,7 +7,7 @@ export const getAllTopics = (
   return Array.from(
     new Set(
       tasks
-        .filter((task) => task.module.toLowerCase() === moduleId)
+        .filter((task) => task.module.toLowerCase() === moduleId.toLowerCase())
         .map((task) => task.topic || "")
         .filter(Boolean)
     )
@@ -21,7 +21,7 @@ export const filterTasks = (
   topicFilter: string | null
 ): PracticeTask[] => {
   return tasks.filter((task) => {
-    const moduleMatch = task.module.toLowerCase() === moduleId;
+    const moduleMatch = task.module.toLowerCase() === moduleId.toLowerCase();
     const difficultyMatch =
       difficultyLevel === null || task.difficulty === difficultyLevel;
     const topicMatch =

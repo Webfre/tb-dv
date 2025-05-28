@@ -1,0 +1,18 @@
+.wrapper {
+  margin-bottom: 16px !important;
+  padding: 16px !important;
+  border-radius: 20px !important;
+  background-color: #f9f9f9 !important;
+}
+
+.text {
+  color: inherit !important;
+
+  &.correct {
+    color: green !important;
+  }
+
+  &.wrong {
+    color: #b22222 !important;
+  }
+}

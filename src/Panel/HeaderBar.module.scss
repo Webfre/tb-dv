@@ -1,0 +1,70 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f9f9f9;
+  padding: 10px 25px;
+  border-bottom: 1px solid #e3e2e2;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+  margin-bottom: 4px;
+}
+
+.userMenu {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.avatarButton {
+  padding: 0;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  background-color: #505050 !important;
+
+  svg {
+    width: 40px !important;
+    height: 40px !important;
+  }
+}
+
+.popover {
+  background-color: #ffffff !important;
+  color: #333 !important;
+  min-width: 200px !important;
+  padding: 8px !important;
+  border-radius: 8px !important;
+}
+
+.icon {
+  color: #333 !important;
+}
+
+.divider {
+  color: #727272 !important;
+  margin: 4px 0;
+}
+
+.handleFullscreen {
+  font-size: 35px !important;
+  border-radius: 50%;
+  padding: 5px !important;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: #dcdcdc;
+  }
+}

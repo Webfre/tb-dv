@@ -38,7 +38,6 @@ export interface LoginResponse {
   lastName: string;
   firstName: string;
   middleName: string;
-  isAccessKey: boolean;
 }
 
 export interface ResetPasswordDto {

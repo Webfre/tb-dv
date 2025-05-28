@@ -1,7 +1,8 @@
 import { practiceMock } from "../../DB/taskData";
-import CodeIcon from "@mui/icons-material/Code";
-import HtmlIcon from "@mui/icons-material/Language";
-import CssIcon from "@mui/icons-material/Style";
+import { DiHtml5 } from "react-icons/di";
+import { IoLogoCss3 } from "react-icons/io";
+import { IoLogoJavascript } from "react-icons/io";
+import styles from "./TaskBook.module.scss";
 
 export interface TaskModule {
   id: string;
@@ -15,19 +16,19 @@ export const modules: TaskModule[] = [
     id: "HTML",
     title: "HTML",
     taskCount: practiceMock.filter((task) => task.module === "HTML").length,
-    icon: <HtmlIcon color="primary" />,
+    icon: <DiHtml5 className={styles.iconTop} />,
   },
   {
     id: "CSS",
     title: "CSS",
     taskCount: practiceMock.filter((task) => task.module === "CSS").length,
-    icon: <CssIcon color="primary" />,
+    icon: <IoLogoCss3 className={styles.iconTop} />,
   },
   {
     id: "JavaScript",
     title: "JavaScript",
     taskCount: practiceMock.filter((task) => task.module === "JavaScript")
       .length,
-    icon: <CodeIcon color="primary" />,
+    icon: <IoLogoJavascript className={styles.iconTop} />,
   },
 ];

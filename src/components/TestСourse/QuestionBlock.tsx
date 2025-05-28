@@ -6,6 +6,9 @@ import {
   FormControlLabel,
   Checkbox,
 } from "@mui/material";
+import classNames from "classnames";
+import styles from "./QuestionBlock.module.scss";
+import { checkbox_sx } from "../../styles/global";
 
 interface QuestionBlockProps {
   id: number;
@@ -27,7 +30,7 @@ const QuestionBlock: React.FC<QuestionBlockProps> = ({
   disabled,
 }) => {
   return (
-    <Box sx={{ mb: 2, p: 2, borderRadius: 2, bgcolor: "#f9f9f9" }}>
+    <Box className={styles.wrapper}>
       <Typography variant="h6">{name}</Typography>
       <FormGroup>
         {variants.map((option, idx) => {
@@ -39,6 +42,7 @@ const QuestionBlock: React.FC<QuestionBlockProps> = ({
               key={idx}
               control={
                 <Checkbox
+                  sx={checkbox_sx}
                   checked={isChecked}
                   onChange={() => onChange(id, idx)}
                   disabled={disabled}
@@ -46,15 +50,10 @@ const QuestionBlock: React.FC<QuestionBlockProps> = ({
               }
               label={
                 <Typography
-                  sx={{
-                    color: disabled
-                      ? isCorrect
-                        ? "green"
-                        : isChecked
-                        ? "red"
-                        : "inherit"
-                      : "inherit",
-                  }}
+                  className={classNames(styles.text, {
+                    [styles.correct]: disabled && isCorrect,
+                    [styles.wrong]: disabled && isChecked && !isCorrect,
+                  })}
                 >
                   {option}
                 </Typography>

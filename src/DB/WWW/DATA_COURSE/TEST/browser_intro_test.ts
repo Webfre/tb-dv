@@ -1,5 +1,5 @@
 export const browser_intro_test = {
-  id: 200,
+  id: 1,
   name: "Основы браузера и интернета",
   category: "Работа браузера",
   ques: [

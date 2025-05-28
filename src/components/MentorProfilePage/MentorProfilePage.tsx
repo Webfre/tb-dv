@@ -6,22 +6,21 @@ import {
   Typography,
   Avatar,
   Link,
-  List,
-  ListItem,
-  ListItemText,
   Stepper,
   Step,
   StepLabel,
   Chip,
   Alert,
 } from "@mui/material";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { mentors } from "./mentorsData";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import BtnCustom from "../../ui/BtnCustom";
 
 const MentorProfilePage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const mentorId = Number(id);
+  const navigate = useNavigate();
 
   const frontMentor = useMemo(
     () => mentors.find((m) => m.id === mentorId),
@@ -40,9 +39,17 @@ const MentorProfilePage: React.FC = () => {
   }
 
   return (
-    <Box p={4}>
+    <Box p={2}>
+      <BtnCustom
+        text="Назад"
+        customColor="#846ee6"
+        variant="outlined"
+        sx={{ marginBottom: "20px" }}
+        icon={<ArrowBackIosNewIcon />}
+        onClick={() => navigate(-1)}
+      />
+
       <Grid container spacing={4}>
-        {/* Левая колонка */}
         <Grid item xs={12} md={4}>
           <Paper sx={{ p: 3, borderRadius: 3 }}>
             <Box textAlign="center">
@@ -85,6 +92,7 @@ const MentorProfilePage: React.FC = () => {
               <BtnCustom
                 text="Написать в Telegram"
                 variant="outlined"
+                customColor="#846ee6"
                 fullWidth
                 sx={{ mt: 3 }}
               />
@@ -92,7 +100,6 @@ const MentorProfilePage: React.FC = () => {
           </Paper>
         </Grid>
 
-        {/* Правая колонка */}
         <Grid item xs={12} md={8}>
           <Paper sx={{ p: 3, borderRadius: 3 }}>
             <Typography variant="h6" gutterBottom mt={3}>

@@ -20,25 +20,37 @@ import QuizIcon from "@mui/icons-material/Quiz";
 import CodeIcon from "@mui/icons-material/Code";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
-import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import TopicChaptersAccordion from "./TopicChaptersAccordion";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import WorkIcon from "@mui/icons-material/Work";
 import styles from "./Course.module.scss";
 import { mockTopics } from "../../DB";
+import { NotFoundMessage } from "../../ui/NotFoundMessage";
+import { FaRegSadTear } from "react-icons/fa";
 
 const CourseTopicDetails: React.FC = () => {
-  const { id } = useParams();
+  const { id: courseId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const topicId = searchParams.get("topicId");
 
-  const { courseId } = location.state || {};
-  const { data: progressData } = useGetUserProgressQuery({ courseId });
+  const topic = mockTopics.find((t) => t.id === topicId);
+
+  const { data: progressData } = useGetUserProgressQuery(
+    { courseId: courseId! },
+    { skip: !courseId }
+  );
+
   const { data: solvedTasks = [] } = useGetSolvedTasksQuery();
-  const topic = mockTopics.find((t) => t.id === id);
 
   if (!topic) {
-    return <Typography>Тема не найдена</Typography>;
+    return (
+      <NotFoundMessage
+        icon={<FaRegSadTear size={32} color="#999" />}
+        text="Тема не найдена"
+      />
+    );
   }
 
   const totalTests = getTotalTests(topic);
@@ -58,43 +70,37 @@ const CourseTopicDetails: React.FC = () => {
   );
 
   return (
-    <Box p={4}>
-      <Box className={styles.btnActions}>
-        <BtnCustom
-          sx={{ mb: 2 }}
-          text="Назад"
-          icon={<NavigateBeforeIcon />}
-          onClick={() => navigate(-1)}
-        />
+    <Box p={2}>
+      <Box className={styles.btnActions}></Box>
+
+      <Box className={styles.titleActionsContainer}>
+        <Box className={styles.titleActions}>
+          <Typography variant="h4">{topic.title}</Typography>
+
+          {totalTests > 0 && (
+            <Tooltip
+              title={
+                isTopicCompleted
+                  ? "Модуль пройден! Вы успешно завершили все тесты и практические задания."
+                  : "Вы не прошли модуль. Модуль считается пройденным, когда вы прошли все тесты и выполнили практическую работу."
+              }
+              arrow
+            >
+              <VerifiedIcon
+                className={styles.btnVerified}
+                color={isTopicCompleted ? "primary" : "disabled"}
+              />
+            </Tooltip>
+          )}
+        </Box>
 
         <BtnCustom
-          sx={{ mb: 2 }}
           text={`Ментор: ${topic.mentors.name}`}
-          color="primary"
+          customColor="#846ee6"
           variant="contained"
           icon={<ManageAccountsIcon />}
-          onClick={() => navigate(`/mentorprofilepage/${topic.mentors.id}`)}
+          onClick={() => navigate(`/panel/mentorlist/${topic.mentors.id}`)}
         />
-      </Box>
-
-      <Box className={styles.titleActions}>
-        <Typography variant="h4">{topic.title}</Typography>
-
-        {totalTests > 0 && (
-          <Tooltip
-            title={
-              isTopicCompleted
-                ? "Модуль пройден! Вы успешно завершили все тесты и практические задания."
-                : "Вы не прошли модуль. Модуль считается пройденным, когда вы прошли все тесты и выполнили практическую работу."
-            }
-            arrow
-          >
-            <VerifiedIcon
-              className={styles.btnVerified}
-              color={isTopicCompleted ? "primary" : "disabled"}
-            />
-          </Tooltip>
-        )}
       </Box>
 
       <Typography mt={1} variant="subtitle1" gutterBottom>
@@ -124,7 +130,7 @@ const CourseTopicDetails: React.FC = () => {
           <Chip
             icon={<CodeIcon />}
             color="default"
-            label={`Практик пройдено: ${solvedPracticeCount} из ${moduleTasks.length}`}
+            label={`Практик пройдено: ${solvedPracticeCount} из ${totalPractice}`}
           />
         )}
 

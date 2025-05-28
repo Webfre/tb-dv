@@ -3,7 +3,7 @@ import {
   useGetSolvedTasksQuery,
   useGetUserProgressQuery,
 } from "../../api/progressApi";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { practiceMock } from "../../DB/taskData";
 import clsx from "clsx";
 import {
@@ -47,10 +47,11 @@ const TopicChaptersAccordion: React.FC<TopicChaptersAccordionProps> = ({
 }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { courseId } = location.state || {};
+  const { id: courseId } = useParams<{ id: string }>();
   const [expandedChapterId, setExpandedChapterId] = useState<string | null>(
     null
   );
+
   const [openSection, setOpenSection] = useState<CourseSection | null>(null);
   const [practiceOpen, setPracticeOpen] = useState(false);
   const [chapterTasks, setChapterTasks] = useState<PracticeTask[]>([]);
@@ -58,7 +59,10 @@ const TopicChaptersAccordion: React.FC<TopicChaptersAccordionProps> = ({
   const [highlightedId, setHighlightedId] = useState<string | null>(null);
 
   const { data: solvedTasks = [] } = useGetSolvedTasksQuery();
-  const { data: progressData } = useGetUserProgressQuery({ courseId });
+
+  const { data: progressData } = useGetUserProgressQuery({
+    courseId: courseId ?? "",
+  });
 
   const isChapterTestPassed = (testKey?: string): boolean | null => {
     if (!testKey || !progressData?.history?.[testKey]) return null;
@@ -82,7 +86,7 @@ const TopicChaptersAccordion: React.FC<TopicChaptersAccordionProps> = ({
   ) => {
     e.stopPropagation();
     if (testKey && chapterTitle) {
-      navigate("/test", {
+      navigate("/panel/test", {
         state: {
           name: chapterTitle,
           selectedTest: testKey,

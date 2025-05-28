@@ -1,14 +1,13 @@
 import React from "react";
-import { Container, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
+import { HintBlock } from "../../ui/HintBlock";
 import { useTestLogic } from "./useTestLogic";
 import { useNavigate } from "react-router-dom";
-import { Fab, Zoom } from "@mui/material";
 import { testData } from "../../DB/testData";
 import QuestionBlock from "./QuestionBlock";
 import ResultDialog from "./ResultDialog";
 import HistoryBlock from "./HistoryBlock";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import BtnCustom from "../../ui/BtnCustom";
 
 const TestСourse: React.FC = () => {
@@ -19,7 +18,6 @@ const TestСourse: React.FC = () => {
     handleSubmit,
     handleRetry,
     highlightAnswers,
-    showScrollTop,
     scrollToTop,
     showResults,
     score,
@@ -32,14 +30,18 @@ const TestСourse: React.FC = () => {
 
   const navigate = useNavigate();
 
+  const questions = testData[selectedTest].ques;
+  const isAllAnswered = questions.every((q) => answers[q.id]?.length > 0);
+
   if (!selectedTest || !testData[selectedTest]) {
     return <Typography>Ошибка: Тест не найден.</Typography>;
   }
 
   return (
-    <Container maxWidth="sm" sx={{ mt: 5, position: "relative" }}>
+    <Box p={2} sx={{ position: "relative" }}>
       <BtnCustom
         sx={{ mb: 2 }}
+        customColor="#846ee6"
         text="Назад"
         icon={<NavigateBeforeIcon />}
         onClick={() => navigate(-1)}
@@ -57,9 +59,10 @@ const TestСourse: React.FC = () => {
 
       {showResults && attemptsUsed < MAX_ATTEMPTS && (
         <BtnCustom
-          variant="outlined"
+          variant="contained"
           color="secondary"
-          text="Пройти заново"
+          customColor="#846ee6"
+          text="Повторить попытку"
           fullWidth
           sx={{ marginBottom: "20px" }}
           onClick={handleRetry}
@@ -79,13 +82,29 @@ const TestСourse: React.FC = () => {
         />
       ))}
 
-      <BtnCustom
-        sx={{ mt: 3, mb: 4, width: "100%" }}
-        onClick={handleSubmit}
-        text="Проверить"
-        variant="contained"
-        disabled={attemptsUsed >= MAX_ATTEMPTS || showResults}
-      />
+      {(attemptsUsed >= MAX_ATTEMPTS || !isAllAnswered) && !showResults && (
+        <HintBlock
+          title="Уведомление"
+          text={
+            attemptsUsed >= MAX_ATTEMPTS
+              ? "Вы израсходовали все попытки. Результаты сохранены."
+              : "Пожалуйста, ответьте на все вопросы, чтобы проверить тест."
+          }
+        />
+      )}
+
+      <Box display="flex" justifyContent="center">
+        <BtnCustom
+          sx={{ mt: 3, mb: 4, width: "40%" }}
+          onClick={handleSubmit}
+          text="Проверить"
+          customColor="#846ee6"
+          variant="contained"
+          disabled={
+            attemptsUsed >= MAX_ATTEMPTS || !isAllAnswered || showResults
+          }
+        />
+      </Box>
 
       <ResultDialog
         open={open}
@@ -96,24 +115,7 @@ const TestСourse: React.FC = () => {
         score={score}
         grade={grade}
       />
-
-      <Zoom in={showScrollTop}>
-        <Fab
-          color="primary"
-          size="medium"
-          onClick={scrollToTop}
-          sx={{
-            position: "fixed",
-            bottom: 24,
-            right: 24,
-            zIndex: 1300,
-          }}
-          aria-label="scroll back to top"
-        >
-          <KeyboardArrowUpIcon />
-        </Fab>
-      </Zoom>
-    </Container>
+    </Box>
   );
 };
 

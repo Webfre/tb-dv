@@ -6,6 +6,7 @@ import {
   TextFieldProps,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { textField_input_sx } from "../styles/global";
 
 interface PasswordFieldProps extends Omit<TextFieldProps, "type"> {
   value: string;
@@ -41,11 +42,7 @@ const PasswordField: React.FC<PasswordFieldProps> = ({
       helperText={helperText}
       fullWidth
       margin="normal"
-      sx={{
-        "& .MuiOutlinedInput-root": {
-          borderRadius: "20px",
-        },
-      }}
+      sx={textField_input_sx}
       InputProps={{
         endAdornment: (
           <InputAdornment position="end">

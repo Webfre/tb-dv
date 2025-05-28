@@ -66,13 +66,13 @@ export const TEST_CATEGORY_MAP: Record<string, string[]> = {
 };
 
 export const testData: TestDataCollection = {
-  // Browser
+  // Browser 0 - 100
   browser_intro_test,
 
-  // IDE
+  // IDE 100 -200
   ide_intro_test,
 
-  // HTML
+  // HTML 200 -300
   html_intro_test,
   html_structure_test,
   html_elements_test,
@@ -86,7 +86,7 @@ export const testData: TestDataCollection = {
   html_best_practices_test,
   html_final_test,
 
-  // CSS
+  // CSS 300 - 400
   css_intro_test,
   css_selectors_test,
   css_box_model_test,
@@ -101,7 +101,7 @@ export const testData: TestDataCollection = {
   css_animations_test,
   css_preprocessors_test,
 
-  // JS
+  // JS  500 - 600
   js_intro_test,
   js_basics_test,
 

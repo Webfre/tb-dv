@@ -5,14 +5,17 @@ import {
   List,
   ListItem,
   ListItemText,
-  Divider,
   Chip,
 } from "@mui/material";
+import { LiaAngellist } from "react-icons/lia";
 import BtnCustom from "../../ui/BtnCustom";
 import styles from "./HistoryBlock.module.scss";
 import { useGetUserProgressQuery } from "../../api/progressApi";
 import { LocationState } from "./useTestLogic";
 import { useLocation } from "react-router-dom";
+import { chip_sx } from "../../styles/global";
+import DoneAllIcon from "@mui/icons-material/DoneAll";
+import classNames from "classnames";
 
 interface HistoryBlockProps {
   selectedTest: string;
@@ -39,11 +42,13 @@ const HistoryBlock: React.FC<HistoryBlockProps> = ({
           label={`Попыток ${attemptsUsed} из ${MAX_ATTEMPTS}`}
           color={attemptsUsed >= MAX_ATTEMPTS ? "error" : "primary"}
           variant="filled"
+          sx={chip_sx}
         />
 
         <BtnCustom
           variant="outlined"
           color="secondary"
+          customColor="#846ee6"
           text={
             isVisible ? "Скрыть историю попыток" : "Показать историю попыток"
           }
@@ -59,27 +64,30 @@ const HistoryBlock: React.FC<HistoryBlockProps> = ({
 
           {history.length === 0 ? (
             <Box className={styles.nothistory}>
-              Нет данных о предыдущих попытках.
+              Упс! Пока что ни одной попытки. Самое время начать
+              <LiaAngellist style={{ fontSize: 26 }} />
             </Box>
           ) : (
             <List>
               {history.map((entry: any, index: number) => (
                 <React.Fragment key={index}>
                   <ListItem
-                    sx={{
-                      border: `2px solid ${
-                        entry.grade === 2 ? "red" : "green"
-                      }`,
-                      borderRadius: "8px",
-                      mb: 1,
-                    }}
+                    className={classNames(styles.card, {
+                      [styles.gradeRed]: entry.grade === 2,
+                      [styles.gradeGreen]: entry.grade !== 2,
+                    })}
                   >
+                    {entry.grade === 2 ? (
+                      <DoneAllIcon color="error" sx={{ mr: 2 }} />
+                    ) : (
+                      <DoneAllIcon color="success" sx={{ mr: 2 }} />
+                    )}
+
                     <ListItemText
                       primary={`Попытка #${index + 1}`}
-                      secondary={`Оценка: ${entry.grade} | Правильных ответов: ${entry.correctAnswers} | Результат: ${entry.percentage}%`}
+                      secondary={`Правильных ответов: ${entry.correctAnswers} | Результат: ${entry.percentage}%`}
                     />
                   </ListItem>
-                  {index < history.length - 1 && <Divider />}
                 </React.Fragment>
               ))}
             </List>

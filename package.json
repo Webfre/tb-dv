@@ -19,12 +19,14 @@
     "@types/node": "^16.18.126",
     "classnames": "^2.5.1",
     "clsx": "^2.1.1",
+    "framer-motion": "^12.14.0",
     "jwt-decode": "^3.1.2",
     "react": "^19.0.0",
     "react-code-blocks": "^0.1.6",
     "react-confetti": "^6.4.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.55.0",
+    "react-icons": "^5.4.0",
     "react-input-mask": "^2.0.4",
     "react-markdown": "^10.1.0",
     "react-redux": "^9.2.0",
@@ -67,8 +69,8 @@
   },
   "devDependencies": {
     "@types/jwt-decode": "^2.2.1",
-    "@types/react": "^19.1.2",
-    "@types/react-dom": "^19.1.2",
+    "@types/react": "^19.1.5",
+    "@types/react-dom": "^19.1.5",
     "gh-pages": "^6.3.0"
   }
 }
