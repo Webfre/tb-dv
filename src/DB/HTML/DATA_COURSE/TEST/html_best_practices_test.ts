@@ -1,5 +1,5 @@
 export const html_best_practices_test = {
-  id: 12,
+  id: 210,
   name: "HTML5, доступность",
   category: "HTML",
   ques: [
