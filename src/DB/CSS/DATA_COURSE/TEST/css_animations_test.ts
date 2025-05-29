@@ -1,5 +1,5 @@
 export const css_animations_test = {
-  id: 411,
+  id: 311,
   name: "CSS: Анимации и Плавные Переходы",
   category: "CSS",
   ques: [

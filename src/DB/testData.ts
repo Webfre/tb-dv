@@ -59,7 +59,6 @@ export const TEST_CATEGORY_MAP: Record<string, string[]> = {
     "css_images_test",
     "css_responsive_test",
     "css_animations_test",
-    "css_preprocessors_test",
   ],
   js: ["js_intro_test", "js_basics_test"],
 };

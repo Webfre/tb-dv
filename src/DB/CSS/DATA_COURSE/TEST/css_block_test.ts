@@ -1,5 +1,5 @@
 export const css_block_test = {
-  id: 403,
+  id: 303,
   name: "CSS: Отступы, Границы, Фон и Скругления",
   category: "CSS",
   ques: [

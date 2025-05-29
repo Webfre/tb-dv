@@ -1,5 +1,5 @@
 export const css_selectors_test = {
-  id: 401,
+  id: 301,
   name: "Стилизация текста",
   category: "CSS",
   ques: [

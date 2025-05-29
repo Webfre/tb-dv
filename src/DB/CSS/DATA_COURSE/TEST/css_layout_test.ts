@@ -1,5 +1,5 @@
 export const css_layout_test = {
-  id: 408,
+  id: 308,
   name: "Макеты и позиционирование",
   category: "CSS",
   ques: [

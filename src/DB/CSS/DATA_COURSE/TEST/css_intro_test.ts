@@ -1,5 +1,5 @@
 export const css_intro_test = {
-  id: 400,
+  id: 300,
   name: "Основы CSS",
   category: "CSS",
   ques: [
