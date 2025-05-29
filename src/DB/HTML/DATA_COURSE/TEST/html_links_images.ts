@@ -1,5 +1,5 @@
 export const html_links_images_test = {
-  id: 7,
+  id: 205,
   name: "Ссылки и изображения в HTML",
   category: "HTML",
   ques: [
