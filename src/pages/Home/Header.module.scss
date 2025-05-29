@@ -15,23 +15,6 @@
   }
 }
 
-.themeToggle {
-  cursor: pointer;
-  margin-right: 16px;
-  color: inherit;
-  display: flex;
-  align-items: center;
-  transition: transform 0.3s;
-
-  svg {
-    color: #525252 !important;
-  }
-
-  &:hover {
-    transform: scale(1.1);
-  }
-}
-
 .toolbar {
   justify-content: space-between;
   gap: 20px;
@@ -226,10 +209,6 @@
   gap: 10px;
 }
 
-.themeToggle_mobile {
-  display: none;
-}
-
 // =================== АДАПТИВ ===================
 
 @media (max-width: 1449px) {
@@ -287,11 +266,6 @@
 @media (max-width: 999px) {
   .nav {
     display: none;
-  }
-
-  .themeToggle_mobile {
-    display: block;
-    margin-top: 5px;
   }
 
   .burger {

@@ -78,13 +78,6 @@ const Header: React.FC = () => {
               {item.label}
             </Box>
           ))}
-
-          <div
-            className={styles.themeToggle}
-            onClick={() => dispatch(toggleMode())}
-          >
-            {mode === "light" ? <DarkModeIcon /> : <LightModeIcon />}
-          </div>
         </Box>
 
         <div
@@ -110,13 +103,6 @@ const Header: React.FC = () => {
           >
             Регистрация
           </button>
-        </div>
-
-        <div
-          className={styles.themeToggle_mobile}
-          onClick={() => dispatch(toggleMode())}
-        >
-          {mode === "light" ? <DarkModeIcon /> : <LightModeIcon />}
         </div>
       </div>
 
