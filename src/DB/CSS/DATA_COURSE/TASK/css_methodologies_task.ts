@@ -2,7 +2,7 @@ export const css_methodologies_task_1 = {
   id: "css_methodologies_task_1",
   module: "CSS",
   title: "Верстка карточек по BEM",
-  topic: "Что такое CSS-методологии",
+  topic: "Методология BEM: блок, элемент, модификатор",
   topicId: "css_methodologies",
   sectionId: "css_methodologies_2",
   description:

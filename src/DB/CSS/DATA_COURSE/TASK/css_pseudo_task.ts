@@ -1,3 +1,4 @@
+// Псевдоклассы
 export const css_pseudo_task_1 = {
   id: "css_pseudo_task_1",
   module: "CSS",
@@ -96,7 +97,6 @@ li:nth-child(2n) {
     "https://html5book.ru/css-pseudo-classes/",
   ],
 };
-
 export const css_pseudo_task_3 = {
   id: "css_pseudo_task_3",
   module: "CSS",
@@ -391,7 +391,839 @@ export const css_pseudo_task_4 = {
     "https://developer.mozilla.org/ru/docs/Web/CSS/:focus",
   ],
 };
+export const css_pseudo_taskAll_1 = {
+  id: "css_pseudo_taskAll_1",
+  module: "CSS",
+  title: "Подсветка четных и нечетных строк в таблице (nth-child)",
+  topic: "Псевдоклассы",
+  topicId: "css_pseudo",
+  sectionId: "css_pseudo1",
+  description:
+    "Создайте HTML-документ с таблицей (`<table>`), в которой четные строки подсвечиваются одним цветом, а нечетные — другим.",
+  steps: [
+    "Создайте HTML-документ с таблицей (`<table>`) и несколькими строками (`<tr>`)",
+    "Настройте стилизацию четных строк с помощью псевдокласса `nth-child`",
+    "Настройте стилизацию нечетных строк с другим цветом",
+    "Добавьте стили для ячеек и рамок",
+  ],
+  difficulty: 1,
+  solution: `
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+  <title>Подсветка четных и нечетных строк</title>
+</head>
+<body>
 
+  <table>
+    <thead>
+      <tr>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Возраст</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Иван</td>
+        <td>Иванов</td>
+        <td>25</td>
+      </tr>
+      <tr>
+        <td>Петр</td>
+        <td>Петров</td>
+        <td>30</td>
+      </tr>
+      <tr>
+        <td>Сергей</td>
+        <td>Сергеев</td>
+        <td>28</td>
+      </tr>
+      <tr>
+        <td>Алексей</td>
+        <td>Алексеев</td>
+        <td>22</td>
+      </tr>
+    </tbody>
+  </table>
+
+</body>
+</html>
+  `.trim(),
+  show: `
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Подсветка четных и нечетных строк</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    tr:nth-child(odd) {
+      background-color: #e6f7ff;
+    }
+  </style>
+</head>
+<body>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Возраст</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Иван</td>
+        <td>Иванов</td>
+        <td>25</td>
+      </tr>
+      <tr>
+        <td>Петр</td>
+        <td>Петров</td>
+        <td>30</td>
+      </tr>
+      <tr>
+        <td>Сергей</td>
+        <td>Сергеев</td>
+        <td>28</td>
+      </tr>
+      <tr>
+        <td>Алексей</td>
+        <td>Алексеев</td>
+        <td>22</td>
+      </tr>
+    </tbody>
+  </table>
+
+</body>
+</html>
+  `.trim(),
+  codeExampleCSS: `
+/* Таблица с подсветкой строк */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+/* Четные строки */
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Нечетные строки */
+tr:nth-child(odd) {
+  background-color: #e6f7ff;
+}
+  `.trim(),
+  resources: [
+    "https://developer.mozilla.org/ru/docs/Web/CSS/:nth-child",
+    "https://html5book.ru/css-nth-child/",
+  ],
+};
+export const css_pseudo_taskAll_2 = {
+  id: "css_pseudo_task_2",
+  module: "CSS",
+  title: "Выделение первого и последнего элемента списка",
+  topic: "Псевдоклассы",
+  topicId: "css_pseudo",
+  sectionId: "css_pseudo2",
+  description:
+    "Создайте HTML-документ со списком (`<ul>`), в котором первый и последний элементы выделяются цветом.",
+  steps: [
+    "Создайте HTML-документ со списком (`<ul>`) и несколькими элементами (`<li>`)",
+    "Настройте стилизацию для первого элемента списка (`first-child`)",
+    "Настройте стилизацию для последнего элемента списка (`last-child`)",
+    "Проверьте, как отображаются стили при добавлении новых элементов",
+  ],
+  difficulty: 1,
+  solution: `
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+  <title>Выделение первого и последнего элемента списка</title>
+</head>
+<body>
+
+  <ul>
+    <li>Первый элемент</li>
+    <li>Элемент списка 2</li>
+    <li>Элемент списка 3</li>
+    <li>Последний элемент</li>
+  </ul>
+
+</body>
+</html>
+  `.trim(),
+  show: `
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Выделение первого и последнего элемента списка</title>
+  <style>
+    ul {
+      list-style-type: none;
+      padding: 0;
+      width: 200px;
+    }
+
+    li {
+      padding: 10px;
+      margin-bottom: 5px;
+      background-color: #f1f1f1;
+      border: 1px solid #ccc;
+    }
+
+    li:first-child {
+      background-color: #007acc;
+      color: white;
+    }
+
+    li:last-child {
+      background-color: #28a745;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <ul>
+    <li>Первый элемент</li>
+    <li>Элемент списка 2</li>
+    <li>Элемент списка 3</li>
+    <li>Последний элемент</li>
+  </ul>
+
+</body>
+</html>
+  `.trim(),
+  codeExampleCSS: `
+/* Стилизация списка */
+ul {
+  list-style-type: none;
+  padding: 0;
+  width: 200px;
+}
+
+li {
+  padding: 10px;
+  margin-bottom: 5px;
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+}
+
+/* Первый элемент списка */
+li:first-child {
+  background-color: #007acc;
+  color: white;
+}
+
+/* Последний элемент списка */
+li:last-child {
+  background-color: #28a745;
+  color: white;
+}
+  `.trim(),
+  resources: [
+    "https://developer.mozilla.org/ru/docs/Web/CSS/:first-child",
+    "https://developer.mozilla.org/ru/docs/Web/CSS/:last-child",
+    "https://html5book.ru/css-nth-child/",
+  ],
+};
+export const css_pseudo_taskAll_3 = {
+  id: "css_pseudo_taskAll_3",
+  module: "CSS",
+  title: "Подсветка полей ввода при фокусе (focus)",
+  topic: "Псевдоклассы",
+  topicId: "css_pseudo",
+  sectionId: "css_pseudo3",
+  description:
+    "Создайте HTML-документ с формой, в которой поля ввода меняют цвет обводки при фокусе.",
+  steps: [
+    "Создайте HTML-документ с формой (`<form>`) и несколькими полями ввода (`<input>`)",
+    "Настройте стилизацию полей ввода с базовым цветом рамки",
+    "При фокусе (`:focus`) меняйте цвет рамки и фона",
+    "Добавьте плавный переход для смены состояния",
+  ],
+  difficulty: 2,
+  solution: `
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+  <title>Подсветка полей ввода при фокусе</title>
+</head>
+<body>
+
+  <form>
+    <input type="text" placeholder="Введите ваше имя" />
+    <input type="email" placeholder="Введите ваш email" />
+    <input type="password" placeholder="Введите ваш пароль" />
+    <button type="submit">Отправить</button>
+  </form>
+
+</body>
+</html>
+  `.trim(),
+  show: `
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Подсветка полей ввода при фокусе</title>
+  <style>
+    form {
+      width: 300px;
+      margin: 20px auto;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    input:focus {
+      border-color: #007acc;
+      background-color: #e6f7ff;
+      outline: none;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      background-color: #007acc;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #005f99;
+    }
+  </style>
+</head>
+<body>
+
+  <form>
+    <input type="text" placeholder="Введите ваше имя" />
+    <input type="email" placeholder="Введите ваш email" />
+    <input type="password" placeholder="Введите ваш пароль" />
+    <button type="button">Отправить</button>
+  </form>
+
+</body>
+</html>
+  `.trim(),
+  codeExampleCSS: `
+/* Стили для формы */
+form {
+  width: 300px;
+  margin: 20px auto;
+}
+
+/* Стили для полей ввода */
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+/* Изменение стиля при фокусе */
+input:focus {
+  border-color: #007acc;
+  background-color: #e6f7ff;
+  outline: none;
+}
+
+/* Стили для кнопки отправки */
+button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #007acc;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #005f99;
+}
+  `.trim(),
+  resources: [
+    "https://developer.mozilla.org/ru/docs/Web/CSS/:focus",
+    "https://html5book.ru/hover-focus-active/",
+  ],
+};
+export const css_pseudo_taskAll_4 = {
+  id: "css_pseudo_taskAll_4",
+  module: "CSS",
+  title: "Стилизация заблокированных полей (disabled)",
+  topic: "Псевдоклассы",
+  topicId: "css_pseudo",
+  sectionId: "css_pseudo4",
+  description:
+    "Создайте HTML-документ с формой, в которой заблокированные поля ввода имеют специальную стилизацию.",
+  steps: [
+    "Создайте HTML-документ с формой (`<form>`) и несколькими полями ввода (`<input>`)",
+    "Одно из полей должно быть заблокировано (`disabled`)",
+    "Настройте стилизацию заблокированного поля с помощью псевдокласса `:disabled`",
+    "Добавьте стилизацию для заблокированной кнопки",
+  ],
+  difficulty: 2,
+  solution: `
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+  <title>Стилизация заблокированных полей (disabled)</title>
+</head>
+<body>
+
+  <form>
+    <input type="text" placeholder="Ваше имя" />
+    <input type="email" placeholder="Ваш email" />
+    <input type="password" placeholder="Ваш пароль" disabled />
+    <button type="submit" disabled>Заблокировано</button>
+  </form>
+
+</body>
+</html>
+  `.trim(),
+  show: `
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Стилизация заблокированных полей (disabled)</title>
+  <style>
+    form {
+      width: 300px;
+      margin: 20px auto;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    input:disabled {
+      background-color: #f5f5f5;
+      border-color: #999;
+      color: #666;
+      cursor: not-allowed;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      background-color: #007acc;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #005f99;
+    }
+
+    button:disabled {
+      background-color: #999;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+
+  <form>
+    <input type="text" placeholder="Ваше имя" />
+    <input type="email" placeholder="Ваш email" />
+    <input type="password" placeholder="Ваш пароль" disabled />
+    <button type="submit" disabled>Заблокировано</button>
+  </form>
+
+</body>
+</html>
+  `.trim(),
+  codeExampleCSS: `
+/* Стили для формы */
+    form {
+      width: 300px;
+      margin: 20px auto;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    input:disabled {
+      background-color: #f5f5f5;
+      border-color: #999;
+      color: #666;
+      cursor: not-allowed;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      background-color: #007acc;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #005f99;
+    }
+
+    button:disabled {
+      background-color: #999;
+      cursor: not-allowed;
+    }
+  `.trim(),
+  resources: [
+    "https://developer.mozilla.org/ru/docs/Web/CSS/:disabled",
+    "https://html5book.ru/hover-focus-active/",
+  ],
+};
+export const css_pseudo_taskAll_5 = {
+  id: "css_pseudo_taskAll_5",
+  module: "CSS",
+  title: "Стилизация чекбоксов и радиокнопок при выборе (checked)",
+  topic: "Псевдоклассы",
+  topicId: "css_pseudo",
+  sectionId: "css_pseudo5",
+  description:
+    "Создайте HTML-документ с чекбоксами и радиокнопками, которые меняют стиль при выборе (`checked`).",
+  steps: [
+    "Создайте HTML-документ с чекбоксами (`<input type='checkbox'>`) и радиокнопками (`<input type='radio'>`)",
+    "Настройте стилизацию для состояния по умолчанию",
+    "Настройте стилизацию для состояния `:checked`",
+    "Добавьте плавный переход при изменении состояния",
+  ],
+  difficulty: 2,
+  solution: `
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+  <title>Стилизация чекбоксов и радиокнопок (checked)</title>
+</head>
+<body>
+
+  <div class="form-group">
+    <input type="checkbox" id="checkbox1">
+    <label for="checkbox1">Я принимаю условия соглашения</label>
+  </div>
+
+  <div class="form-group">
+    <input type="checkbox" id="checkbox2">
+    <label for="checkbox2">Подписаться на рассылку новостей</label>
+  </div>
+
+  <div class="form-group">
+    <input type="radio" id="radio1" name="gender">
+    <label for="radio1">Мужчина</label>
+  </div>
+
+  <div class="form-group">
+    <input type="radio" id="radio2" name="gender">
+    <label for="radio2">Женщина</label>
+  </div>
+
+</body>
+</html>
+  `.trim(),
+  show: `
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Стилизация чекбоксов и радиокнопок (checked)</title>
+  <style>
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    input[type="checkbox"],
+    input[type="radio"] {
+      margin-right: 10px;
+      transform: scale(1.2);
+      cursor: pointer;
+    }
+
+    input[type="checkbox"]:checked {
+      accent-color: #007acc;
+    }
+
+    input[type="radio"]:checked {
+      accent-color: #28a745;
+    }
+
+    label {
+      cursor: pointer;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-group">
+    <input type="checkbox" id="checkbox1">
+    <label for="checkbox1">Я принимаю условия соглашения</label>
+  </div>
+
+  <div class="form-group">
+    <input type="checkbox" id="checkbox2">
+    <label for="checkbox2">Подписаться на рассылку новостей</label>
+  </div>
+
+  <div class="form-group">
+    <input type="radio" id="radio1" name="gender">
+    <label for="radio1">Мужчина</label>
+  </div>
+
+  <div class="form-group">
+    <input type="radio" id="radio2" name="gender">
+    <label for="radio2">Женщина</label>
+  </div>
+
+</body>
+</html>
+  `.trim(),
+  codeExampleCSS: `
+/* Стили для чекбоксов и радиокнопок */
+   .form-group {
+      margin-bottom: 15px;
+    }
+
+    input[type="checkbox"],
+    input[type="radio"] {
+      margin-right: 10px;
+      transform: scale(1.2);
+      cursor: pointer;
+    }
+
+    input[type="checkbox"]:checked {
+      accent-color: #007acc;
+    }
+
+    input[type="radio"]:checked {
+      accent-color: #28a745;
+    }
+
+    label {
+      cursor: pointer;
+      font-size: 16px;
+    }
+  `.trim(),
+  resources: [
+    "https://developer.mozilla.org/ru/docs/Web/CSS/:checked",
+    "https://html5book.ru/hover-focus-active/",
+  ],
+};
+export const css_pseudo_taskAll_6 = {
+  id: "css_pseudo_taskAll_6",
+  module: "CSS",
+  title: "Форма с исключениями для валидации (not)",
+  topic: "Псевдоклассы",
+  topicId: "css_pseudo",
+  sectionId: "css_pseudo6",
+  description:
+    "Создайте форму, в которой все поля ввода подсвечиваются при ошибке, кроме одного, которое исключено из проверки.",
+  steps: [
+    "Создайте HTML-документ с формой (`<form>`) и несколькими полями ввода (`<input>`)",
+    "Настройте стилизацию для всех полей ввода, которые не прошли валидацию",
+    "Добавьте псевдокласс `:not` для исключения одного из полей из общей стилизации",
+    "Добавьте проверку валидации: пустое значение - ошибка",
+  ],
+  difficulty: 3,
+  solution: `
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+  <title>Форма с исключениями (not)</title>
+</head>
+<body>
+
+  <form>
+    <input id="user-id" type="text" placeholder="ID (не проверяется)" />
+    <input type="text" placeholder="Имя" required />
+    <input type="email" placeholder="Email" required />
+    <input type="password" placeholder="Пароль" required />
+    <button type="submit">Отправить</button>
+  </form>
+
+</body>
+</html>
+  `.trim(),
+  show: `
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Форма с исключениями (not)</title>
+  <style>
+    form {
+      width: 300px;
+      margin: 20px auto;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      background-color: #007acc;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #005f99;
+    }
+
+    input:invalid:not(#user-id) {
+      border-color: red;
+      background-color: #ffe6e6;
+    }
+
+    #user-id {
+      border-color: #28a745;
+      background-color: #e6ffe6;
+    }
+  </style>
+</head>
+<body>
+
+  <form>
+    <input id="user-id" type="text" placeholder="ID (не проверяется)" />
+    <input type="text" placeholder="Имя" required />
+    <input type="email" placeholder="Email" required />
+    <input type="password" placeholder="Пароль" required />
+    <button type="button">Отправить</button>
+  </form>
+
+</body>
+</html>
+  `.trim(),
+  codeExampleCSS: `
+      form {
+      width: 300px;
+      margin: 20px auto;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      background-color: #007acc;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #005f99;
+    }
+
+    input:invalid:not(#user-id) {
+      border-color: red;
+      background-color: #ffe6e6;
+    }
+
+    #user-id {
+      border-color: #28a745;
+      background-color: #e6ffe6;
+    }
+  `.trim(),
+  resources: [
+    "https://developer.mozilla.org/ru/docs/Web/CSS/:not",
+    "https://html5book.ru/css-not-selector/",
+  ],
+};
+
+// Псевдоэлементы
 export const css_pseudo_task_8 = {
   id: "css_pseudo_task_8",
   module: "CSS",
@@ -694,6 +1526,549 @@ export const css_pseudo_task_5 = {
     "https://html5book.ru/css-pseudo-elements/",
   ],
 };
+export const css_pseudoElement_task_1 = {
+  id: "css_pseudoElement_task_1",
+  module: "CSS",
+  title: "Добавление иконок перед элементами списка (before)",
+  topic: "Псевдоэлементы",
+  topicId: "css_pseudoElement",
+  sectionId: "css_pseudoElement1",
+  description:
+    "Создайте HTML-документ со списком (`<ul>`), в котором перед каждым элементом отображается иконка с помощью псевдоэлемента `::before`.",
+  steps: [
+    "Создайте HTML-документ со списком (`<ul>`) и несколькими элементами (`<li>`)",
+    "Настройте стилизацию списка",
+    "Добавьте псевдоэлемент `::before` для каждого элемента списка",
+    "Настройте иконку в псевдоэлементе с помощью Unicode",
+  ],
+  difficulty: 1,
+  solution: `
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+  <title>Иконки перед элементами списка</title>
+</head>
+<body>
+
+  <ul>
+    <li>Элемент списка 1</li>
+    <li>Элемент списка 2</li>
+    <li>Элемент списка 3</li>
+    <li>Элемент списка 4</li>
+  </ul>
+
+</body>
+</html>
+  `.trim(),
+  show: `
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Иконки перед элементами списка</title>
+  <style>
+    ul {
+      list-style-type: none;
+      padding: 0;
+      width: 300px;
+    }
+
+    li {
+      padding: 10px;
+      margin-bottom: 5px;
+      background-color: #f9f9f9;
+      border: 1px solid #ccc;
+      position: relative;
+    }
+
+    li::before {
+      content: "\\2714";
+      color: #007acc;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <ul>
+    <li>Элемент списка 1</li>
+    <li>Элемент списка 2</li>
+    <li>Элемент списка 3</li>
+    <li>Элемент списка 4</li>
+  </ul>
+
+</body>
+</html>
+  `.trim(),
+  codeExampleCSS: `
+    /* Стили для списка */
+    ul {
+      list-style-type: none;
+      padding: 0;
+      width: 300px;
+    }
+
+    /* Стили для элементов списка */
+    li {
+      padding: 10px;
+      margin-bottom: 5px;
+      background-color: #f9f9f9;
+      border: 1px solid #ccc;
+      position: relative;
+    }
+
+    /* Добавление иконки перед элементом */
+    li::before {
+      content: "\\2714"; /* Unicode для галочки */
+      color: #007acc;
+      margin-right: 10px;
+    }
+  `.trim(),
+  resources: [
+    "https://developer.mozilla.org/ru/docs/Web/CSS/::before",
+    "https://html5book.ru/css-psevdoyelementy/",
+  ],
+};
+export const css_pseudoElement_task_2 = {
+  id: "css_pseudoElement_task_2",
+  module: "CSS",
+  title: "Добавление декоративных линий после заголовков (after)",
+  topic: "Псевдоэлементы",
+  topicId: "css_pseudoElement",
+  sectionId: "css_pseudoElement2",
+  description:
+    "Создайте HTML-документ с заголовками (`<h2>`), после которых появляется декоративная линия с помощью псевдоэлемента `::after`.",
+  steps: [
+    "Создайте HTML-документ с несколькими заголовками (`<h2>`)",
+    "Настройте стилизацию заголовков",
+    "Добавьте псевдоэлемент `::after` для каждого заголовка",
+    "Настройте декоративную линию после заголовка",
+  ],
+  difficulty: 1,
+  solution: `
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+  <title>Декоративные линии после заголовков</title>
+</head>
+<body>
+
+  <h2>Заголовок 1</h2>
+  <h2>Заголовок 2</h2>
+  <h2>Заголовок 3</h2>
+
+</body>
+</html>
+  `.trim(),
+  show: `
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Декоративные линии после заголовков</title>
+  <style>
+    h2 {
+      font-size: 24px;
+      margin-bottom: 15px;
+      position: relative;
+      padding-bottom: 5px;
+      color: #333;
+    }
+
+    h2::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 50px;
+      height: 3px;
+      background-color: #007acc;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Заголовок 1</h2>
+  <h2>Заголовок 2</h2>
+  <h2>Заголовок 3</h2>
+
+</body>
+</html>
+  `.trim(),
+  codeExampleCSS: `
+/* Стили для заголовков */
+h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  position: relative;
+  padding-bottom: 5px;
+  color: #333;
+}
+
+/* Добавление декоративной линии после заголовка */
+h2::after {
+  content: "";
+  position: absolute;   /* Абсолютное позиционирование */
+  left: 0;              /* Начало слева */
+  bottom: -5px;         /* Смещение ниже заголовка */
+  width: 50px;          /* Ширина линии */
+  height: 3px;          /* Высота линии */
+  background-color: #007acc; /* Цвет линии */
+}
+  `.trim(),
+  resources: [
+    "https://developer.mozilla.org/ru/docs/Web/CSS/::after",
+    "https://html5book.ru/css-psevdoyelementy/",
+  ],
+};
+export const css_pseudoElement_task_3 = {
+  id: "css_pseudoElement_task_3",
+  module: "CSS",
+  title: "Стилизация первой буквы абзаца (first-letter)",
+  topic: "Псевдоэлементы",
+  topicId: "css_pseudo",
+  sectionId: "css_pseudo1",
+  description:
+    "Создайте HTML-документ с текстом, в котором первая буква абзаца выделяется с помощью псевдоэлемента `::first-letter`.",
+  steps: [
+    "Создайте HTML-документ с несколькими абзацами текста (`<p>`)",
+    "Настройте стилизацию для первой буквы в каждом абзаце",
+    "Измените цвет, размер шрифта и добавьте эффект жирного начертания",
+    "Настройте дополнительное расстояние справа от первой буквы",
+  ],
+  difficulty: 2,
+  solution: `
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Стилизация первой буквы (first-letter)</title>
+</head>
+<body>
+
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque.
+  </p>
+  
+  <p>
+    Curabitur ultricies felis sit amet vestibulum lacinia. Maecenas ut magna vel est elementum tempus sit amet in felis.
+  </p>
+  
+  <p>
+    Aliquam erat volutpat. Morbi consectetur varius neque, eu ultrices lectus convallis in.
+  </p>
+
+</body>
+</html>
+  `.trim(),
+  show: `
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Стилизация первой буквы (first-letter)</title>
+  <style>
+    p {
+      margin-bottom: 15px;
+      line-height: 1.5;
+      font-size: 18px;
+    }
+
+    p::first-letter {
+      font-size: 32px;
+      font-weight: bold;
+      color: #007acc;
+      margin-right: 5px;
+      float: left;
+    }
+  </style>
+</head>
+<body>
+
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque.
+  </p>
+  
+  <p>
+    Curabitur ultricies felis sit amet vestibulum lacinia. Maecenas ut magna vel est elementum tempus sit amet in felis.
+  </p>
+  
+  <p>
+    Aliquam erat volutpat. Morbi consectetur varius neque, eu ultrices lectus convallis in.
+  </p>
+
+</body>
+</html>
+  `.trim(),
+  codeExampleCSS: `
+/* Стили для абзацев */
+p {
+  margin-bottom: 15px;
+  line-height: 1.5;
+  font-size: 18px;
+}
+
+/* Стилизация первой буквы абзаца */
+p::first-letter {
+  font-size: 32px;      /* Увеличенный размер */
+  font-weight: bold;    /* Жирное начертание */
+  color: #007acc;       /* Цвет текста */
+  margin-right: 5px;    /* Отступ справа */
+  float: left;          /* Обтекание текста */
+}
+  `.trim(),
+  resources: [
+    "https://developer.mozilla.org/ru/docs/Web/CSS/::first-letter",
+    "https://html5book.ru/css-psevdoyelementy/",
+  ],
+};
+export const css_pseudoElement_task_4 = {
+  id: "css_pseudoElement_task_4",
+  module: "CSS",
+  title: "Стилизация первой строки абзаца (first-line)",
+  topic: "Псевдоэлементы",
+  topicId: "css_pseudoElement",
+  sectionId: "css_pseudoElement4",
+  description:
+    "Создайте HTML-документ с текстом, в котором первая строка каждого абзаца выделяется с помощью псевдоэлемента `::first-line`.",
+  steps: [
+    "Создайте HTML-документ с несколькими абзацами текста (`<p>`)",
+    "Настройте стилизацию для первой строки в каждом абзаце",
+    "Измените цвет, размер шрифта и стиль текста первой строки",
+  ],
+  difficulty: 2,
+  solution: `
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+  <title>Стилизация первой строки (first-line)</title>
+</head>
+<body>
+
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque.
+  </p>
+  
+  <p>
+    Curabitur ultricies felis sit amet vestibulum lacinia. Maecenas ut magna vel est elementum tempus sit amet in felis.
+  </p>
+  
+  <p>
+    Aliquam erat volutpat. Morbi consectetur varius neque, eu ultrices lectus convallis in.
+  </p>
+
+</body>
+</html>
+  `.trim(),
+  show: `
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Стилизация первой строки (first-line)</title>
+  <style>
+    p {
+      margin-bottom: 15px;
+      line-height: 1.5;
+      font-size: 18px;
+    }
+
+    p::first-line {
+      font-size: 20px;
+      font-weight: bold;
+      color: #007acc;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque.
+  </p>
+  
+  <p>
+    Curabitur ultricies felis sit amet vestibulum lacinia. Maecenas ut magna vel est elementum tempus sit amet in felis.
+  </p>
+  
+  <p>
+    Aliquam erat volutpat. Morbi consectetur varius neque, eu ultrices lectus convallis in.
+  </p>
+
+</body>
+</html>
+  `.trim(),
+  codeExampleCSS: `
+p {
+  margin-bottom: 15px;
+  line-height: 1.5;
+  font-size: 18px;
+}
+
+p::first-line {
+  font-size: 20px;
+  font-weight: bold;
+  color: #007acc;
+  text-transform: uppercase;
+}
+  `.trim(),
+  resources: [
+    "https://developer.mozilla.org/ru/docs/Web/CSS/::first-line",
+    "https://html5book.ru/css-psevdoyelementy/",
+  ],
+};
+export const css_pseudoElement_task_5 = {
+  id: "css_pseudoElement_task_5",
+  module: "CSS",
+  title: "Декоративные кавычки для цитат (before и after)",
+  topic: "Псевдоэлементы",
+  topicId: "css_pseudoElement",
+  sectionId: "css_pseudoElement5",
+  description:
+    "Создайте HTML-документ с цитатами (`<blockquote>`), для которых с помощью псевдоэлементов `::before` и `::after` будут добавлены декоративные кавычки.",
+  steps: [
+    "Создайте HTML-документ с несколькими цитатами (`<blockquote>`)",
+    "Настройте стилизацию для текста цитат",
+    "С помощью псевдоэлементов `::before` и `::after` добавьте кавычки",
+    "Настройте декоративный вид кавычек и текста",
+  ],
+  difficulty: 3,
+  solution: `
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+  <title>Декоративные кавычки для цитат</title>
+</head>
+<body>
+
+  <blockquote>
+    Дизайн — это не то, как объект выглядит или ощущается. Дизайн — это то, как он работает.
+  </blockquote>
+
+  <blockquote>
+    Великие вещи в бизнесе никогда не делаются одним человеком. Они достигаются командой людей.
+  </blockquote>
+
+  <blockquote>
+    Самое сложное — это начать действовать, все остальное зависит только от упорства.
+  </blockquote>
+
+</body>
+</html>
+  `.trim(),
+  show: `
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Декоративные кавычки для цитат</title>
+  <style>
+    blockquote {
+      font-size: 20px;
+      font-style: italic;
+      color: #333;
+      margin: 20px auto;
+      padding: 15px 20px;
+      border-left: 4px solid #007acc;
+      background-color: #f9f9f9;
+      position: relative;
+    }
+
+    blockquote::before {
+      content: "“";
+      font-size: 40px;
+      color: #007acc;
+      position: absolute;
+      left: -20px;
+      top: -10px;
+    }
+
+    blockquote::after {
+      content: "”";
+      font-size: 40px;
+      color: #007acc;
+      position: absolute;
+      right: -20px;
+      bottom: -10px;
+    }
+  </style>
+</head>
+<body>
+
+  <blockquote>
+    Дизайн — это не то, как объект выглядит или ощущается. Дизайн — это то, как он работает.
+  </blockquote>
+
+  <blockquote>
+    Великие вещи в бизнесе никогда не делаются одним человеком. Они достигаются командой людей.
+  </blockquote>
+
+  <blockquote>
+    Самое сложное — это начать действовать, все остальное зависит только от упорства.
+  </blockquote>
+
+</body>
+</html>
+  `.trim(),
+  codeExampleCSS: `
+/* Основной стиль для блока цитаты */
+blockquote {
+  font-size: 20px;
+  font-style: italic;
+  color: #333;
+  margin: 20px auto;
+  padding: 15px 20px;
+  border-left: 4px solid #007acc;
+  background-color: #f9f9f9;
+  position: relative;
+}
+
+/* Псевдоэлемент ::before для открывающей кавычки */
+blockquote::before {
+  content: "“";              /* Unicode кавычка открытия */
+  font-size: 40px;           /* Размер кавычки */
+  color: #007acc;            /* Цвет кавычки */
+  position: absolute;        /* Абсолютное позиционирование */
+  left: -20px;               /* Смещение слева */
+  top: -10px;                /* Смещение сверху */
+}
+
+/* Псевдоэлемент ::after для закрывающей кавычки */
+blockquote::after {
+  content: "”";              /* Unicode кавычка закрытия */
+  font-size: 40px;           /* Размер кавычки */
+  color: #007acc;            /* Цвет кавычки */
+  position: absolute;        /* Абсолютное позиционирование */
+  right: -20px;              /* Смещение справа */
+  bottom: -10px;             /* Смещение снизу */
+}
+  `.trim(),
+  resources: [
+    "https://developer.mozilla.org/ru/docs/Web/CSS/::before",
+    "https://developer.mozilla.org/ru/docs/Web/CSS/::after",
+    "https://html5book.ru/css-psevdoyelementy/",
+  ],
+};
+// Состояния элементов
 export const css_pseudo_task_6 = {
   id: "css_pseudo_task_6",
   module: "CSS",
