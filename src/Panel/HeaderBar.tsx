@@ -41,7 +41,7 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({ title }) => {
 
   const handleLogout = () => {
     handleClose();
-    localStorage.clear();
+    localStorage.removeItem("token");
     navigate("/login");
   };
 
