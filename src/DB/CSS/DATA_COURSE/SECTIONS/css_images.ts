@@ -77,7 +77,15 @@ export const css_images_1 = {
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="banner">Заголовок на фоне</div>
+</body>
+</html>
+  `.trim(),
+
+  codeExampleCSS: `
     .banner {
       width: 100%;
       height: 300px;
@@ -89,26 +97,6 @@ export const css_images_1 = {
       font-size: 24px;
       font-weight: bold;
     }
-  </style>
-</head>
-<body>
-  <div class="banner">Заголовок на фоне</div>
-</body>
-</html>
-  `.trim(),
-
-  codeExampleCSS: `
-.banner {
-  width: 100%;
-  height: 300px;
-  background: url('https://via.placeholder.com/800x300') no-repeat center/cover;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  font-weight: bold;
-}
   `.trim(),
 
   resources: [
@@ -119,7 +107,7 @@ export const css_images_1 = {
 };
 export const css_images_2 = {
   id: "css_images_2",
-  title: "<img> и background-image: в чём разница.",
+  title: "Когда использовать <img>, а когда background-image",
   content: `
   ## Что лучше: <img> или background?
 
@@ -186,7 +174,17 @@ export const css_images_2 = {
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="avatar">
+    <img src="https://via.placeholder.com/300x200" alt="Avatar">
+  </div>
+</body>
+</html>
+  `.trim(),
+
+  codeExampleCSS: `
     .avatar {
       width: 200px;
       height: 200px;
@@ -200,30 +198,6 @@ export const css_images_2 = {
       object-fit: cover;
       object-position: center;
     }
-  </style>
-</head>
-<body>
-  <div class="avatar">
-    <img src="https://via.placeholder.com/300x200" alt="Avatar">
-  </div>
-</body>
-</html>
-  `.trim(),
-
-  codeExampleCSS: `
-.avatar {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  overflow: hidden;
-}
-
-.avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
   `.trim(),
 
   resources: [
@@ -234,7 +208,7 @@ export const css_images_2 = {
 };
 export const css_images_3 = {
   id: "css_images_3",
-  title: "Адаптивные изображения: srcset, sizes, picture",
+  title: "Адаптивные изображения.",
   content: `
   ## Зачем нужны адаптивные изображения?
 
@@ -250,7 +224,7 @@ export const css_images_3 = {
 
   ---
 
-  ## 1. srcset — набор вариантов
+  ##  srcset — набор вариантов
 
   С помощью \`srcset\` можно указать **несколько версий** изображения:
 
@@ -268,7 +242,7 @@ export const css_images_3 = {
 
   ---
 
-  ## 2. picture — разные форматы и условия
+  ##  picture — разные форматы и условия
 
   Тег \`<picture>\` даёт больше гибкости: можно показывать **разные изображения** в зависимости от ширины экрана или даже использовать **WebP**.
 
@@ -306,15 +280,7 @@ export const css_images_3 = {
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
-    .responsive-img {
-      width: 100%;
-      max-width: 800px;
-      height: auto;
-      display: block;
-      margin: 0 auto;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <picture>
@@ -327,13 +293,13 @@ export const css_images_3 = {
   `.trim(),
 
   codeExampleCSS: `
-.responsive-img {
-  width: 100%;
-  max-width: 800px;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-}
+    .responsive-img {
+      width: 100%;
+      max-width: 800px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
   `.trim(),
 
   resources: [

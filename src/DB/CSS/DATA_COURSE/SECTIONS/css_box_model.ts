@@ -58,19 +58,7 @@ export const css_box_model1 = {
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    .box {
-      width: 300px;
-      padding: 20px;
-      margin: 30px auto;
-      border: 5px solid #3498db;
-      background-color: #ecf0f1;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="box">
@@ -102,7 +90,7 @@ export const css_box_model1 = {
 };
 export const css_box_model2 = {
   id: "css_box_model2",
-  title: "Типы отображения: block, inline, inline-block, none",
+  title: "Типы отображения.",
   content: `
   ## Типы отображения элементов в CSS
 
@@ -112,7 +100,7 @@ export const css_box_model2 = {
 
   ---
 
-  ### 1. block
+  ###  block
 
   - Элемент занимает всю доступную ширину родителя
   - Начинается с новой строки
@@ -126,7 +114,7 @@ export const css_box_model2 = {
 
   ---
 
-  ### 2. inline
+  ###  inline
 
   - Не начинается с новой строки
   - Ширина зависит от содержимого
@@ -141,7 +129,7 @@ export const css_box_model2 = {
 
   ---
 
-  ### 3. inline-block
+  ###  inline-block
 
   - Как inline — располагается в строке
   - Как block — можно задавать размеры, отступы
@@ -154,7 +142,7 @@ export const css_box_model2 = {
 
   ---
 
-  ### 4. none
+  ###  none
 
   - Элемент полностью скрывается
   - Не участвует в потоке, не занимает место
@@ -171,7 +159,20 @@ export const css_box_model2 = {
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="block">Блочный элемент</div>
+  <span class="inline">Инлайновый</span>
+  <span class="inline">текст</span>
+  <div class="inline-block">inline-block 1</div>
+  <div class="inline-block">inline-block 2</div>
+  <div class="hidden">Скрытый элемент</div>
+</body>
+</html>
+  `.trim(),
+
+  codeExampleCSS: `
     .block {
       display: block;
       width: 200px;
@@ -196,44 +197,6 @@ export const css_box_model2 = {
     .hidden {
       display: none;
     }
-  </style>
-</head>
-<body>
-  <div class="block">Блочный элемент</div>
-  <span class="inline">Инлайновый</span>
-  <span class="inline">текст</span>
-  <div class="inline-block">inline-block 1</div>
-  <div class="inline-block">inline-block 2</div>
-  <div class="hidden">Скрытый элемент</div>
-</body>
-</html>
-  `.trim(),
-
-  codeExampleCSS: `
-.block {
-  display: block;
-  width: 200px;
-  background: #d1ecf1;
-  margin-bottom: 10px;
-}
-
-.inline {
-  display: inline;
-  background: #f8d7da;
-  padding: 5px;
-}
-
-.inline-block {
-  display: inline-block;
-  width: 150px;
-  height: 40px;
-  background: #d4edda;
-  margin: 5px;
-}
-
-.hidden {
-  display: none;
-}
   `.trim(),
 
   resources: [
@@ -242,10 +205,9 @@ export const css_box_model2 = {
     "https://css-tricks.com/almanac/properties/d/display/",
   ],
 };
-
 export const css_box_model3 = {
   id: "css_box_model3",
-  title: "Смещение элементов: top, right, bottom, left",
+  title: "Смещение элементов.",
   content: `
   ## Свойства смещения: top, right, bottom, left
 
@@ -266,7 +228,7 @@ export const css_box_model3 = {
 
   ### Как работает смещение?
 
-  #### 1. position: relative
+  ####  position: relative
 
   - Элемент остаётся на месте в потоке, **но визуально сдвигается**
   - Пространство под него всё ещё **резервируется**
@@ -280,7 +242,7 @@ export const css_box_model3 = {
   }
   \`\`\`
 
-  #### 2. position: absolute
+  ####  position: absolute
 
   - Элемент **удаляется из потока**
   - Смещается относительно ближайшего родителя с \`position: relative\` (или \`<body>\`, если нет родителя)
@@ -294,12 +256,12 @@ export const css_box_model3 = {
   }
   \`\`\`
 
-  #### 3. position: fixed
+  ####  position: fixed
 
   - Смещение происходит относительно **окна браузера**
   - Элемент остаётся на месте при прокрутке
 
-  #### 4. position: sticky
+  ####  position: sticky
 
   - Элемент ведёт себя как \`relative\`, пока не достигнет точки смещения, затем "прилипает"
   - Работает с \`top\`, \`left\`, \`right\`, \`bottom\`
@@ -322,8 +284,19 @@ export const css_box_model3 = {
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
-    .wrapper {
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="wrapper">
+    <div class="relative">relative — сдвинут</div>
+    <div class="absolute">absolute — в правом нижнем углу</div>
+  </div>
+</body>
+</html>
+  `.trim(),
+
+  codeExampleCSS: `
+   .wrapper {
       position: relative;
       width: 300px;
       height: 200px;
@@ -347,41 +320,6 @@ export const css_box_model3 = {
       background: #f8d7da;
       padding: 10px;
     }
-  </style>
-</head>
-<body>
-  <div class="wrapper">
-    <div class="relative">relative — сдвинут</div>
-    <div class="absolute">absolute — в правом нижнем углу</div>
-  </div>
-</body>
-</html>
-  `.trim(),
-
-  codeExampleCSS: `
-.wrapper {
-  position: relative;
-  width: 300px;
-  height: 200px;
-  background: #f9f9f9;
-  border: 1px solid #ccc;
-}
-
-.relative {
-  position: relative;
-  top: 15px;
-  left: 20px;
-  background: #cce5ff;
-  padding: 10px;
-}
-
-.absolute {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  background: #f8d7da;
-  padding: 10px;
-}
   `.trim(),
 
   resources: [
@@ -392,8 +330,7 @@ export const css_box_model3 = {
 };
 export const css_box_model4 = {
   id: "css_box_model4",
-  title:
-    "Позиционирование элементов: static, relative, absolute, fixed, sticky",
+  title: "Позиционирование элементов.",
   content: `
   ## Позиционирование элементов в CSS
 
@@ -401,7 +338,7 @@ export const css_box_model4 = {
 
   ---
 
-  ### 1. static (по умолчанию)
+  ###  static (по умолчанию)
 
   - Элемент находится в нормальном потоке документа
   - Нельзя смещать с помощью top/right и т.д.
@@ -413,7 +350,7 @@ export const css_box_model4 = {
 
   ---
 
-  ### 2. relative
+  ###  relative
 
   - Остаётся на своём месте в потоке
   - **Можно смещать**, но остальное содержимое не сдвигается
@@ -427,7 +364,7 @@ export const css_box_model4 = {
 
   ---
 
-  ### 3. absolute
+  ###  absolute
 
   - Элемент **удаляется из потока**
   - Позиционируется относительно ближайшего родителя с \`position: relative\` (или body, если не найдено)
@@ -441,7 +378,7 @@ export const css_box_model4 = {
 
   ---
 
-  ### 4. fixed
+  ###  fixed
 
   - Позиционируется **относительно окна браузера**
   - Не двигается при прокрутке страницы
@@ -456,7 +393,7 @@ export const css_box_model4 = {
 
   ---
 
-  ### 5. sticky
+  ###  sticky
 
   - Сочетание relative и fixed
   - Ведёт себя как relative, **пока не "прилипнет"** к заданной позиции при прокрутке
@@ -475,7 +412,24 @@ export const css_box_model4 = {
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="sticky-header">Закреплённый заголовок (sticky)</div>
+
+  <div class="container">
+    <p>Родитель с position: relative</p>
+    <div class="absolute-box">Абсолютный элемент</div>
+  </div>
+
+  <div style="height: 1000px;">Скроллируемый контент</div>
+
+  <div class="fixed-box">Фиксированный элемент</div>
+</body>
+</html>
+  `.trim(),
+
+  codeExampleCSS: `
     .container {
       position: relative;
       height: 200px;
@@ -505,52 +459,6 @@ export const css_box_model4 = {
       background: #cce5ff;
       padding: 10px;
     }
-  </style>
-</head>
-<body>
-  <div class="sticky-header">Закреплённый заголовок (sticky)</div>
-
-  <div class="container">
-    <p>Родитель с position: relative</p>
-    <div class="absolute-box">Абсолютный элемент</div>
-  </div>
-
-  <div style="height: 1000px;">Скроллируемый контент</div>
-
-  <div class="fixed-box">Фиксированный элемент</div>
-</body>
-</html>
-  `.trim(),
-
-  codeExampleCSS: `
-.container {
-  position: relative;
-  height: 200px;
-  border: 2px solid #ccc;
-}
-
-.absolute-box {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: #ffcccb;
-  padding: 10px;
-}
-
-.fixed-box {
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
-  background: #d4edda;
-  padding: 10px;
-}
-
-.sticky-header {
-  position: sticky;
-  top: 0;
-  background: #cce5ff;
-  padding: 10px;
-}
   `.trim(),
 
   resources: [
@@ -561,7 +469,7 @@ export const css_box_model4 = {
 };
 export const css_box_model5 = {
   id: "css_box_model5",
-  title: "Слои, прокрутка и прозрачность: z-index, overflow, opacity",
+  title: "Слои, прокрутка и прозрачность.",
   content: `
   ## Управление слоями, прокруткой и прозрачностью
 
@@ -569,7 +477,7 @@ export const css_box_model5 = {
 
   ---
 
-  ### 1. z-index — порядок наложения
+  ###  z-index — порядок наложения
 
   - Управляет тем, какой элемент окажется **поверх** другого
   - Работает только с элементами, у которых задано \`position: relative/absolute/fixed/sticky\`
@@ -588,7 +496,7 @@ export const css_box_model5 = {
 
   ---
 
-  ### 2. overflow — поведение переполнения
+  ###  overflow — поведение переполнения
 
   Управляет тем, **что делать с контентом**, выходящим за пределы блока:
 
@@ -607,7 +515,7 @@ export const css_box_model5 = {
 
   ---
 
-  ### 3. opacity — прозрачность элемента
+  ###  opacity — прозрачность элемента
 
   - Значение от \`0\` (полностью прозрачный) до \`1\` (полностью видимый)
   - Влияет на **весь элемент и его содержимое**
@@ -626,8 +534,21 @@ export const css_box_model5 = {
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
-    .layer1, .layer2 {
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="layer1">Нижний слой</div>
+  <div class="layer2">Верхний слой (z-index + opacity)</div>
+
+  <div class="scroll-box">
+    <p>Это длинный текст внутри блока. Это длинный текст внутри блока. Это длинный текст внутри блока.</p>
+  </div>
+</body>
+</html>
+  `.trim(),
+
+  codeExampleCSS: `
+   .layer1, .layer2 {
       position: absolute;
       top: 20px;
       left: 20px;
@@ -654,47 +575,6 @@ export const css_box_model5 = {
       border: 1px solid #ccc;
       margin-top: 150px;
     }
-  </style>
-</head>
-<body>
-  <div class="layer1">Нижний слой</div>
-  <div class="layer2">Верхний слой (z-index + opacity)</div>
-
-  <div class="scroll-box">
-    <p>Это длинный текст внутри блока. Это длинный текст внутри блока. Это длинный текст внутри блока.</p>
-  </div>
-</body>
-</html>
-  `.trim(),
-
-  codeExampleCSS: `
-.layer1, .layer2 {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  width: 200px;
-  height: 100px;
-  padding: 10px;
-}
-
-.layer1 {
-  background: #d1ecf1;
-  z-index: 1;
-}
-
-.layer2 {
-  background: #f8d7da;
-  z-index: 10;
-  opacity: 0.8;
-}
-
-.scroll-box {
-  width: 200px;
-  height: 100px;
-  overflow: auto;
-  border: 1px solid #ccc;
-  margin-top: 150px;
-}
   `.trim(),
 
   resources: [

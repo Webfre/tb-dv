@@ -1,12 +1,12 @@
 export const css_selectors1 = {
   id: "css_selectors1",
-  title: "Цвета: HEX, RGB, HSL, прозрачность",
+  title: "Цвета.",
   content: `
   ## Цвета в CSS
 
   Цвет — одно из самых базовых и важных свойств в веб-дизайне. CSS поддерживает несколько форматов задания цвета.
 
-  ### 1. Свойство \`color\`
+  ###  Свойство \`color\`
 
   Свойство \`color\` используется для задания цвета **текста**. Оно принимает все основные цветовые форматы:
 
@@ -19,7 +19,7 @@ export const css_selectors1 = {
 
   --- 
 
-  ### 2. HEX-цвета
+  ###  HEX-цвета
 
   Формат: \`#RRGGBB\` (или \`#RGB\`)
 
@@ -31,7 +31,7 @@ export const css_selectors1 = {
 
   --- 
 
-  ### 3. RGB
+  ###  RGB
 
   Формат: \`rgb(красный, зелёный, синий)\`
 
@@ -44,7 +44,7 @@ export const css_selectors1 = {
 
   --- 
 
-  ### 4. RGBA
+  ###  RGBA
 
   То же, что и RGB, но добавляется альфа-канал (прозрачность).
 
@@ -56,7 +56,7 @@ export const css_selectors1 = {
 
   --- 
 
-  ### 5. HSL
+  ###  HSL
 
   Формат: \`hsl(оттенок, насыщенность, яркость)\`
 
@@ -68,7 +68,7 @@ export const css_selectors1 = {
 
   --- 
 
-  ### 6. HSLA
+  ###  HSLA
 
   То же, что HSL, но с прозрачностью:
 
@@ -91,8 +91,21 @@ export const css_selectors1 = {
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
-    .hex {
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <p class="hex">HEX: #ff5733</p>
+  <p class="rgb">RGB: rgb(60, 179, 113)</p>
+  <p class="rgba">RGBA: полупрозрачный фон</p>
+  <p class="hsl">HSL: hsl(200, 100%, 40%)</p>
+  <p class="hsla">HSLA: hsla(340, 100%, 50%, 0.2)</p>
+  <p class="text-example">Это пример использования <code>color</code> для текста.</p>
+</body>
+</html>
+  `.trim(),
+
+  codeExampleCSS: `
+   .hex {
       color: #ff5733;
     }
 
@@ -117,45 +130,6 @@ export const css_selectors1 = {
       font-size: 18px;
       margin-bottom: 10px;
     }
-  </style>
-</head>
-<body>
-  <p class="hex">HEX: #ff5733</p>
-  <p class="rgb">RGB: rgb(60, 179, 113)</p>
-  <p class="rgba">RGBA: полупрозрачный фон</p>
-  <p class="hsl">HSL: hsl(200, 100%, 40%)</p>
-  <p class="hsla">HSLA: hsla(340, 100%, 50%, 0.2)</p>
-  <p class="text-example">Это пример использования <code>color</code> для текста.</p>
-</body>
-</html>
-  `.trim(),
-
-  codeExampleCSS: `
-.hex {
-  color: #ff5733;
-}
-
-.rgb {
-  color: rgb(60, 179, 113);
-}
-
-.rgba {
-  background-color: rgba(0, 0, 0, 0.1);
-}
-
-.hsl {
-  color: hsl(200, 100%, 40%);
-}
-
-.hsla {
-  background-color: hsla(340, 100%, 50%, 0.2);
-}
-
-.text-example {
-  color: red;
-  font-size: 18px;
-  margin-bottom: 10px;
-}
   `.trim(),
 
   resources: [
@@ -166,7 +140,7 @@ export const css_selectors1 = {
 };
 export const css_selectors2 = {
   id: "css_selectors2",
-  title: "Шрифты и текст: font-family, line-height, letter-spacing, text-align",
+  title: "Шрифты и текст.",
   content: `
   ## Стилизация текста в CSS
 
@@ -174,7 +148,7 @@ export const css_selectors2 = {
 
   ---
 
-  ### 1. font-family
+  ###  font-family
 
   Определяет шрифт текста. Всегда указывай запасные варианты и тип семейства (sans-serif, serif, monospace):
 
@@ -184,7 +158,7 @@ export const css_selectors2 = {
 
   ---
 
-  ### 2. line-height
+  ###  line-height
 
   Межстрочный интервал — влияет на читаемость текста. Может быть числом, процентом, единицей длины:
 
@@ -194,7 +168,7 @@ export const css_selectors2 = {
 
   ---
 
-  ### 3. letter-spacing
+  ###  letter-spacing
 
   Управляет расстоянием между символами:
 
@@ -204,7 +178,7 @@ export const css_selectors2 = {
 
   ---
 
-  ### 4. text-align
+  ###  text-align
 
   Выравнивает текст по горизонтали:
 
@@ -231,15 +205,7 @@ export const css_selectors2 = {
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
-    .text-block {
-      font-family: "Segoe UI", Tahoma, sans-serif;
-      font-size: 18px;
-      line-height: 1.6;
-      letter-spacing: 0.5px;
-      text-align: justify;
-    }
-  </style>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="text-block">
@@ -252,13 +218,13 @@ export const css_selectors2 = {
   `.trim(),
 
   codeExampleCSS: `
-.text-block {
-  font-family: "Segoe UI", Tahoma, sans-serif;
-  font-size: 18px;
-  line-height: 1.6;
-  letter-spacing: 0.5px;
-  text-align: justify;
-}
+   .text-block {
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      font-size: 18px;
+      line-height: 1.6;
+      letter-spacing: 0.5px;
+      text-align: justify;
+    }
   `.trim(),
 
   resources: [
@@ -271,7 +237,7 @@ export const css_selectors2 = {
 
 export const css_selectors3 = {
   id: "css_selectors3",
-  title: "Размеры: width, height, max/min",
+  title: "Размеры.",
   content: `
   ## Размеры элементов в CSS
 
@@ -279,7 +245,7 @@ export const css_selectors3 = {
 
   ---
 
-  ### 1. width / height
+  ###  width / height
 
   Задают **фиксированную ширину и высоту**:
 
@@ -296,7 +262,7 @@ export const css_selectors3 = {
 
   ---
 
-  ### 2. max-width / min-width
+  ###  max-width / min-width
 
   Ограничивают размеры элемента при адаптивной верстке:
 
@@ -314,7 +280,7 @@ export const css_selectors3 = {
 
   ---
 
-  ### 3. Автоматическая высота
+  ###  Автоматическая высота
 
   Если не задана \`height\`, элемент подстраивается под содержимое. Это поведение по умолчанию для блочных элементов:
 
@@ -324,7 +290,7 @@ export const css_selectors3 = {
 
   ---
 
-  ### 4. Размеры и padding
+  ###  Размеры и padding
 
   Если используется \`box-sizing: content-box\`, то padding увеличивает итоговый размер элемента.
 
@@ -340,22 +306,7 @@ export const css_selectors3 = {
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    .container {
-      width: 90%;
-      max-width: 600px;
-      min-width: 300px;
-      height: auto;
-      padding: 20px;
-      margin: 20px auto;
-      background-color: #f9f9f9;
-      border: 1px solid #ccc;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="container">
@@ -366,16 +317,16 @@ export const css_selectors3 = {
   `.trim(),
 
   codeExampleCSS: `
-.container {
-  width: 90%;
-  max-width: 600px;
-  min-width: 300px;
-  height: auto;
-  padding: 20px;
-  margin: 0 auto;
-  background-color: #f9f9f9;
-  border: 1px solid #ccc;
-}
+    .container {
+      width: 90%;
+      max-width: 600px;
+      min-width: 300px;
+      height: auto;
+      padding: 20px;
+      margin: 20px auto;
+      background-color: #f9f9f9;
+      border: 1px solid #ccc;
+    }
   `.trim(),
 
   resources: [
@@ -394,7 +345,7 @@ export const css_selectors4 = {
 
   ---
 
-  ### 1. text-decoration
+  ###  text-decoration
 
   Основное свойство, которое отвечает за декорации текста (подчёркивание, зачеркивание, надчёркивание):
 
@@ -423,7 +374,7 @@ export const css_selectors4 = {
 
   ---
 
-  ### 2. text-decoration-color
+  ###  text-decoration-color
 
   Позволяет изменить цвет линии декорации:
 
@@ -436,7 +387,7 @@ export const css_selectors4 = {
 
   ---
 
-  ### 3. text-decoration-style
+  ###  text-decoration-style
 
   Определяет стиль линии:
   
@@ -464,7 +415,7 @@ export const css_selectors4 = {
 
   ---
 
-  ### 4. text-decoration-thickness
+  ###  text-decoration-thickness
 
   Позволяет изменять толщину линии:
 
@@ -482,7 +433,7 @@ export const css_selectors4 = {
 
   ---
 
-  ### 5. Сочетания декораций
+  ###  Сочетания декораций
 
   Можно комбинировать разные декорации в одно свойство:
 
@@ -502,6 +453,7 @@ export const css_selectors4 = {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>CSS Декорации текста</title>
 </head>
 <body>

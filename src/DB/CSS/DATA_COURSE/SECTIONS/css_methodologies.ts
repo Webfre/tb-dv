@@ -99,7 +99,18 @@ export const css_methodologies_1 = {
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="card card--active">
+    <div class="card__title">Пример BEM</div>
+    <div class="card__text">Это текст внутри карточки.</div>
+  </div>
+</body>
+</html>
+  `.trim(),
+
+  codeExampleCSS: `
     .card {
       border: 1px solid #ccc;
       padding: 20px;
@@ -120,38 +131,6 @@ export const css_methodologies_1 = {
       font-size: 14px;
       color: #333;
     }
-  </style>
-</head>
-<body>
-  <div class="card card--active">
-    <div class="card__title">Пример BEM</div>
-    <div class="card__text">Это текст внутри карточки.</div>
-  </div>
-</body>
-</html>
-  `.trim(),
-
-  codeExampleCSS: `
-.card {
-  border: 1px solid #ccc;
-  padding: 20px;
-  border-radius: 8px;
-}
-
-.card--active {
-  border-color: #2196f3;
-  background-color: #e3f2fd;
-}
-
-.card__title {
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.card__text {
-  font-size: 14px;
-  color: #333;
-}
   `.trim(),
 
   resources: [
@@ -175,7 +154,7 @@ export const css_methodologies_2 = {
 
   ---  
 
-  ##  1. Блок
+  ##   Блок
 
   Независимый компонент интерфейса (например, кнопка, карточка, форма).
 
@@ -185,7 +164,7 @@ export const css_methodologies_2 = {
 
   ---  
 
-  ##  2. Элемент
+  ##   Элемент
 
   Часть блока, не может использоваться сам по себе. Пишется через два подчёркивания:
 
@@ -198,7 +177,7 @@ export const css_methodologies_2 = {
 
   ---  
 
-  ##  3. Модификатор
+  ##   Модификатор
 
   Изменяет внешний вид или поведение блока/элемента. Пишется через два дефиса:
 
@@ -283,7 +262,19 @@ export const css_methodologies_2 = {
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <article class="post post--featured">
+    <h2 class="post__title">Заголовок статьи</h2>
+    <p class="post__text">Краткое описание статьи.</p>
+    <a class="post__link post__link--active" href="#">Читать полностью</a>
+  </article>
+</body>
+</html>
+  `.trim(),
+
+  codeExampleCSS: `
     .post {
       padding: 20px;
       border: 1px solid #ddd;
@@ -311,46 +302,6 @@ export const css_methodologies_2 = {
     .post__link--active {
       text-decoration: underline;
     }
-  </style>
-</head>
-<body>
-  <article class="post post--featured">
-    <h2 class="post__title">Заголовок статьи</h2>
-    <p class="post__text">Краткое описание статьи.</p>
-    <a class="post__link post__link--active" href="#">Читать полностью</a>
-  </article>
-</body>
-</html>
-  `.trim(),
-
-  codeExampleCSS: `
-.post {
-  padding: 20px;
-  border: 1px solid #ddd;
-}
-
-.post--featured {
-  background-color: #fffde7;
-}
-
-.post__title {
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.post__text {
-  font-size: 16px;
-  color: #444;
-}
-
-.post__link {
-  color: #2196f3;
-  text-decoration: none;
-}
-
-.post__link--active {
-  text-decoration: underline;
-}
   `.trim(),
 
   resources: [

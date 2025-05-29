@@ -1,5 +1,5 @@
 export const css_images_test = {
-  id: 509,
+  id: 309,
   name: "CSS: Изображения и фоновые изображения",
   category: "CSS",
   ques: [

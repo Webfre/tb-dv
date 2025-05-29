@@ -81,7 +81,19 @@ export const css_flexbox_1 = {
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="flex-container">
+    <div class="flex-item">Элемент 1</div>
+    <div class="flex-item">Элемент 2</div>
+    <div class="flex-item">Элемент 3</div>
+  </div>
+</body>
+</html>
+  `.trim(),
+
+  codeExampleCSS: `
     .flex-container {
       display: flex;
       border: 2px solid #ccc;
@@ -95,32 +107,6 @@ export const css_flexbox_1 = {
       text-align: center;
       flex: 1;
     }
-  </style>
-</head>
-<body>
-  <div class="flex-container">
-    <div class="flex-item">Элемент 1</div>
-    <div class="flex-item">Элемент 2</div>
-    <div class="flex-item">Элемент 3</div>
-  </div>
-</body>
-</html>
-  `.trim(),
-
-  codeExampleCSS: `
-.flex-container {
-  display: flex;
-  border: 2px solid #ccc;
-  padding: 10px;
-  gap: 10px;
-}
-
-.flex-item {
-  background-color: #cce5ff;
-  padding: 20px;
-  text-align: center;
-  flex: 1;
-}
   `.trim(),
 
   resources: [
@@ -131,7 +117,7 @@ export const css_flexbox_1 = {
 };
 export const css_flexbox_2 = {
   id: "css_flexbox_task_2",
-  title: "Оси и направление: flex-direction, justify-content, align-items",
+  title: "Оси и направление.",
   content: `
   ## Оси и выравнивание в Flexbox
 
@@ -144,7 +130,7 @@ export const css_flexbox_2 = {
 
   ---
 
-  ## 1. flex-direction — в какую сторону идут блоки
+  ##  flex-direction — в какую сторону идут блоки
 
   Это свойство задаёт **направление главной оси**:
 
@@ -160,7 +146,7 @@ export const css_flexbox_2 = {
 
   ---
 
-  ## 2. justify-content — выравнивание по главной оси
+  ##  justify-content — выравнивание по главной оси
 
   Это свойство **распределяет блоки вдоль направления движения** (главной оси).  
   Главная ось зависит от \`flex-direction\`.
@@ -187,7 +173,7 @@ export const css_flexbox_2 = {
 
   ---
 
-  ## 3. align-items — выравнивание по поперечной оси
+  ##  align-items — выравнивание по поперечной оси
 
   Это **вторая ось**, которая идёт **перпендикулярно главной**:
 
@@ -209,7 +195,7 @@ export const css_flexbox_2 = {
 
   ---
 
-  ## 🔍 Визуально
+  ##  Визуально
 
   Допустим, у тебя блоки идут в **строку**:
 
@@ -227,7 +213,19 @@ export const css_flexbox_2 = {
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="flex-container">
+    <div class="item">1</div>
+    <div class="item">2</div>
+    <div class="item">3</div>
+  </div>
+</body>
+</html>
+  `.trim(),
+
+  codeExampleCSS: `
     .flex-container {
       display: flex;
       flex-direction: row;
@@ -244,35 +242,6 @@ export const css_flexbox_2 = {
       width: 100px;
       text-align: center;
     }
-  </style>
-</head>
-<body>
-  <div class="flex-container">
-    <div class="item">1</div>
-    <div class="item">2</div>
-    <div class="item">3</div>
-  </div>
-</body>
-</html>
-  `.trim(),
-
-  codeExampleCSS: `
-.flex-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
-  height: 150px;
-  background-color: #f0f0f0;
-  padding: 10px;
-}
-
-.item {
-  background-color: #d4edda;
-  padding: 20px;
-  width: 100px;
-  text-align: center;
-}
   `.trim(),
 
   resources: [
@@ -283,7 +252,7 @@ export const css_flexbox_2 = {
 };
 export const css_flexbox_3 = {
   id: "css_flexbox_task_3",
-  title: "Обёртка и порядок: flex-wrap, order",
+  title: "Обёртка и порядок.",
   content: `
   ## Обёртка и порядок элементов в Flexbox
 
@@ -292,7 +261,7 @@ export const css_flexbox_3 = {
 
   ---
 
-  ## 1. flex-wrap — перенос элементов на следующую строку
+  ##  flex-wrap — перенос элементов на следующую строку
 
   По умолчанию все flex-элементы пытаются уместиться в **одной строке**, даже если им не хватает места.
 
@@ -313,7 +282,7 @@ export const css_flexbox_3 = {
 
   ---
 
-  ## 2. order — изменение порядка элементов
+  ##  order — изменение порядка элементов
 
   Позволяет **управлять порядком отображения блоков**, даже если в HTML они идут иначе.
 
@@ -335,7 +304,7 @@ export const css_flexbox_3 = {
 
   Результат: сначала отобразится блок 2, потом 3, потом 1.
 
-  🚨 По умолчанию у всех элементов \`order: 0\`.
+   По умолчанию у всех элементов \`order: 0\`.
 
   `.trim(),
 
@@ -343,8 +312,23 @@ export const css_flexbox_3 = {
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
-    .flex-container {
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="flex-container">
+    <div class="item first">1</div>
+    <div class="item second">2</div>
+    <div class="item third">3</div>
+    <div class="item">4</div>
+    <div class="item">5</div>
+    <div class="item">6</div>
+  </div>
+</body>
+</html>
+  `.trim(),
+
+  codeExampleCSS: `
+ .flex-container {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
@@ -372,50 +356,6 @@ export const css_flexbox_3 = {
     .third {
       order: 2;
     }
-  </style>
-</head>
-<body>
-  <div class="flex-container">
-    <div class="item first">1</div>
-    <div class="item second">2</div>
-    <div class="item third">3</div>
-    <div class="item">4</div>
-    <div class="item">5</div>
-    <div class="item">6</div>
-  </div>
-</body>
-</html>
-  `.trim(),
-
-  codeExampleCSS: `
-.flex-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  background-color: #f0f0f0;
-  padding: 10px;
-}
-
-.item {
-  background-color: #cce5ff;
-  width: 150px;
-  height: 80px;
-  text-align: center;
-  line-height: 80px;
-  font-weight: bold;
-}
-
-.first {
-  order: 3;
-}
-
-.second {
-  order: 1;
-}
-
-.third {
-  order: 2;
-}
   `.trim(),
 
   resources: [
@@ -437,7 +377,7 @@ export const css_flexbox_4 = {
 
   ---
 
-  ## 1. flex-grow — как сильно элемент может растягиваться
+  ##  flex-grow — как сильно элемент может растягиваться
 
   - Значение по умолчанию: \`0\`
   - Если \`1\`, элемент **заполняет всё свободное место**
@@ -453,7 +393,7 @@ export const css_flexbox_4 = {
 
   ---
 
-  ## 2. flex-shrink — как сильно элемент может сжиматься
+  ##  flex-shrink — как сильно элемент может сжиматься
 
   - Значение по умолчанию: \`1\`
   - Если \`0\` — элемент **не сжимается**, даже если не помещается
@@ -469,7 +409,7 @@ export const css_flexbox_4 = {
 
   ---
 
-  ## 3. flex-basis — базовый размер до распределения места
+  ##  flex-basis — базовый размер до распределения места
 
   - Задаёт **начальный размер** элемента перед тем, как применятся grow/shrink
   - Может быть в \`px\`, \`%\`, \`auto\`
@@ -509,7 +449,19 @@ export const css_flexbox_4 = {
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="flex-container">
+    <div class="item grow">Растёт (2)</div>
+    <div class="item no-grow">Не растёт (0)</div>
+    <div class="item">Обычный</div>
+  </div>
+</body>
+</html>
+  `.trim(),
+
+  codeExampleCSS: `
     .flex-container {
       display: flex;
       gap: 10px;
@@ -539,40 +491,6 @@ export const css_flexbox_4 = {
     .no-shrink {
       flex-shrink: 0;
     }
-  </style>
-</head>
-<body>
-  <div class="flex-container">
-    <div class="item grow">Растёт (2)</div>
-    <div class="item no-grow">Не растёт (0)</div>
-    <div class="item">Обычный</div>
-  </div>
-</body>
-</html>
-  `.trim(),
-
-  codeExampleCSS: `
-.flex-container {
-  display: flex;
-  gap: 10px;
-  background-color: #f0f0f0;
-  padding: 10px;
-}
-
-.item {
-  background-color: #cce5ff;
-  padding: 20px;
-  text-align: center;
-  flex-basis: 100px;
-}
-
-.grow {
-  flex-grow: 2;
-}
-
-.no-grow {
-  flex-grow: 0;
-}
   `.trim(),
 
   resources: [
@@ -594,7 +512,7 @@ export const css_flexbox_5 = {
 
   ---
 
-  ## 1. float
+  ##  float
 
   \`float\` — это старый способ. Изначально он создавался не для вёрстки блоков, а чтобы текст обтекал изображения.
 
@@ -614,7 +532,7 @@ export const css_flexbox_5 = {
 
   ---
 
-  ## 2. inline-block
+  ##  inline-block
 
   \`inline-block\` — это когда блоки ведут себя как слова: стоят в строку, но остаются блочными.
 
@@ -633,7 +551,7 @@ export const css_flexbox_5 = {
 
   ---
 
-  ## 3. Flexbox
+  ##  Flexbox
 
   Flexbox был создан специально для вёрстки блоков в интерфейсе.
 
@@ -670,7 +588,31 @@ export const css_flexbox_5 = {
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h3>inline-block</h3>
+  <div class="inline-block">
+    <div class="item">A</div>
+    <div class="item">B</div>
+  </div>
+
+  <h3>float</h3>
+  <div class="float clearfix">
+    <div class="item">A</div>
+    <div class="item">B</div>
+  </div>
+
+  <h3>Flexbox</h3>
+  <div class="flex">
+    <div class="item">A</div>
+    <div class="item">B</div>
+  </div>
+</body>
+</html>
+  `.trim(),
+
+  codeExampleCSS: `
     .inline-block .item {
       display: inline-block;
       width: 45%;
@@ -704,64 +646,6 @@ export const css_flexbox_5 = {
       display: table;
       clear: both;
     }
-  </style>
-</head>
-<body>
-  <h3>inline-block</h3>
-  <div class="inline-block">
-    <div class="item">A</div>
-    <div class="item">B</div>
-  </div>
-
-  <h3>float</h3>
-  <div class="float clearfix">
-    <div class="item">A</div>
-    <div class="item">B</div>
-  </div>
-
-  <h3>Flexbox</h3>
-  <div class="flex">
-    <div class="item">A</div>
-    <div class="item">B</div>
-  </div>
-</body>
-</html>
-  `.trim(),
-
-  codeExampleCSS: `
-.inline-block .item {
-  display: inline-block;
-  width: 45%;
-  background: #cce5ff;
-  margin: 5px;
-  text-align: center;
-}
-
-.float .item {
-  float: left;
-  width: 45%;
-  background: #f8d7da;
-  margin: 5px;
-  text-align: center;
-}
-
-.clearfix::after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-.flex {
-  display: flex;
-  gap: 10px;
-}
-
-.flex .item {
-  flex: 1;
-  background: #d4edda;
-  text-align: center;
-  padding: 10px;
-}
   `.trim(),
 
   resources: [
@@ -844,7 +728,19 @@ export const css_flexbox_6 = {
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="item">Блок 1</div>
+    <div class="item">Блок 2</div>
+    <div class="item">Блок 3</div>
+  </div>
+</body>
+</html>
+  `.trim(),
+
+  codeExampleCSS: `
     .container {
       display: flex;
       flex-direction: row;
@@ -863,37 +759,6 @@ export const css_flexbox_6 = {
       padding: 30px;
       font-weight: bold;
     }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <div class="item">Блок 1</div>
-    <div class="item">Блок 2</div>
-    <div class="item">Блок 3</div>
-  </div>
-</body>
-</html>
-  `.trim(),
-
-  codeExampleCSS: `
-.container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
-  gap: 20px;
-  padding: 20px;
-  background: #f0f0f0;
-}
-
-.item {
-  flex: 1 1 200px;
-  background: #d4edda;
-  text-align: center;
-  padding: 30px;
-  font-weight: bold;
-}
   `.trim(),
 
   resources: [

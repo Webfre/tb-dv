@@ -54,10 +54,7 @@ import {
   css_methodologies_1,
   css_methodologies_2,
 } from "./SECTIONS/css_methodologies";
-import {
-  css_preprocessors_1,
-  css_preprocessors_2,
-} from "./SECTIONS/css_preprocessors";
+import { css_preprocessors_1 } from "./SECTIONS/css_preprocessors";
 import { css_final_1 } from "./SECTIONS/css_final";
 import { css_block_model1, css_block_model2 } from "./SECTIONS/css_block_model";
 import { css_pseudo1, css_pseudo2, css_pseudo3 } from "./SECTIONS/css_pseudo";
@@ -83,8 +80,8 @@ export const cssSections = {
   css_box_model: [
     css_box_model1,
     css_box_model2,
-    css_box_model3,
     css_box_model4,
+    css_box_model3,
     css_box_model5,
   ],
   css_pseudo: [css_pseudo1, css_pseudo2, css_pseudo3],
@@ -103,6 +100,6 @@ export const cssSections = {
   css_responsive: [css_responsive_1, css_responsive_2, css_responsive_3],
   css_animations: [css_animations_1, css_animations_2],
 
-  css_preprocessors: [css_preprocessors_1, css_preprocessors_2],
+  css_preprocessors: [css_preprocessors_1],
   css_final: [css_final_1, css_pr_1, css_pr_2],
 };

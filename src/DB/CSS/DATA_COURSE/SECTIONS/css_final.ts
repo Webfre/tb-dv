@@ -1,6 +1,3 @@
-// import { css_pr1 } from "../A_PR_WORK/css_pr1";
-// import { css_pr2 } from "../A_PR_WORK/css_pr2";
-
 export const css_final_1 = {
   id: "css_final_1",
   title: "Повторение ключевых тем",
@@ -135,59 +132,192 @@ export const css_final_1 = {
 ## Вывод
 
 Этот гайд охватывает все базовые темы CSS, необходимые для старта и уверенного собеседования. Тренируйся, используй чек-лист для самопроверки и не забывай про чистоту и структуру кода!
-  `.trim(),
+  
 
+`.trim(),
   codeExample: `
-/* Минимальный пример стилей */
-:root {
-  --main-color: #2f80ed;
-  --bg-color: #f6f8fa;
-  --text-color: #232323;
-  --radius: 16px;
-}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CSS Итоговое повторение</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
 
-/* Сброс стилей */
-*, *::before, *::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+  <section>
+    <h2>Селекторы</h2>
+    <p class="highlight">Этот текст красный благодаря классу .highlight</p>
+  </section>
 
-body {
-  font-family: 'Segoe UI', Arial, sans-serif;
-  background: var(--bg-color);
-  color: var(--text-color);
-  min-height: 100vh;
-}
+  <section>
+    <h2>Отступы (margin + padding)</h2>
+    <div class="box">Блок с внешним и внутренним отступом</div>
+  </section>
 
-/* Пример flex-контейнера */
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 24px;
-  background: var(--main-color);
-  color: #fff;
-}
+  <section>
+    <h2>Flexbox</h2>
+    <div class="flex">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+    </div>
+  </section>
 
-/* Пример Grid */
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 32px;
-  margin: 32px 0;
-}
+  <section>
+    <h2>Grid</h2>
+    <div class="grid">
+      <div>Ячейка 1</div>
+      <div>Ячейка 2</div>
+      <div>Ячейка 3</div>
+      <div>Ячейка 4</div>
+    </div>
+  </section>
 
-/* Адаптивность */
-@media (max-width: 768px) {
-  header {
-    flex-direction: column;
-    padding: 12px;
-  }
-  .projects-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-}
+  <section>
+    <h2>Позиционирование</h2>
+    <div class="relative-box">Смещённый элемент с position: relative</div>
+  </section>
+
+  <section>
+    <h2>Цвета и фон</h2>
+    <div class="bg-demo">Текст на зелёном фоне</div>
+  </section>
+
+  <section>
+    <h2>Адаптивное изображение</h2>
+    <img class="responsive" src="https://placekitten.com/800/400" alt="кот" />
+  </section>
+
+  <section>
+    <h2>Псевдоклассы</h2>
+    <div class="hover-demo">Наведи на меня (hover)</div>
+  </section>
+
+  <section>
+    <h2>Псевдоэлементы</h2>
+    <p class="pseudo">Этому параграфу добавлена звезда</p>
+  </section>
+
+  <section>
+    <h2>Трансформация и переход</h2>
+    <div class="animate">Наведи — я увеличусь</div>
+  </section>
+
+</body>
+</html>
   `.trim(),
+  codeExampleCSS: `/* Глобальные стили */
+body {
+  font-family: Arial, sans-serif;
+  background: #f9f9f9;
+  margin: 20px;
+  color: #333;
+}
+
+section {
+  margin-bottom: 40px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+}
+
+.example {
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px dashed #ccc;
+}
+
+/* Селекторы */
+.highlight {
+  color: red;
+}
+
+/* Отступы */
+.box {
+  margin: 20px;
+  padding: 10px;
+  background: #e0f7fa;
+}
+
+/* Flexbox */
+.flex {
+  display: flex;
+  gap: 10px;
+}
+
+.flex > div {
+  background: #dcedc8;
+  padding: 10px;
+  flex: 1;
+  text-align: center;
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.grid > div {
+  background: #f8bbd0;
+  padding: 10px;
+  text-align: center;
+}
+
+/* Позиционирование */
+.relative-box {
+  position: relative;
+  top: 10px;
+  left: 10px;
+  background: #ffe0b2;
+  padding: 10px;
+}
+
+/* Цвет и фон */
+.bg-demo {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px;
+}
+
+/* Адаптивное изображение */
+.responsive {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Псевдоклассы */
+.hover-demo {
+  padding: 10px;
+  background: #fff8e1;
+  transition: background 0.3s;
+}
+
+.hover-demo:hover {
+  background: #ffecb3;
+}
+
+/* Псевдоэлементы */
+.pseudo::before {
+  content: "★ ";
+  color: gold;
+}
+
+/* Анимации и трансформации */
+.animate {
+  padding: 10px;
+  background: #bbdefb;
+  transition: transform 0.3s;
+  display: inline-block;
+}
+
+.animate:hover {
+  transform: scale(1.2);
+}
+`.trim(),
 };

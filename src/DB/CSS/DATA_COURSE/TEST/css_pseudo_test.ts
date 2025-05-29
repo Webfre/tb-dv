@@ -1,5 +1,5 @@
 export const css_pseudo_test = {
-  id: 404,
+  id: 304,
   name: "CSS: Псевдоклассы, Псевдоэлементы и Состояния",
   category: "CSS",
   ques: [
