@@ -8,6 +8,8 @@ import { schema } from "./schema";
 import { useNavigate } from "react-router-dom";
 import BtnCustom from "../../ui/BtnCustom";
 import PasswordField from "../../ui/PasswordField";
+import { textField_input_sx } from "../../styles/global";
+import styles from "./ResetPasswordPage.module.scss";
 
 interface ResetForm {
   email: string;
@@ -37,16 +39,8 @@ const ResetPasswordPage: React.FC = () => {
   };
 
   return (
-    <Box
-      sx={{
-        minHeight: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        px: 2,
-      }}
-    >
-      <Container maxWidth="sm">
+    <Box className={styles.wrapper}>
+      <Container maxWidth="sm" className={styles.container}>
         <Paper sx={{ p: 4, borderRadius: 4 }}>
           <Typography variant="h5" gutterBottom align="center">
             Сброс пароля
@@ -65,7 +59,7 @@ const ResetPasswordPage: React.FC = () => {
                   margin="normal"
                   error={!!errors.email}
                   helperText={errors.email?.message}
-                  sx={{ "& .MuiOutlinedInput-root": { borderRadius: "20px" } }}
+                  sx={textField_input_sx}
                 />
               )}
             />
@@ -86,6 +80,7 @@ const ResetPasswordPage: React.FC = () => {
 
             <BtnCustom
               type="submit"
+              customColor="#846ee6"
               variant="contained"
               fullWidth
               text="Сбросить пароль"
@@ -96,6 +91,7 @@ const ResetPasswordPage: React.FC = () => {
               <BtnCustom
                 fullWidth
                 text="Продолжить без регистрации"
+                customColor="#846ee6"
                 variant="text"
                 sx={{ mt: 1 }}
                 onClick={() => navigate("/")}

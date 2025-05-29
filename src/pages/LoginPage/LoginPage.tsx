@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-import {
-  Box,
-  TextField,
-  Typography,
-  Container,
-  Paper,
-  CircularProgress,
-} from "@mui/material";
+import { Box, TextField, Typography, Container, Paper } from "@mui/material";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { textField_input_sx } from "../../styles/global";
 import { useLoginMutation } from "../../api/authApi";
@@ -20,6 +13,7 @@ import BtnCustom from "../../ui/BtnCustom";
 import PasswordField from "../../ui/PasswordField";
 import styles from "./LoginPage.module.scss";
 import CustomToast from "../../ui/CustomToast";
+import Spinner from "../../ui/Spinner";
 
 interface LoginForm {
   email: string;
@@ -66,7 +60,7 @@ const LoginPage: React.FC = () => {
 
   return (
     <Box className={styles.wrapper}>
-      <Container maxWidth="sm">
+      <Container maxWidth="sm" className={styles.container}>
         <Paper sx={{ p: 4, borderRadius: 4, position: "relative" }}>
           {isLoading && (
             <Box
@@ -83,7 +77,7 @@ const LoginPage: React.FC = () => {
                 zIndex: 10,
               }}
             >
-              <CircularProgress />
+              <Spinner />
             </Box>
           )}
 
@@ -98,7 +92,7 @@ const LoginPage: React.FC = () => {
               gap: 2,
             }}
           >
-            Войти в айти <IoLogIn size={34} color="#846ee6" />
+            Войти <IoLogIn size={34} color="#846ee6" />
           </Typography>
 
           <Box component="form" noValidate onSubmit={handleSubmit(onSubmit)}>

@@ -32,8 +32,6 @@ import ResetPasswordPage from "./pages/ResetPasswordPage/ResetPasswordPage";
 import CourseInfoPage from "./pages/CourseInfoPage/CourseInfoPage";
 import CoursesPageList from "./pages/CoursesPageList/CoursesPageList";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
-import Header from "./components/Header/Header";
-
 import "./index.scss";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -46,10 +44,11 @@ export const AppRoutes = () => {
   return (
     <>
       <CssBaseline />
-      {!hideHeader && <Header />}
+      {/* {!hideHeader && <Header />} */}
 
       <Routes>
         <Route path="/" element={<Home />} />
+
         <Route
           path="/admin-dashboard"
           element={
