@@ -37,6 +37,7 @@
   padding: 0 20px;
   min-height: 80vh;
   display: flex;
+  z-index: 1;
   flex-direction: column;
   justify-content: center;
   text-align: center;
@@ -66,6 +67,49 @@
   background: #a76cff79;
 }
 
+.section.withPulseBlob::after {
+  content: "";
+  position: absolute;
+  top: -150px;
+  left: -300px;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle at 50% 50%, #6b57db, transparent 70%);
+  border-radius: 40% 60% 65% 35% / 40% 35% 65% 60%;
+  filter: blur(80px);
+  opacity: 0.5;
+  animation: snakeMove 8s infinite ease-in-out;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes snakeMove {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.4;
+  }
+  20% {
+    transform: translate(40px, 30px) scale(1.05);
+    opacity: 0.5;
+  }
+  40% {
+    transform: translate(20px, 80px) scale(1.2);
+    opacity: 0.6;
+  }
+  60% {
+    transform: translate(60px, 40px) scale(1.1);
+    opacity: 0.5;
+  }
+  80% {
+    transform: translate(30px, 20px) scale(0.95);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.4;
+  }
+}
+
 // =================== АДАПТИВ ===================
 
 @media (max-width: 1449px) {
@@ -77,6 +121,18 @@
   .sectionInner_main {
     max-width: 1200px;
     padding: 0 20px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .section.withPulseBlob::after {
+    display: none;
+  }
+}
+
+@media (max-width: 500px) {
+  .title {
+    font-size: 20px;
   }
 }
 

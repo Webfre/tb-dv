@@ -11,7 +11,7 @@ import { PiGameControllerDuotone } from "react-icons/pi";
 
 const AboutSection = () => {
   return (
-    <div className={sectionStyles.section}>
+    <div className={`${sectionStyles.section} ${sectionStyles.withPulseBlob}`}>
       <div className={sectionStyles.sectionInner_main}>
         <div className={styles.titleRow}>
           <h2 className={styles.title}>О платформе</h2>
