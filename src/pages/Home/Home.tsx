@@ -6,6 +6,7 @@ import styles from "./Home.module.scss";
 import IntroSection from "./Section/IntroSection";
 import AboutSection from "./Section/AboutSection";
 import AboutModule from "./Section/AboutModule";
+import StartSection from "./Section/StartSection";
 
 const Home: React.FC = () => {
   return (
@@ -14,8 +15,9 @@ const Home: React.FC = () => {
 
       <Box className={styles.main}>
         <IntroSection />
-        <AboutSection />
         <AboutModule />
+        <AboutSection />
+        <StartSection />
       </Box>
 
       <Footer />
