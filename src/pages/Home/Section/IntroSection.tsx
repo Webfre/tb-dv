@@ -1,7 +1,11 @@
 import styles from "./IntroSection.module.scss";
 import sectionStyles from "../Home.module.scss";
 
-const IntroSection = () => {
+interface IntroSectionProps {
+  onStartClick: () => void;
+}
+
+const IntroSection: React.FC<IntroSectionProps> = ({ onStartClick }) => {
   return (
     <div
       className={`${sectionStyles.section} ${sectionStyles.withBackgroundBlobs}`}
@@ -20,7 +24,9 @@ const IntroSection = () => {
         </p>
 
         <div className={styles.buttonGroup}>
-          <button className={styles.primary}>Давайте начнём</button>
+          <button className={styles.primary} onClick={onStartClick}>
+            Давайте начнём
+          </button>
           <button className={styles.secondary}>Подробнее</button>
         </div>
       </div>

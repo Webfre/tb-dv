@@ -1,11 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Typography, Box } from "@mui/material";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { toggleMode } from "../../store/themeSlice";
-import { RootState } from "../../store/store";
-import { useDispatch, useSelector } from "react-redux";
-import DarkModeIcon from "@mui/icons-material/DarkMode";
-import LightModeIcon from "@mui/icons-material/LightMode";
 import classNames from "classnames";
 import styles from "./Header.module.scss";
 
@@ -24,9 +19,6 @@ const Header: React.FC = () => {
   const menuRef = useRef<HTMLDivElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-
-  const dispatch = useDispatch();
-  const mode = useSelector((state: RootState) => state.theme.mode);
 
   useEffect(() => {
     const handleScroll = () => {
