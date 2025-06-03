@@ -7,6 +7,7 @@ import IntroSection from "./Section/IntroSection";
 import AboutSection from "./Section/AboutSection";
 import AboutModule from "./Section/AboutModule";
 import StartSection from "./Section/StartSection";
+import LikeSection from "./Section/LikeSection";
 
 const Home: React.FC = () => {
   return (
@@ -18,6 +19,7 @@ const Home: React.FC = () => {
         <AboutModule />
         <AboutSection />
         <StartSection />
+        <LikeSection />
       </Box>
 
       <Footer />

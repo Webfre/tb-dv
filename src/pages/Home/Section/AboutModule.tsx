@@ -21,7 +21,7 @@ const AboutModule = () => {
         <h2 className={styles.title}>Обучение</h2>
 
         <p className={styles.subtitle}>
-          Более 20 программ обучения на нашей платформе
+          Более 20 программ обучения на нашей платформе.
         </p>
 
         <div className={styles.categoryTabs}>

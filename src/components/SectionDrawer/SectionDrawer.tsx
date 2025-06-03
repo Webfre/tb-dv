@@ -104,15 +104,13 @@ const SectionDrawer: React.FC<SectionDrawerProps> = ({ section, onClose }) => {
                     <Box display="flex" gap={2}>
                       <Stack direction="row">
                         <Chip
+                          clickable
                           label="Отправить на проверку"
                           color="success"
                           sx={chip_sx_light}
                           onClick={() =>
-                            navigate(
-                              `/mentorprofilepage/${section?.postMentor}`
-                            )
+                            navigate(`/panel/mentorlist/${section?.postMentor}`)
                           }
-                          clickable
                         />
                       </Stack>
                     </Box>
