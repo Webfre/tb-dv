@@ -1,6 +1,6 @@
 export const html_meta_1 = {
   id: "html_meta_1",
-  title: "Мета-теги.",
+  title: "Мета-теги",
   content: `
   ## Мета-теги в HTML
   
@@ -122,7 +122,7 @@ export const html_meta_1 = {
 
 export const html_meta_2 = {
   id: "html_meta_2",
-  title: "Заголовок документа.",
+  title: "Заголовок документа",
   content: `
   ## Тег \`<title>\` — заголовок страницы
   

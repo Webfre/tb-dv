@@ -1230,7 +1230,7 @@ export const css_pr_code_1 = `
 
 export const css_pr_1 = {
   id: "css_pr_1",
-  title: "Практическая работа по CSS: Верстка Landing Page ",
+  title: "Практическая работа: Верстка Landing Page ",
   moduleId: "css",
   content: `
 ##  Сверстайте и оформите страницу Landing Page
@@ -1239,27 +1239,25 @@ export const css_pr_1 = {
 
 ---
 
-## Техническое задание
 
-1. **Сверстайте структуру страницы** (как в HTML-практике — используйте header, nav, main, section, article, aside, footer).
-2. **Подключите внешний CSS-файл** через \`<link>\`.
+### Требования к CSS (использовать обязательно):
 
-
-### Обязательные CSS-темы
-
-- **Селекторы**: по тегу, классу, id, вложенные, групповые.
-- **Цвета**: фоновые цвета, цвет текста (HEX, RGB, HSL).
+- **Селекторы**: теговые, классовые, id, комбинированные, вложенные, групповые.
+- **Переменные**: цветовые и типографические (через :root).
+- **Цвета**: HEX, RGB или HSL для текста, фона и акцентов.
 - **Шрифты и текст**: font-family, font-size, font-weight, line-height, letter-spacing, text-align, text-transform.
 - **Отступы**: margin, padding, box-sizing.
-- **Размеры**: width, height, min/max.
-- **Границы и фон**: border, border-radius, background, background-image.
+- **Размеры**: width, height, min/max, responsive единицы (%, rem, vw, clamp).
+- **Границы и фон**: border, border-radius, background, background-image, box-shadow.
 - **Изображения**: object-fit, адаптивность, alt, title.
 - **Блочная модель**: display: block, inline, inline-block, none.
 - **Позиционирование**: position (static, relative, absolute, fixed, sticky), top/right/bottom/left, z-index.
-- **Flexbox**: flex-контейнеры, выравнивание, направление, порядок, обёртка.
-- **Grid Layout**: сетки, колонки/ряды, размещение элементов.
-- **Адаптивность**: медиазапросы для разных экранов, responsive images.
+- **Flexbox**: flex-контейнеры и выравнивание (justify-content, align-items, gap), направление, flex-wrap, порядок, align-self.
+- **Grid Layout**: grid-контейнеры, колонки/ряды, gap, grid-area, auto-fit/auto-fill.
+- **Адаптивность**: медиазапросы (\`@media\`), адаптивные размеры и изображения.
 - **Переходы и трансформации**: transition, transform (scale, rotate, translate).
+- **Современные приёмы**: псевдоклассы (:hover, :focus, :nth-child), псевдоэлементы (::before, ::after).
+- **Комментарии в CSS** для сложных мест.
 
 ---
 
@@ -1314,9 +1312,6 @@ export const css_pr_1 = {
 - \`index.html\`
 - \`style.css\`
 
----
-
-> **Рекомендация**: Используйте комментарии в CSS, чтобы пояснять сложные участки кода!
   `.trim(),
 
   show: css_pr_code_1,

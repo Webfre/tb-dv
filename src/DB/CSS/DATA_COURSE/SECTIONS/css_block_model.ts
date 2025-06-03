@@ -1,6 +1,6 @@
 export const css_block_model1 = {
   id: "css_block_model1",
-  title: "Отступы.",
+  title: "Отступы",
   content: `
   ## Отступы в CSS
 

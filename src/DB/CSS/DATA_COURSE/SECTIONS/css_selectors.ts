@@ -1,6 +1,6 @@
 export const css_selectors1 = {
   id: "css_selectors1",
-  title: "Цвета.",
+  title: "Цвета",
   content: `
   ## Цвета в CSS
 
@@ -140,7 +140,7 @@ export const css_selectors1 = {
 };
 export const css_selectors2 = {
   id: "css_selectors2",
-  title: "Шрифты и текст.",
+  title: "Шрифты и текст",
   content: `
   ## Стилизация текста в CSS
 
@@ -237,7 +237,7 @@ export const css_selectors2 = {
 
 export const css_selectors3 = {
   id: "css_selectors3",
-  title: "Размеры.",
+  title: "Размеры",
   content: `
   ## Размеры элементов в CSS
 

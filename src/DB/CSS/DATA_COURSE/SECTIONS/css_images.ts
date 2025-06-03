@@ -208,7 +208,7 @@ export const css_images_2 = {
 };
 export const css_images_3 = {
   id: "css_images_3",
-  title: "Адаптивные изображения.",
+  title: "Адаптивные изображения",
   content: `
   ## Зачем нужны адаптивные изображения?
 
