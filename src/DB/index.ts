@@ -1,4 +1,3 @@
-import { web_layout_info_course } from "./СOURSE_DATA/WEB_LAYOUT/web_layout_info_course";
 import { cssTopic } from "./CSS/DATA_COURSE/css";
 import { browserTopic } from "./WWW/DATA_COURSE/www";
 import { htmlTopic } from "./HTML/DATA_COURSE/html";
@@ -7,6 +6,7 @@ import { introTopic } from "./START/DATA_COURSE/start";
 import { ideTopic } from "./IDE/DATA_COURSE/vscode";
 import { jsTopic } from "./JAVASCRIPT/DATA_COURSE/js";
 import { introHtml } from "./HTML_INTRO/introHtml";
+import { web_layout_info_course } from "./СOURSE_DATA/WEB_LAYOUT/web_layout_info_course";
 
 export const courseList: InfoCourse[] = [
   web_layout_info_course,

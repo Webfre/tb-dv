@@ -101,6 +101,7 @@ interface FaqsCourse {
 
 export interface InfoCourse {
   id: number;
+  typeId: number;
   courseId: string[];
   title: string;
   description: string;
