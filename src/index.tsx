@@ -35,6 +35,8 @@ import "./index.scss";
 import "react-toastify/dist/ReactToastify.css";
 import MainLayout from "./pages/Home/MainLayout";
 import HomePage from "./pages/Home/HomePage";
+import AboutPage from "./pages/AboutPage/AboutPage";
+import TrainingPage from "./pages/TrainingPage/TrainingPage";
 
 export const AppRoutes = () => {
   return (
@@ -50,14 +52,23 @@ export const AppRoutes = () => {
           }
         />
 
-        {/* <Route
-          path="/info"
+        <Route
+          path="/about"
           element={
             <MainLayout>
-              <Info />
+              <AboutPage />
             </MainLayout>
           }
-        /> */}
+        />
+
+        <Route
+          path="/training"
+          element={
+            <MainLayout>
+              <TrainingPage />
+            </MainLayout>
+          }
+        />
 
         <Route
           path="/admin-dashboard"
@@ -67,6 +78,7 @@ export const AppRoutes = () => {
             </AdminProtectedRoute>
           }
         />
+
         <Route
           path="/admin/user/:id"
           element={
@@ -75,6 +87,7 @@ export const AppRoutes = () => {
             </AdminProtectedRoute>
           }
         />
+
         <Route
           path="/profile"
           element={
@@ -83,6 +96,7 @@ export const AppRoutes = () => {
             </ProtectedRoute>
           }
         />
+
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/reset-password" element={<ResetPasswordPage />} />

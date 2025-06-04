@@ -6,7 +6,7 @@ import styles from "./Header.module.scss";
 
 const navItems = [
   { label: "Главная", path: "/" },
-  { label: "Обучение", path: "/info" },
+  { label: "Обучение", path: "/training" },
   { label: "Материалы", path: "/materials" },
   { label: "О нас", path: "/about" },
 ];

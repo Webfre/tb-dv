@@ -25,24 +25,24 @@ const Footer: React.FC = () => {
         <Box className={styles.nav}>
           <Box className={styles.column}>
             <Typography variant="h6">О нас</Typography>
-            <Link href="#">О платформе</Link>
-            <Link href="#">Контакты</Link>
-            <Link href="#">Отзывы</Link>
+            <Link href="/about#about">О платформе</Link>
+            <Link href="/about#contacts">Контакты</Link>
+            <Link href="/about">Отзывы</Link>
           </Box>
 
           <Box className={styles.column}>
             <Typography variant="h6">Обучение</Typography>
-            <Link href="#">Бесплатно</Link>
-            <Link href="#">Профессии</Link>
-            <Link href="#">Практика</Link>
-            <Link href="#">Технологии</Link>
+            <Link href="/training">Бесплатно</Link>
+            <Link href="/training">Профессии</Link>
+            <Link href="/training">Практика</Link>
+            <Link href="/training">Технологии</Link>
           </Box>
 
           <Box className={styles.column}>
             <Typography variant="h6">Материалы</Typography>
-            <Link href="#">Блог</Link>
-            <Link href="#">Справочник</Link>
-            <Link href="#">Проекты</Link>
+            <Link href="/materials">Блог</Link>
+            <Link href="/materials">Справочник</Link>
+            <Link href="/materials">Проекты</Link>
           </Box>
 
           <Box className={styles.column}>
