@@ -13,6 +13,8 @@
   font-size: 44px;
   font-weight: 600;
   margin-bottom: 20px;
+  margin: 0;
+  padding: 0;
 }
 
 .subtitle {
@@ -83,5 +85,78 @@
   &:hover {
     text-decoration: none;
     color: #6a57d4;
+  }
+}
+
+@media (max-width: 1449px) {
+  .title {
+    font-size: 44px;
+  }
+
+  .page {
+    max-width: 1200px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .title {
+    font-size: 40px;
+  }
+
+  .page {
+    max-width: 1200px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .section {
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+
+  .page {
+    padding: 60px 20px;
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 700px) {
+  .title {
+    font-size: 36px;
+  }
+
+  .text {
+    font-size: 16px !important;
+    line-height: 1.6 !important;
+  }
+}
+
+@media (max-width: 500px) {
+  .title {
+    font-size: 24px;
+  }
+
+  .subtitle {
+    font-size: 18px !important;
+  }
+
+  .list {
+    margin-top: 16px;
+    padding-left: 0;
+    list-style: none;
+
+    li {
+      position: relative;
+      padding-left: 28px;
+      margin-bottom: 16px;
+      font-size: 16px;
+      line-height: 1.6;
+      color: #333;
+
+      strong {
+        font-size: 16px;
+        font-weight: 600;
+      }
+    }
   }
 }

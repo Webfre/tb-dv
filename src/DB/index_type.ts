@@ -101,7 +101,7 @@ interface FaqsCourse {
 
 export interface InfoCourse {
   id: number;
-  typeId: number;
+  type: string; // professions | technologies | free | practice
   courseId: string[];
   title: string;
   description: string;

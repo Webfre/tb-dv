@@ -32,10 +32,10 @@ const Footer: React.FC = () => {
 
           <Box className={styles.column}>
             <Typography variant="h6">Обучение</Typography>
-            <Link href="/training">Бесплатно</Link>
-            <Link href="/training">Профессии</Link>
-            <Link href="/training">Практика</Link>
-            <Link href="/training">Технологии</Link>
+            <Link href="/training#free">Бесплатно</Link>
+            <Link href="/training#professions">Профессии</Link>
+            <Link href="/training#practice">Практика</Link>
+            <Link href="/training#technologies">Технологии</Link>
           </Box>
 
           <Box className={styles.column}>
