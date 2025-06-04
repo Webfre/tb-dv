@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { courseList } from "../../../DB";
-import sectionStyles from "../Home.module.scss";
+import sectionStyles from "../MainLayout.module.scss";
 import styles from "./AboutModule.module.scss";
 import classNames from "classnames";
 
