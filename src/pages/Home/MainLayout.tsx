@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 import styles from "./MainLayout.module.scss";
+import ScrollToTopButton from "../../ui/ScrollToTopButton";
 
 interface MainLayoutProps {
   children: React.ReactNode;
@@ -23,6 +24,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
       <Header />
       <Box className={styles.main}>{children}</Box>
       <Footer />
+      <ScrollToTopButton />
     </Box>
   );
 };

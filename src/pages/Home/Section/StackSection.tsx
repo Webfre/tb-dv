@@ -71,6 +71,19 @@ const icons = [
 ];
 
 const StackSection: React.FC = () => {
+  const shuffleArray = <T,>(arr: T[]): T[] => {
+    const shuffled = [...arr];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  };
+
+  const iconsRow1 = [...shuffleArray(icons), ...shuffleArray(icons)];
+  const iconsRow2 = [...shuffleArray(icons), ...shuffleArray(icons)];
+  const iconsRow3 = [...shuffleArray(icons), ...shuffleArray(icons)];
+
   return (
     <section className={styles.section}>
       <div className={styles.container}>
@@ -78,7 +91,7 @@ const StackSection: React.FC = () => {
         <div className={styles.iconRows}>
           <div className={styles.mask}>
             <div className={`${styles.row} ${styles.left}`}>
-              {[...icons, ...icons].map((icon, idx) => (
+              {iconsRow1.map((icon, idx) => (
                 <div key={`r1-${idx}`} className={styles.icon}>
                   {icon}
                 </div>
@@ -87,7 +100,7 @@ const StackSection: React.FC = () => {
           </div>
           <div className={styles.mask}>
             <div className={`${styles.row} ${styles.right}`}>
-              {[...icons, ...icons].map((icon, idx) => (
+              {iconsRow2.map((icon, idx) => (
                 <div key={`r2-${idx}`} className={styles.icon}>
                   {icon}
                 </div>
@@ -96,7 +109,7 @@ const StackSection: React.FC = () => {
           </div>
           <div className={styles.mask}>
             <div className={`${styles.row} ${styles.left}`}>
-              {[...icons, ...icons].map((icon, idx) => (
+              {iconsRow3.map((icon, idx) => (
                 <div key={`r3-${idx}`} className={styles.icon}>
                   {icon}
                 </div>

@@ -52,7 +52,11 @@ const Header: React.FC = () => {
       className={classNames(styles.header, { [styles.scrolled]: isScrolled })}
     >
       <div className={styles.toolbar}>
-        <Typography variant="h6" className={styles.logo}>
+        <Typography
+          onClick={() => navigate("/")}
+          variant="h6"
+          className={styles.logo}
+        >
           Frontarium
         </Typography>
 

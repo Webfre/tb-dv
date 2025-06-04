@@ -16,7 +16,7 @@ interface AboutModuleProps {
   title?: string;
 }
 
-const AboutModule: React.FC<AboutModuleProps> = ({ title = "Обучение" }) => {
+const AboutModule: React.FC<AboutModuleProps> = ({ title }) => {
   const [activeId, setActiveId] = useState<string>("professions");
   const filteredCourses = courseList.filter((item) => item.type === activeId);
   const location = useLocation();
@@ -38,7 +38,7 @@ const AboutModule: React.FC<AboutModuleProps> = ({ title = "Обучение" })
           [sectionStyles.noPadding]: title,
         })}
       >
-        <h2 className={styles.title}>{title}</h2>
+        <h2 className={styles.title}>{title || "Обучение"}</h2>
 
         <p className={styles.subtitle}>
           Более 30 программ обучения на нашей платформе.

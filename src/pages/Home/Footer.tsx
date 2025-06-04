@@ -2,13 +2,29 @@ import React from "react";
 import { Box, Typography, Link } from "@mui/material";
 import styles from "./Footer.module.scss";
 import { FaTelegramPlane, FaGithub, FaYoutube } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const Footer: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
     <Box className={styles.footer}>
       <Box className={styles.inner}>
         <Box className={styles.top}>
-          <Typography className={styles.logo}>Frontarium</Typography>
+          <Typography onClick={() => navigate("/")} className={styles.logo}>
+            Frontarium
+          </Typography>
+
+          <ul className={styles.contactList}>
+            <li>
+              Почта:{" "}
+              <a href="mailto:support@frontarium.ru">support@frontarium.ru</a>
+            </li>
+            <li>
+              Связаться: <a href="tel:+79998887766">+7 (999) 888-77-66</a>
+            </li>
+          </ul>
+
           <Box className={styles.socials}>
             <Link href="#" target="_blank" className={styles.socialIcon}>
               <FaTelegramPlane />
