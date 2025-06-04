@@ -6,6 +6,5 @@ export const introHtmlChaptersData = [
     title: "Введение в курс",
     sections: introHtmlSections.html_intro,
     testKeys: [],
-    practiceIds: [],
   },
 ];
