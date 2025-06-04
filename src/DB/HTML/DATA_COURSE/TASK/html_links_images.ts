@@ -681,7 +681,7 @@ export const html_links_creation_4 = {
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a justo vitae leo pulvinar luctus. Nulla facilisi. Nulla ornare, libero nec fermentum ullamcorper, justo sapien pretium odio, nec blandit nulla leo id turpis.</p>
       </section>
 
-      <section id=\"contacts\">
+      <section id="">
         <h2>Контакты</h2>
         <p>Адрес: ул. Примерная, д. 1</p>
         <p>Email: info@example.com</p>
@@ -689,7 +689,7 @@ export const html_links_creation_4 = {
     </main>
 
     <footer>
-      <p>© 2025 Учебный проект | <a href=\"index.html\">Главная</a></p>
+      <p>© 2025 Учебный проект | <a href="#">Главная</a></p>
     </footer>
   </body>
 </html>`,

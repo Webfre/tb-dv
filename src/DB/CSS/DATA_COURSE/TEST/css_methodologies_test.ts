@@ -1,6 +1,6 @@
 export const css_methodologies_test = {
   id: 305,
-  name: "CSS: Методологии и BEM",
+  name: "Методологии и BEM",
   category: "CSS",
   ques: [
     {

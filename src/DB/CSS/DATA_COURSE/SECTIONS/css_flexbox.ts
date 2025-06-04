@@ -117,7 +117,7 @@ export const css_flexbox_1 = {
 };
 export const css_flexbox_2 = {
   id: "css_flexbox_task_2",
-  title: "Оси и направление.",
+  title: "Оси и направление",
   content: `
   ## Оси и выравнивание в Flexbox
 
@@ -252,7 +252,7 @@ export const css_flexbox_2 = {
 };
 export const css_flexbox_3 = {
   id: "css_flexbox_task_3",
-  title: "Обёртка и порядок.",
+  title: "Обёртка и порядок",
   content: `
   ## Обёртка и порядок элементов в Flexbox
 
