@@ -1,9 +1,5 @@
-import React, { useRef } from "react";
-import { Box } from "@mui/material";
+import { useRef } from "react";
 import { ProjectSection } from "./Section/ProjectSection";
-import Header from "./Header";
-import Footer from "./Footer";
-import styles from "./Home.module.scss";
 import IntroSection from "./Section/IntroSection";
 import AboutSection from "./Section/AboutSection";
 import AboutModule from "./Section/AboutModule";
@@ -13,7 +9,7 @@ import StackSection from "./Section/StackSection";
 import FaqSection from "./Section/FaqSection";
 import ConsultationForm from "./Section/ConsultationForm";
 
-const Home: React.FC = () => {
+const HomePage = () => {
   const formRef = useRef<HTMLDivElement | null>(null);
 
   const handleScrollToForm = () => {
@@ -21,24 +17,18 @@ const Home: React.FC = () => {
   };
 
   return (
-    <Box className={styles.page}>
-      <Header />
-
-      <Box className={styles.main}>
-        <IntroSection onStartClick={handleScrollToForm} />
-        <AboutModule />
-        <AboutSection />
-        <StartSection />
-        <LikeSection />
-        <ProjectSection />
-        <StackSection />
-        <FaqSection />
-        <ConsultationForm reflink={formRef} />
-      </Box>
-
-      <Footer />
-    </Box>
+    <>
+      <IntroSection onStartClick={handleScrollToForm} />
+      <AboutModule />
+      <AboutSection />
+      <StartSection />
+      <LikeSection />
+      <ProjectSection />
+      <StackSection />
+      <FaqSection />
+      <ConsultationForm reflink={formRef} />
+    </>
   );
 };
 
-export default Home;
+export default HomePage;

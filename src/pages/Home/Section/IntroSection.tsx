@@ -1,5 +1,5 @@
 import styles from "./IntroSection.module.scss";
-import sectionStyles from "../Home.module.scss";
+import sectionStyles from "../MainLayout.module.scss";
 
 interface IntroSectionProps {
   onStartClick: () => void;

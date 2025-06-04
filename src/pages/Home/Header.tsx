@@ -7,9 +7,8 @@ import styles from "./Header.module.scss";
 const navItems = [
   { label: "Главная", path: "/" },
   { label: "Обучение", path: "/info" },
-  { label: "Курсы", path: "/courses" },
+  { label: "Материалы", path: "/materials" },
   { label: "О нас", path: "/about" },
-  { label: "Контакты", path: "/contacts" },
 ];
 
 const Header: React.FC = () => {

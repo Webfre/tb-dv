@@ -1,5 +1,5 @@
 import styles from "./AboutSection.module.scss";
-import sectionStyles from "../Home.module.scss";
+import sectionStyles from "../MainLayout.module.scss";
 import { FaLaptopCode } from "react-icons/fa";
 import { FaCheckCircle } from "react-icons/fa";
 import { FaHistory } from "react-icons/fa";
