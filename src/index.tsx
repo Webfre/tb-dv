@@ -37,6 +37,7 @@ import MainLayout from "./pages/Home/MainLayout";
 import HomePage from "./pages/Home/HomePage";
 import AboutPage from "./pages/AboutPage/AboutPage";
 import TrainingPage from "./pages/TrainingPage/TrainingPage";
+import { ReviewsBoard } from "./pages/ReviewsBoard/ReviewsBoard";
 
 export const AppRoutes = () => {
   return (
@@ -51,6 +52,8 @@ export const AppRoutes = () => {
             </MainLayout>
           }
         />
+
+        <Route path="/feedback" element={<ReviewsBoard />} />
 
         <Route
           path="/about"

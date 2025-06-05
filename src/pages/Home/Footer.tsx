@@ -43,7 +43,7 @@ const Footer: React.FC = () => {
             <Typography variant="h6">О нас</Typography>
             <Link href="/about#about">О платформе</Link>
             <Link href="/about#contacts">Контакты</Link>
-            <Link href="/about">Отзывы</Link>
+            <Link href="/feedback">Отзывы</Link>
           </Box>
 
           <Box className={styles.column}>
