@@ -23,6 +23,7 @@ import {
   FaProjectDiagram,
   FaClipboardCheck,
 } from "react-icons/fa";
+import ReviewBannerSection from "../Home/Section/ReviewBannerSection";
 
 const features = [
   { icon: <FaCode />, label: "Работа с кодом" },
@@ -115,6 +116,8 @@ const AboutPage: React.FC = () => {
           </li>
         </ul>
       </section>
+
+      <ReviewBannerSection />
     </div>
   );
 };

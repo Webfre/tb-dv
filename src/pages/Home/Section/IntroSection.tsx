@@ -4,12 +4,14 @@ import { FaWandMagicSparkles } from "react-icons/fa6";
 import { useEffect, useRef, useState } from "react";
 import video from "../Section/woosh.wav";
 import classNames from "classnames";
+import { useNavigate } from "react-router-dom";
 
 interface IntroSectionProps {
   onStartClick: () => void;
 }
 
 const IntroSection: React.FC<IntroSectionProps> = ({ onStartClick }) => {
+  const navigate = useNavigate();
   const [explode, setExplode] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -90,7 +92,12 @@ const IntroSection: React.FC<IntroSectionProps> = ({ onStartClick }) => {
           <button className={styles.primary} onClick={onStartClick}>
             Давайте начнём
           </button>
-          <button className={styles.secondary}>Подробнее</button>
+          <button
+            onClick={() => navigate("/training")}
+            className={styles.secondary}
+          >
+            Подробнее
+          </button>
         </div>
 
         <div className={styles.magicIconWrapper} onClick={handleMagicClick}>
