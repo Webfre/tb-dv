@@ -30,7 +30,7 @@ export default function Profile() {
   };
 
   return (
-    <Box p={4}>
+    <Box p={2}>
       {filteredCourses.map((course) => (
         <Box
           className={classNames(styles.coursesProfile, {

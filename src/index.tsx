@@ -8,7 +8,6 @@ import { theme } from "./ui/theme";
 import { ReviewsBoard } from "./pages/ReviewsBoard/ReviewsBoard";
 import { ToastContainer } from "react-toastify";
 import { Route } from "react-router-dom";
-import { Flashback } from "./components/Flashback/Flashback";
 import { UserPanelLayout } from "./Panel/UserPanelLayout";
 import CourseRouteWrapper from "./ui/CourseRouteWrapper";
 import MentorProfilePage from "./components/MentorProfilePage/MentorProfilePage";
@@ -35,6 +34,7 @@ import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import MainLayout from "./pages/Home/MainLayout";
 import HomePage from "./pages/Home/HomePage";
 import AboutPage from "./pages/AboutPage/AboutPage";
+import FlashbackWrapper from "./components/Flashback/FlashbackWrapper";
 import TrainingPage from "./pages/TrainingPage/TrainingPage";
 import "./index.scss";
 import "react-toastify/dist/ReactToastify.css";
@@ -100,7 +100,7 @@ export const AppRoutes = () => {
           <Route path="cheatsheet" element={<CheatsheetPage />} />
           <Route path="interview" element={<InterviewPage />} />
           <Route path="projects" element={<ProjectsPage />} />
-          <Route path="flashback" element={<Flashback />} />
+          <Route path="flashback" element={<FlashbackWrapper />} />
 
           <Route
             path="admin-dashboard"
