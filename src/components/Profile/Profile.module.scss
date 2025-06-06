@@ -4,14 +4,16 @@
   transition: all 0.3s ease !important;
   padding: 20px !important;
   background-color: #ebeced !important;
+  color: rgb(33, 33, 33);
 
   &:hover {
     transform: translateY(-2px) !important;
-    background-color: #b5d3f1 !important;
+    background-color: #a18ff2 !important;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
   }
 }
 
 .selectedCourse {
-  background-color: #b5d3f1 !important;
+  background-color: #947ef6 !important;
+  color: rgb(250, 250, 250);
 }

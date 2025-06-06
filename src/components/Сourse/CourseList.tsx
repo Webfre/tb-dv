@@ -6,6 +6,7 @@ import { getAccessibleCourses } from "../../lib/hasAccessToCourses";
 import { courseList } from "../../DB";
 import Confetti from "react-confetti";
 import styles from "./Course.module.scss";
+import NoCoursesAvailable from "./NoCoursesAvailable";
 
 const CourseList: React.FC = () => {
   const { data } = useCheckCourseAccessQuery();
@@ -34,7 +35,7 @@ const CourseList: React.FC = () => {
 
       <Paper elevation={3} className={styles.headerCard}>
         <Typography variant="h4" sx={{ fontWeight: "bold", mb: 1 }}>
-          Добро пожаловать на курс Frontarium!
+          Добро пожаловать во Frontarium!
         </Typography>
         <Typography variant="body1">
           Образовательная платформа, ориентированная на подготовку
@@ -43,14 +44,18 @@ const CourseList: React.FC = () => {
         </Typography>
       </Paper>
 
-      {filteredCourses.map((course) => (
-        <CourseCard
-          key={course.id}
-          id={course.id}
-          title={course.title}
-          description={course.description}
-        />
-      ))}
+      {filteredCourses.length === 0 ? (
+        <NoCoursesAvailable />
+      ) : (
+        filteredCourses.map((course) => (
+          <CourseCard
+            key={course.id}
+            id={course.id}
+            title={course.title}
+            description={course.description}
+          />
+        ))
+      )}
     </Box>
   );
 };

@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import styles from "./Sidebar.module.scss";
 import classNames from "classnames";
 import { LiaThumbtackSolid } from "react-icons/lia";
+import { Tooltip } from "@mui/material";
 import { useNavigate, useLocation, matchPath } from "react-router-dom";
 import { menuItemsSideBar } from "./menuItemsSideBar";
+import { useCheckCourseAccessQuery } from "../api/userApi";
+import { FcLock } from "react-icons/fc";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import SupportAgentIcon from "@mui/icons-material/SupportAgent";
-import { Tooltip } from "@mui/material";
 import FeatureRequestButton from "../components/GlobalHelpDrawer/FeatureRequestButton";
 
 interface SidebarProps {
@@ -16,6 +18,10 @@ interface SidebarProps {
 export const Sidebar: React.FC<SidebarProps> = ({ onActiveChange }) => {
   const navigate = useNavigate();
   const location = useLocation();
+
+  const { data } = useCheckCourseAccessQuery();
+  const accessCourses = data?.accessCourse || [];
+  const hasAccess = accessCourses.length > 0;
 
   const [isFeatureDialogOpen, setIsFeatureDialogOpen] = useState(false);
   const [hovered, setHovered] = useState(false);
@@ -55,6 +61,12 @@ export const Sidebar: React.FC<SidebarProps> = ({ onActiveChange }) => {
     localStorage.setItem("sidebarPinned", String(isPinned));
   }, [isPinned]);
 
+  const sortedMenuItems = [...menuItemsSideBar].sort((a, b) => {
+    const aRequires = a.requiresAccess ? 1 : 0;
+    const bRequires = b.requiresAccess ? 1 : 0;
+    return aRequires - bRequires;
+  });
+
   const isCollapsed = !isPinned && !hovered;
 
   return (
@@ -81,12 +93,14 @@ export const Sidebar: React.FC<SidebarProps> = ({ onActiveChange }) => {
       </div>
 
       <nav className={styles.menu}>
-        {menuItemsSideBar.map((item) => {
+        {sortedMenuItems.map((item) => {
           const Icon = item.icon;
           const isActive = matchPath(
             { path: item.url, end: false },
             location.pathname
           );
+
+          const locked = item.requiresAccess && !hasAccess;
 
           return (
             <button
@@ -94,11 +108,15 @@ export const Sidebar: React.FC<SidebarProps> = ({ onActiveChange }) => {
               onClick={() => handleNavigate(item.url)}
               className={classNames(styles.menuItem, {
                 [styles.active]: !!isActive,
+                [styles.locked]: locked,
               })}
             >
               <Icon className={styles.icon} />
               {!isCollapsed && (
-                <span className={styles.title}>{item.title}</span>
+                <span className={styles.title}>
+                  {item.title}
+                  {locked && <FcLock className={styles.lockIcon} />}
+                </span>
               )}
             </button>
           );

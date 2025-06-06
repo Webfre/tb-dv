@@ -19,6 +19,9 @@ const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
+  const token = localStorage.getItem("token");
+  const isAuthenticated = Boolean(token);
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
@@ -86,18 +89,29 @@ const Header: React.FC = () => {
         </div>
 
         <div className={styles.auth}>
-          <button
-            onClick={() => navigate("/login")}
-            className={styles.authButton}
-          >
-            Войти
-          </button>
-          <button
-            onClick={() => navigate("/register")}
-            className={styles.authButton}
-          >
-            Регистрация
-          </button>
+          {!isAuthenticated ? (
+            <>
+              <button
+                onClick={() => navigate("/login")}
+                className={styles.authButton}
+              >
+                Войти
+              </button>
+              <button
+                onClick={() => navigate("/register")}
+                className={styles.authButton}
+              >
+                Регистрация
+              </button>
+            </>
+          ) : (
+            <button
+              onClick={() => navigate("/panel/course")}
+              className={styles.authButton}
+            >
+              Начать
+            </button>
+          )}
         </div>
       </div>
 
@@ -117,18 +131,38 @@ const Header: React.FC = () => {
           ))}
 
           <div className={styles.mobileAuthButtons}>
-            <button
-              onClick={() => navigate("/login")}
-              className={styles.authButton}
-            >
-              Войти
-            </button>
-            <button
-              onClick={() => navigate("/register")}
-              className={styles.authButton}
-            >
-              Регистрация
-            </button>
+            {!isAuthenticated ? (
+              <>
+                <button
+                  onClick={() => {
+                    setMenuOpen(false);
+                    navigate("/login");
+                  }}
+                  className={styles.authButton}
+                >
+                  Войти
+                </button>
+                <button
+                  onClick={() => {
+                    setMenuOpen(false);
+                    navigate("/register");
+                  }}
+                  className={styles.authButton}
+                >
+                  Регистрация
+                </button>
+              </>
+            ) : (
+              <button
+                onClick={() => {
+                  setMenuOpen(false);
+                  navigate("/panel/course");
+                }}
+                className={styles.authButton}
+              >
+                Начать
+              </button>
+            )}
           </div>
         </div>
       )}

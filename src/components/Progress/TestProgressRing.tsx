@@ -50,7 +50,7 @@ const TestProgressRing: React.FC<ProgressRingProps> = ({
           value={testProgress}
           size={120}
           thickness={5}
-          sx={{ color: "#3498db" }}
+          sx={{ color: "#947ef6" }}
         />
         <Box className={styles.progressValue}>
           <Typography

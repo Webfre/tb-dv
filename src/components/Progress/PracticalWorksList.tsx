@@ -28,7 +28,7 @@ const PracticalWorksList: React.FC<PracticalWorksListProps> = ({
 
   return (
     <Box className={styles.practicalList}>
-      <Typography variant="h4" gutterBottom>
+      <Typography marginBottom={2} variant="h4" gutterBottom>
         Практические работы
       </Typography>
 

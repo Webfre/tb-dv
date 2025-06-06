@@ -1,6 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
 import {
-  Container,
   Paper,
   Typography,
   CircularProgress,
@@ -97,7 +96,7 @@ const UserDetails: React.FC = () => {
   if (!user) return null;
 
   return (
-    <Container>
+    <Box p={4}>
       <BtnCustom
         sx={{ mb: 2 }}
         text="Назад"
@@ -185,7 +184,7 @@ const UserDetails: React.FC = () => {
           </Button>
         </DialogActions>
       </Dialog>
-    </Container>
+    </Box>
   );
 };
 

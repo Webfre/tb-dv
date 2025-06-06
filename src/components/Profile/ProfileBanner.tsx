@@ -1,18 +1,21 @@
 import React from "react";
-import { Box, Typography, Chip, Paper, Avatar, Stack } from "@mui/material";
+import { Box, Typography, Chip, Avatar, Stack } from "@mui/material";
 import { Mentor } from "../MentorProfilePage/mentorsData";
 import { useNavigate } from "react-router-dom";
+import { chip_sx } from "../../styles/global";
 
 interface ProfileBannerProps {
   courseTitle: string;
   courseType: string;
   mentors: Mentor[];
+  isSelected: boolean;
 }
 
 const ProfileBanner: React.FC<ProfileBannerProps> = ({
   courseTitle,
   courseType,
   mentors,
+  isSelected,
 }) => {
   const navigate = useNavigate();
 
@@ -21,7 +24,7 @@ const ProfileBanner: React.FC<ProfileBannerProps> = ({
     mentorId: number
   ) => {
     event.stopPropagation();
-    navigate(`/mentorprofilepage/${mentorId}`);
+    navigate(`/panel/mentorlist/${mentorId}`);
   };
 
   return (
@@ -33,13 +36,12 @@ const ProfileBanner: React.FC<ProfileBannerProps> = ({
     >
       <Box>
         <Chip
-          sx={{ mb: 2 }}
+          sx={{ ...chip_sx, marginBottom: "10px" }}
           label={`Грейд: ${
             courseType === "Pro"
               ? "Junior, Junior+ / Middle"
               : "Trainee, Junior"
           }`}
-          color="info"
         />
 
         <Typography variant="h5" fontWeight={600}>
@@ -61,7 +63,11 @@ const ProfileBanner: React.FC<ProfileBannerProps> = ({
             <Typography variant="body2" fontWeight={500} mt={1}>
               {mentor.name}
             </Typography>
-            <Typography variant="caption" color="text.secondary" align="center">
+            <Typography
+              color={isSelected ? "rgb(250, 250, 250)" : "text.secondary"}
+              variant="caption"
+              align="center"
+            >
               {mentor.grade}
             </Typography>
           </Box>

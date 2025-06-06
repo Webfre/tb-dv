@@ -114,3 +114,15 @@ export const textField_input_sx = {
     color: "#947ef6",
   },
 };
+
+export const tabs_sx = {
+  fontWeight: 500,
+  color: "#666",
+  borderBottom: "2px solid transparent",
+  "&.Mui-selected": {
+    color: "#7e57c2", // цвет активного таба
+    backgroundColor: "#f0ecfc", // фон активного таба
+    borderRadius: "8px 8px 0 0", // опционально — скругления
+    borderBottom: "2px solid #c8bae1 !important",
+  },
+};

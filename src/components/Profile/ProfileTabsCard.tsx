@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Box, Paper, Tabs, Tab, Typography } from "@mui/material";
+import { tabs_sx } from "../../styles/global";
 import Progress from "../Progress/Progress";
 import UserInfo from "./UserInfo";
 
@@ -45,10 +46,11 @@ const ProfileTabsCard: React.FC<ProfileTabsCardProps> = ({
         onChange={handleChange}
         variant="scrollable"
         scrollButtons="auto"
+        TabIndicatorProps={{ style: { display: "none" } }}
         sx={{ borderBottom: 1, borderColor: "divider", px: 2 }}
       >
         {tabLabels.map((label, index) => (
-          <Tab key={index} label={label} />
+          <Tab key={index} label={label} sx={tabs_sx} />
         ))}
       </Tabs>
 

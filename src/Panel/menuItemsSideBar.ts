@@ -16,6 +16,7 @@ export interface MenuItem {
   icon: React.ElementType;
   breadcrumbs?: Array<{ label: string; path: string }>;
   nested?: boolean;
+  requiresAccess?: boolean;
 }
 
 export const menuItemsSideBar: MenuItem[] = [
@@ -25,54 +26,60 @@ export const menuItemsSideBar: MenuItem[] = [
     url: "/panel/course",
     icon: ImportContactsIcon,
     breadcrumbs: [{ label: "Курсы", path: "/panel/course" }],
+    requiresAccess: false,
   },
   {
     id: 1,
     title: "Задачник",
     url: "/panel/taskbook",
     icon: ViewStreamIcon,
+    requiresAccess: false,
   },
   {
     id: 9,
     title: "Тесты",
     url: "/panel/test",
     icon: DoneAllIcon,
+    requiresAccess: true,
   },
   {
     id: 2,
     title: "Навыки",
     url: "/panel/roadmap",
     icon: PsychologyAltIcon,
+    requiresAccess: false,
   },
-  {
-    id: 3,
-    title: "Кодинг",
-    url: "/panel/livecode",
-    icon: CodeIcon,
-  },
+  // {
+  //   id: 3,
+  //   title: "Кодинг",
+  //   url: "/panel/livecode",
+  //   icon: CodeIcon,
+  // },
   {
     id: 4,
     title: "Шпаргалка",
     url: "/panel/cheatsheet",
     icon: AttachmentIcon,
+    requiresAccess: false,
   },
-  {
-    id: 5,
-    title: "Cобеседование",
-    url: "/panel/interview",
-    icon: QuizIcon,
-  },
-  {
-    id: 6,
-    title: "Портфолио",
-    url: "/panel/projects",
-    icon: FolderSharedIcon,
-  },
+  // {
+  //   id: 5,
+  //   title: "Cобеседование",
+  //   url: "/panel/interview",
+  //   icon: QuizIcon,
+  // },
+  // {
+  //   id: 6,
+  //   title: "Портфолио",
+  //   url: "/panel/projects",
+  //   icon: FolderSharedIcon,
+  // },
   {
     id: 7,
     title: "Флешбэк",
     url: "/panel/flashback",
     icon: ReplayIcon,
+    requiresAccess: true,
   },
   {
     id: 8,
@@ -80,5 +87,6 @@ export const menuItemsSideBar: MenuItem[] = [
     url: "/panel/mentorlist",
     icon: GroupIcon,
     nested: true,
+    requiresAccess: false,
   },
 ];

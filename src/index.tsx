@@ -5,6 +5,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 import { theme } from "./ui/theme";
+import { ReviewsBoard } from "./pages/ReviewsBoard/ReviewsBoard";
 import { ToastContainer } from "react-toastify";
 import { Route } from "react-router-dom";
 import { Flashback } from "./components/Flashback/Flashback";
@@ -31,13 +32,12 @@ import ResetPasswordPage from "./pages/ResetPasswordPage/ResetPasswordPage";
 import CourseInfoPage from "./pages/CourseInfoPage/CourseInfoPage";
 import CoursesPageList from "./pages/CoursesPageList/CoursesPageList";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
-import "./index.scss";
-import "react-toastify/dist/ReactToastify.css";
 import MainLayout from "./pages/Home/MainLayout";
 import HomePage from "./pages/Home/HomePage";
 import AboutPage from "./pages/AboutPage/AboutPage";
 import TrainingPage from "./pages/TrainingPage/TrainingPage";
-import { ReviewsBoard } from "./pages/ReviewsBoard/ReviewsBoard";
+import "./index.scss";
+import "react-toastify/dist/ReactToastify.css";
 
 export const AppRoutes = () => {
   return (
@@ -73,33 +73,6 @@ export const AppRoutes = () => {
           }
         />
 
-        <Route
-          path="/admin-dashboard"
-          element={
-            <AdminProtectedRoute>
-              <AdminDashboard />
-            </AdminProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/admin/user/:id"
-          element={
-            <AdminProtectedRoute>
-              <UserDetails />
-            </AdminProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/profile"
-          element={
-            <ProtectedRoute>
-              <Profile />
-            </ProtectedRoute>
-          }
-        />
-
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/reset-password" element={<ResetPasswordPage />} />
@@ -117,6 +90,7 @@ export const AppRoutes = () => {
         >
           <Route path="course/:id" element={<CourseRouteWrapper />} />
           <Route path="mentorlist/:id" element={<MentorProfilePage />} />
+          <Route path="profile" element={<Profile />} />
           <Route path="test" element={<TestWrapper />} />
           <Route path="mentorlist" element={<MentorList />} />
           <Route path="course" element={<CourseList />} />
@@ -127,6 +101,24 @@ export const AppRoutes = () => {
           <Route path="interview" element={<InterviewPage />} />
           <Route path="projects" element={<ProjectsPage />} />
           <Route path="flashback" element={<Flashback />} />
+
+          <Route
+            path="admin-dashboard"
+            element={
+              <AdminProtectedRoute>
+                <AdminDashboard />
+              </AdminProtectedRoute>
+            }
+          />
+
+          <Route
+            path="admin/user/:id"
+            element={
+              <AdminProtectedRoute>
+                <UserDetails />
+              </AdminProtectedRoute>
+            }
+          />
         </Route>
       </Routes>
     </>
