@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-import {
-  Box,
-  TextField,
-  Typography,
-  Container,
-  Paper,
-  CircularProgress,
-} from "@mui/material";
+import { Box, TextField, Typography, Container, Paper } from "@mui/material";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { IFormData } from "./FormData.types";
 import { schema } from "./schema";
@@ -22,6 +15,7 @@ import styles from "./RegisterPage.module.scss";
 import { PiSmileyMeltingFill } from "react-icons/pi";
 import { textField_input_sx } from "../../styles/global";
 import CustomToast from "../../ui/CustomToast";
+import Spinner from "../../ui/Spinner";
 
 const RegisterPage: React.FC = () => {
   const {
@@ -69,7 +63,7 @@ const RegisterPage: React.FC = () => {
 
   return (
     <Box className={styles.wrapper}>
-      <Container maxWidth="sm">
+      <Container maxWidth="sm" className={styles.container}>
         <Paper sx={{ p: 4, borderRadius: 4 }}>
           {isLoading && (
             <Box
@@ -86,7 +80,7 @@ const RegisterPage: React.FC = () => {
                 zIndex: 10,
               }}
             >
-              <CircularProgress />
+              <Spinner />
             </Box>
           )}
 

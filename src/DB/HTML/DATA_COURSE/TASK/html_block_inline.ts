@@ -100,13 +100,13 @@ export const html_block_inline_1 = {
     <!-блочный элемент: список контактов -->
     <ul>
       <li><!-блочный внутри li  -->
-        <a href="https://github.com/anna"><!-строчный -->GitHub</a>
+        <a href="#"><!-строчный -->GitHub</a>
       </li>
       <li>
         <a href="mailto:anna@example.com">Email</a>
       </li>
       <li>
-        <a href="https://t.me/anna_petrov">Telegram</a>
+        <a href="#">Telegram</a>
       </li>
     </ul>
 
@@ -587,8 +587,8 @@ export const html_block_inline_7 = {
     </p>
     <ul>
       <li><strong>Дата:</strong> 25 мая 2025</li>
-      <li><strong>Место:</strong> <a href="https://maps.example.com/venue">Центр цифровых технологий</a></li>
-      <li><strong>Контакты:</strong> <a href="mailto:info@meetup.com">info@meetup.com</a></li>
+      <li><strong>Место:</strong> <a href="#">Центр цифровых технологий</a></li>
+      <li><strong>Контакты:</strong> <a href="#">info@meetup.com</a></li>
     </ul>
     <p><em>Участие бесплатное, регистрация обязательна.</em></p>
   </div>
@@ -668,7 +668,7 @@ export const html_block_inline_8 = {
     </ul>
     <p>
       Оригинал рецепта: 
-      <a href="https://example.com/pasta" target="_blank" rel="noopener noreferrer">
+      <a href="#" rel="#">
         Перейти к источнику
       </a>
     </p>

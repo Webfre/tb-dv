@@ -1,6 +1,6 @@
 export const css_box_model_test = {
-  id: 402,
-  name: "CSS: Блочная модель и позиционирование",
+  id: 302,
+  name: "Блочная модель и позиционирование",
   category: "CSS",
   ques: [
     {

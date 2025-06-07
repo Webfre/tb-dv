@@ -1,6 +1,6 @@
 export const css_block_model1 = {
   id: "css_block_model1",
-  title: "Отступы: margin, padding, box-sizing",
+  title: "Отступы",
   content: `
   ## Отступы в CSS
 
@@ -8,7 +8,7 @@ export const css_block_model1 = {
 
   ---
 
-  ### 1. margin — внешний отступ
+  ###  margin — внешний отступ
 
   Создаёт пространство **вокруг** элемента, отделяя его от других.
 
@@ -26,7 +26,7 @@ export const css_block_model1 = {
 
   ---
 
-  ### 2. padding — внутренний отступ
+  ###  padding — внутренний отступ
 
   Добавляет пространство **внутри** элемента, между содержимым и его границей.
 
@@ -38,7 +38,7 @@ export const css_block_model1 = {
 
   ---
 
-  ### 3. box-sizing — как рассчитываются размеры элемента
+  ###  box-sizing — как рассчитываются размеры элемента
 
   По умолчанию в CSS ширина и высота элемента **не включают padding и border**.
 
@@ -46,13 +46,13 @@ export const css_block_model1 = {
 
   \`width: 300px\` означает, что **только контент** будет 300px, а padding и border добавятся сверху:
 
-  👉 итоговая ширина > 300px
+   итоговая ширина > 300px
 
   #### border-box (рекомендуется)
 
   \`width: 300px\` включает в себя padding и border. Это делает поведение более предсказуемым:
 
-  👉 итоговая ширина = ровно 300px
+   итоговая ширина = ровно 300px
 
   Рекомендуется устанавливать глобально:
 
@@ -68,7 +68,17 @@ export const css_block_model1 = {
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="box">
+    <p>Этот блок имеет padding и margin. Благодаря box-sizing: border-box, его ширина не превышает 300px.</p>
+  </div>
+</body>
+</html>
+  `.trim(),
+
+  codeExampleCSS: `
     * {
       box-sizing: border-box;
     }
@@ -80,28 +90,6 @@ export const css_block_model1 = {
       background-color: #f0f0f0;
       border: 2px solid #ccc;
     }
-  </style>
-</head>
-<body>
-  <div class="box">
-    <p>Этот блок имеет padding и margin. Благодаря box-sizing: border-box, его ширина не превышает 300px.</p>
-  </div>
-</body>
-</html>
-  `.trim(),
-
-  codeExampleCSS: `
-* {
-  box-sizing: border-box;
-}
-
-.box {
-  width: 300px;
-  margin: 20px auto;
-  padding: 20px;
-  background-color: #f0f0f0;
-  border: 2px solid #ccc;
-}
   `.trim(),
 
   resources: [
@@ -121,7 +109,7 @@ export const css_block_model2 = {
 
   ---
 
-  ### 1. border — граница
+  ###  border — граница
 
   Граница элемента задаётся одной строкой или отдельными свойствами:
 
@@ -144,7 +132,7 @@ export const css_block_model2 = {
 
   ---
 
-  ### 2. background — фон
+  ###  background — фон
 
   - \`background-color\`: цвет фона
   - \`background-image\`: изображение на фоне
@@ -160,7 +148,7 @@ export const css_block_model2 = {
 
   ---
 
-  ### 3. border-radius — скругление углов
+  ###  border-radius — скругление углов
 
   Делает углы элемента округлыми:
 
@@ -188,7 +176,17 @@ export const css_block_model2 = {
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="card">
+    <p>Это блок с границей, фоном и скруглёнными углами.</p>
+  </div>
+  <div class="circle"></div>
+</body>
+</html>
+  `.trim(),
+  codeExampleCSS: `
     .card {
       width: 300px;
       padding: 20px;
@@ -205,34 +203,6 @@ export const css_block_model2 = {
       border-radius: 50%;
       margin: 20px auto;
     }
-  </style>
-</head>
-<body>
-  <div class="card">
-    <p>Это блок с границей, фоном и скруглёнными углами.</p>
-  </div>
-  <div class="circle"></div>
-</body>
-</html>
-  `.trim(),
-
-  codeExampleCSS: `
-.card {
-  background-color: #f0f0f0;
-  border: 2px dashed #888;
-  border-radius: 12px;
-  padding: 20px;
-  width: 300px;
-  margin: 40px auto;
-}
-
-.circle {
-  width: 100px;
-  height: 100px;
-  background-color: #4caf50;
-  border-radius: 50%;
-  margin: 20px auto;
-}
   `.trim(),
 
   resources: [

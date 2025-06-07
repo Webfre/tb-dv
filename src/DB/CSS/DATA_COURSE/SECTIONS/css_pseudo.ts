@@ -48,24 +48,7 @@ export const css_pseudo1 = {
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
-    li:first-child {
-      color: green;
-    }
-    li:last-child {
-      color: red;
-    }
-    li:nth-child(2) {
-      color: blue;
-    }
-    input:checked + label {
-      font-weight: bold;
-    }
-    input:focus {
-      border-color: #3f51b5;
-      outline: none;
-    }
-  </style>
+ <link rel="stylesheet" href="styles.css"> 
 </head>
 <body>
   <ul>
@@ -84,6 +67,24 @@ export const css_pseudo1 = {
   <input type="text" placeholder="Фокус сюда" />
 </body>
 </html>
+  `.trim(),
+  codeExampleCSS: `
+    li:first-child {
+      color: green;
+    }
+    li:last-child {
+      color: red;
+    }
+    li:nth-child(2) {
+      color: blue;
+    }
+    input:checked + label {
+      font-weight: bold;
+    }
+    input:focus {
+      border-color: #3f51b5;
+      outline: none;
+    }
   `.trim(),
 
   resources: [
@@ -136,8 +137,15 @@ export const css_pseudo2 = {
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
-    p::before {
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <p>Это пример текста с использованием псевдоэлементов.</p>
+</body>
+</html>
+  `.trim(),
+  codeExampleCSS: `
+     p::before {
       content: "→ ";
       color: gray;
     }
@@ -153,12 +161,6 @@ export const css_pseudo2 = {
       font-weight: bold;
       color: #3f51b5;
     }
-  </style>
-</head>
-<body>
-  <p>Это пример текста с использованием псевдоэлементов.</p>
-</body>
-</html>
   `.trim(),
 
   resources: [
@@ -178,7 +180,7 @@ export const css_pseudo3 = {
 
   ---
 
-  ### 1. :hover — при наведении курсора
+  ###  :hover — при наведении курсора
 
   Пример:
 
@@ -192,7 +194,7 @@ export const css_pseudo3 = {
 
   ---
 
-  ### 2. :active — в момент нажатия
+  ###  :active — в момент нажатия
 
   Пример:
 
@@ -206,7 +208,7 @@ export const css_pseudo3 = {
 
   ---
 
-  ### 3. :focus — когда элемент получает фокус (обычно input)
+  ###  :focus — когда элемент получает фокус (обычно input)
 
   Пример:
 
@@ -221,7 +223,7 @@ export const css_pseudo3 = {
 
   ---
 
-  ### 4. :visited, :disabled, :checked
+  ###  :visited, :disabled, :checked
 
   - \`:visited\` — уже посещённые ссылки
   - \`:disabled\` — неактивные кнопки/поля
@@ -269,8 +271,20 @@ export const css_pseudo3 = {
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
-    button {
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <button>Кнопка</button>
+  <br /><br />
+  <input type="text" placeholder="Фокус сюда" />
+  <br /><br />
+  <input type="text" disabled value="Отключено" />
+</body>
+</html>
+  `.trim(),
+
+  codeExampleCSS: `
+   button {
       padding: 10px 20px;
       font-size: 16px;
       background-color: #2196f3;
@@ -297,46 +311,6 @@ export const css_pseudo3 = {
     input:disabled {
       background-color: #eee;
     }
-  </style>
-</head>
-<body>
-  <button>Кнопка</button>
-  <br /><br />
-  <input type="text" placeholder="Фокус сюда" />
-  <br /><br />
-  <input type="text" disabled value="Отключено" />
-</body>
-</html>
-  `.trim(),
-
-  codeExampleCSS: `
-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #2196f3;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-button:hover {
-  background-color: #1976d2;
-}
-
-button:active {
-  background-color: #0d47a1;
-}
-
-input:focus {
-  border: 2px solid #ff5722;
-  outline: none;
-}
-
-input:disabled {
-  background-color: #eee;
-}
   `.trim(),
 
   resources: [

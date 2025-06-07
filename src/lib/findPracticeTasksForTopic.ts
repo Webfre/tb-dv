@@ -16,13 +16,12 @@ export const findPracticeTasksForTopic = (topicTitle: string) => {
 
   // Собираем все practiceIds из всех глав (chapters)
   const allPracticeIds = targetTopic.chapters.flatMap(
-    (chapter) => chapter.practiceIds
+    (chapter) => chapter.practiceIds ?? []
   );
 
   // Фильтруем practiceMock, чтобы оставить только совпадающие practiceIds
   const filteredTasks = practiceMock.filter((task) =>
     allPracticeIds.includes(task.id)
   );
-
   return filteredTasks;
 };

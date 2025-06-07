@@ -1,6 +1,6 @@
 export const css_grid_test = {
-  id: 507,
-  name: "CSS: Grid Layout",
+  id: 307,
+  name: "Grid Layout",
   category: "CSS",
   ques: [
     {

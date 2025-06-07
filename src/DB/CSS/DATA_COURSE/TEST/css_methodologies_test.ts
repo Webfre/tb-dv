@@ -1,6 +1,6 @@
 export const css_methodologies_test = {
-  id: 505,
-  name: "CSS: Методологии и BEM",
+  id: 305,
+  name: "Методологии и BEM",
   category: "CSS",
   ques: [
     {
@@ -54,8 +54,8 @@ export const css_methodologies_test = {
     {
       id: 7,
       name: "Какой из следующих примеров является правильным именованием модификатора в BEM?",
-      variants: [".card-active", ".card--active", ".card__active"],
-      correct: [1],
+      variants: [".card--active", ".card__active--big", ".card.active"],
+      correct: [0],
     },
     {
       id: 8,

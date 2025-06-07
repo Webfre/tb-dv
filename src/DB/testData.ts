@@ -7,7 +7,6 @@ import { css_images_test } from "./CSS/DATA_COURSE/TEST/css_images_test";
 import { css_intro_test } from "./CSS/DATA_COURSE/TEST/css_intro_test";
 import { css_layout_test } from "./CSS/DATA_COURSE/TEST/css_layout_test";
 import { css_methodologies_test } from "./CSS/DATA_COURSE/TEST/css_methodologies_test";
-import { css_preprocessors_test } from "./CSS/DATA_COURSE/TEST/css_preprocessors_test";
 import { css_pseudo_test } from "./CSS/DATA_COURSE/TEST/css_pseudo_test";
 import { css_responsive_test } from "./CSS/DATA_COURSE/TEST/css_responsive_test";
 import { css_selectors_test } from "./CSS/DATA_COURSE/TEST/css_selectors_test";
@@ -59,7 +58,6 @@ export const TEST_CATEGORY_MAP: Record<string, string[]> = {
     "css_images_test",
     "css_responsive_test",
     "css_animations_test",
-    "css_preprocessors_test",
   ],
   js: ["js_start_test"],
 };
@@ -98,7 +96,6 @@ export const testData: TestDataCollection = {
   css_images_test,
   css_responsive_test,
   css_animations_test,
-  css_preprocessors_test,
 
   // JS будет с 500
   js_start_test,

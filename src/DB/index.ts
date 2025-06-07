@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 import { web_layout_info_course } from "./СOURSE_DATA/WEB_LAYOUT/web_layout_info_course";
 import { javascript_info_course } from "./СOURSE_DATA/JAVA_SCRIPT/javascript_info_course";
+=======
+>>>>>>> main
 import { cssTopic } from "./CSS/DATA_COURSE/css";
 import { browserTopic } from "./WWW/DATA_COURSE/www";
 import { htmlTopic } from "./HTML/DATA_COURSE/html";
@@ -7,6 +10,8 @@ import { CourseChapter, CourseTopic, InfoCourse } from "./index_type";
 import { introTopic } from "./START/DATA_COURSE/start";
 import { ideTopic } from "./IDE/DATA_COURSE/vscode";
 import { jsTopic } from "./JAVASCRIPT/DATA_COURSE/js";
+import { introHtml } from "./HTML_INTRO/introHtml";
+import { web_layout_info_course } from "./СOURSE_DATA/WEB_LAYOUT/web_layout_info_course";
 
 export const courseList: InfoCourse[] = [
   web_layout_info_course,
@@ -18,6 +23,7 @@ export const courseList: InfoCourse[] = [
 
 // Это вся база ТЕМ
 export const mockTopics: CourseTopic[] = [
+  introHtml,
   introTopic,
   browserTopic,
   ideTopic,
@@ -28,10 +34,10 @@ export const mockTopics: CourseTopic[] = [
 
 // Для информации о курсе Программа блок
 export const chaptersMap: Record<string, CourseChapter[]> = {
-  // introHtml: introTopicHtml, // TODO нужно будет создать и заполнить для курса Верстка HTML CSS (идут как дополнительные)
   // introJavaScript: introTopicJavaScript, // TODO нужно будет создать и заполнить для курса JavaScript (идут как дополнительные)
   // introTypeScript: introTopicTypeScript, // TODO нужно будет создать и заполнить для курса TypeScript (идут как дополнительные)
 
+  introHtml: introHtml.chapters, // TODO нужно будет создать и заполнить для курса Верстка HTML CSS (идут как дополнительные)
   intro: introTopic.chapters, // ДЛЯ КУРСА REACT (базовый)
   html: htmlTopic.chapters, // HTML курс
   css: cssTopic.chapters, // CSS курс

@@ -1,10 +1,11 @@
 import React, { useRef, useState, useEffect } from "react";
 import styles from "./MainContent.module.scss";
 import { FaArrowUp } from "react-icons/fa";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 
 export const MainContent: React.FC = () => {
   const contentRef = useRef<HTMLDivElement>(null);
+  const location = useLocation();
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
@@ -22,6 +23,10 @@ export const MainContent: React.FC = () => {
       container?.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    scrollToTop();
+  }, [location.pathname]);
 
   const scrollToTop = () => {
     contentRef.current?.scrollTo({ top: 0, behavior: "smooth" });

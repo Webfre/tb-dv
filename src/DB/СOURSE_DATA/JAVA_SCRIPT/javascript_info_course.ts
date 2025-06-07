@@ -7,6 +7,7 @@ import JavascriptIcon from '@mui/icons-material/Javascript';
 
 export const javascript_info_course = {
   id: 2,
+  typeId: 2,
   courseId: ["ide", "js",],
   title: "JavaScript с нуля",
   description: "Программирование • 8 месяцев • С нуля", // TODO чистый js меньше времени

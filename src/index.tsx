@@ -1,6 +1,6 @@
 import ReactDOM from "react-dom/client";
 import { CssBaseline, ThemeProvider } from "@mui/material";
-import { Routes, useLocation } from "react-router-dom";
+import { Routes } from "react-router-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
@@ -22,7 +22,6 @@ import InterviewPage from "./pages/InterviewPage/InterviewPage";
 import ProjectsPage from "./pages/ProjectsPage/ProjectsPage";
 import AdminProtectedRoute from "./ui/AdminProtectedRoute";
 import AdminDashboard from "./components/AdminDashboard/AdminDashboard";
-import Home from "./pages/Home/Home";
 import UserDetails from "./components/AdminDashboard/UserDetails/UserDetails";
 import Profile from "./components/Profile/Profile";
 import ProtectedRoute from "./ui/ProtectedRoute";
@@ -32,24 +31,34 @@ import ResetPasswordPage from "./pages/ResetPasswordPage/ResetPasswordPage";
 import CourseInfoPage from "./pages/CourseInfoPage/CourseInfoPage";
 import CoursesPageList from "./pages/CoursesPageList/CoursesPageList";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
-import Header from "./components/Header/Header";
-
 import "./index.scss";
 import "react-toastify/dist/ReactToastify.css";
+import MainLayout from "./pages/Home/MainLayout";
+import HomePage from "./pages/Home/HomePage";
 
 export const AppRoutes = () => {
-  const location = useLocation();
-  const hideHeader =
-    location.pathname.startsWith("/panel") ||
-    ["/register", "/login", "/reset-password"].includes(location.pathname);
-
   return (
     <>
       <CssBaseline />
-      {!hideHeader && <Header />}
-
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route
+          path="/"
+          element={
+            <MainLayout>
+              <HomePage />
+            </MainLayout>
+          }
+        />
+
+        {/* <Route
+          path="/info"
+          element={
+            <MainLayout>
+              <Info />
+            </MainLayout>
+          }
+        /> */}
+
         <Route
           path="/admin-dashboard"
           element={

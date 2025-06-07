@@ -16,7 +16,7 @@ export const css_responsive_1 = {
 
   Без него страница будет "ужатой" и неудобной.
 
-  ✅ Нужно вставлять в каждый HTML-документ:
+   Нужно вставлять в каждый HTML-документ:
 
   \`\`\`html
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -75,7 +75,17 @@ export const css_responsive_1 = {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="banner">
+    Это адаптивный баннер
+  </div>
+</body>
+</html>
+  `.trim(),
+
+  codeExampleCSS: `
     body {
       margin: 0;
       font-family: sans-serif;
@@ -88,24 +98,6 @@ export const css_responsive_1 = {
       font-size: 3vw;
       text-align: center;
     }
-  </style>
-</head>
-<body>
-  <div class="banner">
-    Это адаптивный баннер
-  </div>
-</body>
-</html>
-  `.trim(),
-
-  codeExampleCSS: `
-.banner {
-  background: #1976d2;
-  color: white;
-  padding: 10vh 5vw;
-  font-size: 3vw;
-  text-align: center;
-}
   `.trim(),
 
   resources: [
@@ -196,7 +188,18 @@ export const css_responsive_2 = {
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="block">Блок 1</div>
+    <div class="block">Блок 2</div>
+  </div>
+</body>
+</html>
+  `.trim(),
+
+  codeExampleCSS: `
     .container {
       display: flex;
       gap: 20px;
@@ -214,35 +217,6 @@ export const css_responsive_2 = {
         flex-direction: column;
       }
     }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <div class="block">Блок 1</div>
-    <div class="block">Блок 2</div>
-  </div>
-</body>
-</html>
-  `.trim(),
-
-  codeExampleCSS: `
-.container {
-  display: flex;
-  gap: 20px;
-}
-
-.block {
-  flex: 1;
-  background: #f0f0f0;
-  padding: 30px;
-  text-align: center;
-}
-
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-  }
-}
   `.trim(),
 
   resources: [
@@ -253,7 +227,7 @@ export const css_responsive_2 = {
 };
 export const css_responsive_3 = {
   id: "css_responsive_3",
-  title: "Отзывчивые размеры: %, vw, clamp() — без медиазапросов",
+  title: "Отзывчивые размеры",
   content: `
   ## Что значит "отзывчивые размеры"?
 
@@ -354,8 +328,18 @@ export const css_responsive_3 = {
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    body {
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <section class="hero">
+    <h1>Адаптивный заголовок</h1>
+    <p>Размер текста меняется в зависимости от ширины экрана</p>
+  </section>
+</body>
+</html>
+  `.trim(),
+
+  codeExampleCSS: `
       margin: 0;
       font-family: sans-serif;
     }
@@ -375,33 +359,6 @@ export const css_responsive_3 = {
     .hero p {
       font-size: clamp(14px, 3vw, 20px);
     }
-  </style>
-</head>
-<body>
-  <section class="hero">
-    <h1>Адаптивный заголовок</h1>
-    <p>Размер текста меняется в зависимости от ширины экрана</p>
-  </section>
-</body>
-</html>
-  `.trim(),
-
-  codeExampleCSS: `
-.hero {
-  background: #1976d2;
-  color: white;
-  text-align: center;
-  padding: clamp(20px, 5vw, 60px);
-}
-
-.hero h1 {
-  font-size: clamp(24px, 6vw, 48px);
-  margin: 0;
-}
-
-.hero p {
-  font-size: clamp(14px, 3vw, 20px);
-}
   `.trim(),
 
   resources: [

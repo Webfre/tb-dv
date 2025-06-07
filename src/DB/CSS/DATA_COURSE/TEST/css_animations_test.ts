@@ -1,6 +1,6 @@
 export const css_animations_test = {
-  id: 511,
-  name: "CSS: Анимации и Плавные Переходы",
+  id: 311,
+  name: "Анимации и Плавные Переходы",
   category: "CSS",
   ques: [
     {

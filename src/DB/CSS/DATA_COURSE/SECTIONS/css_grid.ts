@@ -1,77 +1,94 @@
 export const css_grid_1 = {
   id: "css_grid_1",
-  title: "Объявление грида: display: grid",
+  title: "Что такое Grid Layout",
   content: `
-  ## Что такое CSS Grid?
+## Добро пожаловать в CSS Grid 
 
-  CSS Grid — это современный способ создания **двумерных сеток**, то есть **и по строкам, и по колонкам**.  
-  Это как таблица, но с полной свободой в размещении и размере блоков.
+**CSS Grid Layout** — это один из самых мощных инструментов в CSS. Он позволяет строить **настоящие сетки** прямо в браузере.
 
-  В отличие от Flexbox, который работает по **одной оси** (в строку или в колонку), Grid сразу управляет **двумя осями одновременно**.
+Представь таблицу, где ты можешь:
+- задать сколько угодно строк и колонок,
+- регулировать их размеры,
+- решать, где и как разместить каждый блок,
+- и всё это — с минимальным кодом!
 
-  ---
+---
 
-  ## Как включить Grid?
+## Для чего нужен Grid?
 
-  Чтобы сделать блок grid-контейнером, нужно написать:
+CSS Grid отлично подходит, когда нужно:
+- выстроить **карточки в несколько колонок**,
+- создать **сетки из изображений или товаров**,
+- разместить контент на странице **в виде макета** (например, меню + основная область + боковая панель),
+- сделать адаптивную сетку для разных экранов.
 
-  \`\`\`css
-  .container {
-    display: grid;
-  }
-  \`\`\`
+---
 
-  После этого ты можешь задавать:
-  - Сколько колонок и строк
-  - Какого они размера
-  - Где размещать элементы
+## Как начать использовать Grid?
 
-  ---
+1. **Определи контейнер**, в котором будет сетка.
+2. Задай ему свойство:
 
-  ## Как работает Grid?
+\`\`\`css
+.container {
+  display: grid;
+}
+\`\`\`
 
-  Grid делит контейнер на **ячейки**, а затем ты указываешь,  
-  в каких колонках и строках должны находиться блоки.
+Поздравляем! Контейнер теперь умеет создавать сетку.
 
-  ---
+---
 
-  ## Простой пример
+## Что дальше?
 
-  Допустим, у нас есть 6 блоков, и мы хотим расположить их в виде сетки 3×2 (3 колонки, 2 строки):
+Теперь ты можешь задать:
+- **Сколько колонок** будет в сетке
+- **Какие отступы** между блоками
+- **Где и как** будет размещаться каждый элемент
 
-  \`\`\`css
-  .container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr; /* 3 колонки одинаковой ширины */
-    grid-template-rows: auto auto;      /* 2 строки по содержимому */
-    gap: 10px;
-  }
-  \`\`\`
+---
 
-  Каждый дочерний элемент автоматически попадёт в ячейку сетки, слева направо, сверху вниз.
-  `.trim(),
+## Пример: 3 колонки и 2 строки
+
+У нас есть 6 блоков. Мы хотим выстроить их в 3 колонки и 2 строки:
+
+\`\`\`css
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* 3 колонки одинаковой ширины */
+  grid-template-rows: auto auto;      /* 2 строки по содержимому */
+  gap: 10px;                           /* отступы между ячейками */
+}
+\`\`\`
+
+Браузер автоматически распределит блоки по сетке:  
+слева направо, сверху вниз.
+
+---
+
+## Что значит \`1fr\`?
+
+\`fr\` — это **доля свободного пространства**.  
+\`1fr 1fr 1fr\` — означает: каждая колонка занимает **одну равную часть** от доступной ширины.
+
+---
+
+## Главное: Grid не сложный
+
+Grid кажется магией, но на самом деле он:
+- **логичный** (как таблица),
+- **гибкий** (можно делать как простые, так и суперсложные сетки),
+- **очень читаемый**.
+
+> Уже после одного примера ты можешь собрать свою первую сетку. Это как LEGO — просто задай размеры, и блоки сами встанут на свои места.
+
+`.trim(),
 
   codeExample: `
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
-    .container {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-template-rows: auto auto;
-      gap: 10px;
-      background: #f0f0f0;
-      padding: 10px;
-    }
-
-    .item {
-      background: #cce5ff;
-      padding: 20px;
-      text-align: center;
-      font-weight: bold;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="container">
@@ -101,6 +118,7 @@ export const css_grid_1 = {
   padding: 20px;
   text-align: center;
   font-weight: bold;
+  border-radius: 5px;
 }
   `.trim(),
 
@@ -110,9 +128,10 @@ export const css_grid_1 = {
     "https://html5book.ru/css-grid/",
   ],
 };
+
 export const css_grid_2 = {
   id: "css_grid_2",
-  title: "Колонки и ряды: grid-template-columns, grid-template-rows",
+  title: "Колонки и ряды",
   content: `
   ## Управление колонками и строками в CSS Grid
 
@@ -198,23 +217,7 @@ export const css_grid_2 = {
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
-    .grid {
-      display: grid;
-      grid-template-columns: 150px 1fr 2fr;
-      grid-template-rows: auto 100px;
-      gap: 10px;
-      padding: 10px;
-      background: #f0f0f0;
-    }
-
-    .item {
-      background: #cce5ff;
-      padding: 15px;
-      text-align: center;
-      font-weight: bold;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="grid">
@@ -230,21 +233,21 @@ export const css_grid_2 = {
   `.trim(),
 
   codeExampleCSS: `
-.grid {
-  display: grid;
-  grid-template-columns: 150px 1fr 2fr;
-  grid-template-rows: auto 100px;
-  gap: 10px;
-  padding: 10px;
-  background: #f0f0f0;
-}
+   .grid {
+      display: grid;
+      grid-template-columns: 150px 1fr 2fr;
+      grid-template-rows: auto 100px;
+      gap: 10px;
+      padding: 10px;
+      background: #f0f0f0;
+    }
 
-.item {
-  background: #cce5ff;
-  padding: 15px;
-  text-align: center;
-  font-weight: bold;
-}
+    .item {
+      background: #cce5ff;
+      padding: 15px;
+      text-align: center;
+      font-weight: bold;
+    }
   `.trim(),
 
   resources: [
@@ -270,7 +273,7 @@ export const css_grid_3 = {
 
   ---
 
-  ## 1. repeat() — сокращение для колонок
+  ##  repeat() — сокращение для колонок
 
   \`\`\`css
   grid-template-columns: repeat(3, 1fr); /* то же, что 1fr 1fr 1fr */
@@ -278,7 +281,7 @@ export const css_grid_3 = {
 
   ---
 
-  ## 2. minmax(min, max)
+  ##  minmax(min, max)
 
   Позволяет задать колонке **минимальную и максимальную ширину**:
 
@@ -290,7 +293,7 @@ export const css_grid_3 = {
 
   ---
 
-  ## 3. auto-fit vs auto-fill
+  ##  auto-fit vs auto-fill
 
   Оба работают с \`repeat()\`, но есть **важная разница**:
 
@@ -325,22 +328,7 @@ export const css_grid_3 = {
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 15px;
-      background: #f0f0f0;
-      padding: 10px;
-    }
-
-    .item {
-      background: #d4edda;
-      padding: 20px;
-      text-align: center;
-      font-weight: bold;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="grid">
@@ -356,20 +344,20 @@ export const css_grid_3 = {
   `.trim(),
 
   codeExampleCSS: `
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 15px;
-  background: #f0f0f0;
-  padding: 10px;
-}
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      background: #f0f0f0;
+      padding: 10px;
+    }
 
-.item {
-  background: #d4edda;
-  padding: 20px;
-  text-align: center;
-  font-weight: bold;
-}
+    .item {
+      background: #d4edda;
+      padding: 20px;
+      text-align: center;
+      font-weight: bold;
+    }
   `.trim(),
 
   resources: [
@@ -455,7 +443,19 @@ export const css_grid_4 = {
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="grid">
+    <div class="header">Header</div>
+    <div class="sidebar">Sidebar</div>
+    <div class="content">Content</div>
+  </div>
+</body>
+</html>
+  `.trim(),
+
+  codeExampleCSS: `
     .grid {
       display: grid;
       grid-template-columns: 1fr 2fr;
@@ -488,51 +488,6 @@ export const css_grid_4 = {
       text-align: center;
       font-weight: bold;
     }
-  </style>
-</head>
-<body>
-  <div class="grid">
-    <div class="header">Header</div>
-    <div class="sidebar">Sidebar</div>
-    <div class="content">Content</div>
-  </div>
-</body>
-</html>
-  `.trim(),
-
-  codeExampleCSS: `
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  grid-template-rows: auto auto;
-  grid-template-areas:
-    "header header"
-    "sidebar content";
-  gap: 10px;
-  background: #f0f0f0;
-  padding: 10px;
-}
-
-.header {
-  grid-area: header;
-  background: #cce5ff;
-}
-
-.sidebar {
-  grid-area: sidebar;
-  background: #d4edda;
-}
-
-.content {
-  grid-area: content;
-  background: #f8d7da;
-}
-
-.grid > div {
-  padding: 20px;
-  text-align: center;
-  font-weight: bold;
-}
   `.trim(),
 
   resources: [
@@ -615,27 +570,7 @@ export const css_grid_5 = {
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
-    .grid-layout {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 20px;
-      margin-bottom: 30px;
-    }
-
-    .flex-layout {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-    }
-
-    .box {
-      background: #cce5ff;
-      padding: 20px;
-      text-align: center;
-      font-weight: bold;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <h3>Grid Layout (двумерная сетка)</h3>
@@ -655,25 +590,25 @@ export const css_grid_5 = {
   `.trim(),
 
   codeExampleCSS: `
-.grid-layout {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 20px;
-  margin-bottom: 30px;
-}
+    .grid-layout {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
 
-.flex-layout {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-}
+    .flex-layout {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
 
-.box {
-  background: #cce5ff;
-  padding: 20px;
-  text-align: center;
-  font-weight: bold;
-}
+    .box {
+      background: #cce5ff;
+      padding: 20px;
+      text-align: center;
+      font-weight: bold;
+    }
   `.trim(),
 
   resources: [

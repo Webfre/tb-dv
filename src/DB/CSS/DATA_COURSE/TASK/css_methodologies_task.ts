@@ -1,8 +1,8 @@
 export const css_methodologies_task_1 = {
   id: "css_methodologies_task_1",
   module: "CSS",
-  title: "Введение в CSS-методологии",
-  topic: "Что такое CSS-методологии",
+  title: "Верстка карточек по BEM",
+  topic: "Методология BEM: блок, элемент, модификатор",
   topicId: "css_methodologies",
   sectionId: "css_methodologies_2",
   description:
@@ -21,36 +21,10 @@ export const css_methodologies_task_1 = {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>CSS Методологии - BEM</title>
-
-  <style>
-    /* Базовый блок */
-    .card {
-      border: 1px solid #ccc;
-      padding: 15px;
-      border-radius: 8px;
-      margin-bottom: 10px;
-    }
-
-    /* Элементы внутри блока */
-    .card__title {
-      font-size: 18px;
-      margin-bottom: 5px;
-    }
-
-    .card__text {
-      font-size: 14px;
-      color: #555;
-    }
-
-    /* Модификатор для выделенной карточки */
-    .card--highlighted {
-      background-color: #f0f8ff;
-    }
-  </style>
 </head>
 <body>
-
   <div class="card">
     <h2 class="card__title">Обычная карточка</h2>
     <p class="card__text">Это простой пример блока BEM.</p>
@@ -65,7 +39,6 @@ export const css_methodologies_task_1 = {
     <h2 class="card__title">Ещё одна карточка</h2>
     <p class="card__text">BEM упрощает структурирование стилей.</p>
   </div>
-
 </body>
 </html>
   `.trim(),
@@ -120,28 +93,29 @@ export const css_methodologies_task_1 = {
 </html>
   `.trim(),
   codeExampleCSS: `
-/* Примеры CSS для методологии BEM */
+/* Базовый блок */
+    .card {
+      border: 1px solid #ccc;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
 
-.card {
-  border: 1px solid #ccc;
-  padding: 15px;
-  border-radius: 8px;
-  margin-bottom: 10px;
-}
+    /* Элементы внутри блока */
+    .card__title {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
 
-.card__title {
-  font-size: 18px;
-  margin-bottom: 5px;
-}
+    .card__text {
+      font-size: 14px;
+      color: #555;
+    }
 
-.card__text {
-  font-size: 14px;
-  color: #555;
-}
-
-.card--highlighted {
-  background-color: #f0f8ff;
-}
+    /* Модификатор для выделенной карточки */
+    .card--highlighted {
+      background-color: #f0f8ff;
+    }
   `.trim(),
   resources: [
     "https://ru.bem.info/methodology/",
@@ -172,35 +146,8 @@ export const css_methodologies_task_2 = {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Навигационное меню BEM</title>
-
-  <style>
-    /* Блок меню */
-    .nav {
-      background-color: #f8f9fa;
-      padding: 10px;
-      border-radius: 5px;
-    }
-
-    /* Элементы меню */
-    .nav__item {
-      display: inline-block;
-      margin-right: 15px;
-    }
-
-    .nav__link {
-      text-decoration: none;
-      color: #007bff;
-      font-size: 16px;
-    }
-
-    /* Модификатор для активного элемента */
-    .nav__item--active .nav__link {
-      color: #0056b3;
-      font-weight: bold;
-      border-bottom: 2px solid #0056b3;
-    }
-  </style>
 </head>
 <body>
 
@@ -279,30 +226,32 @@ export const css_methodologies_task_2 = {
 </html>
   `.trim(),
   codeExampleCSS: `
-/* Примеры BEM-структуры для навигации */
+<style>
+    /* Блок меню */
+    .nav {
+      background-color: #f8f9fa;
+      padding: 10px;
+      border-radius: 5px;
+    }
 
-.nav {
-  background-color: #f8f9fa;
-  padding: 10px;
-  border-radius: 5px;
-}
+    /* Элементы меню */
+    .nav__item {
+      display: inline-block;
+      margin-right: 15px;
+    }
 
-.nav__item {
-  display: inline-block;
-  margin-right: 15px;
-}
+    .nav__link {
+      text-decoration: none;
+      color: #007bff;
+      font-size: 16px;
+    }
 
-.nav__link {
-  text-decoration: none;
-  color: #007bff;
-  font-size: 16px;
-}
-
-.nav__item--active .nav__link {
-  color: #0056b3;
-  font-weight: bold;
-  border-bottom: 2px solid #0056b3;
-}
+    /* Модификатор для активного элемента */
+    .nav__item--active .nav__link {
+      color: #0056b3;
+      font-weight: bold;
+      border-bottom: 2px solid #0056b3;
+    }
   `.trim(),
   resources: [
     "https://ru.bem.info/methodology/",
