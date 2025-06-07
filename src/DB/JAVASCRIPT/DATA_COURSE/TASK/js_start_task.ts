@@ -16,7 +16,6 @@ export const js_start_task_1 = {
     "Попробуйте изменить текст и вывести своё собственное приветствие.",
   ],
   difficulty: 1,
-  solution: `console.log("Привет, JavaScript!");`,
   codeExampleJS: `console.log("Я только начал изучать программирование!");`,
 };
 export const js_start_task_2 = {
@@ -39,7 +38,6 @@ export const js_start_task_2 = {
     "Попробуйте изменить текст и запустить ещё раз.",
   ],
   difficulty: 1,
-  solution: `console.log("Привет из VS Code!");`,
   codeExampleJS: `console.log("Вы успешно запустили код в редакторе VS Code!");`,
 };
 export const js_start_task_3 = {
@@ -61,7 +59,6 @@ export const js_start_task_3 = {
   ],
   optional: true,
   difficulty: 1,
-  solution: `console.log("Моя первая программа на Node.js");`,
   codeExampleJS: `console.log("Добро пожаловать в Node.js!");`,
 };
 

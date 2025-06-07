@@ -4,10 +4,17 @@ export const jsChapters = [
   
   {
     id: "js_start",
-    title: "Знакомство с программированием",
+    title: "Знакомство с JavaScript",
     sections: jsSections.js_start,
     testKeys: ["js_start_test"],
     practiceIds: ["js_start_task_1", "js_start_task_2", "js_start_task_3"],
+  },
+  {
+    id: "js_variablesAndTypes",
+    title: "Переменные и типы данных",
+    sections: jsSections.js_variablesAndTypes,
+    testKeys: [],
+    practiceIds: [],
   },
   
   // //ниже примеры от Ромы

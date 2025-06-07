@@ -7,15 +7,8 @@ import JavascriptIcon from '@mui/icons-material/Javascript';
 
 export const javascript_info_course = {
   id: 2,
-  courseId: [
-  "js_intro",           // Глава 1: Введение в программирование и JavaScript
-  "js_conditions",      // Глава 2: Условия и циклы
-  "js_functions",       // Глава 3: Функции и область видимости
-  "js_arrays_objects",  // Глава 4: Массивы и объекты
-  "js_async",           // Глава 5: Асинхронность и работа со временем
-  "js_structure_debug", // Глава 6: Структура программы и отладка
-  ],
-  title: "JavaScript",
+  courseId: ["ide", "js",],
+  title: "JavaScript с нуля",
   description: "Программирование • 8 месяцев • С нуля", // TODO чистый js меньше времени
   price: 5000,
   duration: "Рассрочка на 6 месяцев",
