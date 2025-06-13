@@ -1,4 +1,3 @@
-import { web_layout_info_course } from "./СOURSE_DATA/WEB_LAYOUT/web_layout_info_course";
 import { javascript_info_course } from "./СOURSE_DATA/JAVA_SCRIPT/javascript_info_course";
 import { cssTopic } from "./CSS/DATA_COURSE/css";
 import { browserTopic } from "./WWW/DATA_COURSE/www";
@@ -8,6 +7,9 @@ import { introTopic } from "./START/DATA_COURSE/start";
 import { ideTopic } from "./IDE/DATA_COURSE/vscode";
 import { jsTopic } from "./JAVASCRIPT/DATA_COURSE/js";
 import { introHtml } from "./HTML_INTRO/introHtml";
+import { web_layout_info_course } from "./СOURSE_DATA/WEB_LAYOUT/web_layout_info_course";
+import { scssTopic } from "./SCSS/scss";
+import { verstka_final } from "./VERSKA_FINAL/verstka_final";
 
 export const courseList: InfoCourse[] = [
   web_layout_info_course,
@@ -26,6 +28,8 @@ export const mockTopics: CourseTopic[] = [
   htmlTopic,
   cssTopic,
   jsTopic,
+  scssTopic,
+  verstka_final,
 ];
 
 // Для информации о курсе Программа блок
@@ -34,9 +38,11 @@ export const chaptersMap: Record<string, CourseChapter[]> = {
   // introTypeScript: introTopicTypeScript, // TODO нужно будет создать и заполнить для курса TypeScript (идут как дополнительные)
 
   introHtml: introHtml.chapters, // TODO нужно будет создать и заполнить для курса Верстка HTML CSS (идут как дополнительные)
+  verstka_final: verstka_final.chapters, // финал верстка
   intro: introTopic.chapters, // ДЛЯ КУРСА REACT (базовый)
   html: htmlTopic.chapters, // HTML курс
   css: cssTopic.chapters, // CSS курс
+  scss: cssTopic.chapters, // CSS курс
   js: jsTopic.chapters, // JS курс
   ide: ideTopic.chapters, // дополнение к какждому курсу
   browser: browserTopic.chapters, // дополнение к какждому курсу
