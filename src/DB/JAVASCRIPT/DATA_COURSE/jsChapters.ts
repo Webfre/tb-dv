@@ -16,6 +16,13 @@ export const jsChapters = [
     testKeys: [],
     practiceIds: [],
   },
+  {
+    id: "js_operatorsAndExpressions",
+    title: "Операторы и выражения",
+    sections: jsSections.js_operatorsAndExpressions,
+    testKeys: [],
+    practiceIds: [],
+  },
   
   // //ниже примеры от Ромы
   // {
