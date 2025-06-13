@@ -47,13 +47,12 @@ let total = distance * pricePerKm;
 ### Вывод
 
 Переменные — основа любого кода. Они позволяют делать программу гибкой и адаптивной, работать с пользовательскими данными и строить сложную логику.
-  `.trim(), 
+  `.trim(),
   resources: [
     "https://learn.javascript.ru/variables",
-    "https://developer.mozilla.org/ru/docs/Learn/JavaScript/First_steps/Variables"
+    "https://developer.mozilla.org/ru/docs/Learn/JavaScript/First_steps/Variables",
   ],
 };
-
 export const js_variablesAndTypes_2 = {
   id: "js_variablesAndTypes_2",
   title: "Ключевые слова: let, const и var",
@@ -156,9 +155,6 @@ greeting = "Hi"; // Ошибка!
     "https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Statements/var",
   ],
 };
-
-
-
 export const js_variablesAndTypes_3 = {
   id: "js_variablesAndTypes_3",
   title: "Типы данных в JavaScript",
@@ -325,11 +321,9 @@ const bigValue = 999999999999999999999n;
 
   resources: [
     "https://developer.mozilla.org/ru/docs/Web/JavaScript/Data_structures",
-    "https://learn.javascript.ru/types"
+    "https://learn.javascript.ru/types",
   ],
 };
-
-
 export const js_variablesAndTypes_4 = {
   id: "js_variablesAndTypes_4",
   title: "typeof и преобразование типов",
@@ -481,6 +475,6 @@ console.log(Boolean(undefined));// false
 
   resources: [
     "https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Operators/typeof",
-    "https://learn.javascript.ru/type-conversions"
+    "https://learn.javascript.ru/type-conversions",
   ],
 };

@@ -26,6 +26,7 @@ import { js_start_test } from "./JAVASCRIPT/DATA_COURSE/TEST/js_start_test";
 import { ide_intro_test } from "./IDE/DATA_COURSE/TEST/ide_intro_test";
 import { browser_intro_test } from "./WWW/DATA_COURSE/TEST/browser_intro_test";
 import { TestDataCollection } from "./index_type";
+import { js_variablesAndTypes_test } from "./JAVASCRIPT/DATA_COURSE/TEST/js_variablesAndTypes_test";
 
 // Для фильтрации профиля - прогресса по курсу  // TODO
 export const TEST_CATEGORY_MAP: Record<string, string[]> = {
@@ -59,7 +60,7 @@ export const TEST_CATEGORY_MAP: Record<string, string[]> = {
     "css_responsive_test",
     "css_animations_test",
   ],
-  js: ["js_start_test"],
+  js: ["js_start_test", "js_variablesAndTypes_test"],
 };
 
 export const testData: TestDataCollection = {
@@ -99,6 +100,6 @@ export const testData: TestDataCollection = {
 
   // JS будет с 500
   js_start_test,
-
-  // React 
+  js_variablesAndTypes_test,
+  // React
 };
