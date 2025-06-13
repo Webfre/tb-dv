@@ -27,6 +27,9 @@ import { js_intro_test } from "./JAVASCRIPT/DATA_COURSE/TEST/js_intro_test";
 import { ide_intro_test } from "./IDE/DATA_COURSE/TEST/ide_intro_test";
 import { browser_intro_test } from "./WWW/DATA_COURSE/TEST/browser_intro_test";
 import { TestDataCollection } from "./index_type";
+import { scss_intro_test } from "./SCSS/DATA_COURSE/TEST/scss_intro_test";
+import { scss_basics_test } from "./SCSS/DATA_COURSE/TEST/scss_basics_test";
+import { verstka_final_test } from "./VERSKA_FINAL/TEST/verstka_final_test";
 
 // Для фильтрации профиля - прогресса по курсу  // TODO
 export const TEST_CATEGORY_MAP: Record<string, string[]> = {
@@ -97,6 +100,13 @@ export const testData: TestDataCollection = {
   css_images_test,
   css_responsive_test,
   css_animations_test,
+
+  // SCSS - 350-380
+  scss_intro_test,
+  scss_basics_test,
+
+  // FINAL-verstka 380-400
+  verstka_final_test,
 
   // JS  500 - 600
   js_intro_test,

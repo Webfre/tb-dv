@@ -10,7 +10,15 @@ import TerminalIcon from "@mui/icons-material/Terminal";
 export const web_layout_info_course = {
   id: 1,
   typeId: 1,
-  courseId: ["browser", "ide", "html", "css", "introHtml"],
+  courseId: [
+    "scss",
+    "browser",
+    "ide",
+    "html",
+    "css",
+    "introHtml",
+    "verstka_final",
+  ],
   title: "Вёрстка сайтов (HTML и CSS)",
   description: "Язык разметки • 4 месяца • С нуля",
   price: 4500,
