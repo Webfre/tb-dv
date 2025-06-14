@@ -15,8 +15,9 @@ export const practiceMock: PracticeTask[] = [
   // SCSS
   ...dataTaskScss,
 
+  //Final Html
+  ...dataTaskFinal,
+
   // JS
   ...taskDataJs,
-
-  ...dataTaskFinal,
 ];

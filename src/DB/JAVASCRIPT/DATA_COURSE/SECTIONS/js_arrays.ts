@@ -1652,3 +1652,113 @@ console.log(nums.flatMap(x => [x, x * 10])); // [1, 10, 2, 20, 3, 30]
     "https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Array/flatMap",
   ],
 };
+export const js_arrays_15 = {
+  id: "js_arrays_15",
+  title: "Преобразование между объектами и массивами",
+  content: `
+## Зачем это нужно?
+
+В реальной практике данные часто приходят в виде объектов, а работать с ними удобнее как с массивами — например, если нужно:
+
+- Перебрать значения циклом
+- Отфильтровать или отсортировать данные
+- Быстро найти нужный элемент
+
+---
+
+## Преобразование объекта в массив
+
+JavaScript предоставляет встроенные методы для получения массивов из объекта:
+
+###  \`Object.keys(obj)\`
+Возвращает массив **ключей** объекта:
+\`\`\`js
+const user = { name: "Анна", age: 25 };
+console.log(Object.keys(user)); // ["name", "age"]
+\`\`\`
+
+###  \`Object.values(obj)\`
+Возвращает массив **значений** объекта:
+\`\`\`js
+console.log(Object.values(user)); // ["Анна", 25]
+\`\`\`
+
+###  \`Object.entries(obj)\`
+Возвращает массив пар [ключ, значение]:
+\`\`\`js
+console.log(Object.entries(user));
+// [["name", "Анна"], ["age", 25]]
+\`\`\`
+
+Это удобно для перебора:
+\`\`\`js
+for (const [key, value] of Object.entries(user)) {
+  console.log(\`\${key}: \${value}\`);
+}
+// name: Анна
+// age: 25
+\`\`\`
+
+---
+
+## Преобразование массива в объект
+
+###  Из массива пар [ключ, значение]
+С помощью \`Object.fromEntries()\`:
+\`\`\`js
+const entries = [["name", "Анна"], ["age", 25]];
+const obj = Object.fromEntries(entries);
+
+console.log(obj); // { name: "Анна", age: 25 }
+\`\`\`
+
+### Пример из жизни
+
+Есть массив настроек:
+\`\`\`js
+const settings = [
+  ["theme", "dark"],
+  ["language", "ru"],
+];
+
+const settingsObj = Object.fromEntries(settings);
+console.log(settingsObj.language); // "ru"
+\`\`\`
+
+---
+
+## Когда использовать преобразование?
+
+| Ситуация                                         | Что использовать             |
+| ------------------------------------------------ | ---------------------------- |
+| Нужно перебрать свойства объекта                 | Object.keys, Object.entries  |
+| Нужно получить только значения                   | Object.values                |
+| Есть массив пар [ключ, значение] и нужен объект  | Object.fromEntries()         |
+
+---
+
+## Вывод
+
+Понимание того, как переводить данные из объекта в массив и обратно, позволяет эффективно работать с любыми структурами. Эти методы часто используются при обработке данных из форм, API, таблиц и сериализации.
+  `.trim(),
+
+  codeExampleJS: `
+const user = { name: "Анна", age: 25 };
+
+console.log(Object.keys(user));      // ["name", "age"]
+console.log(Object.values(user));    // ["Анна", 25]
+console.log(Object.entries(user));   // [["name", "Анна"], ["age", 25]]
+
+const arr = [["id", 1], ["value", "test"]];
+const obj = Object.fromEntries(arr);
+console.log(obj); // { id: 1, value: "test" }
+  `.trim(),
+
+  resources: [
+    "https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Object/keys",
+    "https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Object/values",
+    "https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Object/entries",
+    "https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Object/fromEntries",
+    "https://learn.javascript.ru/object",
+  ],
+};

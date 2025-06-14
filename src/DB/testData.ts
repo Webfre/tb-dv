@@ -30,6 +30,25 @@ import { js_variablesAndTypes_test } from "./JAVASCRIPT/DATA_COURSE/TEST/js_vari
 import { scss_intro_test } from "./SCSS/DATA_COURSE/TEST/scss_intro_test";
 import { scss_basics_test } from "./SCSS/DATA_COURSE/TEST/scss_basics_test";
 import { verstka_final_test } from "./VERSKA_FINAL/TEST/verstka_final_test";
+import { js_operatorsAndExpressions_test } from "./JAVASCRIPT/DATA_COURSE/TEST/js_operatorsAndExpressions_test";
+import { js_conditionsAndBranches_test } from "./JAVASCRIPT/DATA_COURSE/TEST/js_conditionsAndBranches_test";
+import { js_cycles_test } from "./JAVASCRIPT/DATA_COURSE/TEST/js_cycles_test";
+import { js_functions_test } from "./JAVASCRIPT/DATA_COURSE/TEST/js_functions_test";
+import { js_objects_test } from "./JAVASCRIPT/DATA_COURSE/TEST/js_objects_test";
+import { js_arrays_test } from "./JAVASCRIPT/DATA_COURSE/TEST/js_arrays_test";
+import { js_errors_test } from "./JAVASCRIPT/DATA_COURSE/TEST/js_errors_test";
+import { js_json_test } from "./JAVASCRIPT/DATA_COURSE/TEST/js_json_test";
+import { js_localStorage_test } from "./JAVASCRIPT/DATA_COURSE/TEST/js_localStorage_test";
+import { js_date_test } from "./JAVASCRIPT/DATA_COURSE/TEST/js_data_test";
+import { js_async_test } from "./JAVASCRIPT/DATA_COURSE/TEST/js_async_test";
+import { js_errorHandling_test } from "./JAVASCRIPT/DATA_COURSE/TEST/js_errorHandling_test";
+import { js_api_test } from "./JAVASCRIPT/DATA_COURSE/TEST/js_api_test";
+import { js_dom_test } from "./JAVASCRIPT/DATA_COURSE/TEST/js_dom_test";
+import { js_import_test } from "./JAVASCRIPT/DATA_COURSE/TEST/js_import_test";
+import { js_this_test } from "./JAVASCRIPT/DATA_COURSE/TEST/js_this_test";
+import { js_OOP_test } from "./JAVASCRIPT/DATA_COURSE/TEST/js_OOP_test";
+import { js_map_set_test } from "./JAVASCRIPT/DATA_COURSE/TEST/js_map_set_test";
+import { js_bestPractices_test } from "./JAVASCRIPT/DATA_COURSE/TEST/js_bestPractices_test";
 
 // Для фильтрации профиля - прогресса по курсу  // TODO
 export const TEST_CATEGORY_MAP: Record<string, string[]> = {
@@ -63,7 +82,29 @@ export const TEST_CATEGORY_MAP: Record<string, string[]> = {
     "css_responsive_test",
     "css_animations_test",
   ],
-  js: ["js_start_test", "js_variablesAndTypes_test"],
+  js: [
+    "js_start_test",
+    "js_variablesAndTypes_test",
+    "js_operatorsAndExpressions_test",
+    "js_conditionsAndBranches_test",
+    "js_cycles_test",
+    "js_functions_test",
+    "js_objects_test",
+    "js_arrays_test",
+    "js_errors_test",
+    "js_json_test",
+    "js_localStorage_test",
+    "js_date_test",
+    "js_async_test",
+    "js_errorHandling_test",
+    "js_api_test",
+    "js_dom_test",
+    "js_import_test",
+    "js_this_test",
+    "js_OOP_test",
+    "js_map_set_test",
+    "js_bestPractices_test",
+  ],
 };
 
 export const testData: TestDataCollection = {
@@ -111,6 +152,25 @@ export const testData: TestDataCollection = {
   // JS будет с 500
   js_start_test,
   js_variablesAndTypes_test,
+  js_operatorsAndExpressions_test,
+  js_conditionsAndBranches_test,
+  js_cycles_test,
+  js_functions_test,
+  js_objects_test,
+  js_arrays_test,
+  js_errors_test,
+  js_json_test,
+  js_localStorage_test,
+  js_date_test,
+  js_async_test,
+  js_errorHandling_test,
+  js_api_test,
+  js_dom_test,
+  js_import_test,
+  js_this_test,
+  js_OOP_test,
+  js_map_set_test,
+  js_bestPractices_test,
 
   // React // id будет с 600
 };

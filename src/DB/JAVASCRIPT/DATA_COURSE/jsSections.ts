@@ -3,6 +3,7 @@ import {
   js_start2,
   js_start3,
   js_start4,
+  js_start5,
 } from "./SECTIONS/js_start";
 
 import {
@@ -10,6 +11,8 @@ import {
   js_variablesAndTypes_2,
   js_variablesAndTypes_3,
   js_variablesAndTypes_4,
+  js_variablesAndTypes_5,
+  js_variablesAndTypes_6,
 } from "./SECTIONS/js_variablesAndTypes";
 
 import {
@@ -63,6 +66,7 @@ import {
   js_arrays_12,
   js_arrays_13,
   js_arrays_14,
+  js_arrays_15,
   js_arrays_2,
   js_arrays_3,
   js_arrays_4,
@@ -72,14 +76,116 @@ import {
   js_arrays_8,
   js_arrays_9,
 } from "./SECTIONS/js_arrays";
+import {
+  js_error_1,
+  js_error_2,
+  js_error_3,
+  js_error_4,
+  js_error_5,
+} from "./SECTIONS/js_error";
+import {
+  js_json_1,
+  js_json_2,
+  js_json_3,
+  js_json_4,
+  js_json_5,
+} from "./SECTIONS/js_json";
+import {
+  js_localStorage_1,
+  js_localStorage_2,
+  js_localStorage_3,
+  js_localStorage_4,
+} from "./SECTIONS/js_localStorage";
+import {
+  js_data_1,
+  js_data_2,
+  js_data_3,
+  js_data_4,
+  js_data_5,
+  js_data_6,
+} from "./SECTIONS/js_data";
+import {
+  js_async_1,
+  js_async_2,
+  js_async_3,
+  js_async_4,
+  js_async_5,
+  js_async_6,
+  js_async_7,
+  js_async_8,
+  js_async_9,
+} from "./SECTIONS/js_async";
+import {
+  js_errorHandling_1,
+  js_errorHandling_2,
+  js_errorHandling_3,
+  js_errorHandling_4,
+  js_errorHandling_5,
+} from "./SECTIONS/js_errorHandling";
+import {
+  js_API_1,
+  js_API_2,
+  js_API_3,
+  js_API_4,
+  js_API_5,
+  js_API_6,
+  js_API_7,
+  js_API_8,
+  js_API_9,
+} from "./SECTIONS/js_API";
+import {
+  js_DOM_1,
+  js_DOM_2,
+  js_DOM_3,
+  js_DOM_4,
+  js_DOM_5,
+  js_DOM_6,
+} from "./SECTIONS/js_DOM";
+import { js_import_1, js_import_2, js_import_3 } from "./SECTIONS/js_import";
+import {
+  js_this_1,
+  js_this_2,
+  js_this_3,
+  js_this_4,
+  js_this_5,
+  js_this_6,
+  js_this_7,
+} from "./SECTIONS/js_this";
+import {
+  js_OOP_1,
+  js_OOP_2,
+  js_OOP_3,
+  js_OOP_4,
+  js_OOP_5,
+  js_OOP_6,
+} from "./SECTIONS/js_OOP";
+import {
+  js_map_set_1,
+  js_map_set_2,
+  js_map_set_3,
+  js_map_set_4,
+  js_map_set_5,
+  js_map_set_6,
+  js_map_set_7,
+} from "./SECTIONS/js_map_set";
+import {
+  js_bestPractices_1,
+  js_bestPractices_2,
+  js_bestPractices_3,
+  js_bestPractices_4,
+  js_bestPractices_5,
+  js_bestPractices_6,
+} from "./SECTIONS/js_bestPractices";
 
 export const jsSections = {
-  js_start: [js_start1, js_start2, js_start3, js_start4],
+  js_start: [js_start1, js_start2, js_start3, js_start4, js_start5],
   js_variablesAndTypes: [
+    js_variablesAndTypes_5,
     js_variablesAndTypes_1,
     js_variablesAndTypes_2,
     js_variablesAndTypes_3,
     js_variablesAndTypes_4,
+    js_variablesAndTypes_6,
   ],
   js_operatorsAndExpressions: [
     js_operatorsAndExpressions_1,
@@ -134,5 +240,73 @@ export const jsSections = {
     js_arrays_12,
     js_arrays_13,
     js_arrays_14,
+    js_arrays_15,
+  ],
+  js_error: [js_error_1, js_error_2, js_error_3, js_error_4, js_error_5],
+  js_json: [js_json_1, js_json_2, js_json_3, js_json_4, js_json_5],
+  js_localStorage: [
+    js_localStorage_1,
+    js_localStorage_2,
+    js_localStorage_3,
+    js_localStorage_4,
+  ],
+  js_data: [js_data_1, js_data_2, js_data_3, js_data_4, js_data_5, js_data_6],
+  js_async: [
+    js_async_1,
+    js_async_2,
+    js_async_3,
+    js_async_4,
+    js_async_5,
+    js_async_6,
+    js_async_7,
+    js_async_8,
+    js_async_9,
+  ],
+  js_errorHandling: [
+    js_errorHandling_1,
+    js_errorHandling_2,
+    js_errorHandling_3,
+    js_errorHandling_4,
+    js_errorHandling_5,
+  ],
+  js_API: [
+    js_API_1,
+    js_API_2,
+    js_API_3,
+    js_API_4,
+    js_API_5,
+    js_API_6,
+    js_API_7,
+    js_API_8,
+    js_API_9,
+  ],
+  js_DOM: [js_DOM_1, js_DOM_2, js_DOM_3, js_DOM_4, js_DOM_5, js_DOM_6],
+  js_import: [js_import_1, js_import_2, js_import_3],
+  js_this: [
+    js_this_1,
+    js_this_2,
+    js_this_3,
+    js_this_4,
+    js_this_5,
+    js_this_6,
+    js_this_7,
+  ],
+  js_OOP: [js_OOP_1, js_OOP_2, js_OOP_3, js_OOP_4, js_OOP_5, js_OOP_6],
+  js_map_set: [
+    js_map_set_1,
+    js_map_set_2,
+    js_map_set_3,
+    js_map_set_4,
+    js_map_set_5,
+    js_map_set_6,
+    js_map_set_7,
+  ],
+  js_bestPractices: [
+    js_bestPractices_1,
+    js_bestPractices_2,
+    js_bestPractices_3,
+    js_bestPractices_4,
+    js_bestPractices_5,
+    js_bestPractices_6,
   ],
 };
