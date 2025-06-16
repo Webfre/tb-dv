@@ -29,6 +29,9 @@ const CoursePage: React.FC = () => {
   const isTestPassed = (key: string): boolean => {
     if (!progressData?.history?.[key]) return false;
     const history = progressData.history[key];
+
+    if (!Array.isArray(history) || history.length === 0) return false;
+
     const best = Math.max(...history.map((h: any) => h.percentage));
     return best >= 50;
   };
