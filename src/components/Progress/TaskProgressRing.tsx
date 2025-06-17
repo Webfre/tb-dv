@@ -1,16 +1,45 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { Box, CircularProgress, Typography } from "@mui/material";
-import { practiceMock } from "../../DB/taskData";
 import { useGetSolvedTasksQuery } from "../../api/progressApi";
+import { courseList, mockTopics } from "../../DB";
 import styles from "./PracticalWorksProgressRing.module.scss";
 
-const TaskProgressRing: React.FC = () => {
-  const totalTasks = practiceMock.length;
-  const { data: solvedTasks = [] } = useGetSolvedTasksQuery();
-  const solvedCount = solvedTasks.length;
-  const taskProgress = totalTasks === 0 ? 0 : (solvedCount / totalTasks) * 100;
+interface TaskProgressRingProps {
+  courseId: string;
+}
 
+const TaskProgressRing: React.FC<TaskProgressRingProps> = ({ courseId }) => {
+  const { data: solvedTasks = [] } = useGetSolvedTasksQuery();
   const [progress, setProgress] = useState(0);
+
+  const { totalTasks, solvedCount, taskProgress } = useMemo(() => {
+    const course = courseList.find((c) => c.id.toString() === courseId);
+    if (!course) return { totalTasks: 0, solvedCount: 0, taskProgress: 0 };
+
+    const topicIds = course.courseId;
+    const topics = mockTopics.filter((topic) => topicIds.includes(topic.id));
+
+    const allPracticeIdSet = new Set<string>();
+    topics.forEach((topic) => {
+      topic.chapters.forEach((chapter) => {
+        chapter.practiceIds?.forEach((id) => allPracticeIdSet.add(id));
+      });
+    });
+
+    const allPracticeIds = Array.from(allPracticeIdSet);
+    const total = allPracticeIds.length;
+    const solved = allPracticeIds.filter((id) =>
+      solvedTasks.some((task) => task.id === id)
+    ).length;
+
+    const progress = total > 0 ? (solved / total) * 100 : 0;
+
+    return {
+      totalTasks: total,
+      solvedCount: solved,
+      taskProgress: progress,
+    };
+  }, [solvedTasks]);
 
   useEffect(() => {
     let start = 0;
@@ -34,7 +63,7 @@ const TaskProgressRing: React.FC = () => {
           value={taskProgress}
           size={120}
           thickness={5}
-          sx={{ color: "#3498db" }}
+          sx={{ color: "#947ef6" }}
         />
         <Box className={styles.progressValue}>
           <Typography

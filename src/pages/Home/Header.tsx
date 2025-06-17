@@ -6,7 +6,7 @@ import styles from "./Header.module.scss";
 
 const navItems = [
   { label: "Главная", path: "/" },
-  { label: "Обучение", path: "/info" },
+  { label: "Обучение", path: "/training" },
   { label: "Материалы", path: "/materials" },
   { label: "О нас", path: "/about" },
 ];
@@ -18,6 +18,9 @@ const Header: React.FC = () => {
   const menuRef = useRef<HTMLDivElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+
+  const token = localStorage.getItem("token");
+  const isAuthenticated = Boolean(token);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -52,7 +55,11 @@ const Header: React.FC = () => {
       className={classNames(styles.header, { [styles.scrolled]: isScrolled })}
     >
       <div className={styles.toolbar}>
-        <Typography variant="h6" className={styles.logo}>
+        <Typography
+          onClick={() => navigate("/")}
+          variant="h6"
+          className={styles.logo}
+        >
           Frontarium
         </Typography>
 
@@ -82,18 +89,29 @@ const Header: React.FC = () => {
         </div>
 
         <div className={styles.auth}>
-          <button
-            onClick={() => navigate("/login")}
-            className={styles.authButton}
-          >
-            Войти
-          </button>
-          <button
-            onClick={() => navigate("/register")}
-            className={styles.authButton}
-          >
-            Регистрация
-          </button>
+          {!isAuthenticated ? (
+            <>
+              <button
+                onClick={() => navigate("/login")}
+                className={styles.authButton}
+              >
+                Войти
+              </button>
+              <button
+                onClick={() => navigate("/register")}
+                className={styles.authButton}
+              >
+                Регистрация
+              </button>
+            </>
+          ) : (
+            <button
+              onClick={() => navigate("/panel/course")}
+              className={styles.authButton}
+            >
+              Начать
+            </button>
+          )}
         </div>
       </div>
 
@@ -113,18 +131,38 @@ const Header: React.FC = () => {
           ))}
 
           <div className={styles.mobileAuthButtons}>
-            <button
-              onClick={() => navigate("/login")}
-              className={styles.authButton}
-            >
-              Войти
-            </button>
-            <button
-              onClick={() => navigate("/register")}
-              className={styles.authButton}
-            >
-              Регистрация
-            </button>
+            {!isAuthenticated ? (
+              <>
+                <button
+                  onClick={() => {
+                    setMenuOpen(false);
+                    navigate("/login");
+                  }}
+                  className={styles.authButton}
+                >
+                  Войти
+                </button>
+                <button
+                  onClick={() => {
+                    setMenuOpen(false);
+                    navigate("/register");
+                  }}
+                  className={styles.authButton}
+                >
+                  Регистрация
+                </button>
+              </>
+            ) : (
+              <button
+                onClick={() => {
+                  setMenuOpen(false);
+                  navigate("/panel/course");
+                }}
+                className={styles.authButton}
+              >
+                Начать
+              </button>
+            )}
           </div>
         </div>
       )}

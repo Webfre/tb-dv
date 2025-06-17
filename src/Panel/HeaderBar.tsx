@@ -9,10 +9,13 @@ import {
   Divider,
   IconButton,
   Tooltip,
+  Box,
 } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
+import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import { courseList } from "../DB";
 import { Breadcrumbs } from "./Breadcrumbs";
+import { useIsUserAdmin } from "../lib/useIsUserAdmin";
 import FullscreenIcon from "@mui/icons-material/Fullscreen";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import PersonIcon from "@mui/icons-material/Person";
@@ -24,6 +27,7 @@ interface HeaderBarProps {
 
 export const HeaderBar: React.FC<HeaderBarProps> = ({ title }) => {
   const { id } = useParams<{ id: string }>();
+  const { isAdmin } = useIsUserAdmin();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const navigate = useNavigate();
 
@@ -36,7 +40,7 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({ title }) => {
 
   const handleProfile = () => {
     handleClose();
-    navigate("/profile");
+    navigate("/panel/profile");
   };
 
   const handleLogout = () => {
@@ -70,6 +74,19 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({ title }) => {
             className={styles.handleFullscreen}
           />
         </Tooltip>
+
+        <Box display="flex" alignItems="center" gap={1}>
+          {isAdmin && (
+            <Tooltip title="Панель администратора">
+              <IconButton
+                color="inherit"
+                onClick={() => navigate("/panel/admin-dashboard")}
+              >
+                <AdminPanelSettingsIcon />
+              </IconButton>
+            </Tooltip>
+          )}
+        </Box>
 
         <IconButton onClick={handleOpen} className={styles.avatarButton}>
           <Avatar className={styles.avatar}>

@@ -18,10 +18,36 @@
   margin-bottom: 40px;
 }
 
+.contactList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 10px;
+  display: flex;
+
+  li {
+    font-size: 18px;
+    color: #000000;
+    font-weight: 500;
+
+    a {
+      color: #7747d6;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
 .logo {
-  font-size: 30px !important;
+  font-size: 26px !important;
   color: #020202 !important;
   font-weight: 600 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  cursor: pointer;
 }
 
 .socials {
@@ -73,7 +99,7 @@
 
 .copy {
   font-size: 14px !important;
-  color: #323232 !important;
+  color: #717171 !important;
   text-align: center;
 }
 
@@ -83,5 +109,21 @@
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 30px;
     margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 800px) {
+  .contactList {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 500px) {
+  .contactList {
+    flex-direction: column;
+  }
+
+  .top {
+    gap: 10px;
   }
 }

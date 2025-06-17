@@ -5,9 +5,9 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 import { theme } from "./ui/theme";
+import { ReviewsBoard } from "./pages/ReviewsBoard/ReviewsBoard";
 import { ToastContainer } from "react-toastify";
 import { Route } from "react-router-dom";
-import { Flashback } from "./components/Flashback/Flashback";
 import { UserPanelLayout } from "./Panel/UserPanelLayout";
 import CourseRouteWrapper from "./ui/CourseRouteWrapper";
 import MentorProfilePage from "./components/MentorProfilePage/MentorProfilePage";
@@ -31,10 +31,13 @@ import ResetPasswordPage from "./pages/ResetPasswordPage/ResetPasswordPage";
 import CourseInfoPage from "./pages/CourseInfoPage/CourseInfoPage";
 import CoursesPageList from "./pages/CoursesPageList/CoursesPageList";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
-import "./index.scss";
-import "react-toastify/dist/ReactToastify.css";
 import MainLayout from "./pages/Home/MainLayout";
 import HomePage from "./pages/Home/HomePage";
+import AboutPage from "./pages/AboutPage/AboutPage";
+import FlashbackWrapper from "./components/Flashback/FlashbackWrapper";
+import TrainingPage from "./pages/TrainingPage/TrainingPage";
+import "./index.scss";
+import "react-toastify/dist/ReactToastify.css";
 
 export const AppRoutes = () => {
   return (
@@ -50,39 +53,26 @@ export const AppRoutes = () => {
           }
         />
 
-        {/* <Route
-          path="/info"
-          element={
-            <MainLayout>
-              <Info />
-            </MainLayout>
-          }
-        /> */}
+        <Route path="/feedback" element={<ReviewsBoard />} />
 
         <Route
-          path="/admin-dashboard"
+          path="/about"
           element={
-            <AdminProtectedRoute>
-              <AdminDashboard />
-            </AdminProtectedRoute>
+            <MainLayout>
+              <AboutPage />
+            </MainLayout>
           }
         />
+
         <Route
-          path="/admin/user/:id"
+          path="/training"
           element={
-            <AdminProtectedRoute>
-              <UserDetails />
-            </AdminProtectedRoute>
+            <MainLayout>
+              <TrainingPage />
+            </MainLayout>
           }
         />
-        <Route
-          path="/profile"
-          element={
-            <ProtectedRoute>
-              <Profile />
-            </ProtectedRoute>
-          }
-        />
+
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/reset-password" element={<ResetPasswordPage />} />
@@ -100,6 +90,7 @@ export const AppRoutes = () => {
         >
           <Route path="course/:id" element={<CourseRouteWrapper />} />
           <Route path="mentorlist/:id" element={<MentorProfilePage />} />
+          <Route path="profile" element={<Profile />} />
           <Route path="test" element={<TestWrapper />} />
           <Route path="mentorlist" element={<MentorList />} />
           <Route path="course" element={<CourseList />} />
@@ -109,7 +100,25 @@ export const AppRoutes = () => {
           <Route path="cheatsheet" element={<CheatsheetPage />} />
           <Route path="interview" element={<InterviewPage />} />
           <Route path="projects" element={<ProjectsPage />} />
-          <Route path="flashback" element={<Flashback />} />
+          <Route path="flashback" element={<FlashbackWrapper />} />
+
+          <Route
+            path="admin-dashboard"
+            element={
+              <AdminProtectedRoute>
+                <AdminDashboard />
+              </AdminProtectedRoute>
+            }
+          />
+
+          <Route
+            path="admin/user/:id"
+            element={
+              <AdminProtectedRoute>
+                <UserDetails />
+              </AdminProtectedRoute>
+            }
+          />
         </Route>
       </Routes>
     </>

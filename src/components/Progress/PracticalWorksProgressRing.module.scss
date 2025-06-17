@@ -1,6 +1,6 @@
-$primary-color: #3498db;
-$background-color: #f1f1f1;
-$shadow-color: #e9e9e9;
+$primary-color: #6a6a6a;
+$background-color: #f8f6ff;
+$shadow-color: #dfdde8;
 $highlight-color: #ffffff;
 
 .progressRingContainer {
@@ -14,7 +14,7 @@ $highlight-color: #ffffff;
     width: 120px !important;
     height: 120px !important;
     border-radius: 50% !important;
-    border: 4px solid #e0e0e0 !important;
+    border: 4px solid #cdcdcd6c !important;
     background: linear-gradient(
       145deg,
       $highlight-color,

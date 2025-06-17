@@ -7,11 +7,16 @@ import TaskProgressRing from "./TaskProgressRing";
 import PracticalWorksProgressRing from "./PracticalWorksProgressRing";
 
 interface ProgressRingProps {
+  courseId: string;
   progressData: Progress;
   tests: TestDataCollection;
 }
 
-const ProgressRing: React.FC<ProgressRingProps> = ({ progressData, tests }) => {
+const ProgressRing: React.FC<ProgressRingProps> = ({
+  progressData,
+  tests,
+  courseId,
+}) => {
   return (
     <>
       <Typography variant="h4" gutterBottom>
@@ -28,7 +33,7 @@ const ProgressRing: React.FC<ProgressRingProps> = ({ progressData, tests }) => {
       >
         <PracticalWorksProgressRing progressData={progressData} />
         <TestProgressRing tests={tests} progressData={progressData} />
-        <TaskProgressRing />
+        <TaskProgressRing courseId={courseId} />
       </Box>
     </>
   );

@@ -24,6 +24,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import styles from "./Flashback.module.scss";
 import BtnCustom from "../../ui/BtnCustom";
+import { HintBlock } from "../../ui/HintBlock";
 
 export const Flashback = () => {
   const [open, setOpen] = useState(false);
@@ -103,18 +104,10 @@ export const Flashback = () => {
   return (
     <Box p={2}>
       <Box>
-        <Typography variant="h5" gutterBottom>
-          Повторение материала
-        </Typography>
-
-        <Typography variant="body2" color="text.secondary" mb={3}>
-          Регулярное повторение — ключ к долгосрочному запоминанию. Согласно{" "}
-          <strong>эффекту интервалов</strong>, изученный материал лучше
-          сохраняется в памяти, если возвращаться к нему с определённой
-          периодичностью. Исследования показывают, что повторение спустя 1–2
-          дня, затем через 5–7 дней и снова через 2–3 недели значительно
-          повышает уровень усвоения.
-        </Typography>
+        <HintBlock
+          title="Повторение материала"
+          text="Флэшбек — это настраиваемая система тестирования с более чем 1000 вопросов по различным темам. Она помогает закрепить знания по пройденным модулям. В конце теста вы получаете статистику по правильным и неправильным темам, а система автоматически определяет пробелы и предлагает ссылки на материалы для повторения. Отлично подходит для быстрого повторения в дороге или если хотите освежить темы в памяти."
+        />
 
         <Box className={styles.recom}>
           <Box

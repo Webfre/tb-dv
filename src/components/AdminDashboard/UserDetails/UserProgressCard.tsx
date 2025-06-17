@@ -23,7 +23,6 @@ const UserProgressCard: React.FC<UserProgressCardProps> = ({
   progress,
   courseId,
 }) => {
-  console.log(progress);
   const courseIdStr = String(courseId);
   const courseProgress = courseIdStr ? progress.courses[courseIdStr] : null;
   const coursePractical = courseIdStr ? progress.practical[courseIdStr] : null;
@@ -85,22 +84,28 @@ const UserProgressCard: React.FC<UserProgressCardProps> = ({
                     <Typography variant="subtitle1" fontWeight="bold">
                       {testName}
                     </Typography>
-                    {attempts.map((attempt, index) => (
-                      <Box key={index} sx={{ mt: 1, pl: 2 }}>
-                        <Typography variant="body2">
-                          <strong>Попытка {index + 1}:</strong>
-                        </Typography>
-                        <Typography variant="body2">
-                          Правильных ответов: {attempt.correctAnswers}
-                        </Typography>
-                        <Typography variant="body2">
-                          Процент выполнения: {attempt.percentage}%
-                        </Typography>
-                        <Typography variant="body2">
-                          Оценка: {attempt.grade}
-                        </Typography>
-                      </Box>
-                    ))}
+                    {Array.isArray(attempts) ? (
+                      attempts.map((attempt, index) => (
+                        <Box key={index} sx={{ mt: 1, pl: 2 }}>
+                          <Typography variant="body2">
+                            <strong>Попытка {index + 1}:</strong>
+                          </Typography>
+                          <Typography variant="body2">
+                            Правильных ответов: {attempt.correctAnswers}
+                          </Typography>
+                          <Typography variant="body2">
+                            Процент выполнения: {attempt.percentage}%
+                          </Typography>
+                          <Typography variant="body2">
+                            Оценка: {attempt.grade}
+                          </Typography>
+                        </Box>
+                      ))
+                    ) : (
+                      <Typography variant="body2" sx={{ pl: 2 }}>
+                        Неверный формат данных по попыткам
+                      </Typography>
+                    )}
                   </Paper>
                 )
               )}

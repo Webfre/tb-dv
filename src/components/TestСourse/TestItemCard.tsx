@@ -4,12 +4,10 @@ import {
   Typography,
   ListItem,
   ListItemButton,
-  ListItemIcon,
   ListItemText,
 } from "@mui/material";
-import QuizIcon from "@mui/icons-material/Quiz";
 import { useNavigate } from "react-router-dom";
-import DoneAllIcon from "@mui/icons-material/DoneAll";
+import { CiCircleCheck } from "react-icons/ci";
 
 interface ProgressHistoryEntry {
   attempts: number;
@@ -36,7 +34,10 @@ const TestItemCard: React.FC<TestItemCardProps> = ({
 }) => {
   const navigate = useNavigate();
   const attempts = history.length;
-  const isAnyPassed = history.some((h) => h.grade > 2);
+
+  const isAnyPassed = Array.isArray(history)
+    ? history.some((h) => h.grade > 2)
+    : false;
 
   const handleTestClick = (
     e: React.MouseEvent,
@@ -65,18 +66,22 @@ const TestItemCard: React.FC<TestItemCardProps> = ({
         onClick={(e) => handleTestClick(e, testKey, testName)}
         sx={{ px: 2, py: 1.5 }}
       >
-        <ListItemIcon>
-          <QuizIcon sx={{ color: "#846ee6" }} />
-        </ListItemIcon>
-
-        <ListItemText primary={testName} secondary={`Попыток: ${attempts}`} />
+        <ListItemText primary={testName} />
 
         <Box display="flex" alignItems="center" gap={1} minWidth={100}>
           {attempts > 0 ? (
             isAnyPassed ? (
-              <DoneAllIcon color="success" />
+              <CiCircleCheck
+                size={24}
+                color="#4caf50"
+                style={{ marginRight: 8 }}
+              />
             ) : (
-              <DoneAllIcon color="error" />
+              <CiCircleCheck
+                size={24}
+                color="#a71e34"
+                style={{ marginRight: 8 }}
+              />
             )
           ) : (
             <Typography variant="body2" color="textSecondary">

@@ -9,8 +9,6 @@ export interface Mentor {
   specialization: string;
   fullName: string;
   telegram: string;
-  phone: string;
-  email: string;
   topics: string[];
   about: string;
   helpWith: string[];
@@ -23,8 +21,6 @@ export const mentors: Mentor[] = [
     name: "Мухаметшин Роман",
     fullName: "Мухаметшин Роман",
     telegram: "https://t.me/romanwebfree",
-    phone: "8 999 979 71 38",
-    email: "romain.muhametschin@yandex.ru",
     specialization: "React, Vue",
     grade: "Ментор: React, Vue",
     avatarUrl: imgRoman,
@@ -90,8 +86,6 @@ export const mentors: Mentor[] = [
     name: "Митин Олег",
     fullName: "Митин Олег",
     telegram: "https://t.me/zQwiin",
-    phone: "8 931 580 83 49",
-    email: "mitinom98@gmail.com",
     specialization: "HTML, CSS, SCSS",
     grade: "Ментор: HTML, CSS",
     avatarUrl: img2,
@@ -143,8 +137,6 @@ export const mentors: Mentor[] = [
     name: "Митина Ксения",
     fullName: "Митина Ксения",
     telegram: "https://t.me/mitinaksenia",
-    phone: "8 960 140 73 32",
-    email: "xeniatsigunyaeva@gmail.com",
     specialization: "JavaScript, TypeScript",
     grade: "Ментор: JavaScript, TypeScript",
     avatarUrl: img1,

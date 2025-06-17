@@ -28,7 +28,7 @@ const CourseInfoModal: React.FC<{ open: boolean }> = ({ open }) => {
       <DialogContent>
         <Typography variant="body1" sx={{ mb: 1 }}>
           {isRegistered
-            ? "Вы успешно зарегистрировались, но пока не получили ключ доступа к курсу."
+            ? "Вы успешно зарегистрировались, но пока не получили доступ к курсу."
             : "Вы не зарегистрированы. Пожалуйста, войдите или зарегистрируйтесь."}
         </Typography>
 
@@ -45,6 +45,7 @@ const CourseInfoModal: React.FC<{ open: boolean }> = ({ open }) => {
           <BtnCustom
             text="Написать в Telegram"
             variant="outlined"
+            customColor="#846ee6"
             fullWidth
             sx={{ mt: 3 }}
           />
@@ -53,6 +54,7 @@ const CourseInfoModal: React.FC<{ open: boolean }> = ({ open }) => {
         {!isRegistered && (
           <BtnCustom
             fullWidth
+            customColor="#846ee6"
             text="Зарегистрироваться"
             variant="text"
             sx={{ mt: 2 }}

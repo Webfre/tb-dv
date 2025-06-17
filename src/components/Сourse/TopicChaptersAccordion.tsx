@@ -5,36 +5,33 @@ import {
 } from "../../api/progressApi";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { practiceMock } from "../../DB/taskData";
+import { CiCircleCheck } from "react-icons/ci";
 import clsx from "clsx";
 import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
-  Typography,
   List,
   ListItem,
   ListItemText,
   Box,
   Stack,
 } from "@mui/material";
-import {
-  getTestAttemptsCount,
-  getTestTitle,
-} from "../../lib/getTestAttemptsCount";
+
+import { getTestTitle } from "../../lib/getTestAttemptsCount";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import SectionDrawer from "../SectionDrawer/SectionDrawer";
 import PracticeDrawer from "../PracticeDrawer/PracticeDrawer";
 import PracticeChipProgress from "./PracticeChipProgress";
-import ChapterIcon from "./ChapterIcon";
 import TaskStatusChip from "./TaskStatusChip";
-import TestChip from "./TestChip";
 import styles from "./TopicChaptersAccordion.module.scss";
 import {
   CourseChapter,
   CourseSection,
   PracticeTask,
 } from "../../DB/index_type";
+import classNames from "classnames";
 
 interface TopicChaptersAccordionProps {
   chapters: CourseChapter[];
@@ -48,8 +45,8 @@ const TopicChaptersAccordion: React.FC<TopicChaptersAccordionProps> = ({
   const navigate = useNavigate();
   const location = useLocation();
   const { id: courseId } = useParams<{ id: string }>();
-  const [expandedChapterId, setExpandedChapterId] = useState<string | null>(
-    null
+  const [expandedChapters, setExpandedChapters] = useState<Set<string>>(
+    new Set()
   );
 
   const [openSection, setOpenSection] = useState<CourseSection | null>(null);
@@ -67,6 +64,7 @@ const TopicChaptersAccordion: React.FC<TopicChaptersAccordionProps> = ({
   const isChapterTestPassed = (testKey?: string): boolean | null => {
     if (!testKey || !progressData?.history?.[testKey]) return null;
     const entries = progressData.history[testKey];
+    if (!Array.isArray(entries)) return null;
     const best = Math.max(...entries.map((entry: any) => entry.percentage));
     return best >= 50;
   };
@@ -101,7 +99,12 @@ const TopicChaptersAccordion: React.FC<TopicChaptersAccordionProps> = ({
     const chapterId = searchParams.get("chapterId");
 
     if (chapterId) {
-      setExpandedChapterId(chapterId);
+      setExpandedChapters((prev) => {
+        const newSet = new Set(prev);
+        newSet.add(chapterId);
+        return newSet;
+      });
+
       setHighlightedId(chapterId);
 
       const element = chapterRefs.current[chapterId];
@@ -117,12 +120,7 @@ const TopicChaptersAccordion: React.FC<TopicChaptersAccordionProps> = ({
 
   return (
     <Box mt={4}>
-      <Typography variant="h5" gutterBottom>
-        Главы и разделы
-      </Typography>
-
       {chapters.map((chapter) => {
-        const isFinal = chapter.final;
         const testCount = chapter.testKeys?.length || 0;
         const testKey = chapter.testKeys?.[0] || topicTestKeys?.[0];
         const testPassed = isChapterTestPassed(testKey);
@@ -138,13 +136,20 @@ const TopicChaptersAccordion: React.FC<TopicChaptersAccordionProps> = ({
             <Accordion
               key={chapter.id}
               defaultExpanded={false}
-              expanded={expandedChapterId === chapter.id}
-              onChange={(_, expanded) => {
-                setExpandedChapterId(expanded ? chapter.id : null);
+              expanded={expandedChapters.has(chapter.id)}
+              onChange={(_, isExpanded) => {
+                setExpandedChapters((prev) => {
+                  const newSet = new Set(prev);
+                  if (isExpanded) {
+                    newSet.add(chapter.id);
+                  } else {
+                    newSet.delete(chapter.id);
+                  }
+                  return newSet;
+                });
               }}
               className={clsx(
                 styles.accordion,
-                isFinal && styles.final,
                 highlightedId === chapter.id && styles.pulse
               )}
             >
@@ -155,35 +160,7 @@ const TopicChaptersAccordion: React.FC<TopicChaptersAccordionProps> = ({
                   alignItems="center"
                   width="100%"
                 >
-                  <Typography
-                    variant="subtitle1"
-                    sx={{ display: "flex", alignItems: "center" }}
-                  >
-                    <ChapterIcon isFinal={isFinal} testPassed={testPassed} />
-                    {chapter.title}
-                  </Typography>
-
-                  <Stack direction="row" spacing={1} mr={1}>
-                    {testCount > 0 && (
-                      <TestChip
-                        testTitle={getTestTitle(
-                          chapter.testKeys?.[0] || topicTestKeys?.[0]
-                        )}
-                        attempts={getTestAttemptsCount(
-                          progressData,
-                          chapter.testKeys?.[0] || topicTestKeys?.[0]
-                        )}
-                        maxAttempts={2}
-                        onClick={(e) =>
-                          handleTestClick(
-                            e,
-                            chapter.testKeys?.[0] || topicTestKeys?.[0],
-                            chapter.title
-                          )
-                        }
-                      />
-                    )}
-                  </Stack>
+                  <Box className={styles.chapterTitle}>{chapter.title}</Box>
                 </Box>
               </AccordionSummary>
 
@@ -223,6 +200,51 @@ const TopicChaptersAccordion: React.FC<TopicChaptersAccordionProps> = ({
                       </Stack>
                     </ListItem>
                   ))}
+
+                  <ListItem
+                    className={classNames(styles.sectionItem, {
+                      [styles.testChip]: testCount > 0,
+                    })}
+                    onClick={(e) =>
+                      handleTestClick(
+                        e,
+                        chapter.testKeys?.[0] || topicTestKeys?.[0],
+                        chapter.title
+                      )
+                    }
+                  >
+                    {testCount > 0 && (
+                      <Box
+                        sx={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "space-between",
+                          width: "100%",
+                        }}
+                      >
+                        <ListItemText
+                          primary={`Тест: ${getTestTitle(
+                            chapter.testKeys?.[0] || topicTestKeys?.[0]
+                          )}`}
+                        />
+
+                        {testPassed === true && (
+                          <CiCircleCheck
+                            size={24}
+                            color="#4caf50"
+                            style={{ marginLeft: 8 }}
+                          />
+                        )}
+                        {testPassed === false && (
+                          <CiCircleCheck
+                            size={24}
+                            color="#a71e34"
+                            style={{ marginLeft: 8 }}
+                          />
+                        )}
+                      </Box>
+                    )}
+                  </ListItem>
                 </List>
               </AccordionDetails>
             </Accordion>

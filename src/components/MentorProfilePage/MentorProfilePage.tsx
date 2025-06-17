@@ -66,10 +66,8 @@ const MentorProfilePage: React.FC = () => {
             </Box>
 
             <Typography variant="body2" mt={2}>
-              <br />
-              Телефон: {frontMentor?.phone}
-              <br />
-              Почта: {frontMentor?.email}
+              Почта: .email
+              {/* TODO */}
             </Typography>
 
             <Typography

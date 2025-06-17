@@ -9,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 import { IoLogIn } from "react-icons/io5";
 import { toast } from "react-toastify";
 import BtnCustom from "../../ui/BtnCustom";
-import PhoneInput from "../../ui/PhoneInput";
 import PasswordField from "../../ui/PasswordField";
 import styles from "./RegisterPage.module.scss";
 import { PiSmileyMeltingFill } from "react-icons/pi";
@@ -33,17 +32,15 @@ const RegisterPage: React.FC = () => {
   const onSubmit: SubmitHandler<IFormData> = async (data) => {
     try {
       setIsLoading(true);
-      const cleanedPhone = data.phone.replace(/\s/g, "");
       const result = await registerUser({
         ...data,
-        phone: cleanedPhone,
       }).unwrap();
 
       localStorage.setItem("token", result.token);
 
       toast(
         <CustomToast
-          message={`Добро пожаловать во Frontarium!\n${result.lastName} ${result.firstName} ${result.middleName}`}
+          message={`${result.firstName}. Добро пожаловать во Frontarium!`}
           icon={<IoLogIn size={30} />}
         />
       );
@@ -100,11 +97,8 @@ const RegisterPage: React.FC = () => {
 
           <Box component="form" noValidate onSubmit={handleSubmit(onSubmit)}>
             {[
-              { name: "lastName", label: "Фамилия" },
               { name: "firstName", label: "Имя" },
-              { name: "middleName", label: "Отчество" },
               { name: "email", label: "Email" },
-              { name: "telegram", label: "Ссылка на Telegram (необязательно)" },
             ].map(({ name, label }) => (
               <Controller
                 key={name}
@@ -127,20 +121,6 @@ const RegisterPage: React.FC = () => {
                 )}
               />
             ))}
-
-            <Controller
-              name="phone"
-              control={control}
-              defaultValue=""
-              render={({ field }) => (
-                <PhoneInput
-                  {...field}
-                  label="Телефон (+7 или 8)"
-                  error={!!errors.phone}
-                  helperText={errors.phone?.message as string}
-                />
-              )}
-            />
 
             <Controller
               name="password"

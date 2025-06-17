@@ -1,0 +1,69 @@
+.title {
+  font-size: 44px;
+  font-weight: 600;
+  margin-bottom: 40px;
+  margin-top: 140px;
+  text-align: left;
+}
+
+.grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.step {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+
+  h3 {
+    margin-top: 1rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  p {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    color: #444;
+  }
+}
+
+.icon {
+  font-size: 2rem;
+  color: #6c63ff;
+  background-color: #f0efff;
+  padding: 0.75rem;
+  border-radius: 12px;
+}
+
+@media (max-width: 1200px) {
+  .title {
+    font-size: 40px;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 700px) {
+  .title {
+    font-size: 36px;
+    margin-top: 80px;
+  }
+}
+
+@media (max-width: 500px) {
+  .title {
+    font-size: 24px;
+  }
+}

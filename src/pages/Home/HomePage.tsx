@@ -8,6 +8,9 @@ import LikeSection from "./Section/LikeSection";
 import StackSection from "./Section/StackSection";
 import FaqSection from "./Section/FaqSection";
 import ConsultationForm from "./Section/ConsultationForm";
+import LearningProcessSection from "./Section/LearningProcessSection";
+import MotivationSection from "./Section/MotivationSection";
+import ReviewBannerSection from "./Section/ReviewBannerSection";
 
 const HomePage = () => {
   const formRef = useRef<HTMLDivElement | null>(null);
@@ -25,6 +28,9 @@ const HomePage = () => {
       <LikeSection />
       <ProjectSection />
       <StackSection />
+      <LearningProcessSection />
+      <MotivationSection />
+      <ReviewBannerSection />
       <FaqSection />
       <ConsultationForm reflink={formRef} />
     </>

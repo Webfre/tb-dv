@@ -1,4 +1,4 @@
-import { Box, Container } from "@mui/material";
+import { Box } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useCheckCourseAccessQuery } from "../../api/userApi";
 import {
@@ -30,7 +30,7 @@ export default function Profile() {
   };
 
   return (
-    <Container sx={{ mt: 4 }}>
+    <Box p={2}>
       {filteredCourses.map((course) => (
         <Box
           className={classNames(styles.coursesProfile, {
@@ -43,6 +43,7 @@ export default function Profile() {
             courseTitle={course.title}
             courseType={course.courseType}
             mentors={course.mentors}
+            isSelected={selectedCourseId === course.id.toString()}
           />
         </Box>
       ))}
@@ -51,6 +52,6 @@ export default function Profile() {
         hasAccess={hasAccess}
         selectedCourseId={selectedCourseId}
       />
-    </Container>
+    </Box>
   );
 }

@@ -41,6 +41,16 @@ export const label_sx = {
   },
 };
 
+export const label_sx_light = {
+  color: "#757575",
+  "&.Mui-focused": {
+    color: "#616161",
+  },
+  "&.MuiInputLabel-shrink": {
+    color: "#616161",
+  },
+};
+
 export const menu_item_sx = {
   "&.Mui-selected": {
     backgroundColor: "#ede6ff",
@@ -48,6 +58,16 @@ export const menu_item_sx = {
   },
   "&.Mui-selected:hover": {
     backgroundColor: "#dcd0ff",
+  },
+};
+
+export const menu_item_sx_light = {
+  "&.Mui-selected": {
+    backgroundColor: "#e0e0e0",
+    color: "#424242",
+  },
+  "&.Mui-selected:hover": {
+    backgroundColor: "#d5d5d5",
   },
 };
 
@@ -68,17 +88,39 @@ export const select_sx = {
   },
 };
 
+export const select_sx_light = {
+  borderRadius: "20px",
+  color: "#424242",
+  backgroundColor: "#f7f7f7",
+
+  "& .MuiOutlinedInput-notchedOutline": {
+    borderColor: "#bdbdbd",
+  },
+  "&:hover .MuiOutlinedInput-notchedOutline": {
+    borderColor: "#9e9e9e",
+  },
+  "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+    borderColor: "#757575",
+  },
+  "& .MuiSvgIcon-root": {
+    color: "#757575",
+  },
+  "& .MuiSelect-select": {
+    padding: "16px 16px",
+  },
+};
+
 export const checkbox_sx = {
-  color: "#c3b5fa", // начальный (не выбранный) цвет
+  color: "#c3b5fa",
   "&.Mui-checked": {
-    color: "#947ef6", // выбранный цвет
+    color: "#947ef6",
   },
   "&.MuiCheckbox-root:hover": {
     backgroundColor: "rgba(148, 126, 246, 0.08)",
     borderRadius: "4px",
   },
   "&.Mui-disabled": {
-    color: "#d3ccf5", // цвет в состоянии disabled
+    color: "#d3ccf5",
   },
   "&.Mui-focusVisible": {
     outline: "2px solid #b7a7fb",
@@ -112,5 +154,17 @@ export const textField_input_sx = {
   },
   "& .MuiSvgIcon-root": {
     color: "#947ef6",
+  },
+};
+
+export const tabs_sx = {
+  fontWeight: 500,
+  color: "#666",
+  borderBottom: "2px solid transparent",
+  "&.Mui-selected": {
+    color: "#7e57c2", // цвет активного таба
+    backgroundColor: "#f0ecfc", // фон активного таба
+    borderRadius: "8px 8px 0 0", // опционально — скругления
+    borderBottom: "2px solid #c8bae1 !important",
   },
 };

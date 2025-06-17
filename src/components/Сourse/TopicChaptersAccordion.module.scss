@@ -1,6 +1,6 @@
 @keyframes pulseHighlight {
   0% {
-    box-shadow: 0 0 0 0 rgba(34, 129, 224, 0.556);
+    box-shadow: 0 0 0 0 rgba(116, 68, 229, 0.556);
   }
   70% {
     box-shadow: 0 0 0 10px rgba(25, 118, 210, 0);
@@ -15,7 +15,7 @@
 }
 
 .sectionItem {
-  border: 1px dashed #ccc;
+  border: 1px dashed #ccc !important;
   border-radius: 16px;
   padding: 8px 16px;
   display: flex;
@@ -27,6 +27,7 @@
 .accordion {
   border-radius: 20px !important;
   overflow: hidden;
+  padding: 10px 0px !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.105) !important;
 
   &::before {
@@ -39,6 +40,28 @@
 }
 
 .final {
-  border: 1px solid #b09efe;
-  background-color: rgba(223, 223, 252, 0.777);
+  border: 1px solid #b09efe !important;
+  background-color: rgba(223, 223, 252, 0.777) !important;
+}
+
+.testChip {
+  background-color: #f6f6f6 !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  padding: 8px 16px;
+  color: rgb(33, 33, 33);
+  cursor: pointer;
+  user-select: none;
+}
+
+.title {
+  margin-right: 8px !important;
+  font-size: 13px !important;
+}
+
+.chapterTitle {
+  display: flex !important;
+  align-items: center !important;
+  font-size: 20px !important;
+  font-weight: normal !important;
+  color: rgba(0, 0, 0, 0.87) !important;
 }

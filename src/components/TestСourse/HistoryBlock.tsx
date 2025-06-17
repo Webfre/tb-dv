@@ -8,14 +8,14 @@ import {
   Chip,
 } from "@mui/material";
 import { LiaAngellist } from "react-icons/lia";
-import BtnCustom from "../../ui/BtnCustom";
-import styles from "./HistoryBlock.module.scss";
+import { CiCircleCheck } from "react-icons/ci";
 import { useGetUserProgressQuery } from "../../api/progressApi";
 import { LocationState } from "./useTestLogic";
 import { useLocation } from "react-router-dom";
 import { chip_sx } from "../../styles/global";
-import DoneAllIcon from "@mui/icons-material/DoneAll";
+import BtnCustom from "../../ui/BtnCustom";
 import classNames from "classnames";
+import styles from "./HistoryBlock.module.scss";
 
 interface HistoryBlockProps {
   selectedTest: string;
@@ -33,7 +33,12 @@ const HistoryBlock: React.FC<HistoryBlockProps> = ({
   const { courseId } = (location.state as LocationState) || {};
   const { data: progressData } = useGetUserProgressQuery({ courseId });
 
-  const history = progressData?.history?.[selectedTest] || [];
+  const history = React.useMemo(() => {
+    const rawHistory = progressData?.history?.[selectedTest];
+    return rawHistory && typeof rawHistory === "object"
+      ? Object.values(rawHistory)
+      : [];
+  }, [progressData?.history, selectedTest]);
 
   return (
     <Box sx={{ mb: 2, borderRadius: 2 }}>
@@ -71,16 +76,19 @@ const HistoryBlock: React.FC<HistoryBlockProps> = ({
             <List>
               {history.map((entry: any, index: number) => (
                 <React.Fragment key={index}>
-                  <ListItem
-                    className={classNames(styles.card, {
-                      [styles.gradeRed]: entry.grade === 2,
-                      [styles.gradeGreen]: entry.grade !== 2,
-                    })}
-                  >
+                  <ListItem className={classNames(styles.card)}>
                     {entry.grade === 2 ? (
-                      <DoneAllIcon color="error" sx={{ mr: 2 }} />
+                      <CiCircleCheck
+                        size={24}
+                        color="#a71e34"
+                        style={{ marginRight: 8 }}
+                      />
                     ) : (
-                      <DoneAllIcon color="success" sx={{ mr: 2 }} />
+                      <CiCircleCheck
+                        size={24}
+                        color="#4caf50"
+                        style={{ marginRight: 8 }}
+                      />
                     )}
 
                     <ListItemText

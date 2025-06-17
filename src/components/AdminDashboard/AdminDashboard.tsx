@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  Container,
   Paper,
   Typography,
   List,
@@ -40,7 +39,7 @@ const AdminDashboard: React.FC = () => {
   }
 
   return (
-    <Container maxWidth="md">
+    <Box p={4}>
       <FeatureRequestList />
 
       <Typography mt={4} variant="h5" gutterBottom>
@@ -66,7 +65,7 @@ const AdminDashboard: React.FC = () => {
                 <Box sx={{ display: "flex", gap: 1 }}>
                   <BtnCustom
                     text="Подробнее"
-                    onClick={() => navigate(`/admin/user/${user.id}`)}
+                    onClick={() => navigate(`/panel/admin/user/${user.id}`)}
                   />
 
                   <AdminToggleButton
@@ -84,7 +83,7 @@ const AdminDashboard: React.FC = () => {
           )}
         </List>
       </Paper>
-    </Container>
+    </Box>
   );
 };
 

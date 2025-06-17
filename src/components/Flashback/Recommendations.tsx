@@ -2,7 +2,6 @@ import React from "react";
 import { Typography, Box } from "@mui/material";
 import { handleSectionClick } from "../../lib/handleSectionClick";
 import { useCheckCourseAccessQuery } from "../../api/userApi";
-import { hasAccessToCourses } from "../../lib/hasAccessToCourses";
 
 interface RecommendationsProps {
   modules: { name: string; id: string }[];
@@ -15,7 +14,6 @@ const Recommendations: React.FC<RecommendationsProps> = ({
 }) => {
   const { data } = useCheckCourseAccessQuery();
   const accessCourses = data?.accessCourse || [];
-  console.log(accessCourses);
 
   return (
     <Box mt={4} p={2} bgcolor="#f5f5f5" borderRadius="20px">

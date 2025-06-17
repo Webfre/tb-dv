@@ -6,9 +6,9 @@ import { introTopic } from "./START/DATA_COURSE/start";
 import { ideTopic } from "./IDE/DATA_COURSE/vscode";
 import { jsTopic } from "./JAVASCRIPT/DATA_COURSE/js";
 import { introHtml } from "./HTML_INTRO/introHtml";
-import { web_layout_info_course } from "./СOURSE_DATA/WEB_LAYOUT/web_layout_info_course";
 import { scssTopic } from "./SCSS/scss";
 import { verstka_final } from "./VERSKA_FINAL/verstka_final";
+import { web_layout_info_course } from "./СOURSE_DATA/WEB_LAYOUT/web_layout_info_course";
 
 export const courseList: InfoCourse[] = [
   web_layout_info_course,

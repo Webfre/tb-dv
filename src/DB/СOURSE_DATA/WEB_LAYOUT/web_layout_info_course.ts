@@ -9,6 +9,7 @@ import TerminalIcon from "@mui/icons-material/Terminal";
 
 export const web_layout_info_course = {
   id: 1,
+  type: "professions",
   typeId: 1,
   courseId: [
     "scss",
