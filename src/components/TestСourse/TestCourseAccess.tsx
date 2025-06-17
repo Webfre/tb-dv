@@ -11,7 +11,7 @@ import { useCheckCourseAccessQuery } from "../../api/userApi";
 import { getAccessibleCourses } from "../../lib/hasAccessToCourses";
 import { courseList } from "../../DB";
 import { PurpleSelect } from "../../ui/PurpleSelect";
-import { label_sx, menu_item_sx } from "../../styles/global";
+import { label_sx_light, menu_item_sx_light } from "../../styles/global";
 
 interface TestCourseAccessProps {
   render: (selectedCourseId: string) => React.ReactNode;
@@ -51,19 +51,20 @@ export default function TestCourseAccess({ render }: TestCourseAccessProps) {
       {filteredCourses.length > 0 && (
         <Box mt={3} mb={2}>
           <FormControl fullWidth size="small">
-            <InputLabel sx={label_sx}>Выберите курс:</InputLabel>
+            <InputLabel sx={label_sx_light}>Выберите курс:</InputLabel>
             <PurpleSelect
+              label="Выберите курс:"
+              styleVariant="light"
               value={selectedCourseId}
               onChange={(e) =>
                 handleSelectCourse(e as SelectChangeEvent<string>)
               }
-              label="Выберите курс:"
             >
               {filteredCourses.map((course) => (
                 <MenuItem
                   key={course.id}
                   value={course.id.toString()}
-                  sx={menu_item_sx}
+                  sx={menu_item_sx_light}
                 >
                   {course.title} ({course.courseType})
                 </MenuItem>

@@ -57,7 +57,7 @@ export const menuItemsSideBar: MenuItem[] = [
   // },
   {
     id: 4,
-    title: "Шпаргалка",
+    title: "Материалы",
     url: "/panel/cheatsheet",
     icon: AttachmentIcon,
     requiresAccess: false,

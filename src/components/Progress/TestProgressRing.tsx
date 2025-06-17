@@ -18,6 +18,8 @@ const TestProgressRing: React.FC<ProgressRingProps> = ({
 
   const successfulTests = Object.entries(progressData?.history || {}).filter(
     ([_, history]) => {
+      if (!Array.isArray(history) || history.length === 0) return false;
+
       const best = Math.max(...history.map((h: any) => h.percentage));
       return best >= 50;
     }

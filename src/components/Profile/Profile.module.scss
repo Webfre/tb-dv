@@ -11,9 +11,16 @@
     background-color: #a18ff2 !important;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
   }
-}
 
-.selectedCourse {
-  background-color: #947ef6 !important;
-  color: rgb(250, 250, 250);
+  &.selectedCourse {
+    background-color: #947ef6 !important;
+    cursor: default !important;
+    color: rgb(250, 250, 250);
+
+    &:hover {
+      transform: none !important;
+      background-color: #947ef6 !important;
+      box-shadow: none !important;
+    }
+  }
 }

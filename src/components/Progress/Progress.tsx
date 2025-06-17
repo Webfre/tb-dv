@@ -45,7 +45,11 @@ const Progress: React.FC<ProgressProps> = ({ courseId }) => {
 
   return (
     <Box p={4}>
-      <ProgressRing progressData={progressData} tests={filteredTests} />
+      <ProgressRing
+        courseId={courseId}
+        progressData={progressData}
+        tests={filteredTests}
+      />
 
       <PracticalWorksList courseId={courseId} progressData={progressData} />
     </Box>

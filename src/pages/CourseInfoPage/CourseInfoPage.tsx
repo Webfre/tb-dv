@@ -45,6 +45,7 @@ const CourseInfoModal: React.FC<{ open: boolean }> = ({ open }) => {
           <BtnCustom
             text="Написать в Telegram"
             variant="outlined"
+            customColor="#846ee6"
             fullWidth
             sx={{ mt: 3 }}
           />
@@ -53,6 +54,7 @@ const CourseInfoModal: React.FC<{ open: boolean }> = ({ open }) => {
         {!isRegistered && (
           <BtnCustom
             fullWidth
+            customColor="#846ee6"
             text="Зарегистрироваться"
             variant="text"
             sx={{ mt: 2 }}

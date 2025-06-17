@@ -8,15 +8,7 @@
 }
 
 .card {
-  border: 1px solid #035421 !important;
+  border: 1px solid #e6e6e6 !important;
   border-radius: 20px !important;
   margin-bottom: 8px !important;
-
-  &.gradeRed {
-    border-color: #b22222 !important;
-  }
-
-  &.gradeGreen {
-    border-color: #035421 !important;
-  }
 }

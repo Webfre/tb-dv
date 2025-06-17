@@ -92,15 +92,32 @@ export const useTestLogic = () => {
     };
 
     try {
-      const currentHistory = progressData?.history?.[selectedTest] || [];
+      let currentHistory = progressData?.history?.[selectedTest];
+
+      if (
+        !Array.isArray(currentHistory) &&
+        typeof currentHistory === "object"
+      ) {
+        const values = Object.values(currentHistory);
+        if (values.every((v) => typeof v === "object")) {
+          currentHistory = values;
+        } else {
+          currentHistory = [];
+        }
+      } else if (!Array.isArray(currentHistory)) {
+        currentHistory = [];
+      }
+
       const updatedHistory = [...currentHistory, testResult];
 
       await updateProgress({
         courseId,
-        testKey: String(selectedTest),
-        attempts: newAttemptsUsed,
-        result: testResult,
-        fullHistory: updatedHistory,
+        attempts: {
+          [selectedTest]: newAttemptsUsed,
+        },
+        history: {
+          [selectedTest]: updatedHistory,
+        },
       }).unwrap();
     } catch (e) {
       console.error("Ошибка отправки прогресса", e);

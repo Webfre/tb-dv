@@ -4,13 +4,12 @@ import {
   useGetUserProgressQuery,
   useGetSolvedTasksQuery,
 } from "../../api/progressApi";
-import { Box, Typography, Divider, Chip, Stack, Tooltip } from "@mui/material";
+import { Box, Typography, Divider, Chip, Stack } from "@mui/material";
 import {
   getTotalPractice,
   getTotalSections,
   getTotalTests,
 } from "../../lib/topicMetrics";
-import { getIsTopicCompleted } from "../../lib/getIsTopicCompleted";
 import { getPassedTestsCount } from "../../lib/getPassedTestsCount";
 import { getPrWorksProgress } from "../../lib/getPrWorksProgress";
 import { findPracticeTasksForTopic } from "../../lib/findPracticeTasksForTopic";
@@ -21,7 +20,6 @@ import CodeIcon from "@mui/icons-material/Code";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import TopicChaptersAccordion from "./TopicChaptersAccordion";
-import VerifiedIcon from "@mui/icons-material/Verified";
 import WorkIcon from "@mui/icons-material/Work";
 import styles from "./Course.module.scss";
 import { mockTopics } from "../../DB";
@@ -55,7 +53,6 @@ const CourseTopicDetails: React.FC = () => {
 
   const totalTests = getTotalTests(topic);
   const totalPractice = getTotalPractice(topic);
-  const isTopicCompleted = getIsTopicCompleted(topic, progressData);
   const passedTestsCount = getPassedTestsCount(topic, progressData);
   const totalSections = getTotalSections(topic);
   const moduleTasks = findPracticeTasksForTopic(topic.title);
@@ -76,22 +73,6 @@ const CourseTopicDetails: React.FC = () => {
       <Box className={styles.titleActionsContainer}>
         <Box className={styles.titleActions}>
           <Typography variant="h4">{topic.title}</Typography>
-
-          {totalTests > 0 && (
-            <Tooltip
-              title={
-                isTopicCompleted
-                  ? "Модуль пройден! Вы успешно завершили все тесты и практические задания."
-                  : "Вы не прошли модуль. Модуль считается пройденным, когда вы прошли все тесты и выполнили практическую работу."
-              }
-              arrow
-            >
-              <VerifiedIcon
-                className={styles.btnVerified}
-                color={isTopicCompleted ? "primary" : "disabled"}
-              />
-            </Tooltip>
-          )}
         </Box>
 
         <BtnCustom
@@ -112,7 +93,7 @@ const CourseTopicDetails: React.FC = () => {
       <Stack direction="row" gap={0.5} flexWrap="wrap">
         {totalPrWorks > 0 && (
           <Chip
-            icon={<WorkIcon />}
+            icon={<WorkIcon fontSize="small" />}
             color="default"
             label={`Практических работ выполнено: ${completedPrWorksCount} из ${totalPrWorks}`}
           />
@@ -120,7 +101,7 @@ const CourseTopicDetails: React.FC = () => {
 
         {totalTests > 0 && (
           <Chip
-            icon={<QuizIcon />}
+            icon={<QuizIcon fontSize="small" />}
             color="default"
             label={`Тестов пройдено: ${passedTestsCount} из ${totalTests}`}
           />
@@ -128,16 +109,19 @@ const CourseTopicDetails: React.FC = () => {
 
         {totalPractice > 0 && (
           <Chip
-            icon={<CodeIcon />}
+            icon={<CodeIcon fontSize="small" />}
             color="default"
             label={`Практик пройдено: ${solvedPracticeCount} из ${totalPractice}`}
           />
         )}
 
-        <Chip icon={<BookIcon />} label={`Разделов: ${totalSections}`} />
+        <Chip
+          icon={<BookIcon fontSize="small" />}
+          label={`Разделов: ${totalSections}`}
+        />
 
         <Chip
-          icon={<AccessTimeIcon />}
+          icon={<AccessTimeIcon fontSize="small" />}
           label={`~ ${topic.estimatedHours} ч. на изучение`}
         />
       </Stack>

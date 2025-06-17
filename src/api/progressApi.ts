@@ -12,17 +12,9 @@ export interface Progress {
 }
 
 export interface UpdateProgressDto {
-  testKey: string;
   courseId: string;
-  attempts: number;
-  fullHistory: any[];
-  result: {
-    attempts: number;
-    correctAnswers: number;
-    percentage: number;
-    grade: number;
-    selectedAnswers: Record<number, number[]>;
-  };
+  attempts: Record<string, number>;
+  history: Record<string, any[]>;
 }
 
 export interface ToggleSolvedTaskDto {
@@ -81,17 +73,13 @@ export const progressApi = baseApi.injectEndpoints({
     }),
 
     updateProgress: builder.mutation<void, UpdateProgressDto>({
-      query: ({ courseId, testKey, attempts, fullHistory }) => ({
+      query: ({ courseId, attempts, history }) => ({
         url: `/progress`,
         method: "POST",
         body: {
           courseId,
-          attempts: {
-            [testKey]: attempts,
-          },
-          history: {
-            [testKey]: fullHistory,
-          },
+          attempts,
+          history,
         },
       }),
       invalidatesTags: ["Progress"],

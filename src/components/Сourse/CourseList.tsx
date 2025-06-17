@@ -13,12 +13,14 @@ const CourseList: React.FC = () => {
   const accessCourses = data?.accessCourse || [];
   const filteredCourses = getAccessibleCourses(courseList, accessCourses);
   const [showConfetti, setShowConfetti] = useState(false);
+  const [isFirstVisit, setIsFirstVisit] = useState(false);
 
   useEffect(() => {
-    const isFirstVisit = localStorage.getItem("first_visit_course");
+    const firstVisitFlag = localStorage.getItem("first_visit_course");
 
-    if (!isFirstVisit) {
+    if (!firstVisitFlag) {
       setShowConfetti(true);
+      setIsFirstVisit(true);
       localStorage.setItem("first_visit_course", "true");
 
       setTimeout(() => {
@@ -30,19 +32,33 @@ const CourseList: React.FC = () => {
   return (
     <Box p={2}>
       {showConfetti && (
-        <Confetti width={window.innerWidth} height={window.innerHeight} />
+        <Box
+          sx={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            zIndex: 9999,
+            width: "100vw",
+            height: "100vh",
+            pointerEvents: "none",
+          }}
+        >
+          <Confetti width={window.innerWidth} height={window.innerHeight} />
+        </Box>
       )}
 
-      <Paper elevation={3} className={styles.headerCard}>
-        <Typography variant="h4" sx={{ fontWeight: "bold", mb: 1 }}>
-          Добро пожаловать во Frontarium!
-        </Typography>
-        <Typography variant="body1">
-          Образовательная платформа, ориентированная на подготовку
-          frontend-специалистов. Выберите свой путь и начните обучение с лучших
-          курсов прямо сейчас!
-        </Typography>
-      </Paper>
+      {isFirstVisit && (
+        <Paper elevation={3} className={styles.headerCard}>
+          <Typography variant="h4" sx={{ fontWeight: "bold", mb: 1 }}>
+            Добро пожаловать во Frontarium!
+          </Typography>
+          <Typography variant="body1">
+            Образовательная платформа, ориентированная на подготовку
+            frontend-специалистов. Выберите свой путь и начните обучение с
+            лучших курсов прямо сейчас!
+          </Typography>
+        </Paper>
+      )}
 
       {filteredCourses.length === 0 ? (
         <NoCoursesAvailable />

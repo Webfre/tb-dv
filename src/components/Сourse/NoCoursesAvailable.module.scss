@@ -1,5 +1,5 @@
 .wrapper {
-  padding: 60px 40px !important;
+  padding: 40px 40px !important;
   border-radius: 16px !important;
   background-color: #fefefe !important;
   text-align: center !important;
@@ -7,7 +7,6 @@
 }
 
 .title {
-  font-weight: 500 !important;
   margin-bottom: 15px !important;
   text-align: left !important;
 }
@@ -16,7 +15,7 @@
   margin-bottom: 24px !important;
   text-align: left !important;
   color: #555 !important;
-  font-size: 20px !important;
+  font-size: 18px !important;
 }
 
 .buttons {
@@ -45,6 +44,7 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   color: #333;
   font-size: 15px;
+  cursor: pointer !important;
 
   &:hover {
     transform: translateY(-4px);
