@@ -1,6 +1,6 @@
 export const css_flexbox_test = {
   id: 306,
-  name: "CSS: Flexbox",
+  name: "Flexbox",
   category: "CSS",
   ques: [
     {

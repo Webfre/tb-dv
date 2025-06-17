@@ -1,0 +1,151 @@
+export const scss_basics_test = {
+  id: 351,
+  name: "Возможности SCSS",
+  category: "SCSS",
+  ques: [
+    {
+      id: 1,
+      name: "Как правильно объявить переменную в SCSS?",
+      variants: [
+        "$primary-color: #3498db;",
+        "primary-color: #3498db;",
+        "$primary-color = #3498db;",
+        "var primary-color = #3498db;",
+      ],
+      correct: [0],
+    },
+    {
+      id: 2,
+      name: "Что будет результатом выражения `$base-spacing * 2`, если `$base-spacing: 1rem`?",
+      variants: ["2px", "2rem", "0.5rem", "Неизвестно"],
+      correct: [1],
+    },
+    {
+      id: 3,
+      name: "Каким символом обозначается ссылка на родительский селектор при вложенности?",
+      variants: ["@parent", "&", "$", "*"],
+      correct: [1],
+    },
+    {
+      id: 4,
+      name: "Как назвать файл-партиал в SCSS, чтобы он не компилировался в отдельный CSS?",
+      variants: [
+        "variables.scss",
+        "_variables.scss",
+        "variables.css",
+        "partial-variables.scss",
+      ],
+      correct: [1],
+    },
+    {
+      id: 5,
+      name: "Какая директива собирает несколько partial-файлов в один при компиляции?",
+      variants: ["@use", "@include", "@import", "@extend"],
+      correct: [2],
+    },
+    {
+      id: 6,
+      name: "Как объявить миксин, принимающий цвет фона и необязательный цвет текста?",
+      variants: [
+        "@mixin button-styles($bg-color, $text-color: #fff) { ... }",
+        "@mixin button-styles(bg-color, text-color = #fff) { ... }",
+        "@mixin button-styles($bg-color; $text-color: #fff) { ... }",
+        "@include button-styles($bg-color, $text-color: #fff) { ... }",
+      ],
+      correct: [0],
+    },
+    {
+      id: 7,
+      name: "Как подключить миксин `button-styles` с параметром фона `#e74c3c`?",
+      variants: [
+        "@mixin button-styles(#e74c3c);",
+        ".btn { @include button-styles(#e74c3c); }",
+        ".btn { @import button-styles(#e74c3c); }",
+        ".btn { @extend button-styles(#e74c3c); }",
+      ],
+      correct: [1],
+    },
+    {
+      id: 8,
+      name: "Что позволяет директива `@content` внутри миксина?",
+      variants: [
+        "Выбрать родительский селектор",
+        "Вставить вложенный блок CSS в тело миксина",
+        "Объявить новую переменную",
+        "Определить условие",
+      ],
+      correct: [1],
+    },
+    {
+      id: 9,
+      name: "Как объявить функцию `calculate-rem`, которая переводит пикселы в rem?",
+      variants: [
+        "@function calculate-rem($px) { @return $px / 16 * 1rem; }",
+        "@mixin calculate-rem($px) { @return $px / 16 * 1rem; }",
+        "@function calculate-rem(px) { return px / 16 * 1rem; }",
+        "function calculateRem($px) { @return $px / 16 * 1rem; }",
+      ],
+      correct: [0],
+    },
+    {
+      id: 10,
+      name: "Какая директива используется для наследования свойств одного селектора другим?",
+      variants: ["@import", "@extend", "@include", "@if"],
+      correct: [1],
+    },
+    {
+      id: 11,
+      name: "Что будет объединено в итоговом CSS после использования:\n```\n.button { padding: 1rem; }\n.btn-primary { @extend .button; color: #fff; }\n```",
+      variants: [
+        ".button { padding: 1rem; } .btn-primary { @extend .button; color: #fff; }",
+        ".button, .btn-primary { padding: 1rem; } .btn-primary { color: #fff; }",
+        ".button { padding: 1rem; color: #fff; } .btn-primary { padding: 1rem; }",
+      ],
+      correct: [1],
+    },
+    {
+      id: 12,
+      name: "Как в SCSS добавить 2rem к переменной `$base-spacing`, равной 1rem?",
+      variants: [
+        "$new-spacing: $base-spacing + 2rem;",
+        "$new-spacing: $base-spacing * 2rem;",
+        "$new-spacing: $base-spacing - 2rem;",
+        "$new-spacing: 2rem - $base-spacing;",
+      ],
+      correct: [0],
+    },
+    {
+      id: 13,
+      name: "Как получить третий элемент из списка `$colors: red, green, blue`?",
+      variants: [
+        "nth($colors, 3)",
+        "index($colors, 2)",
+        "get($colors, 3)",
+        "map-get($colors, 3)",
+      ],
+      correct: [0],
+    },
+    {
+      id: 14,
+      name: "Как получить значение ключа `primary` из карты `$theme-colors: (primary: #3498db, secondary: #e74c3c)`?",
+      variants: [
+        "nth($theme-colors, primary)",
+        "map-get($theme-colors, primary)",
+        "$theme-colors[primary]",
+        "get($theme-colors, 'primary')",
+      ],
+      correct: [1],
+    },
+    {
+      id: 15,
+      name: "Какая директива позволит сгенерировать набор селекторов `.col-1` … `.col-4` с ширинами 25%, 50%, 75%, 100%?",
+      variants: [
+        "@each $i in 1 through 4 { .col-#{$i} { width: 25% * $i; } }",
+        "@for $i from 1 through 4 { .col-#{$i} { width: (100% / 4) * $i; } }",
+        "@while $i <= 4 { .col-#{$i} { width: 25% * $i; } $i: $i + 1; }",
+        "@if $i <= 4 { .col-#{$i} { width: 25% * $i; } }",
+      ],
+      correct: [1],
+    },
+  ],
+};

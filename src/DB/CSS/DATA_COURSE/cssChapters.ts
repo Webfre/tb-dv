@@ -171,7 +171,6 @@ export const cssChapters = [
     title: "Препроцессоры (Sass/Less)",
     sections: cssSections.css_preprocessors,
     testKeys: [],
-    practiceIds: ["css_preprocessors_task"],
   },
 
   {

@@ -131,7 +131,7 @@ Grid кажется магией, но на самом деле он:
 
 export const css_grid_2 = {
   id: "css_grid_2",
-  title: "Колонки и ряды.",
+  title: "Колонки и ряды",
   content: `
   ## Управление колонками и строками в CSS Grid
 

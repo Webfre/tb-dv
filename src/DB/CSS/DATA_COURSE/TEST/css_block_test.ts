@@ -1,6 +1,6 @@
 export const css_block_test = {
   id: 303,
-  name: "CSS: Отступы, Границы, Фон и Скругления",
+  name: "Отступы, Границы, Фон и Скругления",
   category: "CSS",
   ques: [
     {

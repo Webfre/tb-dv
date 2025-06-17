@@ -227,7 +227,7 @@ export const css_responsive_2 = {
 };
 export const css_responsive_3 = {
   id: "css_responsive_3",
-  title: "Отзывчивые размеры.",
+  title: "Отзывчивые размеры",
   content: `
   ## Что значит "отзывчивые размеры"?
 

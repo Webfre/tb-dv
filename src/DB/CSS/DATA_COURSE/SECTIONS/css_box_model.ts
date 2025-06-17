@@ -90,7 +90,7 @@ export const css_box_model1 = {
 };
 export const css_box_model2 = {
   id: "css_box_model2",
-  title: "Типы отображения.",
+  title: "Типы отображения",
   content: `
   ## Типы отображения элементов в CSS
 
@@ -207,7 +207,7 @@ export const css_box_model2 = {
 };
 export const css_box_model3 = {
   id: "css_box_model3",
-  title: "Смещение элементов.",
+  title: "Смещение элементов",
   content: `
   ## Свойства смещения: top, right, bottom, left
 
@@ -330,7 +330,7 @@ export const css_box_model3 = {
 };
 export const css_box_model4 = {
   id: "css_box_model4",
-  title: "Позиционирование элементов.",
+  title: "Позиционирование элементов",
   content: `
   ## Позиционирование элементов в CSS
 
@@ -469,7 +469,7 @@ export const css_box_model4 = {
 };
 export const css_box_model5 = {
   id: "css_box_model5",
-  title: "Слои, прокрутка и прозрачность.",
+  title: "Слои, прокрутка и прозрачность",
   content: `
   ## Управление слоями, прокруткой и прозрачностью
 

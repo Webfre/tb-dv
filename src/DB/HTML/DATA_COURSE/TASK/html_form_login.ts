@@ -191,7 +191,7 @@ export const html_form_login_6 = {
       minlength="6"
     /><br /><br />
 
-    <button type="submit">Зарегистрироваться</button>
+    <button type="button">Зарегистрироваться</button>
   </form>
 </body>
 </html>`,
@@ -316,7 +316,7 @@ export const html_form_login_7 = {
     <label for="comments">Ваши комментарии:</label><br>
     <textarea id="comments" name="comments" rows="4" placeholder="Ваши комментарии"></textarea><br><br>
 
-    <button type="submit">Отправить ответы</button>
+    <button type="button">Отправить ответы</button>
   </form>
 </body>
 </html>`,
@@ -644,7 +644,7 @@ export const html_form_login_8 = {
       Подписаться на рассылку
     </label><br /><br />
 
-    <button type="submit">Отправить</button>
+    <button type="button">Отправить</button>
   </form>
 </body>
 </html>`,
@@ -882,7 +882,7 @@ export const html_form_login_9 = {
     </fieldset>
     <br>
 
-    <button type="submit">Отправить</button>
+    <button type="button">Отправить</button>
     <button type="reset">Сбросить</button>
   </form>
 </body>

@@ -132,6 +132,7 @@ export const htmlChapters = [
     id: "html_best_practices",
     title: "Современные практики и доступность",
     sections: htmlSections.html_best_practices,
+    practiceIds: [],
     testKeys: ["html_best_practices_test"],
   },
   {
