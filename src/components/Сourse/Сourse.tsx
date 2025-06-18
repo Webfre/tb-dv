@@ -3,17 +3,21 @@ import { Box, Card, CardContent, Typography, Grid, Chip } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
 import { useGetUserProgressQuery } from "../../api/progressApi";
 import { calculateTopicProgress } from "../../lib/calculateTopicProgress";
+import { FaRegSadTear } from "react-icons/fa";
+import { InfoCourse } from "../../DB/index_type";
+import { getFilteredTopics } from "../../lib/getFilteredTopics";
+import { courseList, mockTopics } from "../../DB";
+import { NotFoundMessage } from "../../ui/NotFoundMessage";
+import { useSelector } from "react-redux";
+import { selectIsProByCourseId } from "../../store/accessSlice";
+import { RootState } from "../../store/store";
+import { HintBlock } from "../../ui/HintBlock";
+import { chip_sx, chip_sx_light_border } from "../../styles/global";
+import { CustomLinearProgress } from "../../ui/CustomLinearProgress";
 import QuizIcon from "@mui/icons-material/Quiz";
 import WorkIcon from "@mui/icons-material/Work";
 import CodeIcon from "@mui/icons-material/Code";
 import BookIcon from "@mui/icons-material/MenuBook";
-import { FaRegSadTear } from "react-icons/fa";
-import { InfoCourse } from "../../DB/index_type";
-import { courseList, mockTopics } from "../../DB";
-import { NotFoundMessage } from "../../ui/NotFoundMessage";
-import { HintBlock } from "../../ui/HintBlock";
-import { chip_sx, chip_sx_light_border } from "../../styles/global";
-import { CustomLinearProgress } from "../../ui/CustomLinearProgress";
 import styles from "./Course.module.scss";
 
 const CoursePage: React.FC = () => {
@@ -25,6 +29,10 @@ const CoursePage: React.FC = () => {
   const [filteredTopics, setFilteredTopics] = useState<typeof mockTopics>([]);
   const [course, setCourse] = useState<InfoCourse | undefined>(undefined);
   const [isLoading, setIsLoading] = useState(true);
+
+  const includePro = useSelector((state: RootState) =>
+    selectIsProByCourseId(state, Number(courseId))
+  );
 
   const isTestPassed = (key: string): boolean => {
     const history = progressData?.history?.[key];
@@ -43,8 +51,13 @@ const CoursePage: React.FC = () => {
       if (foundCourse) {
         setCourse(foundCourse);
 
+        const courseIsPro = getFilteredTopics(mockTopics, {
+          courseIds: foundCourse.courseId,
+          includePro,
+        });
+
         if (foundCourse.courseId) {
-          const topics = mockTopics.filter((topic) =>
+          const topics = courseIsPro.filter((topic) =>
             foundCourse.courseId.includes(topic.id)
           );
           setFilteredTopics(topics);

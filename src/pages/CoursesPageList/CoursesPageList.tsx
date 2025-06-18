@@ -12,9 +12,10 @@ import {
   AlertTitle,
 } from "@mui/material";
 import { courseList } from "../../DB";
-import { useCheckCourseAccessQuery } from "../../api/userApi";
 import { hasAccessToCourse } from "../../lib/hasAccessToCourses";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectAllAccessCourses } from "../../store/accessSlice";
 import NextPlanIcon from "@mui/icons-material/NextPlan";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import BtnCustom from "../../ui/BtnCustom";
@@ -25,8 +26,7 @@ import CourseCardContent from "./CourseCardContent";
 
 const CoursesPageList: React.FC = () => {
   const navigate = useNavigate();
-  const { data } = useCheckCourseAccessQuery();
-  const accessCourses = data?.accessCourse || [];
+  const accessCourses = useSelector(selectAllAccessCourses) || [];
 
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);

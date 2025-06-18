@@ -11,7 +11,6 @@ import {
   DialogContent,
 } from "@mui/material";
 import { renderDifficulty } from "../TaskBook/renderDifficulty";
-import { useCheckCourseAccessQuery } from "../../api/userApi";
 import { ToggleSolvedTaskDto } from "../../api/progressApi";
 import { hasAccessToCourses } from "../../lib/hasAccessToCourses";
 import { CopyBlock, dracula } from "react-code-blocks";
@@ -24,6 +23,8 @@ import styles from "./PracticeDrawer.module.scss";
 import { PracticeTask } from "../../DB/index_type";
 import { renderCodeBlocks } from "./renderCodeBlocks";
 import { chip_sx, chip_sx_light, chip_sx_success } from "../../styles/global";
+import { useSelector } from "react-redux";
+import { selectAllAccessCourses } from "../../store/accessSlice";
 
 interface PracticeDrawerProps {
   open: boolean;
@@ -41,8 +42,8 @@ const PracticeDrawer: React.FC<PracticeDrawerProps> = ({
   const [selectedTask, setSelectedTask] = useState<PracticeTask | null>(null);
   const [htmlDrawerOpen, setHtmlDrawerOpen] = useState(false);
   const [showSolution, setShowSolution] = useState(false);
-  const { data } = useCheckCourseAccessQuery();
-  const hasAccess = hasAccessToCourses(data?.accessCourse || []);
+  const accessCourses = useSelector(selectAllAccessCourses);
+  const hasAccess = hasAccessToCourses(accessCourses || []);
 
   useEffect(() => {
     setShowSolution(false);

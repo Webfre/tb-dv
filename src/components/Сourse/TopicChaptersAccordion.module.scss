@@ -65,3 +65,17 @@
   font-weight: normal !important;
   color: rgba(0, 0, 0, 0.87) !important;
 }
+
+.proCourse {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  margin-top: 20px;
+}
+
+.accordionSummary {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  width: 100% !important;
+}

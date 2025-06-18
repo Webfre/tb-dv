@@ -5,42 +5,36 @@ import {
 } from "../../api/progressApi";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { practiceMock } from "../../DB/taskData";
-import { CiCircleCheck } from "react-icons/ci";
 import clsx from "clsx";
 import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
-  List,
-  ListItem,
-  ListItemText,
   Box,
-  Stack,
 } from "@mui/material";
-
-import { getTestTitle } from "../../lib/getTestAttemptsCount";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import SectionDrawer from "../SectionDrawer/SectionDrawer";
 import PracticeDrawer from "../PracticeDrawer/PracticeDrawer";
-import PracticeChipProgress from "./PracticeChipProgress";
-import TaskStatusChip from "./TaskStatusChip";
 import styles from "./TopicChaptersAccordion.module.scss";
 import {
   CourseChapter,
   CourseSection,
   PracticeTask,
 } from "../../DB/index_type";
-import classNames from "classnames";
+import { chip_sx } from "../../styles/global";
+import ProChipWithTooltip from "./ProChipWithTooltip";
+import ChapterSectionList from "./ChapterSectionList";
 
 interface TopicChaptersAccordionProps {
   chapters: CourseChapter[];
   topicTestKeys?: string[];
+  isPro: boolean;
 }
 
 const TopicChaptersAccordion: React.FC<TopicChaptersAccordionProps> = ({
   chapters,
   topicTestKeys = [],
+  isPro,
 }) => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -154,98 +148,34 @@ const TopicChaptersAccordion: React.FC<TopicChaptersAccordionProps> = ({
               )}
             >
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                <Box
-                  display="flex"
-                  justifyContent="space-between"
-                  alignItems="center"
-                  width="100%"
-                >
-                  <Box className={styles.chapterTitle}>{chapter.title}</Box>
+                <Box className={styles.accordionSummary}>
+                  <Box className={styles.chapterTitle}>
+                    {!isPro && chapter?.pro && (
+                      <ProChipWithTooltip
+                        sx={chip_sx}
+                        style={{ marginRight: "10px" }}
+                      />
+                    )}
+                    {chapter.title}
+                  </Box>
                 </Box>
               </AccordionSummary>
 
               <AccordionDetails>
-                <List
-                  disablePadding
-                  sx={{ display: "flex", flexDirection: "column", gap: 1 }}
-                >
-                  {chapter.sections.map((section) => (
-                    <ListItem
-                      key={section.id}
-                      className={styles.sectionItem}
-                      onClick={() => handleOpen(section)}
-                    >
-                      <ListItemText primary={section.title} />
-
-                      <Stack direction="row" spacing={1} alignItems="center">
-                        <PracticeChipProgress
-                          sectionId={section.id}
-                          onOpen={(tasks) => {
-                            setChapterTasks(tasks);
-                            setPracticeOpen(true);
-                          }}
-                          allTasks={practiceMock}
-                          practiceIds={chapter.practiceIds}
-                          solvedTasksIds={solvedTasks.map((task) => task.id)}
-                        />
-
-                        {section.postMentor && (
-                          <TaskStatusChip
-                            sectionId={section.id}
-                            taskTopics={progressData?.taskTopics}
-                          />
-                        )}
-
-                        <KeyboardArrowRightIcon color="action" />
-                      </Stack>
-                    </ListItem>
-                  ))}
-
-                  <ListItem
-                    className={classNames(styles.sectionItem, {
-                      [styles.testChip]: testCount > 0,
-                    })}
-                    onClick={(e) =>
-                      handleTestClick(
-                        e,
-                        chapter.testKeys?.[0] || topicTestKeys?.[0],
-                        chapter.title
-                      )
-                    }
-                  >
-                    {testCount > 0 && (
-                      <Box
-                        sx={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "space-between",
-                          width: "100%",
-                        }}
-                      >
-                        <ListItemText
-                          primary={`Тест: ${getTestTitle(
-                            chapter.testKeys?.[0] || topicTestKeys?.[0]
-                          )}`}
-                        />
-
-                        {testPassed === true && (
-                          <CiCircleCheck
-                            size={24}
-                            color="#4caf50"
-                            style={{ marginLeft: 8 }}
-                          />
-                        )}
-                        {testPassed === false && (
-                          <CiCircleCheck
-                            size={24}
-                            color="#a71e34"
-                            style={{ marginLeft: 8 }}
-                          />
-                        )}
-                      </Box>
-                    )}
-                  </ListItem>
-                </List>
+                <ChapterSectionList
+                  chapter={chapter}
+                  handleOpen={handleOpen}
+                  isPro={isPro}
+                  practiceMock={practiceMock}
+                  solvedTasks={solvedTasks}
+                  progressData={progressData}
+                  setChapterTasks={setChapterTasks}
+                  setPracticeOpen={setPracticeOpen}
+                  testCount={testCount}
+                  topicTestKeys={topicTestKeys}
+                  testPassed={testPassed}
+                  handleTestClick={handleTestClick}
+                />
               </AccordionDetails>
             </Accordion>
           </Box>

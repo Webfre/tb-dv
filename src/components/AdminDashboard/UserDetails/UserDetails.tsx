@@ -140,6 +140,7 @@ const UserDetails: React.FC = () => {
                   accessCourse={{
                     id: course.id,
                     isAccess: accessCourse ? accessCourse.isAccess : false,
+                    isPro: accessCourse?.isPro || false,
                   }}
                   userId={user.id}
                   refetch={refetch}

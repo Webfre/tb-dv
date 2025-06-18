@@ -38,6 +38,7 @@ export interface Progress {
 export interface AccessCourseUser {
   id: number; // id курса
   isAccess: boolean; // доступ к курсу
+  isPro: boolean; // доступ к курсу PRO
 }
 
 export interface User {
@@ -92,6 +93,24 @@ export const userApi = baseApi.injectEndpoints({
         url: `/users/${userId}/assign-access-key`,
         method: "PATCH",
         body: { idCourse },
+      }),
+    }),
+
+    updateProAccess: builder.mutation<
+      {
+        userId: number;
+        accessCourse: AccessCourseUser[];
+      },
+      {
+        userId: number;
+        idCourse: number;
+        isPro: boolean;
+      }
+    >({
+      query: ({ userId, idCourse, isPro }) => ({
+        url: `/users/${userId}/update-pro-access`,
+        method: "PATCH",
+        body: { idCourse, isPro },
       }),
     }),
 
@@ -160,6 +179,7 @@ export const {
   useGetMyProfileQuery,
   useGetUserTaskTopicsQuery,
   useUpdateUserTaskTopicMutation,
+  useUpdateProAccessMutation,
   useCheckTokenQuery,
   useGetUserInfoForAdminQuery,
 } = userApi;

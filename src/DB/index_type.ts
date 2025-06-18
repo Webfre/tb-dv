@@ -18,6 +18,7 @@ export interface CourseChapter {
   sections: CourseSection[]; // Массив разделов главы
   testKeys?: string[]; // Ключи тестов для главы (если есть)
   final?: boolean; // Является ли глава финальной (если true)
+  pro?: string; // Является ли глава PRO - подпиской
   practiceIds?: string[]; // ID практических заданий (если есть) тут нужно указать ID задач которые ты хочешь взять из задачника для Практики в Курсе
 }
 

@@ -5,7 +5,7 @@ import { useUserDialogManager } from "./useUserDialogManager";
 import { useUserManagement } from "./useUserManagement";
 
 interface AccessToggleButtonProps {
-  accessCourse: { id: number; isAccess: boolean };
+  accessCourse: { id: number; isAccess: boolean; isPro: boolean };
   userId: number;
   refetch: () => void;
 }
@@ -15,43 +15,77 @@ const AccessToggleButton: React.FC<AccessToggleButtonProps> = ({
   userId,
   refetch,
 }) => {
-  const [open, setOpen] = useState(false);
+  const [openAccessDialog, setOpenAccessDialog] = useState(false);
+  const [openProDialog, setOpenProDialog] = useState(false);
 
   const { openAccessConfirm, closeAllDialogs } = useUserDialogManager([]);
-  const { handleAssign } = useUserManagement(userId, refetch);
+  const { handleAssign, handleToggleProAccess } = useUserManagement(
+    userId,
+    refetch
+  );
 
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleAccessClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
+    setOpenAccessDialog(true);
     openAccessConfirm(userId);
-    setOpen(true);
+  };
+
+  const handleProClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    setOpenProDialog(true);
+    openAccessConfirm(userId);
   };
 
   const handleClose = () => {
-    setOpen(false);
+    setOpenAccessDialog(false);
+    setOpenProDialog(false);
     closeAllDialogs();
   };
 
-  const handleConfirm = async () => {
+  const handleAccessConfirm = async () => {
     await handleAssign(accessCourse.id, accessCourse.isAccess);
+    handleClose();
+  };
+
+  const handleProConfirm = async () => {
+    await handleToggleProAccess(accessCourse.id, !accessCourse.isPro);
     handleClose();
   };
 
   return (
     <>
       <BtnCustom
-        sx={{ minWidth: 180 }}
+        sx={{ minWidth: 180, marginRight: "10px" }}
         text={
-          accessCourse.isAccess ? "Закрыть доступ" : "Открыть доступ к курсу"
+          accessCourse.isAccess
+            ? "Закрыть доступ к курсу"
+            : "Открыть доступ к курсу"
         }
         variant="outlined"
         color={accessCourse.isAccess ? "error" : "primary"}
-        onClick={handleClick}
+        onClick={handleAccessClick}
+      />
+
+      <BtnCustom
+        sx={{ minWidth: 180 }}
+        text={
+          accessCourse.isPro ? "Закрыть доступ PRO" : "Открыть доступ к PRO"
+        }
+        variant="outlined"
+        color={accessCourse.isPro ? "error" : "primary"}
+        onClick={handleProClick}
       />
 
       <AccessConfirmDialog
-        open={open}
+        open={openProDialog}
         onClose={handleClose}
-        onConfirm={handleConfirm}
+        onConfirm={handleProConfirm}
+      />
+
+      <AccessConfirmDialog
+        open={openAccessDialog}
+        onClose={handleClose}
+        onConfirm={handleAccessConfirm}
       />
     </>
   );

@@ -1,7 +1,12 @@
 import React from "react";
 import { Typography, Box } from "@mui/material";
 import { handleSectionClick } from "../../lib/handleSectionClick";
-import { useCheckCourseAccessQuery } from "../../api/userApi";
+import Spinner from "../../ui/Spinner";
+import { useSelector } from "react-redux";
+import {
+  selectAllAccessCourses,
+  selectIsAccessLoading,
+} from "../../store/accessSlice";
 
 interface RecommendationsProps {
   modules: { name: string; id: string }[];
@@ -12,8 +17,16 @@ const Recommendations: React.FC<RecommendationsProps> = ({
   modules,
   sections,
 }) => {
-  const { data } = useCheckCourseAccessQuery();
-  const accessCourses = data?.accessCourse || [];
+  const isLoading = useSelector(selectIsAccessLoading);
+  const accessCourses = useSelector(selectAllAccessCourses);
+
+  if (isLoading) {
+    return (
+      <Box display="flex" justifyContent="center" mt={4}>
+        <Spinner />
+      </Box>
+    );
+  }
 
   return (
     <Box mt={4} p={2} bgcolor="#f5f5f5" borderRadius="20px">

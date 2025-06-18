@@ -2,11 +2,13 @@ import { configureStore } from "@reduxjs/toolkit";
 import { baseApi } from "../api/baseApi";
 import themeReducer from "./themeSlice";
 import uiReducer from "./uiSlice";
+import accessReducer from "./accessSlice";
 
 export const store = configureStore({
   reducer: {
     theme: themeReducer,
     ui: uiReducer,
+    access: accessReducer,
     [baseApi.reducerPath]: baseApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

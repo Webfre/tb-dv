@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from "react";
 import { filterTasks, getAllTopics } from "./taskUtils";
-import { useCheckCourseAccessQuery } from "../../api/userApi";
+import { useSelector } from "react-redux";
+import { selectAllAccessCourses } from "../../store/accessSlice";
 import { practiceMock } from "../../DB/taskData";
 import { useGetSolvedTasksQuery } from "../../api/progressApi";
 import { Box } from "@mui/material";
@@ -36,9 +37,10 @@ const TaskListPage: React.FC<TaskListPageProps> = ({ moduleId, filters }) => {
     currentPage,
     setCurrentPage,
   } = filters;
-  const { data } = useCheckCourseAccessQuery();
+
+  const accessCourses = useSelector(selectAllAccessCourses);
   const { data: solvedTasks = [] } = useGetSolvedTasksQuery();
-  const hasAccess = hasAccessToCourses(data?.accessCourse || []);
+  const hasAccess = hasAccessToCourses(accessCourses || []);
   const [selectedTaskId, setSelectedTaskId] = useState<string | null>(null);
   const allTopics = getAllTopics(practiceMock, moduleId);
   const tasksPerPage = 10;

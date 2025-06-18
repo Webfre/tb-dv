@@ -1,19 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { Box, Paper, Typography } from "@mui/material";
 import { CourseCard } from "./CourseCard";
-import { useCheckCourseAccessQuery } from "../../api/userApi";
 import { getAccessibleCourses } from "../../lib/hasAccessToCourses";
 import { courseList } from "../../DB";
+import { useSelector } from "react-redux";
+import {
+  selectAllAccessCourses,
+  selectIsAccessLoading,
+} from "../../store/accessSlice";
 import Confetti from "react-confetti";
 import styles from "./Course.module.scss";
 import NoCoursesAvailable from "./NoCoursesAvailable";
+import Spinner from "../../ui/Spinner";
 
 const CourseList: React.FC = () => {
-  const { data } = useCheckCourseAccessQuery();
-  const accessCourses = data?.accessCourse || [];
-  const filteredCourses = getAccessibleCourses(courseList, accessCourses);
+  const isLoading = useSelector(selectIsAccessLoading);
+  const accessCourses = useSelector(selectAllAccessCourses);
   const [showConfetti, setShowConfetti] = useState(false);
   const [isFirstVisit, setIsFirstVisit] = useState(false);
+  const filteredCourses = getAccessibleCourses(courseList, accessCourses);
 
   useEffect(() => {
     const firstVisitFlag = localStorage.getItem("first_visit_course");
@@ -28,6 +33,10 @@ const CourseList: React.FC = () => {
       }, 5000);
     }
   }, []);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <Box p={2}>

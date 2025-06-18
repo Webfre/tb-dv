@@ -1,14 +1,22 @@
 import React from "react";
-import { useCheckCourseAccessQuery } from "../../api/userApi";
+import { useSelector } from "react-redux";
 import { Flashback } from "./Flashback";
+import {
+  selectAllAccessCourses,
+  selectIsAccessLoading,
+} from "../../store/accessSlice";
 import Promo from "../../ui/Promo";
+import Spinner from "../../ui/Spinner";
 
 const FlashbackWrapper: React.FC = () => {
-  const { data, isLoading } = useCheckCourseAccessQuery();
-  const accessCourses = data?.accessCourse || [];
-  const hasAccess = accessCourses.length > 0;
+  const accessCourses = useSelector(selectAllAccessCourses);
+  const isLoading = useSelector(selectIsAccessLoading);
 
-  if (isLoading) return null;
+  if (isLoading) {
+    return <Spinner />;
+  }
+
+  const hasAccess = accessCourses.length > 0;
 
   if (!hasAccess) {
     return (

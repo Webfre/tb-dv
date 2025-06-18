@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-import styles from "./Sidebar.module.scss";
-import classNames from "classnames";
 import { LiaThumbtackSolid } from "react-icons/lia";
 import { Tooltip } from "@mui/material";
 import { useNavigate, useLocation, matchPath } from "react-router-dom";
 import { menuItemsSideBar } from "./menuItemsSideBar";
-import { useCheckCourseAccessQuery } from "../api/userApi";
+import { useSelector } from "react-redux";
 import { FcLock } from "react-icons/fc";
+import { selectAllAccessCourses } from "../store/accessSlice";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 import FeatureRequestButton from "../components/GlobalHelpDrawer/FeatureRequestButton";
+import styles from "./Sidebar.module.scss";
+import classNames from "classnames";
 
 interface SidebarProps {
   onActiveChange: (title: string) => void;
@@ -18,9 +19,7 @@ interface SidebarProps {
 export const Sidebar: React.FC<SidebarProps> = ({ onActiveChange }) => {
   const navigate = useNavigate();
   const location = useLocation();
-
-  const { data } = useCheckCourseAccessQuery();
-  const accessCourses = data?.accessCourse || [];
+  const accessCourses = useSelector(selectAllAccessCourses) || [];
   const hasAccess = accessCourses.length > 0;
 
   const [isFeatureDialogOpen, setIsFeatureDialogOpen] = useState(false);

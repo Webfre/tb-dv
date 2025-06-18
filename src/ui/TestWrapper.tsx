@@ -1,10 +1,15 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
+import {
+  selectAllAccessCourses,
+  selectIsAccessLoading,
+} from "../store/accessSlice";
+import { useSelector } from "react-redux";
 import TestСourse from "../components/TestСourse/TestСourse";
 import TestList from "../components/TestСourse/TestList";
 import TestCourseAccess from "../components/TestСourse/TestCourseAccess";
-import { useCheckCourseAccessQuery } from "../api/userApi";
 import Promo from "./Promo";
+import Spinner from "./Spinner";
 
 const TestWrapper: React.FC = () => {
   const location = useLocation();
@@ -12,8 +17,13 @@ const TestWrapper: React.FC = () => {
     | { selectedTest: string; name: string; courseId: string }
     | undefined;
 
-  const { data } = useCheckCourseAccessQuery();
-  const accessCourses = data?.accessCourse || [];
+  const accessCourses = useSelector(selectAllAccessCourses) || [];
+  const isLoading = useSelector(selectIsAccessLoading);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
+
   const hasAccess = accessCourses.length > 0;
 
   if (!hasAccess) {

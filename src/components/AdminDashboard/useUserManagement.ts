@@ -5,6 +5,7 @@ import {
   useMakeAdminMutation,
   useRevokeAccessKeyMutation,
   useRevokeAdminMutation,
+  useUpdateProAccessMutation,
 } from "../../api/userApi";
 
 export const useUserManagement = (
@@ -15,6 +16,22 @@ export const useUserManagement = (
   const [revokeAccessKey] = useRevokeAccessKeyMutation();
   const [makeAdmin] = useMakeAdminMutation();
   const [revokeAdmin] = useRevokeAdminMutation();
+  const [updateProAccess] = useUpdateProAccessMutation();
+
+  const handleToggleProAccess = useCallback(
+    async (idCourse: number, isPro: boolean) => {
+      if (!userId) return;
+
+      try {
+        await updateProAccess({ userId, idCourse, isPro }).unwrap();
+        toast.success(isPro ? "PRO доступ включен" : "PRO доступ отключен");
+        refetchUser();
+      } catch {
+        toast.error("Ошибка при обновлении PRO доступа");
+      }
+    },
+    [userId, updateProAccess, refetchUser]
+  );
 
   const handleAssign = useCallback(
     async (idCourse: number, isAccess: boolean) => {
@@ -59,5 +76,6 @@ export const useUserManagement = (
   return {
     handleAssign,
     handleToggleAdmin,
+    handleToggleProAccess,
   };
 };

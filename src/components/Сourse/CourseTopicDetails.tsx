@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import {
   useGetUserProgressQuery,
@@ -13,6 +13,13 @@ import {
 import { getPassedTestsCount } from "../../lib/getPassedTestsCount";
 import { getPrWorksProgress } from "../../lib/getPrWorksProgress";
 import { findPracticeTasksForTopic } from "../../lib/findPracticeTasksForTopic";
+import { courseList, mockTopics } from "../../DB";
+import { NotFoundMessage } from "../../ui/NotFoundMessage";
+import { FaRegSadTear } from "react-icons/fa";
+import { getFilteredTopics } from "../../lib/getFilteredTopics";
+import { useSelector } from "react-redux";
+import { selectIsProByCourseId } from "../../store/accessSlice";
+import { RootState } from "../../store/store";
 import BtnCustom from "../../ui/BtnCustom";
 import BookIcon from "@mui/icons-material/Book";
 import QuizIcon from "@mui/icons-material/Quiz";
@@ -22,9 +29,6 @@ import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import TopicChaptersAccordion from "./TopicChaptersAccordion";
 import WorkIcon from "@mui/icons-material/Work";
 import styles from "./Course.module.scss";
-import { mockTopics } from "../../DB";
-import { NotFoundMessage } from "../../ui/NotFoundMessage";
-import { FaRegSadTear } from "react-icons/fa";
 
 const CourseTopicDetails: React.FC = () => {
   const { id: courseId } = useParams();
@@ -33,6 +37,21 @@ const CourseTopicDetails: React.FC = () => {
   const searchParams = new URLSearchParams(location.search);
   const topicId = searchParams.get("topicId");
 
+  const includePro = useSelector((state: RootState) =>
+    selectIsProByCourseId(state, Number(courseId))
+  );
+
+  const filteredTopics = useMemo(() => {
+    const course = courseList.find((c) => String(c.id) === courseId);
+    if (!course) return [];
+
+    return getFilteredTopics(mockTopics, {
+      courseIds: course.courseId,
+      includePro,
+    });
+  }, [courseId]);
+
+  const topicIsPro = filteredTopics.find((t) => t.id === topicId);
   const topic = mockTopics.find((t) => t.id === topicId);
 
   const { data: progressData } = useGetUserProgressQuery(
@@ -42,7 +61,7 @@ const CourseTopicDetails: React.FC = () => {
 
   const { data: solvedTasks = [] } = useGetSolvedTasksQuery();
 
-  if (!topic) {
+  if (!topic || !topicIsPro) {
     return (
       <NotFoundMessage
         icon={<FaRegSadTear size={32} color="#999" />}
@@ -51,18 +70,18 @@ const CourseTopicDetails: React.FC = () => {
     );
   }
 
-  const totalTests = getTotalTests(topic);
-  const totalPractice = getTotalPractice(topic);
-  const passedTestsCount = getPassedTestsCount(topic, progressData);
-  const totalSections = getTotalSections(topic);
-  const moduleTasks = findPracticeTasksForTopic(topic.title);
+  const totalTests = getTotalTests(topicIsPro);
+  const passedTestsCount = getPassedTestsCount(topicIsPro, progressData);
+  const totalSections = getTotalSections(topicIsPro);
+  const moduleTasks = findPracticeTasksForTopic(topicIsPro.title);
+  const totalPractice = getTotalPractice(topicIsPro);
 
   const solvedPracticeCount = moduleTasks.filter((task) =>
     solvedTasks.some((solved) => solved.id === task.id)
   ).length;
 
   const { totalPrWorks, completedPrWorksCount } = getPrWorksProgress(
-    topic.id,
+    topicIsPro.id,
     progressData?.taskTopics
   );
 
@@ -129,6 +148,7 @@ const CourseTopicDetails: React.FC = () => {
       <TopicChaptersAccordion
         topicTestKeys={topic.testKeys}
         chapters={topic.chapters}
+        isPro={includePro}
       />
     </Box>
   );

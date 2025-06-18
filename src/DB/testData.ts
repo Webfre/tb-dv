@@ -63,6 +63,7 @@ export const TEST_CATEGORY_MAP: Record<string, string[]> = {
     "css_responsive_test",
     "css_animations_test",
   ],
+  scss: ["scss_intro_test", "scss_basics_test"],
   js: ["js_intro_test", "js_basics_test"],
 };
 
@@ -111,6 +112,4 @@ export const testData: TestDataCollection = {
   // JS  500 - 600
   js_intro_test,
   js_basics_test,
-
-  // React // id будет с 500
 };

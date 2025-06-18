@@ -8,8 +8,10 @@ interface ProtectedRouteProps {
 }
 
 const AdminProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
-  const { token, isError, isLoading, valid } = useAuthTokenCheck();
-  const { isAdmin } = useIsUserAdmin();
+  const { token, isError, isLoading: loadingAuth, valid } = useAuthTokenCheck();
+  const { isAdmin, loadingAdmin } = useIsUserAdmin();
+
+  const isLoading = loadingAuth || loadingAdmin;
 
   if (!token) {
     return <Navigate to="/register" replace />;

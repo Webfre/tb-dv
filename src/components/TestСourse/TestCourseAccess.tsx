@@ -7,22 +7,20 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import { HintBlock } from "../../ui/HintBlock";
-import { useCheckCourseAccessQuery } from "../../api/userApi";
 import { getAccessibleCourses } from "../../lib/hasAccessToCourses";
 import { courseList } from "../../DB";
 import { PurpleSelect } from "../../ui/PurpleSelect";
 import { label_sx_light, menu_item_sx_light } from "../../styles/global";
+import { useSelector } from "react-redux";
+import { selectAllAccessCourses } from "../../store/accessSlice";
 
 interface TestCourseAccessProps {
   render: (selectedCourseId: string) => React.ReactNode;
 }
 
 export default function TestCourseAccess({ render }: TestCourseAccessProps) {
-  const { data } = useCheckCourseAccessQuery();
-  const accessCourses = data?.accessCourse || [];
-
+  const accessCourses = useSelector(selectAllAccessCourses) || [];
   const [selectedCourseId, setSelectedCourseId] = useState<string>("");
-
   const filteredCourses = getAccessibleCourses(courseList, accessCourses);
 
   useEffect(() => {

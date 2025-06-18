@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Card, CardContent, Typography, Grid, Box, Stack } from "@mui/material";
-import { useCheckCourseAccessQuery } from "../../api/userApi";
+import { selectAllAccessCourses } from "../../store/accessSlice";
+import { useSelector } from "react-redux";
 import { useGetSolvedTasksQuery } from "../../api/progressApi";
 import { hasAccessToCourses } from "../../lib/hasAccessToCourses";
 import { CustomLinearProgress } from "../../ui/CustomLinearProgress";
@@ -11,10 +12,10 @@ import styles from "./TaskBook.module.scss";
 import classNames from "classnames";
 
 const TaskBook: React.FC = () => {
-  const { data } = useCheckCourseAccessQuery();
+  const accessCourses = useSelector(selectAllAccessCourses);
   const { data: solvedTasks = [] } = useGetSolvedTasksQuery();
   const [selectedModuleId, setSelectedModuleId] = useState<string | null>(null);
-  const hasAccess = hasAccessToCourses(data?.accessCourse || []);
+  const hasAccess = hasAccessToCourses(accessCourses || []);
 
   const [difficultyLevel, setDifficultyLevel] = useState<number | null>(null);
   const [topicFilter, setTopicFilter] = useState<string | null>(null);

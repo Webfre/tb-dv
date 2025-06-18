@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
+import { selectAllAccessCourses } from "../../store/accessSlice";
+import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { useCheckCourseAccessQuery } from "../../api/userApi";
 import {
   getAccessibleCourses,
   hasAccessToCourses,
@@ -12,10 +13,8 @@ import classNames from "classnames";
 import styles from "./Profile.module.scss";
 
 export default function Profile() {
-  const { data } = useCheckCourseAccessQuery();
-  const accessCourses = data?.accessCourse || [];
+  const accessCourses = useSelector(selectAllAccessCourses) || [];
   const hasAccess = hasAccessToCourses(accessCourses);
-
   const [selectedCourseId, setSelectedCourseId] = useState<string>("");
   const filteredCourses = getAccessibleCourses(courseList, accessCourses);
 

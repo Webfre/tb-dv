@@ -38,6 +38,7 @@ import FlashbackWrapper from "./components/Flashback/FlashbackWrapper";
 import TrainingPage from "./pages/TrainingPage/TrainingPage";
 import "./index.scss";
 import "react-toastify/dist/ReactToastify.css";
+import { AccessManager } from "./ui/AccessManager";
 
 export const AppRoutes = () => {
   return (
@@ -127,6 +128,7 @@ export const AppRoutes = () => {
 
 const App = () => (
   <Router>
+    <AccessManager />
     <AppRoutes />
     <ToastContainer
       position="top-center"
