@@ -9,6 +9,7 @@ import { introHtml } from "./HTML_INTRO/introHtml";
 import { scssTopic } from "./SCSS/scss";
 import { verstka_final } from "./VERSKA_FINAL/verstka_final";
 import { web_layout_info_course } from "./СOURSE_DATA/WEB_LAYOUT/web_layout_info_course";
+import { portfolio } from "./SCSS copy/portfolio";
 
 export const courseList: InfoCourse[] = [
   web_layout_info_course,
@@ -28,6 +29,7 @@ export const mockTopics: CourseTopic[] = [
   cssTopic,
   jsTopic,
   scssTopic,
+  portfolio,
   verstka_final,
 ];
 
@@ -35,7 +37,7 @@ export const mockTopics: CourseTopic[] = [
 export const chaptersMap: Record<string, CourseChapter[]> = {
   // introJavaScript: introTopicJavaScript, // TODO нужно будет создать и заполнить для курса JavaScript (идут как дополнительные)
   // introTypeScript: introTopicTypeScript, // TODO нужно будет создать и заполнить для курса TypeScript (идут как дополнительные)
-
+  portfolio: portfolio.chapters,
   introHtml: introHtml.chapters, // TODO нужно будет создать и заполнить для курса Верстка HTML CSS (идут как дополнительные)
   verstka_final: verstka_final.chapters, // финал верстка
   intro: introTopic.chapters, // ДЛЯ КУРСА REACT (базовый)

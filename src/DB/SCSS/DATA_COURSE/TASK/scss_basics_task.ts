@@ -1086,7 +1086,7 @@ $button-color: #ffffff;
 export const scss_basics_task_7 = {
   id: "scss_basics_task_7",
   module: "SCSS",
-  title: "Простейший миксин для кнопки",
+  title: "Создание кнопки с помощью миксина",
   topic: "Миксины (@mixin) и @include",
   topicId: "scss_basics",
   sectionId: "scss_possibilities1",
@@ -1176,20 +1176,18 @@ export const scss_basics_task_7 = {
 export const scss_basics_task_8 = {
   id: "scss_basics_task_8",
   module: "SCSS",
-  title: "Миксин с @content: карточка с заголовком и описанием",
+  title: "Миксин с @content: карточка товара",
   topic: "Миксины (@mixin) и @include",
   topicId: "scss_basics",
   sectionId: "scss_possibilities1",
   description:
-    "Создайте HTML-страницу с карточкой, внутри которой будут заголовок и описание. Напишите миксин, использующий `@content` для обёртки контента карточки, и примените его к блоку `.card`. Это позволит продемонстрировать работу вложенного содержимого через миксин.",
+    "Создайте HTML-страницу с карточкой товара (изображение, название, цена, кнопка). Напишите миксин с `@content` для стилизации `.card`, и используйте его в `.card`.",
   steps: [
-    'Создайте файл `index.html` с базовой структурой и блоком `<div class="card"> <h3>Заголовок</h3> <p>Описание карточки</p> </div>`.',
-    "В папке `scss/` создайте файл `_mixins.scss`.",
-    "В `_mixins.scss` объявите миксин `@mixin card-wrapper($bg-color)` с параметром:\n   • задаёт `background-color: $bg-color; padding: 1rem; border-radius: 4px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);`\n   • включает `@content;` внутри тела миксина.",
-    "Создайте файл `styles.scss`, подключите миксин: `@import 'mixins';`.",
-    "В `styles.scss` опишите `.card { @include card-wrapper(#f0f0f0) { h3 { margin-top: 0; font-size: 1.25rem; } p { color: #555; line-height: 1.4; } } }`.",
+    "Создайте `index.html` с карточкой товара: изображение, заголовок, цена и кнопка.",
+    "В папке `scss/` создайте `_mixins.scss`, объявите миксин `@mixin card-wrapper($bg-color)` со стилями обёртки и `@content;` внутри.",
+    "Создайте `styles.scss`, подключите миксин: `@import 'mixins';` и внутри `.card { @include card-wrapper(...) { ... } }` опишите стили вложенных элементов.",
     "Скомпилируйте SCSS: `sass scss/styles.scss css/styles.css`.",
-    "В `index.html` подключите `css/styles.css` и откройте страницу. Убедитесь, что карточка имеет светло-серый фон, скруглённые углы и тень, а заголовок и описание стилизованы внутри миксина.",
+    "Откройте `index.html` и убедитесь, что карточка отображается корректно.",
   ],
   difficulty: 2,
   solution: `
@@ -1197,15 +1195,17 @@ export const scss_basics_task_8 = {
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Миксин с @content</title>
-  <link rel="stylesheet" href="css/styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Карточка товара</title>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <div class="card">
-    <h3>Заголовок</h3>
-    <p>Описание карточки</p>
+    <img src="product.jpg" alt="Товар" class="card__image">
+    <h3 class="card__title">Название товара</h3>
+    <p class="card__price">9 990 ₽</p>
+    <button class="card__button">Добавить в корзину</button>
   </div>
 </body>
 </html>
@@ -1213,49 +1213,71 @@ export const scss_basics_task_8 = {
   show: `
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Миксин с @content</title>
-  <style>
-    /* css/styles.css */
-    .card {
-      background-color: #f0f0f0;
-      padding: 1rem;
-      border-radius: 4px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-    .card h3 {
-      margin-top: 0;
-      font-size: 1.25rem;
-    }
-    .card p {
-      color: #555;
-      line-height: 1.4;
-    }
-  </style>
-</head>
-<body>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Карточка товара</title><style>
+.card {
+  background-color: #f0f0f0;
+  padding: 1rem;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.card__image { width:100%; display:block; margin-bottom:0.5rem; }
+.card__title { margin:0.5rem 0; font-size:1.25rem; }
+.card__price { margin:0.5rem 0; color:#e67e22; }
+.card__button {
+  padding:0.5rem 1rem; background:#3498db; color:#fff;
+  border:none; border-radius:4px; cursor:pointer;
+  transition:background-color .3s;
+}
+.card__button:hover { background:darken(#3498db,10%); }
+</style></head><body>
   <div class="card">
-    <h3>Заголовок</h3>
-    <p>Описание карточки</p>
+    <img src="product.jpg" class="card__image" alt="Товар">
+    <h3 class="card__title">Название товара</h3>
+    <p class="card__price">9 990 ₽</p>
+    <button class="card__button">Добавить в корзину</button>
   </div>
-</body>
-</html>
+</body></html>
   `.trim(),
   codeExampleCSS: `
-<!-- scss/styles.scss -->
+/* scss/_mixins.scss */
+@mixin card-wrapper($bg-color) {
+  background-color: $bg-color;
+  padding: 1rem;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  @content;
+}
+
+/* scss/styles.scss */
 @import 'mixins';
 
 .card {
   @include card-wrapper(#f0f0f0) {
-    h3 {
-      margin-top: 0;
+    &__image {
+      width: 100%;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    &__title {
+      margin: 0.5rem 0;
       font-size: 1.25rem;
     }
-    p {
-      color: #555;
-      line-height: 1.4;
+    &__price {
+      margin: 0.5rem 0;
+      color: #e67e22;
+    }
+    &__button {
+      padding: 0.5rem 1rem;
+      background: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color .3s;
+
+      &:hover {
+        background-color: darken(#3498db, 10%);
+      }
     }
   }
 }
