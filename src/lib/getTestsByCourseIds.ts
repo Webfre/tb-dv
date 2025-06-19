@@ -25,3 +25,21 @@ export const getTestsByCourseIds = (
 
   return filteredTests;
 };
+
+export function filterTestsByProFlag(
+  tests: TestDataCollection,
+  isPro: boolean
+): TestDataCollection {
+  if (isPro) return tests;
+
+  const filtered: TestDataCollection = {};
+
+  for (const key in tests) {
+    const test = tests[key];
+    if (!test.pro) {
+      filtered[key] = test;
+    }
+  }
+
+  return filtered;
+}

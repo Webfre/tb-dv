@@ -120,17 +120,17 @@ const ChapterSectionList: React.FC<ChapterSectionListProps> = ({
           </ListItem>
         ))}
 
-        <ListItem
-          className={classNames(styles.sectionItem, {
-            [styles.testChip]: testCount > 0,
-          })}
-          onClick={handleTestItemClick}
-          sx={{
-            pointerEvents: !isPro && chapter?.pro ? "none" : "auto",
-            opacity: !isPro && chapter?.pro ? 0.6 : 1,
-          }}
-        >
-          {testCount > 0 && (
+        {testCount > 0 && (
+          <ListItem
+            className={classNames(styles.sectionItem, {
+              [styles.testChip]: testCount > 0,
+            })}
+            onClick={handleTestItemClick}
+            sx={{
+              pointerEvents: !isPro && chapter?.pro ? "none" : "auto",
+              opacity: !isPro && chapter?.pro ? 0.6 : 1,
+            }}
+          >
             <Box
               sx={{
                 display: "flex",
@@ -163,8 +163,8 @@ const ChapterSectionList: React.FC<ChapterSectionListProps> = ({
                 />
               )}
             </Box>
-          )}
-        </ListItem>
+          </ListItem>
+        )}
       </List>
 
       {!isPro && chapter?.pro && (
@@ -179,7 +179,11 @@ const ChapterSectionList: React.FC<ChapterSectionListProps> = ({
         </Box>
       )}
 
-      <ProAccessModal open={isProModalOpen} onClose={handleCloseProModal} />
+      <ProAccessModal
+        isProChapter={chapter?.pro}
+        open={isProModalOpen}
+        onClose={handleCloseProModal}
+      />
     </>
   );
 };

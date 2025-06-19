@@ -1,0 +1,2 @@
+Свойство pro добавить на ТЕСТ pro: true (смотри - TestData)
+Свойство pro: "PRO", добавить на Chapters (смотри - CourseChapter)

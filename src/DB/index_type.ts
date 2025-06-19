@@ -135,6 +135,7 @@ export interface TestData {
   name: string;
   ques: Question[];
   category: string;
+  pro?: boolean; // Тесты доступные для PRO подписки
 }
 
 export interface TestDataCollection {

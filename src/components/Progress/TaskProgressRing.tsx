@@ -1,8 +1,12 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { Box, CircularProgress, Typography } from "@mui/material";
+import { getFilteredTopics } from "../../lib/getFilteredTopics";
 import { useGetSolvedTasksQuery } from "../../api/progressApi";
 import { courseList, mockTopics } from "../../DB";
 import styles from "./PracticalWorksProgressRing.module.scss";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
+import { selectIsProByCourseId } from "../../store/accessSlice";
 
 interface TaskProgressRingProps {
   courseId: string;
@@ -12,14 +16,24 @@ const TaskProgressRing: React.FC<TaskProgressRingProps> = ({ courseId }) => {
   const { data: solvedTasks = [] } = useGetSolvedTasksQuery();
   const [progress, setProgress] = useState(0);
 
+  const includePro = useSelector((state: RootState) =>
+    selectIsProByCourseId(state, Number(courseId))
+  );
+
   const { totalTasks, solvedCount, taskProgress } = useMemo(() => {
     const course = courseList.find((c) => c.id.toString() === courseId);
     if (!course) return { totalTasks: 0, solvedCount: 0, taskProgress: 0 };
 
     const topicIds = course.courseId;
-    const topics = mockTopics.filter((topic) => topicIds.includes(topic.id));
 
+    const topicsIsPro = getFilteredTopics(mockTopics, {
+      courseIds: topicIds,
+      includePro,
+    });
+
+    const topics = topicsIsPro.filter((topic) => topicIds.includes(topic.id));
     const allPracticeIdSet = new Set<string>();
+
     topics.forEach((topic) => {
       topic.chapters.forEach((chapter) => {
         chapter.practiceIds?.forEach((id) => allPracticeIdSet.add(id));

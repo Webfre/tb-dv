@@ -10,7 +10,10 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useGetUserProgressQuery } from "../../api/progressApi";
 import { CustomLinearProgress } from "../../ui/CustomLinearProgress";
-import { getTestsByCourseIds } from "../../lib/getTestsByCourseIds";
+import {
+  filterTestsByProFlag,
+  getTestsByCourseIds,
+} from "../../lib/getTestsByCourseIds";
 import { getCourseIdsByCourseId } from "../../lib/getCourseIdsByCourseId";
 import {
   calculateCategoryProgress,
@@ -19,6 +22,9 @@ import {
 import styles from "./TestItemCard.module.scss";
 import TestItemCard from "./TestItemCard";
 import Spinner from "../../ui/Spinner";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
+import { selectIsProByCourseId } from "../../store/accessSlice";
 
 interface ProgressProps {
   courseId: string;
@@ -32,6 +38,10 @@ const TestList: React.FC<ProgressProps> = ({ courseId }) => {
     }
   );
 
+  const includePro = useSelector((state: RootState) =>
+    selectIsProByCourseId(state, Number(courseId))
+  );
+
   const moduleIds = getCourseIdsByCourseId(Number(courseId));
 
   const filteredTests = useMemo(
@@ -39,17 +49,19 @@ const TestList: React.FC<ProgressProps> = ({ courseId }) => {
     [moduleIds]
   );
 
+  const visibleTests = filterTestsByProFlag(filteredTests, includePro);
+
   const groupedTests = useMemo(
-    () => groupTestsByCategory(filteredTests),
+    () => groupTestsByCategory(visibleTests),
     [filteredTests]
   );
 
-  if (!courseId) {
-    return <Typography>Выберите курс, чтобы увидеть прогресс.</Typography>;
-  }
-
   if (isLoading) {
     return <Spinner />;
+  }
+
+  if (!courseId) {
+    return <Typography>Выберите курс, чтобы увидеть прогресс.</Typography>;
   }
 
   if (!progressData) {

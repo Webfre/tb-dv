@@ -1,11 +1,16 @@
 import React, { useMemo } from "react";
 import { Box, Typography } from "@mui/material";
 import { useGetUserProgressQuery } from "../../api/progressApi";
-import { groupTestsByCategory } from "./ProgressUtils";
-import { getTestsByCourseIds } from "../../lib/getTestsByCourseIds";
+import {
+  filterTestsByProFlag,
+  getTestsByCourseIds,
+} from "../../lib/getTestsByCourseIds";
 import { getCourseIdsByCourseId } from "../../lib/getCourseIdsByCourseId";
 import ProgressRing from "./ProgressRing";
 import PracticalWorksList from "./PracticalWorksList";
+import { useSelector } from "react-redux";
+import { selectIsProByCourseId } from "../../store/accessSlice";
+import { RootState } from "../../store/store";
 
 interface ProgressProps {
   courseId: string;
@@ -21,22 +26,23 @@ const Progress: React.FC<ProgressProps> = ({ courseId }) => {
 
   const moduleIds = getCourseIdsByCourseId(Number(courseId));
 
+  const includePro = useSelector((state: RootState) =>
+    selectIsProByCourseId(state, Number(courseId))
+  );
+
   const filteredTests = useMemo(
     () => getTestsByCourseIds(moduleIds),
     [moduleIds]
   );
 
-  const groupedTests = useMemo(
-    () => groupTestsByCategory(filteredTests),
-    [filteredTests]
-  );
-
-  if (!courseId) {
-    return <Typography>Выберите курс, чтобы увидеть прогресс.</Typography>;
-  }
+  const visibleTests = filterTestsByProFlag(filteredTests, includePro);
 
   if (isLoading) {
     return <Typography>Загрузка...</Typography>;
+  }
+
+  if (!courseId) {
+    return <Typography>Выберите курс, чтобы увидеть прогресс.</Typography>;
   }
 
   if (!progressData) {
@@ -48,7 +54,7 @@ const Progress: React.FC<ProgressProps> = ({ courseId }) => {
       <ProgressRing
         courseId={courseId}
         progressData={progressData}
-        tests={filteredTests}
+        tests={visibleTests}
       />
 
       <PracticalWorksList courseId={courseId} progressData={progressData} />

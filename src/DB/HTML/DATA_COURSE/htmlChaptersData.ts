@@ -104,7 +104,6 @@ export const htmlChapters = [
     title: "HTML-таблицы",
     sections: htmlSections.html_tables,
     testKeys: ["html_tables_test"],
-    pro: "PRO",
     practiceIds: [
       "html_table_simple_1",
       "html_table_simple_2",

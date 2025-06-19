@@ -5,12 +5,16 @@ import { useNavigate, useLocation, matchPath } from "react-router-dom";
 import { menuItemsSideBar } from "./menuItemsSideBar";
 import { useSelector } from "react-redux";
 import { FcLock } from "react-icons/fc";
-import { selectAllAccessCourses } from "../store/accessSlice";
+import {
+  selectAllAccessCourses,
+  selectIsAccessLoading,
+} from "../store/accessSlice";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 import FeatureRequestButton from "../components/GlobalHelpDrawer/FeatureRequestButton";
 import styles from "./Sidebar.module.scss";
 import classNames from "classnames";
+import Spinner from "../ui/Spinner";
 
 interface SidebarProps {
   onActiveChange: (title: string) => void;
@@ -20,11 +24,18 @@ export const Sidebar: React.FC<SidebarProps> = ({ onActiveChange }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const accessCourses = useSelector(selectAllAccessCourses) || [];
-  const hasAccess = accessCourses.length > 0;
-
+  const isLoading = useSelector(selectIsAccessLoading);
   const [isFeatureDialogOpen, setIsFeatureDialogOpen] = useState(false);
   const [hovered, setHovered] = useState(false);
   const [isPinned, setIsPinned] = useState(false);
+
+  const sortedMenuItems = [...menuItemsSideBar].sort((a, b) => {
+    const aRequires = a.requiresAccess ? 1 : 0;
+    const bRequires = b.requiresAccess ? 1 : 0;
+    return aRequires - bRequires;
+  });
+
+  const isCollapsed = !isPinned && !hovered;
 
   const handleNavigate = (url: string) => {
     navigate(url);
@@ -60,13 +71,11 @@ export const Sidebar: React.FC<SidebarProps> = ({ onActiveChange }) => {
     localStorage.setItem("sidebarPinned", String(isPinned));
   }, [isPinned]);
 
-  const sortedMenuItems = [...menuItemsSideBar].sort((a, b) => {
-    const aRequires = a.requiresAccess ? 1 : 0;
-    const bRequires = b.requiresAccess ? 1 : 0;
-    return aRequires - bRequires;
-  });
+  if (isLoading) {
+    return <Spinner />;
+  }
 
-  const isCollapsed = !isPinned && !hovered;
+  const hasAccess = accessCourses.length > 0;
 
   return (
     <aside
