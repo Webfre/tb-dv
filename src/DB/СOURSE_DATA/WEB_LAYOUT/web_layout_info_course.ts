@@ -18,6 +18,7 @@ export const web_layout_info_course = {
     "html",
     "css",
     "introHtml",
+    "portfolio",
     "verstka_final",
   ],
   title: "Вёрстка сайтов (HTML и CSS)",
